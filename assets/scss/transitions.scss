@@ -1,0 +1,24 @@
+.route {
+  &-enter-active,
+  &-leave-active {
+    transition: opacity, transform, 0.4s ease;
+  }
+
+  &-enter,
+  &-leave-to {
+    opacity: 0;
+  }
+}
+
+.slide-up {
+  &-enter-active,
+  &-leave-active {
+    transition: opacity, transform, 0.5s ease;
+  }
+
+  &-enter,
+  &-leave-to {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+}

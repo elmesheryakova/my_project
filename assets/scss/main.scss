@@ -1,0 +1,39 @@
+@import "mixins";
+@import "reset";
+@import "transitions";
+@import "fonts";
+
+html {
+  min-height: 100%;
+  display: flex;
+  flex-flow: column;
+
+  &.locked,
+  &.scroll-locked,
+  Î &.locked body {
+    overflow: hidden;
+  }
+}
+
+body {
+  font-family: "Gerbera";
+  background-color: white;
+  color: $black;
+  cursor: default;
+  min-width: 320px;
+  display: flex;
+  flex-flow: column;
+  flex: 1;
+}
+
+#__nuxt,
+#__layout,
+.layout-default {
+  flex: 1;
+  display: flex;
+  flex-flow: column;
+}
+.container {
+  max-width: 1290px;
+  padding: 0 15px;
+}
