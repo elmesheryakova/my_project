@@ -16,6 +16,9 @@
               name="arrow-header"
               v-if="item.icon"
             />
+            <div class="submenu-wrapper">
+              <HeaderSubmenu :submenu="item.submenu" v-if="item.submenu" />
+            </div>
           </li>
         </ul>
       </nav>
@@ -29,6 +32,7 @@ export default {
       headerLinks: this.$store.state.headerLinks,
     };
   },
+  computed: {},
 };
 </script>
 <style lang="scss">
@@ -42,20 +46,44 @@ export default {
     }
     .item-menu {
       border-top: 1px solid $grey;
+      transition: 0.3s ease-out;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding-top: 7px;
+      position: relative;
       &__link {
         color: $grey;
         font-size: 15px;
         font-weight: 300;
         letter-spacing: 1px;
+        width: 100%;
+        transition: 0.3s ease-out;
       }
       &__icon {
         display: block;
         width: 5px;
         height: 3px;
+      }
+      &:hover {
+        border-top: 1px solid $primary;
+        transition: 0.3s ease-out;
+        .item-menu__link {
+          color: $primary;
+          transition: 0.3s ease-out;
+          & + .item-menu__icon {
+            path {
+              fill: $primary !important;
+              transition: 0.3s ease-out;
+            }
+          }
+        }
+        .submenu {
+          height: auto;
+          opacity: 1;
+          visibility: visible;
+          transition: 0.3s ease-out;
+        }
       }
     }
   }
