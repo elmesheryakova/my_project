@@ -19,7 +19,6 @@
     "scroll-behavior-polyfill": "^2.0.13",
     "smoothscroll-polyfill": "^0.4.4",
     "vue": "^2.6.14",
-    "vue-scrollto": "^2.20.0",
     "vue-server-renderer": "^2.6.14",
     "vue-svgicon": "^3.2.9",
     "vue-template-compiler": "^2.6.14",
