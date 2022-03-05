@@ -2,7 +2,7 @@ export const state = () => ({
   headerLinks: [
     {
       title: "Решения",
-      link: "variants",
+      link: "#",
       icon: true,
       submenu: [
         {
@@ -45,17 +45,17 @@ export const state = () => ({
     },
     {
       title: "Продукция",
-      link: "products",
+      link: "#",
       icon: true,
     },
     {
       title: "Партнерам",
-      link: "partners",
+      link: "#",
       icon: true,
     },
     {
       title: "Концепция",
-      link: "concept",
+      link: "#",
       icon: true,
       submenu: [
         {
@@ -81,12 +81,12 @@ export const state = () => ({
     },
     {
       title: "Компания",
-      link: "company",
+      link: "#",
       icon: true,
     },
     {
       title: "Контакты",
-      link: "contacts",
+      link: "#",
       icon: false,
     },
   ],

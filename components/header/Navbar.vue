@@ -21,21 +21,43 @@
           </a>
         </div>
 
-        <nav class="subnav__menu">
+        <nav class="subnav__menu" role="tablist">
           <ul class="subnav__menu-list">
             <li
+              header-tag="header"
+              role="tab"
               class="subnav__menu-item"
               v-for="(item, index) in headerLinks"
               :key="index"
+              v-b-toggle="`accordion-${index}`"
             >
-              <nuxt-link to="#" class="subnav__menu-item__link">{{
-                item.title
-              }}</nuxt-link>
+              <nuxt-link :to="item.link" class="subnav__menu-item__link">
+                {{ item.title }}</nuxt-link
+              >
               <svgicon
                 class="subnav__menu-item__icon"
                 name="arrow-submenu"
                 v-if="item.icon"
               />
+              <b-collapse
+                :id="`accordion-${index}`"
+                visible
+                accordion="my-accordion"
+                role="tabpanel"
+                class="subnav-submenu__list"
+              >
+                <ul>
+                  <li
+                    class="subnav-submenu__item"
+                    v-for="(item, index) in item.submenu"
+                    :key="index"
+                  >
+                    <nuxt-link :to="item.link">
+                      {{ item.title }}
+                    </nuxt-link>
+                  </li>
+                </ul>
+              </b-collapse>
             </li>
           </ul>
         </nav>
@@ -77,9 +99,11 @@ export default {
   data() {
     return {
       headerLinks: this.$store.state.headerLinks,
+      isOpenSubmenu: false,
     };
   },
   methods: {
+    openSubmenu() {},
     toggleBodyScrollbar(visible) {
       const html = document.getElementsByTagName("html")[0];
       const burger = document.querySelector(".burger-menu");
@@ -228,6 +252,8 @@ export default {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
+
       &__link {
         font-size: 24px;
         line-height: 32px;
@@ -236,12 +262,28 @@ export default {
       &__icon {
         width: 50px;
         height: 50px;
+        transition: 0.3s ease-out;
       }
       &:not(:last-child) {
         margin-bottom: 25px;
       }
       &:last-child {
         margin-top: 35px;
+      }
+      &.not-collapsed {
+        .subnav__menu-item__icon {
+          transform: rotate(180deg);
+          transition: 0.3s ease-out;
+        }
+      }
+      .subnav-submenu__list {
+        border-left: 1px solid $black;
+        width: 100%;
+      }
+      .subnav-submenu__item {
+        font-size: 18px;
+        line-height: 28px;
+        padding-left: 35px;
       }
     }
     @media (max-width: 780px) {
