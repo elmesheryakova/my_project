@@ -29,7 +29,7 @@ export default {
   opacity: 0;
   visibility: hidden;
   position: absolute;
-  top: 70px;
+  top: 50px;
   left: 0;
   grid-template-columns: repeat(2, 220px);
   gap: 2px;
@@ -72,12 +72,12 @@ export default {
     position: absolute;
     content: "";
     width: 100%;
-    top: -46px;
+    top: -28px;
     left: 0;
     z-index: 8;
-    border: 46px solid transparent;
+    border: 30px solid transparent;
     border-bottom: 0px solid transparent;
-    border-left: 30px solid #49505754;
+    border-left: 25px solid #c4c4c420;
   }
 }
 </style>

@@ -13,10 +13,13 @@
       <div class="header-top__info">
         <a class="info-tel" href="tel:+74995770006">+7(499) 577-00-06 </a>
         <a href="mailto:info@petexpert.pro">info@petexpert.pro</a>
-        <button class="header-top__feedback">Обратная связь</button>
+        <button class="header-top__feedback" v-b-modal.modal-header>
+          Обратная связь
+        </button>
       </div>
       <HeaderNavbar />
     </div>
+    <ModalHeader />
   </div>
 </template>
 <style lang="scss">
@@ -93,8 +96,13 @@
     color: #fff;
     padding: 11px 26px 12px;
     white-space: nowrap;
+    transition: 0.3 ease-out;
     @media (max-width: 790px) {
       display: none;
+    }
+    &:hover {
+      background: $primary;
+      transition: 0.3 ease-out;
     }
   }
 }

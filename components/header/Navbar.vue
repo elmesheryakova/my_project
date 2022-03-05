@@ -72,7 +72,9 @@
           </div>
         </div>
         <div class="subnav__menu-btn">
-          <button class="subnav__menu-feedback">Обратная связь</button>
+          <button class="subnav__menu-feedback" v-b-modal.modal-sidebar>
+            Обратная связь
+          </button>
         </div>
         <div class="subnav__menu-social">
           <ul class="subnav__menu-social__list">
@@ -92,6 +94,7 @@
         </div>
       </div>
     </b-sidebar>
+    <ModalSidebar />
   </div>
 </template>
 <script>
@@ -125,7 +128,7 @@ export default {
   .b-sidebar {
     background-color: $white !important;
     width: 375px;
-    @media (max-width: 400px) {
+    @media (max-width: 600px) {
       width: 100%;
     }
   }
