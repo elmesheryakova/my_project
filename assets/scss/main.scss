@@ -4,10 +4,7 @@
 @import "fonts";
 @import "modal";
 html {
-  min-height: 100%;
-  display: flex;
-  flex-flow: column;
-
+  height: 100%;
   &.locked,
   &.scroll-locked,
   Î &.locked body {
@@ -22,18 +19,29 @@ body {
   color: $black;
   cursor: default;
   min-width: 320px;
-  display: flex;
-  flex-flow: column;
-  flex: 1;
+  height: 100%;
 }
 
-#__nuxt,
-#__layout,
-.layout-default {
-  flex: 1;
-  display: flex;
-  flex-flow: column;
-}
+// #__nuxt,
+// .layout-default {
+//   display: flex;
+//   flex-direction: column;
+//   min-height: 100%;
+// }
+// #__layout {
+//   min-height: 100% !important;
+//   display: flex;
+//   flex-direction: column;
+//   flex: 1 1 auto;
+//   & > div {
+//     display: flex;
+//     flex-direction: column;
+//     flex: 1;
+//   }
+// }
+// main {
+//   flex-grow: 1;
+// }
 .container {
   max-width: 1290px;
   padding: 0 15px;

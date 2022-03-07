@@ -1,15 +1,16 @@
 <template>
   <div class="submenu">
-    <nuxt-link
+    <div
       class="submenu__item"
       v-for="(item, idx) in submenu"
       :key="idx"
-      :to="item.link"
       :style="`background-image: url('${require(`../../assets/img/1.jpg`)}')`"
     >
-      <h4 class="submenu__item-title">{{ item.title }}</h4>
-      <div class="submenu__item-btn"><svgicon name="arrow-submenu" /></div>
-    </nuxt-link>
+      <nuxt-link :to="item.link">
+        <h4 class="submenu__item-title">{{ item.title }}</h4>
+        <div class="submenu__item-btn"><svgicon name="arrow-submenu" /></div>
+      </nuxt-link>
+    </div>
   </div>
 </template>
 <script>

@@ -4,6 +4,7 @@
     <main>
       <Nuxt />
     </main>
+    <!-- <Footer /> -->
   </div>
 </template>
 <style lang="scss">

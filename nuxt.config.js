@@ -28,6 +28,7 @@ export default {
 
   plugins: [
     '@/plugins/vue-svgicon.js',
+    { src: '~plugins/vue-fullpage.js', mode: 'client' }
   ],
 
 
@@ -41,11 +42,11 @@ export default {
   modules: [
     'bootstrap-vue/nuxt',
     '@nuxtjs/axios',
-    '@nuxtjs/style-resources',
+    '@nuxtjs/style-resources'
+
   ],
 
   axios: {
-
     baseURL: '/',
   },
 
