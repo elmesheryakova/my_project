@@ -10,7 +10,7 @@
   padding: 100px 0 70px;
   flex-shrink: 0;
   position: relative;
-  width: 100vw;
+  height: 100%;
   @media (max-width: 856px) {
     padding: 60px 0 50px;
   }

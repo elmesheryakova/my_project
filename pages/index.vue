@@ -7,10 +7,7 @@
       <h1>Section 2</h1>
     </section>
     <section class="fullpage" style="background: red">
-      <h1>Section 3</h1>
-    </section>
-    <section class="fullpage" style="background: orange">
-      <h1>Section 4</h1>
+      <Footer />
     </section>
   </div>
 </template>
