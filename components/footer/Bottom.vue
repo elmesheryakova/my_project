@@ -120,7 +120,7 @@
   opacity: 1;
   transition: all 0.3s ease-out;
 }
-
+.logo-finish,
 .logo-start1,
 .logo-start {
   position: absolute;
