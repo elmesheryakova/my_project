@@ -2,8 +2,9 @@
   <div class="">
     <section class="fullpage" style="background: green">
       <div>
-        <div v-if="$mq === 'lg'">MOBILE</div>
-        <div v-else>DESKTOP</div>
+        <div v-if="$device.isMobile">isMobile</div>
+        <div v-if="$device.isDesktop">isDesktop</div>
+        <div v-if="$device.isTablet">isTablet</div>
       </div>
     </section>
     <section class="fullpage" style="background: blue">
