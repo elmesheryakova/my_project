@@ -23,7 +23,6 @@
     "scroll-behavior-polyfill": "^2.0.13",
     "smoothscroll-polyfill": "^0.4.4",
     "vue": "^2.6.14",
-    "vue-device-detector": "^1.1.6",
     "vue-fullpage.js": "^0.1.7",
     "vue-server-renderer": "^2.6.14",
     "vue-svgicon": "^3.2.9",
