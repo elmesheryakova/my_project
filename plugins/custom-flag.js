@@ -1,3 +1,4 @@
-export default function ({ $device }) {
-  $device.isCustom = $device.userAgent.includes('Custom-Agent') ? true : false
+export default ({ $device }) => {
+  $device.isApple = $device.isIOS || $device.isMacOS
 }
+

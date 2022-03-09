@@ -28,8 +28,10 @@ export default {
 
   plugins: [
     '@/plugins/vue-svgicon.js',
-    { src: "~/plugins/device.js" },
-    { src: "~/plugins/dev-device.js", mode: "client" }
+    // { src: "@/plugins/vue-detector.js", mode: "client" }
+    // { src: "~/plugins/device.js", mode: "client" },
+    // { src: "~/plugins/dev-device.js", mode: "client" },
+    { src: "~/plugins/custom-flag.js", mode: "client" }
 
   ],
 
@@ -38,10 +40,10 @@ export default {
 
 
   buildModules: [
-    // '@nuxtjs/device'
+    '@nuxtjs/device'
   ],
   device: {
-
+    // test: true,
     refreshOnResize: true
   },
 
@@ -51,27 +53,28 @@ export default {
     '@nuxtjs/style-resources',
     'nuxt-fullpage.js',
     '@nuxtjs/device',
-    [
-      "nuxt-mq",
-      {
-        // Default breakpoint for SSR
-        defaultBreakpoint: "default",
-        breakpoints: {
-          sm: 450,
-          md: 1250,
-          lg: Infinity
-        }
-      }
-    ],
+
+    // [
+    //   "nuxt-mq",
+    //   {
+    //     // Default breakpoint for SSR
+    //     defaultBreakpoint: "default",
+    //     breakpoints: {
+    //       sm: 450,
+    //       md: 1250,
+    //       lg: Infinity
+    //     }
+    //   }
+    // ],
   ],
-  mq: {
-    defaultBreakpoint: "default",
-    breakpoints: {
-      sm: 450,
-      md: 1250,
-      lg: Infinity
-    }
-  },
+  // mq: {
+  //   defaultBreakpoint: "default",
+  //   breakpoints: {
+  //     sm: 450,
+  //     md: 1250,
+  //     lg: Infinity
+  //   }
+  // },
   axios: {
     baseURL: '/',
   },
