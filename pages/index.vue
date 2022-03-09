@@ -1,11 +1,10 @@
 <template>
   <div class="">
     <section class="fullpage" style="background: green">
-      <section>
-        <div v-if="$device.isDesktop">Desktop</div>
-        <div v-else-if="$device.isTablet">Tablet</div>
-        <div v-else>Mobile</div>
-      </section>
+      <div>
+        <div v-if="$mq === 'lg'">MOBILE</div>
+        <div v-else>DESKTOP</div>
+      </div>
     </section>
     <section class="fullpage" style="background: blue">
       <h1>Section 2</h1>
