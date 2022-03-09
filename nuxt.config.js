@@ -28,10 +28,10 @@ export default {
 
   plugins: [
     '@/plugins/vue-svgicon.js',
-    // { src: "@/plugins/vue-detector.js", mode: "client" }
+
     { src: "~/plugins/device.js", mode: "client" },
     { src: "~/plugins/dev-device.js", mode: "client" },
-    // { src: "~/plugins/custom-flag.js", mode: "client" }
+
 
   ],
 
@@ -43,7 +43,6 @@ export default {
     '@nuxtjs/device'
   ],
   device: {
-    // test: true,
     refreshOnResize: true
   },
 

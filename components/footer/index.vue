@@ -15,7 +15,7 @@
   @media (max-width: 856px) {
     padding: 60px 0 50px;
   }
-  @media (min-width: 1940px) {
+  @media (min-width: 1700px) {
     display: flex;
     flex-direction: column;
     justify-content: center;

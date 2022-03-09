@@ -8,7 +8,7 @@
             v-for="(item, index) in headerLinks"
             :key="index"
           >
-            <nuxt-link to="#" class="item-menu__link">{{
+            <nuxt-link :to="item.link" class="item-menu__link">{{
               item.title
             }}</nuxt-link>
             <svgicon

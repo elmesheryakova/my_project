@@ -2,7 +2,7 @@ export const state = () => ({
   headerLinks: [
     {
       title: "Решения",
-      link: "#",
+      link: "/solutions",
       icon: true,
       submenu: [
         {
