@@ -1,7 +1,11 @@
 <template>
   <div class="">
     <section class="fullpage" style="background: green">
-      <h1>Section 1</h1>
+      <section>
+        <div v-if="$device.isDesktop">Desktop</div>
+        <div v-else-if="$device.isTablet">Tablet</div>
+        <div v-else>Mobile</div>
+      </section>
     </section>
     <section class="fullpage" style="background: blue">
       <h1>Section 2</h1>
@@ -87,7 +91,7 @@ export default {
     },
     updateWidth() {
       this.width = window.innerWidth;
-      console.log(this.width);
+      // console.log(this.width);
     },
   },
   created() {
