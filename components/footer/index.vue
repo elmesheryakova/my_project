@@ -10,10 +10,16 @@
   padding: 100px 0 70px;
   flex-shrink: 0;
   position: relative;
-  width: 100vw;
+  width: 100%;
   height: 100%;
   @media (max-width: 856px) {
     padding: 60px 0 50px;
+  }
+  @media (min-width: 1940px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }
 </style>
