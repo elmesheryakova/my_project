@@ -28,7 +28,7 @@ export default {
 
   plugins: [
     '@/plugins/vue-svgicon.js',
-    { src: '~plugins/vue-fullpage.js', mode: 'client' }
+    '@/plugins/custom-flag.js'
   ],
 
 
@@ -36,8 +36,13 @@ export default {
 
 
   buildModules: [
-  ],
+    '@nuxtjs/device',
 
+  ],
+  device: {
+    test: true,
+    refreshOnResize: true
+  },
 
   modules: [
     'bootstrap-vue/nuxt',
