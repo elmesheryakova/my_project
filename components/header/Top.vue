@@ -108,5 +108,8 @@
   @media (max-width: 991px) {
     margin-bottom: 5px;
   }
+  @media (max-width: 791px) {
+    margin-bottom: 0px;
+  }
 }
 </style>
