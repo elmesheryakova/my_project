@@ -19,7 +19,9 @@
       </div>
       <HeaderNavbar />
     </div>
-    <ModalHeader />
+    <transition name="route">
+      <ModalHeader />
+    </transition>
   </div>
 </template>
 <style lang="scss">
