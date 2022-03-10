@@ -7,7 +7,7 @@
       </div>
     </section>
     <section class="fullpage" :class="{ 'fullpage--none': width < 1400 }">
-      <h1>Section 2</h1>
+      <SectionSolution />
     </section>
     <section class="fullpage" :class="{ 'fullpage--none': width < 1400 }">
       <Footer />
@@ -16,6 +16,8 @@
 </template>
 <script>
 export default {
+  scrollToTop: true,
+  transition: "route",
   layout: "fullscreen",
 
   data() {
@@ -133,11 +135,13 @@ export default {
   left: 50%;
   top: 80%;
   transform: translateX(-50%);
+  width: 50px;
+  height: 50px;
 
   cursor: pointer;
   svg {
-    width: 50px;
-    height: 50px;
+    width: 100%;
+    height: 100%;
     fill: transparent;
     transform: rotate(90deg);
   }
