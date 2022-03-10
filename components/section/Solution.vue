@@ -29,11 +29,13 @@
         ref="swiperThumbs"
       >
         <swiper-slide v-for="(item, index) in solutions" :key="`item-${index}`">
-          <svgicon :name="item.svg" @click="onThumbClick(index)" />
+          <div @click="onThumbClick(index)">
+            <svgicon :name="item.svg" />
+          </div>
         </swiper-slide>
       </swiper>
 
-      <div
+      <!-- <div
         class="slider-button-next slider-button-next-thumb slider-button-white"
       >
         <svgicon name="arrow-slider" />
@@ -42,7 +44,7 @@
         class="slider-button-prev slider-button-prev-thumb slider-button-white"
       >
         <svgicon name="arrow-slider" />
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
