@@ -84,6 +84,11 @@ export default {
       compact: true,
     },
   },
+  generate: {
+    minify: {
+      collapseWhitespace: false
+    }
+  },
   router: {
 
     scrollBehavior: async (to, from, savedPosition) => {
