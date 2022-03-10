@@ -16,8 +16,8 @@
               name="arrow-header"
               v-if="item.icon"
             />
-            <div class="submenu-wrapper">
-              <HeaderSubmenu :submenu="item.submenu" v-if="item.submenu" />
+            <div class="submenu-wrapper" v-if="item.submenu">
+              <HeaderSubmenu :submenu="item.submenu" />
             </div>
           </li>
         </ul>

@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <div>
     <section class="fullpage" :class="{ 'fullpage--none': width < 1400 }">
       <SectionBanner />
       <div class="sections-menu" @click="scrollToSection(2)">
@@ -12,7 +12,7 @@
     <section class="fullpage" :class="{ 'fullpage--none': width < 1400 }">
       <Footer />
     </section>
-  </section>
+  </div>
 </template>
 <script>
 export default {

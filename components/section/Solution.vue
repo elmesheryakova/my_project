@@ -158,7 +158,7 @@ export default {
       this.activeSlideInd = this.$refs.swiperTop.$swiper.activeIndex;
     },
   },
-
+  created() {},
   mounted() {
     // this.$nextTick(() => {
     // 	const swiperTop = this.$refs.swiperTop.$swiper;
