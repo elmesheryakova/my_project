@@ -1,57 +1,74 @@
 
 <template>
-  <div class="slider slider-thumbs">
-    <!-- swiper1 -->
-    <div class="slider-container">
-      <swiper
-        class="swiper-works swiper-works__double gallery-top"
-        :options="swiperOptionTop"
-        ref="swiperTop"
-        @slideChange="onSlideChange"
-      >
-        <swiper-slide v-for="(item, index) in solutions" :key="`item-${index}`">
-          <div class="solution-info">
-            <h2 class="solution__title">{{ item.title }}</h2>
-            <p class="solution__text">{{ item.description }}</p>
-          </div>
-          <div class="solution-img">
-            <img :src="require(`@/assets/img/${item.img1}`)" alt="fdhgdfg" />
-            <!-- <img :src="require(`@/assets/img/${item.img2}`)" alt="fdhgdfg" /> -->
-          </div>
-        </swiper-slide>
-      </swiper>
-    </div>
-
-    <div class="slider-container">
-      <swiper
-        class="swiper gallery-thumbs"
-        :options="swiperOptionThumbs"
-        ref="swiperThumbs"
-      >
-        <swiper-slide v-for="(item, index) in solutions" :key="`item-${index}`">
-          <div @click="onThumbClick(index)">
-            <svgicon :name="item.svg" />
-          </div>
-        </swiper-slide>
-      </swiper>
-
-      <!-- <div
-        class="slider-button-next slider-button-next-thumb slider-button-white"
-      >
-        <svgicon name="arrow-slider" />
-      </div>
+  <div v-swiper="swiperOptionTop">
+    <div class="swiper-wrapper">
       <div
-        class="slider-button-prev slider-button-prev-thumb slider-button-white"
+        class="swiper-slide"
+        v-for="(item, index) in solutions"
+        :key="`item-${index}`"
       >
-        <svgicon name="arrow-slider" />
-      </div> -->
+        <div class="solution-info">
+          <h2 class="solution__title">{{ item.title }}</h2>
+          <p class="solution__text">{{ item.description }}</p>
+        </div>
+        <div class="solution-img">
+          <img :src="require(`@/assets/img/${item.img1}`)" alt="fdhgdfg" />
+          <!-- <img :src="require(`@/assets/img/${item.img2}`)" alt="fdhgdfg" /> -->
+        </div>
+      </div>
     </div>
   </div>
+  <!-- <div class="slider slider-thumbs">
+
+      <div class="slider-container">
+        <swiper
+          class="swiper-works swiper-works__double gallery-top"
+          :options="swiperOptionTop"
+          ref="swiperTop"
+          @slideChange="onSlideChange"
+        >
+          <swiper-slide
+            v-for="(item, index) in solutions"
+            :key="`item-${index}`"
+          >
+            <div class="solution-info">
+              <h2 class="solution__title">{{ item.title }}</h2>
+              <p class="solution__text">{{ item.description }}</p>
+            </div>
+            <div class="solution-img">
+              <img :src="require(`@/assets/img/${item.img1}`)" alt="fdhgdfg" />
+              <img :src="require(`@/assets/img/${item.img2}`)" alt="fdhgdfg" />
+            </div>
+          </swiper-slide>
+        </swiper>
+      </div>
+
+      <div class="slider-container">
+        <swiper
+          class="swiper gallery-thumbs"
+          :options="swiperOptionThumbs"
+          ref="swiperThumbs"
+        >
+          <swiper-slide
+            v-for="(item, index) in solutions"
+            :key="`item-${index}`"
+          >
+            <div @click="onThumbClick(index)">
+              <svgicon :name="item.svg" />
+            </div>
+          </swiper-slide>
+        </swiper>
+      </div>
+    </div> -->
 </template>
 
 <script>
+import { directive } from "vue-awesome-swiper";
 export default {
   data: () => ({
+    directives: {
+      swiper: directive,
+    },
     solutions: [
       {
         id: 1,
@@ -148,15 +165,13 @@ export default {
   computed: {},
 
   methods: {
-    onThumbClick(ind) {
-      this.$refs.swiperTop.$swiper.slideTo(ind);
-
-      this.activeSlideInd = ind;
-    },
-
-    onSlideChange(e) {
-      this.activeSlideInd = this.$refs.swiperTop.$swiper.activeIndex;
-    },
+    // onThumbClick(ind) {
+    //   this.$refs.swiperTop.$swiper.slideTo(ind);
+    //   this.activeSlideInd = ind;
+    // },
+    // onSlideChange(e) {
+    //   this.activeSlideInd = this.$refs.swiperTop.$swiper.activeIndex;
+    // },
   },
   created() {},
   mounted() {
@@ -166,7 +181,7 @@ export default {
     // 	swiperTop.controller.control = swiperThumbs;
     // 	swiperThumbs.controller.control = swiperTop;
     // });
-    this.$refs.swiperTop.$swiper.slideTo(this.clickedInd);
+    // this.$refs.swiperTop.$swiper.slideTo(this.clickedInd);
   },
 };
 </script>
