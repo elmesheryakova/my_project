@@ -16,8 +16,6 @@
 </template>
 <script>
 export default {
-  scrollToTop: true,
-  transition: "route",
   layout: "fullscreen",
 
   data() {
