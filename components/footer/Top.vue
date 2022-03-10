@@ -121,10 +121,17 @@ export default {
     cursor: pointer;
     transition: 0.3s ease-out;
     padding: 10px;
+    a {
+      color: $primary;
+    }
+
     &:hover {
       background: $primary;
       color: $white;
       transition: 0.3s ease-out;
+      a {
+        color: $white;
+      }
     }
     @media (max-width: 615px) {
       height: 48px;

@@ -1,15 +1,15 @@
 <template>
   <section>
-    <section class="fullpage">
+    <section class="fullpage" :class="{ 'fullpage--none': width < 1400 }">
       <SectionBanner />
       <div class="sections-menu" @click="scrollToSection(2)">
         <svgicon name="arrow-fullscreen" />
       </div>
     </section>
-    <section class="fullpage">
+    <section class="fullpage" :class="{ 'fullpage--none': width < 1400 }">
       <h1>Section 2</h1>
     </section>
-    <section class="fullpage">
+    <section class="fullpage" :class="{ 'fullpage--none': width < 1400 }">
       <Footer />
     </section>
   </section>
@@ -124,18 +124,25 @@ export default {
 .fullpage {
   height: 100vh;
   width: 100%;
+  &--none {
+    height: 100%;
+  }
 }
 .sections-menu {
   position: absolute;
   left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  top: 80%;
+  transform: translateX(-50%);
+
   cursor: pointer;
   svg {
     width: 50px;
     height: 50px;
     fill: transparent;
     transform: rotate(90deg);
+  }
+  @media (max-width: 1400px) {
+    display: none;
   }
 }
 </style>

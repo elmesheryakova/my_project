@@ -105,5 +105,8 @@
       transition: 0.3 ease-out;
     }
   }
+  @media (max-width: 991px) {
+    margin-bottom: 5px;
+  }
 }
 </style>
