@@ -2,7 +2,7 @@
   <div>
     <section class="fullpage" :class="{ 'fullpage--none': width < 1400 }">
       <SectionBanner />
-      <div class="sections-menu" @click="scrollToSection(2)">
+      <div class="sections-menu" @click="scrollToSection(1)">
         <svgicon name="arrow-fullscreen" />
       </div>
     </section>
@@ -97,15 +97,16 @@ export default {
       }, 400);
     },
   },
-  created() {
-    if (process.client) {
-      this.calculateSectionOffsets();
-      window.addEventListener("resize", this.updateWidth);
-      window.addEventListener("DOMMouseScroll", this.handleMouseWheelDOM);
-      window.addEventListener("mousewheel", this.handleMouseWheel, {
-        passive: false,
-      });
-    }
+  created() {},
+
+  mounted() {
+    this.calculateSectionOffsets();
+    window.addEventListener("resize", this.updateWidth);
+    window.addEventListener("DOMMouseScroll", this.handleMouseWheelDOM);
+    window.addEventListener("mousewheel", this.handleMouseWheel, {
+      passive: false,
+    });
+    this.updateWidth();
   },
   destroyed() {
     if (process.client) {
@@ -114,9 +115,6 @@ export default {
       });
       window.removeEventListener("DOMMouseScroll", this.handleMouseWheelDOM);
     }
-  },
-  mounted() {
-    this.updateWidth();
   },
 };
 </script>
