@@ -41,7 +41,7 @@ export default {
       padding-top: 90px;
     }
     @media (max-width: 791px) {
-      padding-top: 65px;
+      padding-top: 60px;
     }
     @media (max-width: 640px) {
       flex: 0 0 100%;
@@ -74,6 +74,9 @@ export default {
       font-size: 48px;
       line-height: 53px;
       text-align: center;
+    }
+    @media (max-width: 520px) {
+      top: 55%;
     }
   }
 }
