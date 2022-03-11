@@ -26,7 +26,13 @@ export default {
   background: #f2f3f7 url("~assets/img/2fon.png") center no-repeat;
   position: relative;
   z-index: -1;
-
+  margin-top: -135px;
+  @media (max-width: 991px) {
+    margin-top: -90px;
+  }
+  @media (max-width: 791px) {
+    margin-top: -60px;
+  }
   &__img {
     padding-top: 135px;
     display: flex;

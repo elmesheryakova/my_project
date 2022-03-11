@@ -1,13 +1,19 @@
 <template>
   <div>
     <section class="fullpage" :class="{ 'fullpage--none': width < 1400 }">
+      <Header />
       <SectionBanner />
       <div class="sections-menu" @click="scrollToSection(1)">
-        <svgicon name="arrow-fullscreen" />
+        <svgicon name="arrow-blue" />
       </div>
     </section>
-    <section class="fullpage" :class="{ 'fullpage--none': width < 1400 }">
-      <SectionSolution />
+    <section
+      class="fullpage"
+      :class="{ 'fullpage--none': width < 1400 }"
+      :style="'background: #fff'"
+    >
+      <template v-if="width > 870"> <SectionSolution /></template>
+      <template v-else> <SectionSolutionMobile /></template>
     </section>
     <section class="fullpage" :class="{ 'fullpage--none': width < 1400 }">
       <Footer />
@@ -139,7 +145,6 @@ export default {
     width: 100%;
     height: 100%;
     fill: transparent;
-    transform: rotate(90deg);
   }
   @media (max-width: 1400px) {
     display: none;

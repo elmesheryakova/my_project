@@ -113,16 +113,17 @@ export default {
   }
   &__item {
     height: 55px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
     background: $white;
     cursor: pointer;
     transition: 0.3s ease-out;
-    padding: 10px;
     a {
       color: $primary;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
     }
 
     &:hover {

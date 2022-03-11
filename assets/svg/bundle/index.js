@@ -1,4 +1,5 @@
 /* eslint-disable */
+require('./arrow-blue')
 require('./arrow-fullscreen')
 require('./arrow-header')
 require('./arrow-submenu')

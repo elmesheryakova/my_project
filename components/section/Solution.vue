@@ -1,31 +1,40 @@
 
 <template>
-  <div class="slider slider-thumbs">
-    <div class="container">
-      <div
-        v-swiper="swiperOptionTop"
-        class="swiper-works swiper-works__double gallery-top"
-        ref="swiperTop"
-        @slideChange="onSlideChange"
-      >
-        <div class="swiper-wrapper">
-          <div
-            class="swiper-slide"
-            v-for="(item, index) in solutions"
-            :key="`item-${index}`"
-          >
-            <div class="solution-info">
-              <h2 class="solution__title">{{ item.title }}</h2>
-              <p class="solution__text">{{ item.description }}</p>
+  <div class="slider-thumbs">
+    <div
+      v-swiper="swiperOptionTop"
+      class="gallery-top"
+      ref="swiperTop"
+      @slideChange="onSlideChange"
+    >
+      <div class="swiper-wrapper">
+        <div
+          class="swiper-slide"
+          v-for="(item, index) in solutions"
+          :key="`item-${index}`"
+        >
+          <div class="gallery-top__info">
+            <h2 class="gallery-top__title">{{ item.title }}</h2>
+            <p class="gallery-top__text">{{ item.description }}</p>
+          </div>
+
+          <div class="gallery-top__img d-flex">
+            <nuxt-link :to="{ name: 'solutions-id', params: { id: item.id } }">
+              <div class="gallery-top__link">
+                <svgicon name="arrow-fullscreen" />
+              </div>
+            </nuxt-link>
+            <div class="gallery-top__img-1">
+              <img :src="require(`@/assets/img/${item.img1}`)" alt="img" />
             </div>
-            <div class="solution-img d-flex">
-              <img :src="require(`@/assets/img/${item.img1}`)" alt="fdhgdfg" />
-              <img :src="require(`@/assets/img/${item.img2}`)" alt="fdhgdfg" />
+            <div class="gallery-top__img-2">
+              <img :src="require(`@/assets/img/${item.img2}`)" alt="img" />
             </div>
           </div>
         </div>
       </div>
     </div>
+
     <div class="slider-container">
       <div
         v-swiper="swiperOptionThumbs"
@@ -61,120 +70,50 @@
 <script>
 import { directive } from "vue-awesome-swiper";
 export default {
-  data: () => ({
-    directives: {
-      swiper: directive,
-    },
-    solutions: [
-      {
-        id: 1,
-        title: "Вода",
-        description:
-          "Международный бренд по производству ПЭТ-тары, отличающийся высочайшим качеством материалов, продукции и подхода к клиентам. Международный бренд отличающийся высочайшим качеством материалов, продукции и подхода к клиентам.",
-        img1: "water.jpg",
-        img2: "water1.jpg",
-        svg: "water",
+  data() {
+    return {
+      directives: {
+        swiper: directive,
       },
-      {
-        id: 1,
-        title: "Пиво",
-        description:
-          "Международный бренд по производству ПЭТ-тары, отличающийся высочайшим качеством материалов, продукции и подхода к клиентам. Международный бренд отличающийся высочайшим качеством материалов, продукции и подхода к клиентам. ",
-        img1: "beer.jpg",
-        img2: "beer1.jpg",
-        svg: "beer",
-      },
-      {
-        id: 1,
-        title: "Квас",
-        description:
-          "Международный бренд по производству ПЭТ-тары, отличающийся высочайшим качеством материалов, продукции и подхода к клиентам. Международный бренд отличающийся высочайшим качеством материалов, продукции и подхода к клиентам. ",
-        img1: "water.jpg",
-        img2: "water1.jpg",
-        svg: "kvass",
-      },
-      {
-        id: 1,
-        title: "Сидр",
-        description:
-          "Международный бренд по производству ПЭТ-тары, отличающийся высочайшим качеством материалов, продукции и подхода к клиентам. Международный бренд отличающийся высочайшим качеством материалов, продукции и подхода к клиентам. ",
-        img1: "water.jpg",
-        img2: "water1.jpg",
-        svg: "cider",
-      },
-      {
-        id: 1,
-        title: "Вино",
-        description:
-          "Международный бренд по производству ПЭТ-тары, отличающийся высочайшим качеством материалов, продукции и подхода к клиентам. Международный бренд отличающийся высочайшим качеством материалов, продукции и подхода к клиентам. ",
-        img1: "water.jpg",
-        img2: "water1.jpg",
-        svg: "vine",
-      },
-      {
-        id: 1,
-        title: "Кофе",
-        description:
-          "Международный бренд по производству ПЭТ-тары, отличающийся высочайшим качеством материалов, продукции и подхода к клиентам. Международный бренд отличающийся высочайшим качеством материалов, продукции и подхода к клиентам. ",
-        img1: "water.jpg",
-        img2: "water1.jpg",
-        svg: "coffe",
-      },
-    ],
-    activeSlideInd: 0,
+      solutions: this.$store.state.solutions,
+      activeSlideInd: 0,
 
-    swiperOptionTop: {
-      speed: 1000,
-      autoplay: {
-        delay: 3000,
-        disableOnInteraction: true,
-      },
-      spaceBetween: 10,
-      slidesPerView: 1,
-      slidesPerGroup: 1,
-      on: {
-        init() {
-          this.el.addEventListener("mouseenter", () => {
-            this.autoplay.stop();
-          });
-
-          this.el.addEventListener("mouseleave", () => {
-            this.autoplay.start();
-          });
-        },
-      },
-    },
-
-    swiperOptionThumbs: {
-      // direction: "vertical",
-
-      slidesPerView: 3,
-      slidesPerGroup: 3,
-      touchRatio: 0.2,
-      spaceBetween: 10,
-      navigation: {
-        nextEl: ".slider-button-next-thumb",
-        prevEl: ".slider-button-prev-thumb",
-      },
-
-      breakpoints: {
-        375: {
-          slidesPerView: 4,
-          slidesPerGroup: 4,
-        },
-        // 768: {
-        // 	slidesPerView: 8,
-        // 	slidesPerGroup: 8
+      swiperOptionTop: {
+        // effect: "fade",
+        // fadeEffect: { crossFade: true },
+        // speed: 1000,
+        // autoplay: {
+        //   delay: 3000,
+        //   disableOnInteraction: true,
         // },
-        // 992: {
-        // 	slidesPerView: 10,
-        // 	slidesPerGroup: 10
-        // }
-      },
-    },
+        spaceBetween: 10,
+        slidesPerView: 1,
+        slidesPerGroup: 1,
+        // on: {
+        //   init() {
+        //     this.el.addEventListener("mouseenter", () => {
+        //       this.autoplay.stop();
+        //     });
 
-    doubleCount: 3,
-  }),
+        //     this.el.addEventListener("mouseleave", () => {
+        //       this.autoplay.start();
+        //     });
+        //   },
+        // },
+      },
+
+      swiperOptionThumbs: {
+        touchRatio: 0.2,
+        spaceBetween: 10,
+        navigation: {
+          nextEl: ".slider-button-next-thumb",
+          prevEl: ".slider-button-prev-thumb",
+        },
+      },
+
+      doubleCount: 3,
+    };
+  },
 
   computed: {},
 
@@ -197,24 +136,158 @@ export default {
 </script>
 <style lang="scss">
 .slider-thumbs {
-  padding-top: 135px;
-
-  @media (max-width: 991px) {
-    padding-top: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  @media (max-width: 1400px) {
+    padding: 30px 0;
   }
-  @media (max-width: 791px) {
-    padding-top: 60px;
+  @media (max-width: 1190px) {
+    padding: 10px 0;
   }
 }
 .gallery-top {
   overflow: hidden;
+  height: 100%;
   .swiper-wrapper {
-    padding-top: 80px;
     display: flex;
+    height: 100%;
   }
   .swiper-slide {
     min-width: 100%;
     display: flex;
+  }
+
+  &__info {
+    max-width: 340px;
+    margin-left: auto;
+    align-self: center;
+    @media (max-width: 1190px) {
+      margin-left: 20px;
+    }
+  }
+  &__title {
+    color: $primary;
+    font-size: 64px;
+    font-weight: 900;
+    padding-bottom: 120px;
+    position: relative;
+    &:after {
+      position: absolute;
+      content: "";
+      height: 62px;
+      width: 1px;
+      background-color: $black;
+      top: 105px;
+      left: 3px;
+    }
+    @media (max-width: 1500px) {
+      font-size: 54px;
+      &:after {
+        top: 95px;
+      }
+    }
+    @media (max-width: 1190px) {
+      font-size: 45px;
+      padding-bottom: 80px;
+      &:after {
+        top: 70px;
+        height: 50px;
+      }
+    }
+    @media (max-width: 991px) {
+      font-size: 40px;
+      &:after {
+        top: 65px;
+      }
+    }
+  }
+  &__text {
+    @media (max-width: 991px) {
+      font-size: 14px;
+      line-height: 18px;
+    }
+  }
+
+  &__img {
+    margin-left: auto;
+    position: relative;
+    &-1 {
+      align-self: flex-end;
+      @media (max-width: 1400px) {
+        margin-top: 100px;
+      }
+    }
+    &-1,
+    &-2 {
+      height: 516px;
+      width: 480px;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      @media (max-width: 1500px) {
+        height: 480px;
+        width: 380px;
+      }
+      @media (max-width: 1400px) {
+        height: 400px;
+        width: 320px;
+      }
+      @media (max-width: 1190px) {
+        height: 350px;
+        width: 280px;
+      }
+      @media (max-width: 991px) {
+        height: 350px;
+        width: 240px;
+      }
+    }
+  }
+  &__link {
+    width: 160px;
+    height: 160px;
+    background-color: $primary;
+    border-radius: 50%;
+    position: absolute;
+    top: 180px;
+    left: -80px;
+
+    svg {
+      width: 47px;
+      height: 47px;
+      fill: transparent;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+
+      path {
+        stroke: $white;
+      }
+    }
+    @media (max-width: 1500px) {
+      height: 100px;
+      width: 100px;
+      left: -50px;
+      top: 170px;
+      svg {
+        width: 40px;
+        height: 40px;
+      }
+    }
+    @media (max-width: 1400px) {
+      top: 70px;
+    }
+  }
+  @media (max-width: 1400px) {
+    margin-bottom: 30px;
+  }
+  @media (max-width: 1190px) {
+    margin-bottom: 10px;
   }
 }
 
@@ -222,7 +295,6 @@ export default {
   .swiper-wrapper {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    margin-bottom: 20px;
   }
   .swiper-slide {
     width: 100%;
@@ -246,14 +318,28 @@ export default {
       border: 2px solid $primary;
       padding: 6px 0;
     }
+    @media (max-width: 1500px) {
+      font-size: 20px;
+    }
+    @media (max-width: 1190px) {
+      font-size: 16px;
+    }
   }
   &__svg {
     padding-right: 35px;
-
     svg {
       width: 50px;
       height: 140px;
       fill: transparent;
+      @media (max-width: 1500px) {
+        height: 100px;
+      }
+      @media (max-width: 1190px) {
+        height: 70px;
+      }
+    }
+    @media (max-width: 991px) {
+      padding-right: 20px;
     }
   }
 }
