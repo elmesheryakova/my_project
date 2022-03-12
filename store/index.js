@@ -152,7 +152,7 @@ export const state = () => ({
       svg: "coffe",
     },
   ],
-  //преимущества должны быть с апи индивидуального продукта
+  //преимущества и группы товаров должны быть с апи индивидуального продукта
   advantages: [
     {
       id: 1,
@@ -202,6 +202,46 @@ export const state = () => ({
       img: 'adv4.png',
       imgMobile: 'adv4-m.png',
       num: 'num4'
+    },
+  ],
+  productsGroup: [
+    {
+      id: 1,
+      img: 'product1.jpg',
+      title: 'Преформы для бутылей 19 л.',
+      article: 'арт. 387194'
+    },
+    {
+      id: 2,
+      img: 'product2.jpg',
+      title: 'Преформы для бутылей 19 л.',
+      article: 'арт. 387194'
+    },
+    {
+      id: 3,
+      img: 'product3.jpg',
+      title: 'Крышка для ПЭТ кега 20 л.',
+      article: 'арт. 387191'
+    },
+    {
+      id: 4,
+      img: 'product4.jpg',
+      title: 'Ручка для переноса 7∅',
+      article: 'арт. 387192'
+    },
+
+    {
+      id: 5,
+      img: 'product5.jpg',
+      title: 'Преформы для бутылей 19 л.',
+      article: 'арт. 387194'
+    },
+
+    {
+      id: 6,
+      img: 'product5.jpg',
+      title: 'Преформы для бутылей 19 л.',
+      article: 'арт. 387194'
     },
   ]
 })

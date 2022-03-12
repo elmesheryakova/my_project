@@ -2,7 +2,7 @@
   <div>
     <section class="fullpage" :class="{ 'fullpage--none': width < 1400 }">
       <Header />
-      <SectionBanner />
+      <SolutionBanner />
       <div class="sections-menu" @click="scrollToSection(1)">
         <svgicon name="arrow-blue" />
       </div>
@@ -12,8 +12,8 @@
       :class="{ 'fullpage--none': width < 1400 }"
       :style="'background: #fff'"
     >
-      <template v-if="width > 870"> <SectionSolution /></template>
-      <template v-else> <SectionSolutionMobile /></template>
+      <template v-if="width > 870"> <Solution /></template>
+      <template v-else> <SolutionMobile /></template>
     </section>
     <section class="fullpage" :class="{ 'fullpage--none': width < 1400 }">
       <Footer />

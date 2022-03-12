@@ -22,7 +22,20 @@
         </div>
       </div>
     </div>
-    <Advantages :width="width" />
+    <div class="container">
+      <h2 class="block__title">
+        <span>4 причины</span> заменить металлические кеги на ПЭТ
+      </h2>
+    </div>
+    <Advantages :width="width" :items="advantages" />
+    <SolutionModal />
+    <div class="container">
+      <h2 class="block__title">
+        <span>Группа товаров</span> для пивоварен и баров:
+      </h2>
+    </div>
+    <Slider :items="productsGroup" v-if="width > 790" />
+    <GridMobile :items="productsGroup" :width="width" v-else />
   </div>
 </template>
 <script>
@@ -30,6 +43,8 @@ export default {
   data() {
     return {
       width: 0,
+      advantages: this.$store.state.advantages,
+      productsGroup: this.$store.state.productsGroup,
     };
   },
   methods: {
@@ -182,6 +197,23 @@ export default {
   @media (max-width: 600px) {
     padding-top: 150px;
     padding-bottom: 50px;
+  }
+}
+.block__title {
+  font-weight: 900;
+  font-size: 48px;
+  color: $black-dark;
+  margin-bottom: 70px;
+  span {
+    color: $primary;
+  }
+  @media (max-width: 860px) {
+    font-size: 32px;
+    margin-bottom: 50px;
+  }
+  @media (max-width: 550px) {
+    font-size: 28px;
+    margin-bottom: 40px;
   }
 }
 </style>

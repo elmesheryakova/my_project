@@ -1,14 +1,7 @@
 <template>
   <div class="container">
     <div class="advantages">
-      <h2 class="advantages__title">
-        <span>4 причины</span> заменить металлические кеги на ПЭТ
-      </h2>
-      <div
-        class="advantages__item"
-        v-for="(item, index) in advantages"
-        :key="index"
-      >
+      <div class="advantages__item" v-for="(item, index) in items" :key="index">
         <div class="advantages__item-inner">
           <div class="advantages__item-info">
             <h3 class="advantages__item-title">{{ item.title }}</h3>
@@ -24,8 +17,6 @@
               </li>
             </ul>
           </div>
-
-          <!-- <div class="advantages__item-num">{{ item.id }}</div> -->
           <div class="advantages__item-num"><svgicon :name="item.num" /></div>
         </div>
         <div class="advantages__item-img">
@@ -46,36 +37,23 @@ export default {
     width: {
       type: Number,
     },
+    items: {
+      type: Array,
+      default: () => [],
+    },
   },
   data() {
-    return {
-      advantages: this.$store.state.advantages,
-    };
+    return {};
   },
 };
 </script>
 <style lang="scss">
 .advantages {
-  &__title {
-    font-weight: 900;
-    font-size: 48px;
-    color: $black-dark;
-    margin-bottom: 70px;
-    span {
-      color: $primary;
-    }
-    @media (max-width: 860px) {
-      font-size: 32px;
-    }
-    @media (max-width: 550px) {
-      font-size: 28px;
-      margin-bottom: 40px;
-    }
-  }
   &__item {
     gap: 80px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+
     margin-bottom: 200px;
     &-inner {
       display: flex;
@@ -137,7 +115,7 @@ export default {
     &-img {
       max-width: 540px;
       max-height: 800px;
-
+      margin-left: auto;
       img {
         width: 100%;
         height: 100%;
@@ -153,7 +131,7 @@ export default {
     &-num {
       font-size: 64px;
       font-weight: 900;
-      // color: #f6f6f6;
+
       width: 160px;
       height: 160px;
       flex: 0 0 160px;
