@@ -28,7 +28,7 @@
       </h2>
     </div>
     <Advantages :width="width" :items="advantages" />
-    <SolutionModal />
+    <SolutionConsultation />
     <div class="container">
       <h2 class="block__title">
         <span>Группа товаров</span> для пивоварен и баров:
@@ -36,6 +36,7 @@
     </div>
     <Slider :items="productsGroup" v-if="width > 790" />
     <GridMobile :items="productsGroup" :width="width" v-else />
+    <SolutionInfo />
   </div>
 </template>
 <script>
@@ -143,6 +144,7 @@ export default {
     max-width: 475px;
     color: $primary;
     font-size: 64px;
+    line-height: 64px;
     font-weight: 900;
     padding-bottom: 120px;
     position: relative;

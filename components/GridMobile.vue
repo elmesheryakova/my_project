@@ -31,7 +31,7 @@ export default {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  margin-bottom: 50px;
+  margin-bottom: 100px;
   &__item {
     width: 150px;
     margin: 0 auto;

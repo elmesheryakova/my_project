@@ -39,7 +39,6 @@
   &__btn {
     width: 320px;
     height: 70px;
-    padding-bottom: 2px;
     background: linear-gradient(271.8deg, #1b2ac9 -0.56%, #0073f0 100.44%);
     border-radius: 40px;
     color: $white;
