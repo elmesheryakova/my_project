@@ -37,6 +37,8 @@
     <Slider :items="productsGroup" v-if="width > 790" />
     <GridMobile :items="productsGroup" :width="width" v-else />
     <SolutionInfo />
+
+    <SliderSolutions v-if="width > 790" />
   </div>
 </template>
 <script>
