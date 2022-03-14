@@ -19,10 +19,11 @@
           </div>
 
           <div class="gallery-top__img d-flex">
-            <nuxt-link :to="{ name: 'solutions-id', params: { id: item.id } }">
-              <div class="gallery-top__link">
-                <svgicon name="arrow-fullscreen" />
-              </div>
+            <nuxt-link
+              class="gallery-top__link"
+              :to="{ name: 'solutions-id', params: { id: item.id } }"
+            >
+              <svgicon name="arrow-fullscreen" />
             </nuxt-link>
             <div class="gallery-top__img-1">
               <img :src="require(`@/assets/img/${item.img1}`)" alt="img" />
@@ -258,7 +259,7 @@ export default {
     position: absolute;
     top: 180px;
     left: -80px;
-
+    display: block;
     svg {
       width: 47px;
       height: 47px;
