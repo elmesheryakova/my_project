@@ -53,10 +53,12 @@
             :key="`item-${index}`"
             :class="{ 'active-thumb': activeSlideInd == index }"
             @click="onThumbClick(index)"
+            :style="
+              activeSlideInd == index
+                ? `background: #1B2AC9 url('${require(`../../assets/svg/${item.svgHover}.svg`)}') 60px no-repeat`
+                : `background:  url('${require(`../../assets/svg/${item.svg}.svg`)}') 60px no-repeat`
+            "
           >
-            <div class="gallery-thumbs__svg">
-              <svgicon :name="item.svg" />
-            </div>
             <p class="gallery-trumbs__text">
               {{ item.title }}
             </p>
@@ -149,7 +151,9 @@ export default {
 }
 .gallery-top {
   overflow: hidden;
+  max-height: 800px;
   height: 100%;
+
   .swiper-wrapper {
     display: flex;
     height: 100%;
@@ -283,6 +287,10 @@ export default {
       top: 70px;
     }
   }
+  @media (min-width: 1920px) {
+    max-width: 1920px;
+    margin: 0 auto;
+  }
   @media (max-width: 1400px) {
     margin-bottom: 30px;
   }
@@ -302,44 +310,50 @@ export default {
     cursor: pointer;
     font-weight: normal;
     font-size: 24px;
+    height: 160px;
+
     &.active-thumb {
-      background-color: $primary;
       color: $white;
-      .gallery-thumbs__svg {
-        svg {
-          stroke: $white;
-          path {
-            stroke: $white;
-          }
-        }
-      }
     }
     &:hover {
       border: 2px solid $primary;
-      padding: 6px 0;
+      background-position: 58px !important;
+      @media (max-width: 1320px) {
+        background-position: 30px !important;
+      }
+      @media (max-width: 1010px) {
+        background-position: 10px !important;
+      }
     }
     @media (max-width: 1500px) {
       font-size: 20px;
     }
+    @media (max-width: 1320px) {
+      padding: 30px 0;
+      background-position: 30px !important;
+    }
     @media (max-width: 1190px) {
       font-size: 16px;
+      background-size: contain !important;
+
+      height: 100%;
+    }
+    @media (max-width: 1010px) {
+      background-position: 10px !important;
     }
   }
-  &__svg {
-    padding-right: 35px;
-    svg {
-      width: 50px;
-      height: 140px;
-      fill: transparent;
-      @media (max-width: 1500px) {
-        height: 100px;
-      }
-      @media (max-width: 1190px) {
-        height: 70px;
-      }
+
+  .gallery-trumbs__text {
+    margin-left: auto;
+    margin-right: 100px;
+    @media (max-width: 1900px) {
+      margin-right: 50px;
     }
-    @media (max-width: 991px) {
-      padding-right: 20px;
+    @media (max-width: 1524px) {
+      margin-right: 30px;
+    }
+    @media (max-width: 910px) {
+      margin-right: 20px;
     }
   }
 }

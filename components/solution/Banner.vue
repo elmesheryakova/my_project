@@ -30,8 +30,14 @@ export default {
   @media (max-width: 991px) {
     margin-top: -90px;
   }
+  @media (max-width: 870px) {
+    margin-bottom: 60px;
+  }
   @media (max-width: 791px) {
     margin-top: -60px;
+  }
+  @media (max-width: 350px) {
+    margin-bottom: 0;
   }
   &__img {
     padding-top: 135px;

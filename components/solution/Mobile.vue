@@ -34,6 +34,7 @@ export default {
   grid-template-columns: repeat(2, 1fr);
   gap: 30px;
   padding: 60px 20px;
+  padding-top: 0;
   &__btn {
     display: flex;
     align-items: center;

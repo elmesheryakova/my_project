@@ -222,6 +222,7 @@
       }
     }
   }
+
   @media (max-width: 530px) {
     margin-bottom: 80px;
   }

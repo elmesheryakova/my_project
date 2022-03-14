@@ -37,8 +37,13 @@
     <Slider :items="productsGroup" v-if="width > 790" />
     <GridMobile :items="productsGroup" :width="width" v-else />
     <SolutionInfo />
-
-    <SliderSolutions v-if="width > 790" />
+    <SliderSolutions v-if="width > 870" />
+    <template v-else>
+      <div class="container">
+        <h2 class="block__title"><span>Решения</span> для других напитков</h2>
+      </div>
+      <SolutionMobile
+    /></template>
   </div>
 </template>
 <script>

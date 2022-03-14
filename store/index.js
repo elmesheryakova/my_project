@@ -101,6 +101,7 @@ export const state = () => ({
       img2: "water1.jpg",
       imgbtn: "solution1.png",
       svg: "water",
+      svgHover: 'water-w',
     },
     {
       id: 2,
@@ -112,6 +113,7 @@ export const state = () => ({
       img2: "beer1.jpg",
       imgbtn: "solution2.png",
       svg: "beer",
+      svgHover: 'beer-w',
     },
     {
       id: 3,
@@ -123,6 +125,7 @@ export const state = () => ({
       img2: "water1.jpg",
       imgbtn: "solution3.png",
       svg: "kvass",
+      svgHover: 'kvass-w',
     },
     {
       id: 4,
@@ -134,6 +137,7 @@ export const state = () => ({
       img2: "water1.jpg",
       imgbtn: "solution4.png",
       svg: "cider",
+      svgHover: 'cider-w',
     },
     {
       id: 5,
@@ -145,6 +149,7 @@ export const state = () => ({
       img2: "water1.jpg",
       imgbtn: "solution5.png",
       svg: "vine",
+      svgHover: 'vine-w',
     },
     {
       id: 6,
@@ -156,6 +161,7 @@ export const state = () => ({
       img2: "water1.jpg",
       imgbtn: "solution6.png",
       svg: "coffe",
+      svgHover: 'coffe-w',
     },
   ],
   //преимущества, группы товаров должны быть с апи индивидуального продукта
