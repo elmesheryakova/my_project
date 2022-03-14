@@ -21,6 +21,8 @@
   </div>
 </template>
 <script>
+import { debounce } from "debounce";
+
 export default {
   layout: "fullscreen",
 
@@ -47,7 +49,11 @@ export default {
         this.offsets.push(sectionOffset);
       }
     },
-    handleMouseWheel: function (e) {
+    handleMouseWheel(e) {
+      e.preventDefault();
+      this.test(e);
+    },
+    test: debounce(function (e) {
       if (e.wheelDelta < 30 && !this.inMove) {
         if (this.activeSection < this.offsets.length - 1) {
           this.moveUp();
@@ -62,7 +68,8 @@ export default {
       }
 
       return false;
-    },
+    }, 300),
+
     handleMouseWheelDOM: function (e) {
       if (e.detail > 0 && !this.inMove) {
         this.moveUp();
