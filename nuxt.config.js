@@ -33,6 +33,7 @@ export default {
     { src: "~/plugins/device.js", mode: "client" },
     { src: "~/plugins/dev-device.js", mode: "client" },
     { src: "~/plugins/smooth-scroll.js", mode: "client" },
+    // { src: "~/plugins/vue-fullpage.js", mode: "client" },
 
   ],
 
@@ -66,6 +67,9 @@ export default {
         }
       }
     ],
+    ['@openafg/nuxt-fullpage', {
+
+    }]
   ],
   mq: {
     defaultBreakpoint: "default",
