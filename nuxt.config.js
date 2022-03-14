@@ -52,7 +52,7 @@ export default {
     'bootstrap-vue/nuxt',
     '@nuxtjs/axios',
     '@nuxtjs/style-resources',
-    'nuxt-fullpage.js',
+
     '@nuxtjs/device',
 
     [

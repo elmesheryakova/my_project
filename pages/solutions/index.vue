@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section class="fullpage" :class="{ 'fullpage--none': width < 1400 }">
+    <!-- <section class="fullpage" :class="{ 'fullpage--none': width < 1400 }">
       <Header />
       <SolutionBanner />
       <div class="sections-menu" @click="scrollToSection(1)">
@@ -16,6 +16,20 @@
       <template v-else> <SolutionMobile /></template>
     </section>
     <section class="fullpage" :class="{ 'fullpage--none': width < 1400 }">
+      <Footer />
+    </section>-->
+    <section class="fullpage">
+      <Header />
+      <SolutionBanner />
+      <div class="sections-menu" @click="scrollToSection(1)">
+        <svgicon name="arrow-blue" />
+      </div>
+    </section>
+    <section class="fullpage" :style="'background: #fff'">
+      <template v-if="width > 870"> <Solution /></template>
+      <template v-else> <SolutionMobile /></template>
+    </section>
+    <section class="fullpage">
       <Footer />
     </section>
   </div>
@@ -49,11 +63,7 @@ export default {
         this.offsets.push(sectionOffset);
       }
     },
-    handleMouseWheel(e) {
-      e.preventDefault();
-      this.test(e);
-    },
-    test: debounce(function (e) {
+    handleMouseWheel: function (e) {
       if (e.wheelDelta < 30 && !this.inMove) {
         if (this.activeSection < this.offsets.length - 1) {
           this.moveUp();
@@ -63,12 +73,12 @@ export default {
           this.moveDown();
         }
       }
-      if (this.width > 1400 && this.$device.isDesktop) {
-        e.preventDefault();
-      }
-
+      // if (this.width > 1400 && this.$device.isDesktop) {
+      //   e.preventDefault();
+      // }
+      e.preventDefault();
       return false;
-    }, 300),
+    },
 
     handleMouseWheelDOM: function (e) {
       if (e.detail > 0 && !this.inMove) {
