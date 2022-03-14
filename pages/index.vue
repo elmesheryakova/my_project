@@ -1,65 +1,38 @@
 <template>
-  <div class="fullpage-container">
-    <div class="fullpage-wp" v-fullpage="opts">
-      <div class="page-1 page">
-        <p class="part-1" v-animate="{ value: 'bounceInLeft' }">vue-fullpage</p>
-      </div>
-      <div class="page-2 page">
-        <p class="part-2" v-animate="{ value: 'bounceInRight' }">
-          vue-fullpage
-        </p>
-      </div>
-      <div class="page-3 page">
-        <p class="part-3" v-animate="{ value: 'bounceInLeft', delay: 0 }">
-          vue-fullpage
-        </p>
-        <p class="part-3" v-animate="{ value: 'bounceInRight', delay: 600 }">
-          vue-fullpage
-        </p>
-        <p class="part-3" v-animate="{ value: 'zoomInDown', delay: 1200 }">
-          vue-fullpage
-        </p>
-      </div>
-    </div>
+  <div class="div">
+    <full-page :options="options">
+      <section class="section section-1">First section ...</section>
+      <section class="section section-2">Second section ...</section>
+      <section class="section section-3">First section ...</section>
+      <section class="section section-4">Second section ...</section>
+    </full-page>
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
-      opts: {
-        start: 0,
-        dir: "v",
-        duration: 500,
-        beforeChange: function (prev, next) {},
-        afterChange: function (prev, next) {},
+      options: {
+        activeSection: 0,
+        mouseWheelSensitivity: 30,
+        showIndicators: false,
       },
     };
   },
 };
 </script>
 <style lang="scss">
-.fullpage-container {
-  width: 100%;
-  height: 100%;
-  .page {
-    display: block;
-    text-align: center;
-    font-size: 26px;
-    color: #eee;
-    height: 100vh;
+.div,
+.section {
+  height: 100vh;
+  &-1 {
+    background-color: red;
   }
-  .page-1 {
-    padding-top: 100px;
-    background: #1bbc9b;
+  &-2 {
+    background-color: green;
   }
-  .page-2 {
-    padding-top: 100px;
-    background: #000000;
-  }
-  .page-3 {
-    padding-top: 50px;
-    background: #aabbcc;
+  &-3 {
+    background-color: blue;
   }
 }
 </style>

@@ -51,15 +51,13 @@ export default {
     },
     handleMouseWheel: function (e) {
       if (e.wheelDelta < 30 && !this.inMove) {
-        this.moveUp();
-        // if (this.activeSection < this.offsets.length - 1) {
-        //   this.moveUp();
-        // }
+        if (this.activeSection < this.offsets.length - 1) {
+          this.moveUp();
+        }
       } else if (e.wheelDelta > 30 && !this.inMove) {
-        this.moveDown();
-        // if (this.activeSection > 0) {
-        //   this.moveDown();
-        // }
+        if (this.activeSection > 0) {
+          this.moveDown();
+        }
       }
       if (this.width > 1400 && this.$device.isDesktop) {
         e.preventDefault();
@@ -129,6 +127,11 @@ export default {
     },
   },
   created() {},
+  watch: {
+    inMove(val) {
+      console.log(val);
+    },
+  },
 
   mounted() {
     this.calculateSectionOffsets();
