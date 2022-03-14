@@ -32,7 +32,7 @@ export default {
     { src: '~/plugins/vue-awesome-swiper.js', mode: "client" },
     { src: "~/plugins/device.js", mode: "client" },
     { src: "~/plugins/dev-device.js", mode: "client" },
-
+    { src: "~/plugins/smooth-scroll.js", mode: "client" },
 
   ],
 
