@@ -25,7 +25,6 @@ export default {
     '@/assets/scss/main.scss'
   ],
 
-
   plugins: [
     '@/plugins/vue-svgicon.js',
 

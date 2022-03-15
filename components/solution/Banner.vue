@@ -27,7 +27,7 @@ export default {
 <style lang="scss">
 .fullscreen-banner__wrap {
   height: 100vh;
-  @media (max-width: 1400px) {
+  @media (max-width: 1300px) {
     height: 100%;
   }
 }

@@ -62,7 +62,7 @@ export default {
       }
     }
   }
-  @media (max-width: 1400px) {
+  @media (max-width: 1300px) {
     margin-top: 60px;
   }
   @media (max-width: 720px) {

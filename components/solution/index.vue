@@ -82,27 +82,25 @@ export default {
       activeSlideInd: 0,
 
       swiperOptionTop: {
-        // effect: "fade",
-        // fadeEffect: { crossFade: true },
-        // speed: 1000,
-        // autoplay: {
-        //   delay: 3000,
-        //   disableOnInteraction: true,
-        // },
+        speed: 1000,
+        autoplay: {
+          delay: 3000,
+          disableOnInteraction: true,
+        },
         spaceBetween: 10,
         slidesPerView: 1,
         slidesPerGroup: 1,
-        // on: {
-        //   init() {
-        //     this.el.addEventListener("mouseenter", () => {
-        //       this.autoplay.stop();
-        //     });
+        on: {
+          init() {
+            this.el.addEventListener("mouseenter", () => {
+              this.autoplay.stop();
+            });
 
-        //     this.el.addEventListener("mouseleave", () => {
-        //       this.autoplay.start();
-        //     });
-        //   },
-        // },
+            this.el.addEventListener("mouseleave", () => {
+              this.autoplay.start();
+            });
+          },
+        },
       },
 
       swiperOptionThumbs: {

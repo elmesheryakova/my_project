@@ -1,5 +1,5 @@
 <template>
-  <no-ssr v-if="width > 1400">
+  <no-ssr v-if="width > 1300">
     <full-page :options="options" ref="fullpage">
       <Fullscroll :width="width" class="section-top">
         <SolutionBanner />
@@ -32,7 +32,7 @@ export default {
         activeSection: 0,
         mouseWheelSensitivity: 30,
         navigation: false,
-        responsiveWidth: 1400,
+        responsiveWidth: 1300,
       },
     };
   },
@@ -48,6 +48,7 @@ export default {
 
   mounted() {
     window.addEventListener("resize", this.updateWidth);
+
     this.updateWidth();
   },
 };
@@ -75,7 +76,7 @@ export default {
     height: 100%;
     fill: transparent;
   }
-  @media (max-width: 1400px) {
+  @media (max-width: 1300px) {
     display: none;
   }
 }
