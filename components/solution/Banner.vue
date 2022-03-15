@@ -1,16 +1,19 @@
 <template>
-  <div class="fullscreen-banner">
-    <div>
-      <picture class="fullscreen-banner__img">
-        <source
-          :srcset="require('@/assets/img/2-640.jpg')"
-          type="image/png"
-          media="(max-width: 640px)"
-        />
-        <img :src="require('@/assets/img/2.jpg')" alt="bg" />
-      </picture>
+  <div class="fullscreen-banner__wrap">
+    <Header />
+    <div class="fullscreen-banner">
+      <div>
+        <picture class="fullscreen-banner__img">
+          <source
+            :srcset="require('@/assets/img/2-640.jpg')"
+            type="image/png"
+            media="(max-width: 640px)"
+          />
+          <img :src="require('@/assets/img/2.jpg')" alt="bg" />
+        </picture>
+      </div>
+      <h1 class="fullscreen-banner__title">Готовые решения</h1>
     </div>
-    <h1 class="fullscreen-banner__title">Готовые решения</h1>
   </div>
 </template>
 <script>
@@ -22,25 +25,18 @@ export default {
 };
 </script>
 <style lang="scss">
+.fullscreen-banner__wrap {
+  height: 100vh;
+  @media (max-width: 1400px) {
+    height: 100%;
+  }
+}
 .fullscreen-banner {
   background: #f2f3f7 url("~assets/img/2fon.png") center no-repeat;
   position: relative;
   z-index: -1;
-  margin-top: -135px;
-  @media (max-width: 991px) {
-    margin-top: -90px;
-  }
-  @media (max-width: 870px) {
-    margin-bottom: 60px;
-  }
-  @media (max-width: 791px) {
-    margin-top: -60px;
-  }
-  @media (max-width: 350px) {
-    margin-bottom: 0;
-  }
+
   &__img {
-    padding-top: 135px;
     display: flex;
     flex: 0 0 50%;
     justify-content: flex-end;
@@ -49,12 +45,7 @@ export default {
       width: 50%;
       object-fit: cover;
     }
-    @media (max-width: 991px) {
-      padding-top: 90px;
-    }
-    @media (max-width: 791px) {
-      padding-top: 60px;
-    }
+
     @media (max-width: 640px) {
       flex: 0 0 100%;
       img {
@@ -64,7 +55,7 @@ export default {
   }
   &__title {
     position: absolute;
-    top: 35%;
+    top: 30%;
     left: 50%;
     transform: translateX(-50%);
     font-weight: 900;
@@ -74,9 +65,6 @@ export default {
     white-space: nowrap;
     @media (max-width: 1400px) {
       font-size: 100px;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
     }
     @media (max-width: 991px) {
       font-size: 60px;
@@ -87,8 +75,18 @@ export default {
       line-height: 53px;
       text-align: center;
     }
-    @media (max-width: 520px) {
-      top: 55%;
+    @media (max-width: 700px) {
+      top: 20%;
+    }
+    @media (max-width: 640px) {
+      top: 35%;
+    }
+
+    @media (max-width: 470px) {
+      top: 30%;
+    }
+    @media (max-width: 370px) {
+      top: 25%;
     }
   }
 }

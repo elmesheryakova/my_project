@@ -142,9 +142,13 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%;
+
+  background-color: #fff;
+  height: 100vh;
+
   @media (max-width: 1400px) {
     padding: 30px 0;
+    height: 100%;
   }
   @media (max-width: 1190px) {
     padding: 10px 0;

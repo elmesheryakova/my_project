@@ -33,6 +33,7 @@ export default {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 30px;
+
   padding: 60px 20px;
   padding-top: 0;
   &__btn {
@@ -61,11 +62,15 @@ export default {
       }
     }
   }
+  @media (max-width: 1400px) {
+    margin-top: 60px;
+  }
   @media (max-width: 720px) {
     grid-template-columns: 1fr;
   }
   @media (max-width: 350px) {
     padding: 60px 10px;
+    padding-top: 0;
   }
 }
 </style>

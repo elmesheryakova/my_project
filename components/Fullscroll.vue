@@ -1,5 +1,5 @@
 <template>
-  <section class="section" :class="{ 'fullpage--none': width < 1400 }">
+  <section class="section">
     <slot />
   </section>
 </template>

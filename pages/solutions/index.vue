@@ -1,23 +1,24 @@
 <template>
-  <no-ssr>
-    <full-page :options="options">
-      <div id="section">
-        <Fullscroll :width="width" class="section-top">
-          <Header />
-          <SolutionBanner />
-          <div class="sections-menu" @click="scrollToSlide">
-            <svgicon name="arrow-blue" />
-          </div>
-        </Fullscroll>
+  <no-ssr v-if="width > 1400">
+    <full-page :options="options" ref="fullpage">
+      <Fullscroll :width="width" class="section-top">
+        <SolutionBanner />
+        <div class="sections-menu" @click="scrollToSlide">
+          <svgicon name="arrow-blue" />
+        </div>
+      </Fullscroll>
 
-        <Fullscroll :style="'background: #fff'">
-          <Solution v-if="width > 870" />
-          <SolutionMobile v-else />
-        </Fullscroll>
-        <Fullscroll> <Footer /> </Fullscroll>
-      </div>
+      <Fullscroll :width="width">
+        <Solution />
+      </Fullscroll>
+      <Fullscroll :width="width"> <Footer /> </Fullscroll>
     </full-page>
   </no-ssr>
+  <div v-else>
+    <SolutionBanner />
+    <SolutionMobile />
+    <Footer />
+  </div>
 </template>
 <script>
 export default {
@@ -27,9 +28,11 @@ export default {
     return {
       width: 0,
       options: {
+        css3: true,
         activeSection: 0,
         mouseWheelSensitivity: 30,
-        showIndicators: false,
+        navigation: false,
+        responsiveWidth: 1400,
       },
     };
   },
@@ -38,9 +41,8 @@ export default {
     updateWidth() {
       this.width = window.innerWidth;
     },
-
     scrollToSlide() {
-      this.$refs.fullpage.scrollToSection(1);
+      this.$refs.fullpage.api.moveTo(2);
     },
   },
 
@@ -51,15 +53,8 @@ export default {
 };
 </script>
 <style lang="scss">
-.fullpage {
-  height: 100vh;
-  width: 100%;
-  &--none {
-    height: 100%;
-  }
-}
 .section {
-  height: 100vh;
+  height: 100%;
   &-top {
     position: relative;
   }
