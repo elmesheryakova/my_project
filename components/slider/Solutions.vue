@@ -100,20 +100,31 @@ export default {
         .querySelector(".footer-feedback__wrap")
         .getBoundingClientRect();
       this.elemHeight = elemHeight.height;
+      // console.log(this.elemHeight);
       // console.log(this.offsetTop);
       this.endAnim();
     },
     endAnim() {
-      if (this.elemHeight > 0 && this.pos === 1) {
-        // console.log("tets");
-      }
+      // if (this.offsetTop < 0) {
+      //   document.querySelector(
+      //     ".footer-feedback"
+      //   ).style.transform = `translateY(${this.offsetTop * 5}px)`;
+      // }
     },
     wheel(ev) {
+      // console.log(ev);
+
       if (ev.deltaY < 0) {
         this.pos = 0;
       } else {
         this.pos = 1;
       }
+      // if (this.elemHeight > 0 && this.pos === 1) {
+      //   document
+      //     .querySelector(".footer-feedback")
+      //     .classList.add("footer-feedback--endAnimate");
+      //   document.querySelector(".wrap").classList.add("wrap--endAnimate");
+      // }
     },
   },
   created() {},

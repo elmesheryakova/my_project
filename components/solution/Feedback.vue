@@ -2,14 +2,14 @@
   <div
     class="wrap"
     :class="{
-      'wrap--endAnimate': offsetTop < -300,
+      'wrap--endAnimate': offsetTop <= -300,
     }"
   >
     <div
       class="footer-feedback"
       :class="{
-        'footer-feedback--animate': offsetTop < 0,
-        'footer-feedback--endAnimate': offsetTop < -300,
+        'footer-feedback--animate': offsetTop <= 0,
+        'footer-feedback--endAnimate': offsetTop <= -300,
       }"
     >
       <img :src="require(`@/assets/svg/wave.svg`)" alt="img" class="wave" />
@@ -85,9 +85,6 @@ export default {
     transition: 0.8s ease-in-out;
 
     & + .footer-feedback__wrap {
-      // top: 50%;
-      // left: 50%;
-      // transform: translate(-50%, -50%);
       opacity: 0;
       visibility: hidden;
       height: 0;
