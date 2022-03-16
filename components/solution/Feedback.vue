@@ -1,10 +1,11 @@
 <template>
-  <div
-    class="footer-feedback"
-    :class="{ 'footer-feedback--animate': offsetTop < -100 }"
-  >
-    <img :src="require(`@/assets/svg/wave.svg`)" alt="img" />
-
+  <div class="wrap">
+    <div
+      class="footer-feedback"
+      :class="{ 'footer-feedback--animate': offsetTop < 0 }"
+    >
+      <img :src="require(`@/assets/svg/wave.svg`)" alt="img" class="wave" />
+    </div>
     <div class="footer-feedback__wrap">
       <div class="container d-flex justify-content-between">
         <h3 class="footer-feedback__title">
@@ -23,19 +24,32 @@ export default {
       type: Number,
     },
   },
+  methods: {},
+  mounted() {},
 };
 </script>
 <style lang="scss">
-.footer-feedback {
+.wrap {
+  height: 100vh;
   position: relative;
+}
+.footer-feedback {
+  position: absolute;
   min-width: 100vw;
   width: 100%;
-  min-height: 100vh;
+
   transform: translateY(150px);
   transition: 0.8s ease-in-out;
   &--animate {
-    transform: translateY(-1600px);
+    transform: translateY(-1500px);
     transition: 0.8s ease-in-out;
+    & + .footer-feedback__wrap {
+      position: fixed;
+      opacity: 1;
+      visibility: visible;
+
+      transition: 0.8s ease-in-out 0.5s;
+    }
     @media (max-width: 1950px) {
       transform: translateY(-1400px);
     }
@@ -54,8 +68,9 @@ export default {
     font-weight: 600;
     font-size: 48px;
   }
-  img {
+  .wave {
     width: 100%;
+    position: relative;
   }
   &__wrap {
     position: absolute;
@@ -63,6 +78,8 @@ export default {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    opacity: 0;
+    visibility: hidden;
   }
 }
 </style>

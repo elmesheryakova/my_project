@@ -1,5 +1,5 @@
 .feedback-popup,
-.footer-feedback {
+.footer-feedback__wrap {
   &__footer {
     align-items: center;
     justify-content: space-between;
@@ -178,7 +178,7 @@
     }
   }
 }
-.footer-feedback {
+.footer-feedback__wrap {
   .form-group > div {
     svg {
       path {

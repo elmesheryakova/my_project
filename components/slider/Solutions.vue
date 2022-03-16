@@ -59,6 +59,7 @@ export default {
   data() {
     return {
       offsetTop: 0,
+      elemOffsetTop: 0,
       directives: {
         swiper: directive,
       },
@@ -90,6 +91,10 @@ export default {
         .querySelector(".slider-solution")
         .getBoundingClientRect();
       this.offsetTop = block.top;
+      let elemTop = document
+        .querySelector(".footer-feedback__wrap")
+        .getBoundingClientRect().top;
+      this.elemOffsetTop = elemTop;
     },
   },
   created() {},
