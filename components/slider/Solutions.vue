@@ -1,41 +1,48 @@
 <template>
-  <div class="slider-solution">
-    <div class="container">
-      <h2 class="block__title"><span>Решения</span> для других напитков</h2>
-    </div>
+  <div :style="`background: #F2F3F6`">
+    <div class="slider-solution">
+      <div class="container">
+        <h2 class="block__title"><span>Решения</span> для других напитков</h2>
+      </div>
 
-    <div class="container">
-      <div class="slider-solution__container">
-        <div v-swiper="swiperOption" ref="swiper">
-          <div class="swiper-wrapper">
-            <div
-              class="swiper-slide"
-              v-for="(item, index) in solutions"
-              :key="`item-${index}`"
-            >
-              <div class="slider-solution__wrap">
-                <div class="slider-solution__item">
-                  <h4 class="slider-solution__title">{{ item.title }}</h4>
-                  <div class="slider-solution__img">
-                    <img :src="require(`@/assets/img/${item.img}`)" alt="img" />
+      <div class="container">
+        <div class="slider-solution__container">
+          <div v-swiper="swiperOption" ref="swiper">
+            <div class="swiper-wrapper">
+              <div
+                class="swiper-slide"
+                v-for="(item, index) in solutions"
+                :key="`item-${index}`"
+              >
+                <div class="slider-solution__wrap">
+                  <div class="slider-solution__item">
+                    <h4 class="slider-solution__title">{{ item.title }}</h4>
+                    <div class="slider-solution__img">
+                      <img
+                        :src="require(`@/assets/img/${item.img}`)"
+                        alt="img"
+                      />
+                    </div>
                   </div>
-                </div>
-                <div class="slider-solution__icon">
-                  <svgicon :name="item.svg" class="svg-color" />
-                  <svgicon :name="item.svgHover" class="svg-white" />
+                  <div class="slider-solution__icon">
+                    <svgicon :name="item.svg" class="svg-color" />
+                    <svgicon :name="item.svgHover" class="svg-white" />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="swiper-button-prev" slot="button-prev">
-            <svgicon name="arrow-slider" />
-          </div>
-          <div class="swiper-button-next" slot="button-next">
-            <svgicon name="arrow-slider" />
+            <div class="swiper-button-prev" slot="button-prev">
+              <svgicon name="arrow-slider" />
+            </div>
+            <div class="swiper-button-next" slot="button-next">
+              <svgicon name="arrow-slider" />
+            </div>
           </div>
         </div>
       </div>
     </div>
+
+    <SolutionFeedback :offsetTop="offsetTop" />
   </div>
 </template>
 
@@ -51,6 +58,7 @@ export default {
   },
   data() {
     return {
+      offsetTop: 0,
       directives: {
         swiper: directive,
       },
@@ -76,10 +84,19 @@ export default {
     },
   },
 
-  methods: {},
+  methods: {
+    offsetY() {
+      let block = document
+        .querySelector(".slider-solution")
+        .getBoundingClientRect();
+      this.offsetTop = block.top;
+    },
+  },
   created() {},
   mounted() {
     this.swiper.slideTo();
+    window.addEventListener("scroll", this.offsetY);
+    this.offsetY();
   },
 };
 </script>
@@ -88,7 +105,7 @@ export default {
   padding: 120px 0;
   background-color: #f2f3f6;
   position: relative;
-
+  // height: 100vh;
   .swiper-wrapper {
     display: flex;
     gap: 35px;
@@ -112,7 +129,6 @@ export default {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    z-index: 9999;
   }
   .swiper-button-prev {
     transform: rotate(180deg);

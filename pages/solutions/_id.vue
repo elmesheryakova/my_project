@@ -1,53 +1,52 @@
 <template>
-  <client-only>
-    <div>
-      <div class="solution-item">
-        <div class="container">
-          <div class="solution-item__inner">
-            <div class="solution-item__info">
-              <h1 class="solution-item__title">Пиво</h1>
-              <p class="solution-item__text">
-                Международный бренд по производству ПЭТ-тары, отличающийся
-                высочайшим качеством материалов, продукции и подхода к клиентам.
-                Международный бренд отличающийся высочайшим качеством.
-              </p>
-            </div>
-            <div class="solution-item__imgbig">
-              <img :src="require(`@/assets/img/photo-id1.jpg`)" alt="img" />
-            </div>
+  <div>
+    <div class="solution-item">
+      <div class="container">
+        <div class="solution-item__inner">
+          <div class="solution-item__info">
+            <h1 class="solution-item__title">Пиво</h1>
+            <p class="solution-item__text">
+              Международный бренд по производству ПЭТ-тары, отличающийся
+              высочайшим качеством материалов, продукции и подхода к клиентам.
+              Международный бренд отличающийся высочайшим качеством.
+            </p>
           </div>
-        </div>
-        <div class="container">
-          <div class="solution-item__img">
-            <img :src="require(`@/assets/img/photo-id2.jpg`)" alt="img" />
+          <div class="solution-item__imgbig">
+            <img :src="require(`@/assets/img/photo-id1.jpg`)" alt="img" />
           </div>
         </div>
       </div>
       <div class="container">
-        <h2 class="block__title">
-          <span>4 причины</span> заменить металлические кеги на ПЭТ
-        </h2>
-      </div>
-
-      <Advantages :width="width" :items="advantages" />
-      <SolutionConsultation />
-      <div class="container">
-        <h2 class="block__title">
-          <span>Группа товаров</span> для пивоварен и баров:
-        </h2>
-      </div>
-      <Slider :items="productsGroup" v-if="width > 790" />
-      <GridMobile :items="productsGroup" :width="width" v-else />
-      <SolutionInfo />
-      <SliderSolutions v-if="width > 870" />
-      <template v-else>
-        <div class="container">
-          <h2 class="block__title"><span>Решения</span> для других напитков</h2>
+        <div class="solution-item__img">
+          <img :src="require(`@/assets/img/photo-id2.jpg`)" alt="img" />
         </div>
-        <SolutionMobile
-      /></template>
+      </div>
     </div>
-  </client-only>
+    <div class="container">
+      <h2 class="block__title">
+        <span>4 причины</span> заменить металлические кеги на ПЭТ
+      </h2>
+    </div>
+
+    <Advantages :width="width" :items="advantages" />
+    <SolutionConsultation />
+    <div class="container">
+      <h2 class="block__title">
+        <span>Группа товаров</span> для пивоварен и баров:
+      </h2>
+    </div>
+    <Slider :items="productsGroup" v-if="width > 790" />
+    <GridMobile :items="productsGroup" :width="width" v-else />
+    <SolutionInfo />
+    <SliderSolutions v-if="width > 870" />
+
+    <template v-else>
+      <div class="container">
+        <h2 class="block__title"><span>Решения</span> для других напитков</h2>
+      </div>
+      <SolutionMobile
+    /></template>
+  </div>
 </template>
 <script>
 export default {
@@ -56,13 +55,6 @@ export default {
       width: 0,
       advantages: this.$store.state.advantages,
       productsGroup: this.$store.state.productsGroup,
-      options: {
-        css3: true,
-        activeSection: 0,
-        mouseWheelSensitivity: 30,
-        navigation: false,
-        responsiveWidth: 1300,
-      },
     };
   },
   methods: {

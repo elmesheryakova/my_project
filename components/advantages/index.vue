@@ -1,5 +1,5 @@
 <template>
-  <no-ssr>
+  <client-only>
     <div class="advantages">
       <div class="container">
         <AdvantagesItem
@@ -9,7 +9,7 @@
         />
       </div>
     </div>
-  </no-ssr>
+  </client-only>
 </template>
 <script>
 export default {

@@ -50,17 +50,17 @@ export default {
         slidesPerGroup: 3,
         freeMode: true,
         spaceBetween: 30,
-        on: {
-          init() {
-            this.el.addEventListener("mouseenter", () => {
-              this.autoplay.stop();
-            });
+        // on: {
+        //   init() {
+        //     this.el.addEventListener("mouseenter", () => {
+        //       this.autoplay.stop();
+        //     });
 
-            this.el.addEventListener("mouseleave", () => {
-              this.autoplay.start();
-            });
-          },
-        },
+        //     this.el.addEventListener("mouseleave", () => {
+        //       this.autoplay.start();
+        //     });
+        //   },
+        // },
         breakpoints: {
           1475: {
             slidesPerView: 4,

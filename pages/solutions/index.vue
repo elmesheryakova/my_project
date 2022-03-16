@@ -1,5 +1,5 @@
 <template>
-  <no-ssr v-if="width > 1300">
+  <client-only v-if="width > 1300">
     <full-page :options="options" ref="fullpage">
       <Fullscroll :width="width" class="section-top">
         <SolutionBanner />
@@ -13,7 +13,7 @@
       </Fullscroll>
       <Fullscroll :width="width"> <Footer /> </Fullscroll>
     </full-page>
-  </no-ssr>
+  </client-only>
   <div v-else>
     <SolutionBanner />
     <SolutionMobile />
