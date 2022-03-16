@@ -1,12 +1,11 @@
 <template>
-  <no-ssr><SliderFullscreen :items="advantages" /></no-ssr>
+  <div></div>
+  <!-- <no-ssr><SliderFullscreen :items="advantages" /></no-ssr> -->
 </template>
 <script>
 export default {
   data() {
-    return {
-      advantages: this.$store.state.advantages,
-    };
+    return {};
   },
 };
 </script>

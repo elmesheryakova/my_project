@@ -29,25 +29,23 @@
         </h2>
       </div>
 
-      <!-- <SliderFullscreen :items="advantages" /> -->
-      <!-- <Advantages :width="width" :items="advantages" /> -->
-
-      <!-- <SolutionConsultation />
-    <div class="container">
-      <h2 class="block__title">
-        <span>Группа товаров</span> для пивоварен и баров:
-      </h2>
-    </div>
-    <Slider :items="productsGroup" v-if="width > 790" />
-    <GridMobile :items="productsGroup" :width="width" v-else />
-    <SolutionInfo />
-    <SliderSolutions v-if="width > 870" />
-    <template v-else>
+      <Advantages :width="width" :items="advantages" />
+      <SolutionConsultation />
       <div class="container">
-        <h2 class="block__title"><span>Решения</span> для других напитков</h2>
+        <h2 class="block__title">
+          <span>Группа товаров</span> для пивоварен и баров:
+        </h2>
       </div>
-      <SolutionMobile
-    /></template> -->
+      <Slider :items="productsGroup" v-if="width > 790" />
+      <GridMobile :items="productsGroup" :width="width" v-else />
+      <SolutionInfo />
+      <SliderSolutions v-if="width > 870" />
+      <template v-else>
+        <div class="container">
+          <h2 class="block__title"><span>Решения</span> для других напитков</h2>
+        </div>
+        <SolutionMobile
+      /></template>
     </div>
   </client-only>
 </template>

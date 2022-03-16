@@ -1,16 +1,14 @@
 <template>
   <no-ssr>
-    <full-page :options="options" ref="fullpage" class="advantages">
-      <Fullscroll :width="width">
-        <div class="container">
-          <AdvantagesItem
-            v-for="(item, index) in items"
-            :key="index"
-            :item="item"
-          />
-        </div>
-      </Fullscroll>
-    </full-page>
+    <div class="advantages">
+      <div class="container">
+        <AdvantagesItem
+          v-for="(item, index) in items"
+          :key="index"
+          :item="item"
+        />
+      </div>
+    </div>
   </no-ssr>
 </template>
 <script>
