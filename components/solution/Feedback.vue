@@ -1,8 +1,16 @@
 <template>
-  <div class="wrap">
+  <div
+    class="wrap"
+    :class="{
+      'wrap--endAnimate': offsetTop < -300,
+    }"
+  >
     <div
       class="footer-feedback"
-      :class="{ 'footer-feedback--animate': offsetTop < 0 }"
+      :class="{
+        'footer-feedback--animate': offsetTop < 0,
+        'footer-feedback--endAnimate': offsetTop < -300,
+      }"
     >
       <img :src="require(`@/assets/svg/wave.svg`)" alt="img" class="wave" />
     </div>
@@ -23,6 +31,12 @@ export default {
     offsetTop: {
       type: Number,
     },
+    elemHeight: {
+      type: Number,
+    },
+    pos: {
+      type: Number,
+    },
   },
   methods: {},
   mounted() {},
@@ -32,6 +46,11 @@ export default {
 .wrap {
   height: 100vh;
   position: relative;
+  transition: 0.8s ease-in-out 0.5s;
+  &--endAnimate {
+    height: 0;
+    transition: 1s ease-in-out;
+  }
 }
 .footer-feedback {
   position: absolute;
@@ -41,26 +60,38 @@ export default {
   transform: translateY(150px);
   transition: 0.8s ease-in-out;
   &--animate {
-    transform: translateY(-1500px);
+    transform: translateY(-1600px);
     transition: 0.8s ease-in-out;
     & + .footer-feedback__wrap {
       position: fixed;
       opacity: 1;
       visibility: visible;
-
+      height: auto;
       transition: 0.8s ease-in-out 0.5s;
     }
     @media (max-width: 1950px) {
-      transform: translateY(-1400px);
+      transform: translateY(-1350px);
     }
+
     @media (max-width: 1700px) {
-      transform: translateY(-1250px);
-    }
-    @media (max-width: 1500px) {
-      transform: translateY(-1100px);
+      transform: translateY(-1200px);
     }
     @media (max-width: 1400px) {
       transform: translateY(-1000px);
+    }
+  }
+  &--endAnimate {
+    transform: translateY(-4000px);
+    transition: 0.8s ease-in-out;
+
+    & + .footer-feedback__wrap {
+      // top: 50%;
+      // left: 50%;
+      // transform: translate(-50%, -50%);
+      opacity: 0;
+      visibility: hidden;
+      height: 0;
+      transition: 0s ease-in-out;
     }
   }
   &__title {
@@ -73,13 +104,14 @@ export default {
     position: relative;
   }
   &__wrap {
-    position: absolute;
+    position: fixed;
     width: 100%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     opacity: 0;
     visibility: hidden;
+    height: 0;
   }
 }
 </style>

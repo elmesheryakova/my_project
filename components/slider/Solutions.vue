@@ -1,5 +1,5 @@
 <template>
-  <div :style="`background: #F2F3F6`">
+  <div :style="`background: #F2F3F6`" @wheel="wheel">
     <div class="slider-solution">
       <div class="container">
         <h2 class="block__title"><span>Решения</span> для других напитков</h2>
@@ -42,7 +42,11 @@
       </div>
     </div>
 
-    <SolutionFeedback :offsetTop="offsetTop" />
+    <SolutionFeedback
+      :offsetTop="offsetTop"
+      :elemHeight="elemHeight"
+      :pos="pos"
+    />
   </div>
 </template>
 
@@ -59,7 +63,8 @@ export default {
   data() {
     return {
       offsetTop: 0,
-      elemOffsetTop: 0,
+      elemHeight: 0,
+      pos: 0,
       directives: {
         swiper: directive,
       },
@@ -91,10 +96,24 @@ export default {
         .querySelector(".slider-solution")
         .getBoundingClientRect();
       this.offsetTop = block.top;
-      let elemTop = document
+      let elemHeight = document
         .querySelector(".footer-feedback__wrap")
-        .getBoundingClientRect().top;
-      this.elemOffsetTop = elemTop;
+        .getBoundingClientRect();
+      this.elemHeight = elemHeight.height;
+      // console.log(this.offsetTop);
+      this.endAnim();
+    },
+    endAnim() {
+      if (this.elemHeight > 0 && this.pos === 1) {
+        // console.log("tets");
+      }
+    },
+    wheel(ev) {
+      if (ev.deltaY < 0) {
+        this.pos = 0;
+      } else {
+        this.pos = 1;
+      }
     },
   },
   created() {},
@@ -110,7 +129,7 @@ export default {
   padding: 120px 0;
   background-color: #f2f3f6;
   position: relative;
-  // height: 100vh;
+
   .swiper-wrapper {
     display: flex;
     gap: 35px;
