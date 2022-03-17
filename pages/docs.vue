@@ -1,22 +1,22 @@
 <template>
-  <div class="questions">
+  <div class="docs">
     <div class="container">
       <h1 class="pages__title">Документы</h1>
-      <div class="questions__inner">
-        <div class="questions__item"></div>
-        <div class="questions__item"></div>
-        <div class="questions__item"></div>
-        <div class="questions__item"></div>
-        <div class="questions__item"></div>
-        <div class="questions__item"></div>
-        <div class="questions__item"></div>
-        <div class="questions__item"></div>
+      <div class="docs__inner">
+        <div class="docs__item"></div>
+        <div class="docs__item"></div>
+        <div class="docs__item"></div>
+        <div class="docs__item"></div>
+        <div class="docs__item"></div>
+        <div class="docs__item"></div>
+        <div class="docs__item"></div>
+        <div class="docs__item"></div>
       </div>
     </div>
   </div>
 </template>
 <style lang="scss">
-.questions {
+.docs {
   padding: 135px 0 160px;
   background: #f2f3f7;
   @media (max-width: 991px) {
