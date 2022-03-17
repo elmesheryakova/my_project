@@ -52,6 +52,39 @@ export const state = () => ({
       title: "Партнерам",
       link: { name: "partners" },
       icon: true,
+      submenu: [
+        {
+          title: "Ценообразование",
+          link: { name: 'prices' },
+          img: '',
+          id: 1
+        },
+        {
+          title: "Поставка продукции",
+          link: { name: 'shipment' },
+          img: '',
+          id: 2
+        },
+        {
+          title: "Поддержка и сервис",
+          link: { name: 'service' },
+          img: '',
+          id: 3
+        },
+        {
+          title: "Вопросы и ответы",
+          link: { name: 'questions' },
+          img: '',
+          id: 4
+        },
+        {
+          title: "Документы",
+          link: { name: 'docs' },
+          img: '',
+          id: 5
+        },
+
+      ]
     },
     {
       title: "Концепция",
