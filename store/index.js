@@ -259,6 +259,8 @@ export const state = () => ({
   partners: [
     {
       id: 1,
+      slug: 'prices',
+      link: { name: "prices" },
       img: 'p1.jpg',
       imgMobile: 'p1-m.jpg',
       title: 'Ценообразование',
@@ -271,6 +273,8 @@ export const state = () => ({
     },
     {
       id: 2,
+      slug: 'shipment',
+      link: { name: "shipment" },
       img: 'p2.jpg',
       imgMobile: 'p2-m.jpg',
       title: 'Поставка продукции',
@@ -284,6 +288,8 @@ export const state = () => ({
     {
       id: 3,
       img: 'p3.jpg',
+      slug: 'service',
+      link: { name: "service" },
       imgMobile: 'p3-m.jpg',
       title: 'Поддержка и сервис',
       list: [
@@ -295,6 +301,8 @@ export const state = () => ({
     },
     {
       id: 4,
+      slug: 'questions',
+      link: { name: "questions" },
       img: 'p4.jpg',
       imgMobile: 'p4-m.jpg',
       title: 'Вопросы и ответы',
@@ -308,6 +316,8 @@ export const state = () => ({
     {
       id: 5,
       img: 'p5.jpg',
+      slug: 'docs',
+      link: { name: "docs" },
       imgMobile: 'p5-m.jpg',
       title: 'Документы',
       list: [
@@ -316,6 +326,32 @@ export const state = () => ({
         'Отсутствие технического обслуживания и мойки',
         'Сокращение фонда оплаты труда'
       ],
+    },
+  ],
+  prices: [
+    {
+      id: 1,
+      title: 'Фактор №1',
+      description: 'Международный бренд по производству ПЭТ-тары, отличающийся высочайшим качеством материалов, продукции и подхода к клиентам. Международный бренд отличающийся высочайшим качеством.',
+      img: 'f1.jpg',
+      imgMobile: 'f1-m.jpg',
+      num: 'num1'
+    },
+    {
+      id: 2,
+      title: 'Фактор №2',
+      description: 'Международный бренд по производству ПЭТ-тары, отличающийся высочайшим качеством материалов, продукции и подхода к клиентам. Международный бренд отличающийся высочайшим качеством.',
+      img: 'f2.jpg',
+      imgMobile: 'f2-m.jpg',
+      num: 'num2'
+    },
+    {
+      id: 3,
+      title: 'Фактор №3',
+      description: 'Международный бренд по производству ПЭТ-тары, отличающийся высочайшим качеством материалов, продукции и подхода к клиентам. Международный бренд отличающийся высочайшим качеством.',
+      img: 'f3.jpg',
+      imgMobile: 'f3-m.jpg',
+      num: 'num3'
     },
   ]
 })

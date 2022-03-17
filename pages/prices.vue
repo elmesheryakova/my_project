@@ -1,0 +1,92 @@
+<template>
+  <div class="prices">
+    <div class="container">
+      <h1 class="prices__title">Ценообразование</h1>
+      <Advantages :width="width" :items="prices" />
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  data() {
+    return {
+      prices: this.$store.state.prices,
+      width: 0,
+    };
+  },
+
+  methods: {
+    updateWidth() {
+      this.width = window.innerWidth;
+    },
+  },
+
+  mounted() {
+    window.addEventListener("resize", this.updateWidth);
+    this.updateWidth();
+  },
+};
+</script>
+<style lang="scss">
+.prices {
+  background: #f2f3f7;
+  padding: 135px 0 160px;
+
+  @media (max-width: 991px) {
+    padding-top: 90px;
+  }
+  @media (max-width: 860px) {
+    background: #fff;
+    padding-bottom: 60px;
+  }
+  @media (max-width: 791px) {
+    padding-top: 60px;
+  }
+  &__title {
+    color: $primary;
+    text-align: center;
+    font-size: 64px;
+    font-weight: 600;
+    padding: 100px 0 120px;
+    @media (max-width: 860px) {
+      padding: 80px 0;
+      padding-top: 50px;
+      font-size: 40px;
+    }
+    @media (max-width: 410px) {
+      font-size: 30px;
+      padding: 50px 0;
+    }
+  }
+  .advantages__item {
+    &:not(:last-child) {
+      margin-bottom: 200px;
+    }
+    @media (max-width: 860px) {
+      margin-bottom: 60px !important;
+    }
+    @media (max-width: 410px) {
+      margin-bottom: 30px !important;
+    }
+  }
+  .advantages__item-info {
+    min-height: 440px;
+    background: #fff;
+    z-index: 2;
+    @media (max-width: 860px) {
+      background: none;
+      min-height: 300px;
+    }
+  }
+  .advantages__item-img {
+    @media (max-width: 860px) {
+      margin-left: -30px;
+      margin-right: -30px;
+    }
+  }
+  .advantages__item-num svg {
+    z-index: 0;
+  }
+}
+</style>
+

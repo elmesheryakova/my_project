@@ -1,15 +1,13 @@
 <template>
-  <client-only>
-    <div class="advantages">
-      <div class="container">
-        <AdvantagesItem
-          v-for="(item, index) in items"
-          :key="index"
-          :item="item"
-        />
-      </div>
+  <div class="advantages">
+    <div class="container">
+      <AdvantagesItem
+        v-for="(item, index) in items"
+        :key="index"
+        :item="item"
+      />
     </div>
-  </client-only>
+  </div>
 </template>
 <script>
 export default {

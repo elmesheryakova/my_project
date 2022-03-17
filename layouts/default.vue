@@ -8,5 +8,8 @@
   </div>
 </template>
 <style lang="scss">
+.header {
+  position: fixed;
+}
 </style>
 

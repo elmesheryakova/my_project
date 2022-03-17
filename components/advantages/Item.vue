@@ -6,6 +6,9 @@
     <div class="advantages__item-inner">
       <div class="advantages__item-info">
         <h3 class="advantages__item-title">{{ item.title }}</h3>
+        <p v-if="item.description" class="advantages__item-text">
+          {{ item.description }}
+        </p>
         <ul class="advantages__list">
           <li
             class="advantages__list-item"
@@ -22,7 +25,7 @@
       </div>
       <nuxt-link
         no-prefetch
-        :to="{ name: 'partners-id', params: { id: item.id } }"
+        :to="item.link"
         class="advantages__item-link"
         v-if="$route.name === 'partners'"
       >
@@ -222,6 +225,9 @@ export default {
       align-items: center;
       color: $primary;
       font-size: 24px;
+      p {
+        color: $primary;
+      }
       svg {
         fill: transparent;
         width: 47px;

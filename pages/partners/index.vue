@@ -84,8 +84,16 @@ export default {
 .partners {
   .advantages__item {
     margin-bottom: 150px;
+    @media (max-width: 1300px) {
+      &:first-child {
+        padding-top: 100px;
+      }
+    }
     @media (max-width: 860px) {
       margin-bottom: 100px;
+      &:first-child {
+        padding-top: 0px;
+      }
     }
     @media (max-width: 370px) {
       margin-bottom: 80px;
@@ -96,8 +104,13 @@ export default {
   }
   .advantages__item-info {
     margin-bottom: 20px;
+
+    @media (max-width: 1300px) {
+      margin-bottom: 50px;
+    }
     @media (max-width: 860px) {
       padding: 10px 0;
+      margin-bottom: 20px;
     }
   }
 }

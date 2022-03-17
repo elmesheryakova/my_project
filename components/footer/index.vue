@@ -6,7 +6,7 @@
 </template>
 <style lang="scss">
 .footer {
-  background: #e2e2e8;
+  background: #f2f3f7;
   padding: 100px 0 70px;
   flex-shrink: 0;
   position: relative;

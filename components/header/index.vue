@@ -18,9 +18,12 @@ header {
   left: 0;
   width: 100%;
   z-index: 20;
-  @media (max-width: 790px) {
-    padding: 10px 0;
+  @media (max-width: 860px) {
+    // padding: 10px 0;
     box-shadow: 0px 1px 6px 0px #00000029;
+  }
+  @media (max-width: 791px) {
+    padding: 10px 0;
   }
 }
 </style>
