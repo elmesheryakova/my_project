@@ -1,5 +1,8 @@
 <template>
-  <div class="advantages__item">
+  <div
+    class="advantages__item"
+    :class="{ 'advantages__item--mb': $route.name === 'solutions-id' }"
+  >
     <div class="advantages__item-inner">
       <div class="advantages__item-info">
         <h3 class="advantages__item-title">{{ item.title }}</h3>
@@ -17,11 +20,26 @@
           </li>
         </ul>
       </div>
-      <div class="advantages__item-num">
+      <nuxt-link
+        no-prefetch
+        :to="{ name: 'partners-id', params: { id: item.id } }"
+        class="advantages__item-link"
+        v-if="$route.name === 'partners'"
+      >
+        <p class="mb-0">Подробнее</p>
+        <svgicon name="arrow-blue" />
+      </nuxt-link>
+      <div class="advantages__item-num" v-else>
         <svgicon :name="item.num" />
       </div>
     </div>
-    <div class="advantages__item-img">
+    <div
+      class="advantages__item-img"
+      :class="{
+        'advantages__item-img--even':
+          item.id % 2 === 0 && $route.name === 'partners',
+      }"
+    >
       <img
         :src="
           require(`@/assets/img/${width > 860 ? item.img : item.imgMobile}`)
@@ -42,6 +60,13 @@ export default {
       type: Number,
     },
   },
+  computed: {
+    isEvenBlock() {
+      if (this.item.id % 2 === 0) {
+        return true;
+      }
+    },
+  },
 };
 </script>
 <style lang="scss">
@@ -50,12 +75,14 @@ export default {
     gap: 80px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-
-    margin-bottom: 200px;
+    &--mb {
+      margin-bottom: 200px;
+    }
     &-inner {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+
       @media (max-width: 860px) {
         flex-direction: row;
         position: relative;
@@ -124,6 +151,10 @@ export default {
         margin-right: -20px;
         margin-left: -20px;
       }
+      &--even {
+        margin-right: auto;
+        order: -1;
+      }
     }
     &-num {
       font-size: 64px;
@@ -185,6 +216,27 @@ export default {
     }
     @media (max-width: 550px) {
       margin-bottom: 30px;
+    }
+    &-link {
+      display: flex;
+      align-items: center;
+      color: $primary;
+      font-size: 24px;
+      svg {
+        fill: transparent;
+        width: 47px;
+        height: 47px;
+        transform: rotate(-90deg);
+        margin-left: 15px;
+      }
+      @media (max-width: 550px) {
+        font-size: 20px;
+        line-height: 25px;
+        svg {
+          width: 30px;
+          height: 30px;
+        }
+      }
     }
   }
   &__list {

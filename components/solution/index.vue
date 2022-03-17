@@ -82,11 +82,11 @@ export default {
       activeSlideInd: 0,
 
       swiperOptionTop: {
-        speed: 1000,
-        autoplay: {
-          delay: 3000,
-          disableOnInteraction: true,
-        },
+        // speed: 1000,
+        // autoplay: {
+        //   delay: 3000,
+        //   disableOnInteraction: true,
+        // },
         spaceBetween: 10,
         slidesPerView: 1,
         slidesPerGroup: 1,

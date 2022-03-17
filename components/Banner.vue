@@ -1,7 +1,7 @@
 <template>
   <div class="fullscreen-banner__wrap">
     <Header />
-    <div class="fullscreen-banner">
+    <div class="fullscreen-banner" v-if="$route.name === 'solutions'">
       <div>
         <picture class="fullscreen-banner__img">
           <source
@@ -13,6 +13,19 @@
         </picture>
       </div>
       <h1 class="fullscreen-banner__title">Готовые решения</h1>
+    </div>
+    <div class="fullscreen-banner" v-else>
+      <div>
+        <picture class="fullscreen-banner__img">
+          <source
+            :srcset="require('@/assets/img/banner-partners640.jpg')"
+            type="image/png"
+            media="(max-width: 640px)"
+          />
+          <img :src="require('@/assets/img/banner-partners.jpg')" alt="bg" />
+        </picture>
+      </div>
+      <h1 class="fullscreen-banner__title">Партнерам</h1>
     </div>
   </div>
 </template>
@@ -30,18 +43,21 @@ export default {
   @media (max-width: 1300px) {
     height: 100%;
   }
+  .header {
+    position: fixed;
+  }
 }
 .fullscreen-banner {
   background: #f2f3f7 url("~assets/img/2fon.png") center no-repeat;
   position: relative;
   z-index: -1;
-
+  height: 100vh;
   &__img {
     display: flex;
     flex: 0 0 50%;
     justify-content: flex-end;
     img {
-      height: 100%;
+      height: 100vh;
       width: 50%;
       object-fit: cover;
     }
@@ -55,9 +71,9 @@ export default {
   }
   &__title {
     position: absolute;
-    top: 30%;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
     font-weight: 900;
     font-size: 124px;
     line-height: 145px;
@@ -71,23 +87,20 @@ export default {
     }
     @media (max-width: 640px) {
       white-space: normal;
-      font-size: 48px;
+      font-size: 40px;
       line-height: 53px;
       text-align: center;
     }
-    @media (max-width: 700px) {
-      top: 20%;
+  }
+  @media (max-width: 991px) {
+    padding-top: 90px;
+    height: 100%;
+    img {
+      height: 100%;
     }
-    @media (max-width: 640px) {
-      top: 35%;
-    }
-
-    @media (max-width: 470px) {
-      top: 30%;
-    }
-    @media (max-width: 370px) {
-      top: 25%;
-    }
+  }
+  @media (max-width: 791px) {
+    padding-top: 60px;
   }
 }
 </style>

@@ -8,15 +8,15 @@
         </div>
       </Fullscroll>
 
-      <Fullscroll :width="width">
-        <Solution />
+      <Fullscroll :width="width" v-for="(item, index) in partners" :key="index">
+        <div class="container"><AdvantagesItem :item="item" /></div>
       </Fullscroll>
       <Fullscroll :width="width"> <Footer /> </Fullscroll>
     </full-page>
   </client-only>
-  <div v-else>
+  <div v-else class="partners">
     <Banner />
-    <SolutionMobile />
+    <Advantages :width="width" :items="partners" />
     <Footer />
   </div>
 </template>
@@ -26,6 +26,7 @@ export default {
 
   data() {
     return {
+      partners: this.$store.state.partners,
       width: 0,
       options: {
         css3: true,
@@ -78,6 +79,26 @@ export default {
   }
   @media (max-width: 1300px) {
     display: none;
+  }
+}
+.partners {
+  .advantages__item {
+    margin-bottom: 150px;
+    @media (max-width: 860px) {
+      margin-bottom: 100px;
+    }
+    @media (max-width: 370px) {
+      margin-bottom: 80px;
+    }
+  }
+  .advantages__item-inner {
+    flex-direction: column;
+  }
+  .advantages__item-info {
+    margin-bottom: 20px;
+    @media (max-width: 860px) {
+      padding: 10px 0;
+    }
   }
 }
 </style>
