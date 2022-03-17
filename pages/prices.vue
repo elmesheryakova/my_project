@@ -1,7 +1,7 @@
 <template>
   <div class="prices">
     <div class="container">
-      <h1 class="prices__title">Ценообразование</h1>
+      <h1 class="pages__title">Ценообразование</h1>
       <Advantages :width="width" :items="prices" />
     </div>
   </div>
@@ -42,22 +42,7 @@ export default {
   @media (max-width: 791px) {
     padding-top: 60px;
   }
-  &__title {
-    color: $primary;
-    text-align: center;
-    font-size: 64px;
-    font-weight: 600;
-    padding: 100px 0 120px;
-    @media (max-width: 860px) {
-      padding: 80px 0;
-      padding-top: 50px;
-      font-size: 40px;
-    }
-    @media (max-width: 410px) {
-      font-size: 30px;
-      padding: 50px 0;
-    }
-  }
+
   .advantages__item {
     &:not(:last-child) {
       margin-bottom: 200px;
