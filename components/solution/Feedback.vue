@@ -62,12 +62,14 @@ export default {
   &--animate {
     transform: translateY(-1600px);
     transition: 0.8s ease-in-out;
+    z-index: 20;
     & + .footer-feedback__wrap {
       position: fixed;
       opacity: 1;
       visibility: visible;
       height: auto;
       transition: 0.8s ease-in-out 0.5s;
+      z-index: 21;
     }
     @media (max-width: 1950px) {
       transform: translateY(-1350px);

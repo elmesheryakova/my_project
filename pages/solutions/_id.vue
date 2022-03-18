@@ -70,7 +70,17 @@ export default {
 </script>
 <style lang="scss">
 .solution-item {
-  padding-bottom: 150px;
+  padding: 135px 0 150px;
+
+  @media (max-width: 991px) {
+    padding-top: 90px;
+  }
+  @media (max-width: 860px) {
+    padding-bottom: 60px;
+  }
+  @media (max-width: 791px) {
+    padding-top: 60px;
+  }
   overflow-x: hidden;
   &__inner {
     justify-content: space-between;

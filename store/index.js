@@ -88,7 +88,7 @@ export const state = () => ({
     },
     {
       title: "Концепция",
-      link: "#",
+      link: { name: 'concept' },
       icon: true,
       submenu: [
         {
