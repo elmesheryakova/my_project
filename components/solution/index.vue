@@ -321,6 +321,9 @@ export default {
     &:hover {
       border: 2px solid $primary;
       background-position: 58px !important;
+      .gallery-trumbs__text {
+        margin-right: 98px;
+      }
       @media (max-width: 1320px) {
         background-position: 30px !important;
       }

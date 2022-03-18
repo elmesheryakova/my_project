@@ -78,7 +78,7 @@ export default {
   mounted() {
     window.addEventListener("resize", this.updateWidth);
     this.updateWidth();
-    window.addEventListener("scroll", this.offsetY);
+    // window.addEventListener("scroll", this.offsetY);
     // this.offsetY();
   },
 };
