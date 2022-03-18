@@ -1,6 +1,9 @@
 <template>
   <div class="footer-feedback">
-    <img :src="require(`@/assets/img/top.png`)" alt="img" class="wave" />
+    <div :class="{ 'wave-wrap1': $route.name === 'solutions-id' }">
+      <img :src="require(`@/assets/img/top.png`)" alt="img" class="wave" />
+    </div>
+
     <div class="footer-feedback__wrap">
       <div class="container d-flex justify-content-between">
         <h3 class="footer-feedback__title">
@@ -102,6 +105,11 @@ export default {
     width: 100%;
     position: relative;
     z-index: 20;
+  }
+  .wave-wrap1 {
+    @media (max-width: 870px) {
+      background-color: #fff;
+    }
   }
   &__wrap {
     position: relative;

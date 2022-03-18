@@ -110,8 +110,15 @@ export default {
     toggleBodyScrollbar(visible) {
       const html = document.getElementsByTagName("html")[0];
       const burger = document.querySelector(".burger-menu");
+      const topLinks = document.querySelectorAll(".subnav__menu-item__link");
       const links = document.querySelectorAll(".subnav-submenu__item a");
       links.forEach((el) => {
+        el.addEventListener("click", function () {
+          html.style.overflow = "auto";
+          burger.classList.remove("active");
+        });
+      });
+      topLinks.forEach((el) => {
         el.addEventListener("click", function () {
           html.style.overflow = "auto";
           burger.classList.remove("active");
