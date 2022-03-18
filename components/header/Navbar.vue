@@ -110,7 +110,13 @@ export default {
     toggleBodyScrollbar(visible) {
       const html = document.getElementsByTagName("html")[0];
       const burger = document.querySelector(".burger-menu");
-
+      const links = document.querySelectorAll(".subnav-submenu__item a");
+      links.forEach((el) => {
+        el.addEventListener("click", function () {
+          html.style.overflow = "auto";
+          burger.classList.remove("active");
+        });
+      });
       if (visible) {
         html.style.overflow = "hidden";
         burger.classList.add("active");
@@ -223,6 +229,7 @@ export default {
     left: 0;
     background-color: #fff;
     width: 100%;
+    z-index: 1;
     @media (max-width: 790px) {
       padding: 10px;
       padding-top: 17px;

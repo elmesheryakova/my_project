@@ -5,6 +5,7 @@
         v-for="(item, index) in items"
         :key="index"
         :item="item"
+        :width="width"
       />
     </div>
   </div>

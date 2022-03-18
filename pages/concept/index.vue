@@ -14,10 +14,12 @@
     <Advantages :width="width" :items="concept" v-else />
     <ConceptBanner />
     <Feedback />
+    <Footer />
   </div>
 </template>
 <script>
 export default {
+  layout: "fullscreen",
   data() {
     return {
       concept: this.$store.state.concept,
