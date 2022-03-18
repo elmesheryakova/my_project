@@ -1,28 +1,16 @@
 <template>
-  <div
-    class="wrap"
-    :class="{
-      'wrap--endAnimate': offsetTop <= -300,
-    }"
-  >
-    <div
-      class="footer-feedback"
-      :class="{
-        'footer-feedback--animate': offsetTop <= 0,
-        'footer-feedback--endAnimate': offsetTop <= -300,
-      }"
-    >
-      <img :src="require(`@/assets/svg/wave.svg`)" alt="img" class="wave" />
-    </div>
+  <div class="footer-feedback">
+    <img :src="require(`@/assets/img/top.png`)" alt="img" class="wave" />
     <div class="footer-feedback__wrap">
       <div class="container d-flex justify-content-between">
         <h3 class="footer-feedback__title">
           Присоединяйтесь <br />
-          к сотрудничеству!
+          <span> к сотрудничеству!</span>
         </h3>
         <FeedbackForm />
       </div>
     </div>
+    <img :src="require(`@/assets/img/bottom.png`)" alt="img" class="wave" />
   </div>
 </template>
 <script>
@@ -43,22 +31,13 @@ export default {
 };
 </script>
 <style lang="scss">
-.wrap {
-  height: 100vh;
-  position: relative;
-  transition: 0.8s ease-in-out 0.5s;
-  &--endAnimate {
-    height: 0;
-    transition: 1s ease-in-out;
-  }
-}
 .footer-feedback {
-  position: absolute;
   min-width: 100vw;
   width: 100%;
-
-  transform: translateY(150px);
-  transition: 0.8s ease-in-out;
+  height: 100%;
+  background-color: #f2f3f6;
+  // transition: 0.8s ease-in-out;
+  position: relative;
   &--animate {
     transform: translateY(-1600px);
     transition: 0.8s ease-in-out;
@@ -97,20 +76,65 @@ export default {
     color: $white;
     font-weight: 600;
     font-size: 48px;
+    padding-right: 50px;
+    span {
+      white-space: nowrap;
+    }
+    @media (max-width: 991px) {
+      font-size: 40px;
+    }
+    @media (max-width: 860px) {
+      font-size: 36px;
+      padding-bottom: 40px;
+      text-align: center;
+      padding-right: 0;
+    }
+    @media (max-width: 640px) {
+      text-align: left;
+      margin-right: auto;
+    }
+    @media (max-width: 370px) {
+      font-size: 32px;
+      padding-bottom: 25px;
+    }
   }
   .wave {
     width: 100%;
     position: relative;
+    z-index: 20;
   }
   &__wrap {
-    position: fixed;
+    position: relative;
     width: 100%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    visibility: hidden;
-    height: 0;
+    // top: 40%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
+    background-color: #1726c9;
+    z-index: 21;
+    padding: 180px 0;
+    // opacity: 0;
+    // visibility: hidden;
+    // height: 0;
+
+    // background: #f2f3f7 url("~assets/img/2fon.png") center no-repeat;
+    form {
+      width: 100%;
+    }
+    @media (max-width: 860px) {
+      padding: 120px 0;
+      .container {
+        flex-wrap: wrap;
+        justify-content: center !important;
+      }
+    }
+  }
+  // .waveicon2,
+  // .waveicon {
+  //   position: absolute;
+  //   z-index: 20;
+  // }
+  .waveicon {
+    top: -700px;
   }
 }
 </style>

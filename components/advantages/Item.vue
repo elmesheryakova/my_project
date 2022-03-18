@@ -36,6 +36,14 @@
         <svgicon :name="item.num" />
       </div>
     </div>
+    <nuxt-link
+      class="advantages__item-link advantages__item-link--concept"
+      v-if="$route.name === 'concept'"
+      :to="{ name: 'concept-id', params: { id: item.id } }"
+    >
+      <p class="mb-0">Подробнее</p>
+      <svgicon name="arrow-blue" />
+    </nuxt-link>
     <div
       class="advantages__item-img"
       :class="{
@@ -44,6 +52,12 @@
       }"
     >
       <img
+        v-if="$route.name === 'concept'"
+        :src="require(`@/assets/img/${item.img1}`)"
+        alt="img"
+      />
+      <img
+        v-else
         :src="
           require(`@/assets/img/${width > 860 ? item.img : item.imgMobile}`)
         "
@@ -225,6 +239,13 @@ export default {
       align-items: center;
       color: $primary;
       font-size: 24px;
+      &--concept {
+        padding-left: 30px;
+        @media (max-width: 550px) {
+          padding-left: 10px;
+          margin-top: -100px;
+        }
+      }
       p {
         color: $primary;
       }

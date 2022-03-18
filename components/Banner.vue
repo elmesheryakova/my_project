@@ -14,7 +14,7 @@
       </div>
       <h1 class="fullscreen-banner__title">Готовые решения</h1>
     </div>
-    <div class="fullscreen-banner" v-else>
+    <div class="fullscreen-banner" v-if="$route.name === 'partners'">
       <div>
         <picture class="fullscreen-banner__img">
           <source
@@ -26,6 +26,23 @@
         </picture>
       </div>
       <h1 class="fullscreen-banner__title">Партнерам</h1>
+    </div>
+    <div class="fullscreen-banner" v-if="$route.name === 'concept'">
+      <div>
+        <picture class="fullscreen-banner__img">
+          <source
+            :srcset="require('@/assets/img/concept-640.jpg')"
+            type="image/png"
+            media="(max-width: 640px)"
+          />
+          <img :src="require('@/assets/img/concept.jpg')" alt="bg" />
+        </picture>
+      </div>
+
+      <h1 class="fullscreen-banner__title text-center">
+        Концепция <br />
+        компании
+      </h1>
     </div>
   </div>
 </template>
@@ -81,14 +98,17 @@ export default {
     white-space: nowrap;
     @media (max-width: 1400px) {
       font-size: 100px;
+      line-height: 100px;
     }
     @media (max-width: 991px) {
       font-size: 60px;
+      line-height: 60px;
     }
     @media (max-width: 640px) {
       white-space: normal;
       font-size: 40px;
-      line-height: 53px;
+      line-height: 40px;
+
       text-align: center;
     }
   }

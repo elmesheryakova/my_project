@@ -42,11 +42,11 @@
       </div>
     </div>
 
-    <SolutionFeedback
+    <!-- <SolutionFeedback
       :offsetTop="offsetTop"
       :elemHeight="elemHeight"
       :pos="pos"
-    />
+    /> -->
   </div>
 </template>
 
@@ -91,19 +91,19 @@ export default {
   },
 
   methods: {
-    offsetY() {
-      let block = document
-        .querySelector(".slider-solution")
-        .getBoundingClientRect();
-      this.offsetTop = block.top;
-      let elemHeight = document
-        .querySelector(".footer-feedback__wrap")
-        .getBoundingClientRect();
-      this.elemHeight = elemHeight.height;
-      // console.log(this.elemHeight);
-      // console.log(this.offsetTop);
-      this.endAnim();
-    },
+    // offsetY() {
+    //   let block = document
+    //     .querySelector(".slider-solution")
+    //     .getBoundingClientRect();
+    //   this.offsetTop = block.top;
+    //   let elemHeight = document
+    //     .querySelector(".footer-feedback--animate")
+    //     .getBoundingClientRect();
+    //   this.elemHeight = elemHeight.bottom;
+    //   // console.log(this.elemHeight);
+    //   // console.log(this.offsetTop);
+    //   this.endAnim();
+    // },
     endAnim() {
       // if (this.offsetTop < 0) {
       //   document.querySelector(
@@ -130,8 +130,8 @@ export default {
   created() {},
   mounted() {
     this.swiper.slideTo();
-    window.addEventListener("scroll", this.offsetY);
-    this.offsetY();
+    // window.addEventListener("scroll", this.offsetY);
+    // this.offsetY();
   },
 };
 </script>
@@ -140,7 +140,7 @@ export default {
   padding: 120px 0;
   background-color: #f2f3f6;
   position: relative;
-
+  height: 100vh;
   .swiper-wrapper {
     display: flex;
     gap: 35px;

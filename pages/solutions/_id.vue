@@ -38,7 +38,7 @@
     <Slider :items="productsGroup" v-if="width > 790" />
     <GridMobile :items="productsGroup" :width="width" v-else />
     <SolutionInfo />
-    <SliderSolutions v-if="width > 870" />
+    <div class="test" v-if="width > 870"><SliderSolutions /></div>
 
     <template v-else>
       <div class="container">
@@ -46,6 +46,7 @@
       </div>
       <SolutionMobile
     /></template>
+    <SolutionFeedback :offsetTop="offsetTop" :elemHeight="elemHeight" />
   </div>
 </template>
 <script>
@@ -55,16 +56,30 @@ export default {
       width: 0,
       advantages: this.$store.state.advantages,
       productsGroup: this.$store.state.productsGroup,
+      offsetTop: 0,
+      elemHeight: 0,
     };
   },
   methods: {
     updateWidth() {
       this.width = window.innerWidth;
     },
+    offsetY() {
+      let block = document.querySelector(".test").getBoundingClientRect();
+      this.offsetTop = block.top;
+      let elemHeight = document
+        .querySelector(".footer")
+        .getBoundingClientRect();
+      this.elemHeight = elemHeight.top;
+      // console.log(this.elemHeight);
+      // console.log(this.offsetTop);
+    },
   },
   mounted() {
     window.addEventListener("resize", this.updateWidth);
     this.updateWidth();
+    window.addEventListener("scroll", this.offsetY);
+    // this.offsetY();
   },
 };
 </script>
