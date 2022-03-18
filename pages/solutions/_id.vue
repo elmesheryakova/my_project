@@ -46,7 +46,7 @@
       </div>
       <SolutionMobile
     /></template>
-    <SolutionFeedback :offsetTop="offsetTop" :elemHeight="elemHeight" />
+    <Feedback :offsetTop="offsetTop" :elemHeight="elemHeight" />
   </div>
 </template>
 <script>

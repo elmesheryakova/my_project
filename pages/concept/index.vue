@@ -13,7 +13,7 @@
 
     <Advantages :width="width" :items="concept" v-else />
     <ConceptBanner />
-    <SolutionFeedback />
+    <Feedback />
   </div>
 </template>
 <script>
