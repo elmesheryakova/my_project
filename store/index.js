@@ -45,7 +45,7 @@ export const state = () => ({
     },
     {
       title: "Продукция",
-      link: "#",
+      link: { name: "products" },
       icon: true,
     },
     {
@@ -520,5 +520,95 @@ export const state = () => ({
       img: 'k4.jpg',
       imgMobile: 'k4.jpg',
     }
+  ],
+  products: [
+    {
+      id: 1,
+      title: "ПЭТ-кеги",
+      img: "prod1.jpg",
+      imgPrew: 'prod-prew1.png',
+      slug: 'kegs',
+    },
+    {
+      id: 2,
+      title: "ПЭТ-бутыли",
+      img: "prod2.jpg",
+      imgPrew: 'prod-prew2.png',
+      slug: 'big-bottles',
+    },
+    {
+      id: 3,
+      title: "Преформы",
+      img: "prod3.jpg",
+      imgPrew: 'prod-prew3.png',
+      slug: 'preforms',
+    },
+    {
+      id: 4,
+      title: "ПЭТ-бутылки",
+      img: "prod4.jpg",
+      imgPrew: 'prod-prew4.png',
+      slug: 'bottles',
+    },
+    {
+      id: 5,
+      title: "ПЭТ-флаконы",
+      img: "prod5.jpg",
+      imgPrew: 'prod-prew5.png',
+      slug: 'flacons'
+    },
+    {
+      id: 6,
+      title: "Комплектующие",
+      img: "prod6.jpg",
+      imgPrew: 'prod-prew6.png',
+      slug: 'accessories'
+    },
+  ],
+  productsId: [
+    {
+      id: 1,
+      title: 'PET-кег 30 л. / А',
+      description: 'хранение и транспортировка пищевых жидкостей',
+      color: 'коричневый, прозрачный',
+      weight: '500 гр.+-10',
+      material: 'ПЭТ (Полиэтилентерефталат)',
+      type: 'A',
+      usage: 'одноразовый',
+      img: 'pr1.jpg',
+    },
+    {
+      id: 2,
+      title: 'PET-кег 20 л.',
+      description: 'хранение и транспортировка пищевых жидкостей',
+      color: 'коричневый, прозрачный',
+      weight: '500 гр.+-10',
+      material: 'ПЭТ (Полиэтилентерефталат)',
+      type: 'A',
+      usage: 'одноразовый',
+      img: 'pr2.jpg',
+    },
+    {
+      id: 3,
+      title: 'PET-кег 35 л.',
+      description: 'хранение и транспортировка пищевых жидкостей',
+      color: 'коричневый, прозрачный',
+      weight: '500 гр.+-10',
+      material: 'ПЭТ (Полиэтилентерефталат)',
+      type: 'A',
+      usage: 'одноразовый',
+      img: 'pr3.jpg',
+    },
+    {
+      id: 4,
+      title: 'PET-кег 10 л.',
+      description: 'хранение и транспортировка пищевых жидкостей',
+      color: 'коричневый, прозрачный',
+      weight: '500 гр.+-10',
+      material: 'ПЭТ (Полиэтилентерефталат)',
+      type: 'A',
+      usage: 'одноразовый',
+      img: 'pr4.jpg',
+    },
   ]
 })
