@@ -1,7 +1,7 @@
 <template>
   <div class="products-prew">
     <nuxt-link
-      v-for="(item, idx) in items"
+      v-for="(item, idx) in products"
       :key="idx"
       class="prew-item"
       :to="{ name: 'products-slug', params: { slug: item.slug } }"
@@ -13,11 +13,10 @@
 </template>
 <script>
 export default {
-  props: {
-    items: {
-      type: Array,
-      default: () => [],
-    },
+  data() {
+    return {
+      products: this.$store.state.products,
+    };
   },
 };
 </script>
@@ -37,6 +36,7 @@ export default {
   }
   .prew-item {
     position: relative;
+    transition: 0.3s ease-in-out;
     &__title {
       position: absolute;
       top: 50%;
@@ -45,6 +45,10 @@ export default {
       white-space: nowrap;
       font-weight: 600;
       color: $primary;
+    }
+    &:hover {
+      box-shadow: 0px 20px 60px 0px #17202929;
+      transition: 0.3s ease-in-out;
     }
   }
 }

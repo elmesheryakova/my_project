@@ -41,7 +41,7 @@
       </ul>
       <nuxt-link
         class="advantages__item-link"
-        :to="{ name: 'products-id', params: { id: item.id } }"
+        :to="{ name: 'products-slug-id', params: { id: item.id } }"
       >
         <p class="mb-0">Подробнее</p>
         <svgicon name="arrow-blue" />
