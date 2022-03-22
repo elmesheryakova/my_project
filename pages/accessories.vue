@@ -5,6 +5,7 @@
       <h1 class="pages__title">Комплектующие</h1>
     </div>
     <Advantages :width="width" :items="accessories" />
+    <Feedback />
   </div>
 </template>
 <script>

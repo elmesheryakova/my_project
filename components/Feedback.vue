@@ -1,7 +1,10 @@
 <template>
   <div
     class="footer-feedback"
-    :class="{ 'footer-feedback--products': $route.name === 'products-slug-id' }"
+    :class="{
+      'footer-feedback--products':
+        $route.name === 'products-slug-id' || $route.name === 'accessories',
+    }"
   >
     <div :class="{ 'wave-wrap1': $route.name === 'solutions-id' }">
       <img :src="require(`@/assets/img/top.png`)" alt="img" class="wave" />

@@ -271,7 +271,10 @@ export default {
       }
     }
     &--acc {
-      margin-bottom: 200px;
+      &:not(:last-child) {
+        margin-bottom: 200px;
+      }
+
       gap: 10px;
       .advantages__item-info {
         box-shadow: none;
@@ -301,10 +304,17 @@ export default {
         }
       }
       @media (max-width: 991px) {
-        margin-bottom: 150px;
+        &:not(:last-child) {
+          margin-bottom: 150px;
+        }
       }
       @media (max-width: 860px) {
-        margin-bottom: 100px;
+        &:not(:last-child) {
+          margin-bottom: 100px;
+        }
+        &:last-child {
+          margin-bottom: 0px;
+        }
         .advantages__item-img {
           margin-left: -30px;
         }
@@ -322,7 +332,9 @@ export default {
         }
       }
       @media (max-width: 450px) {
-        margin-bottom: 50px;
+        &:not(:last-child) {
+          margin-bottom: 50px;
+        }
         .advantages__list-item {
           font-size: 18px;
           line-height: 24px;
