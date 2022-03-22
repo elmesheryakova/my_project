@@ -4,7 +4,11 @@
       v-for="(item, idx) in products"
       :key="idx"
       class="prew-item"
-      :to="{ name: 'products-slug', params: { slug: item.slug } }"
+      :to="
+        item.title === 'Комплектующие'
+          ? { name: 'accessories' }
+          : { name: 'products-slug', params: { slug: item.slug } }
+      "
     >
       <div class="prew-item__title">{{ item.title }}</div>
       <img :src="require(`@/assets/img/${item.imgPrew}`)" alt="img" />

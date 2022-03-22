@@ -8,7 +8,11 @@
           :key="idx"
           :class="`img-${item.id}`"
           class="products__block-item"
-          :to="{ name: 'products-slug', params: { slug: item.slug } }"
+          :to="
+            item.title === 'Комплектующие'
+              ? { name: 'accessories' }
+              : { name: 'products-slug', params: { slug: item.slug } }
+          "
         >
           <div class="item-title">{{ item.title }}</div>
           <img :src="require(`@/assets/img/${item.img}`)" alt="img" />

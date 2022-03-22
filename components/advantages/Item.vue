@@ -1,7 +1,10 @@
 <template>
   <div
     class="advantages__item"
-    :class="{ 'advantages__item--mb': $route.name === 'solutions-id' }"
+    :class="{
+      'advantages__item--mb': $route.name === 'solutions-id',
+      'advantages__item--acc': $route.name === 'accessories',
+    }"
   >
     <div class="advantages__item-inner">
       <div class="advantages__item-info">
@@ -18,10 +21,10 @@
             <div class="advantages__list-svg">
               <svgicon name="romb" />
             </div>
-
             {{ item }}
           </li>
         </ul>
+        <ProductSpecifications :items="item.specifications" />
       </div>
       <nuxt-link
         no-prefetch
@@ -48,7 +51,8 @@
       class="advantages__item-img"
       :class="{
         'advantages__item-img--even':
-          item.id % 2 === 0 && $route.name === 'partners',
+          item.id % 2 === 0 &&
+          ($route.name === 'partners' || $route.name === 'accessories'),
       }"
     >
       <img
@@ -95,6 +99,7 @@ export default {
     &--mb {
       margin-bottom: 200px;
     }
+
     &-inner {
       display: flex;
       flex-direction: column;
@@ -262,6 +267,68 @@ export default {
         svg {
           width: 30px;
           height: 30px;
+        }
+      }
+    }
+    &--acc {
+      margin-bottom: 200px;
+      gap: 10px;
+      .advantages__item-info {
+        box-shadow: none;
+        padding: 10px;
+      }
+      .advantages__item-num {
+        display: none;
+      }
+      .advantages__list {
+        margin-bottom: 100px;
+      }
+      .advantages__list-item {
+        font-size: 20px;
+      }
+      .advantages__list-item:not(:last-child) {
+        margin-bottom: 10px;
+      }
+      .specifications {
+        padding-bottom: 0;
+        @media (max-width: 1130px) {
+          .info-list__item {
+            white-space: normal;
+          }
+          .list__item-descr {
+            text-align: right;
+          }
+        }
+      }
+      @media (max-width: 991px) {
+        margin-bottom: 150px;
+      }
+      @media (max-width: 860px) {
+        margin-bottom: 100px;
+        .advantages__item-img {
+          margin-left: -30px;
+        }
+        .advantages__item-info {
+          width: 100%;
+        }
+        .advantages__list {
+          margin-bottom: 60px;
+        }
+      }
+      @media (max-width: 640px) {
+        .advantages__item-img {
+          margin-right: -30px;
+          width: 120%;
+        }
+      }
+      @media (max-width: 450px) {
+        margin-bottom: 50px;
+        .advantages__list-item {
+          font-size: 18px;
+          line-height: 24px;
+        }
+        .advantages__list-item:not(:last-child) {
+          margin-bottom: 15px;
         }
       }
     }

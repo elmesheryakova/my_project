@@ -30,7 +30,8 @@
           </ul>
         </div>
       </div>
-      <ProductSpecifications :items="productOnly.spicefication" />
+      <h3 class="advantages__item-title">Технические данные:</h3>
+      <ProductSpecifications :items="productOnly.specification" />
     </div>
   </client-only>
 </template>
@@ -65,7 +66,7 @@ export default {
           "Не требуется инвестиций в оборудование",
           "Сопровождение и поддержка от технических специалистов компании ПЭТ-Эксперт",
         ],
-        spicefication: [
+        specification: [
           {
             title: "Назначение",
             descr: "хранение и транспортировка пищевых жидкостей",

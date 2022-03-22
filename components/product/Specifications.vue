@@ -1,6 +1,5 @@
 <template>
   <div class="specifications">
-    <h3 class="advantages__item-title">Технические данные:</h3>
     <ul class="info-list">
       <li class="info-list__item" v-for="(item, index) in items" :key="index">
         <p>{{ item.title }}</p>
