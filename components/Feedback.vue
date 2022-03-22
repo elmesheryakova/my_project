@@ -3,7 +3,9 @@
     class="footer-feedback"
     :class="{
       'footer-feedback--products':
-        $route.name === 'products-slug-id' || $route.name === 'accessories',
+        $route.name === 'products-slug-id' ||
+        $route.name === 'accessories' ||
+        $route.name === 'contacts',
     }"
   >
     <div :class="{ 'wave-wrap1': $route.name === 'solutions-id' }">

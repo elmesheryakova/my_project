@@ -63,7 +63,7 @@ export const state = () => ({
     },
     {
       title: "Контакты",
-      link: "#",
+      link: { name: 'contacts' },
       icon: false,
     },
   ],
