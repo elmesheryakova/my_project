@@ -1,6 +1,12 @@
 <template>
-  <div class="slider">
-    <div v-swiper="swiperOption" ref="swiper">
+  <div
+    class="slider"
+    :class="{ 'slider--products': $route.name === 'products-slug-id' }"
+  >
+    <div
+      v-swiper="$route.name === 'products-slug-id' ? options : swiperOption"
+      ref="swiper"
+    >
       <div class="swiper-wrapper">
         <div
           class="swiper-slide d-flex flex-column"
@@ -15,6 +21,12 @@
             <p class="slider__info-article">{{ item.article }}</p>
           </div>
         </div>
+      </div>
+      <div class="slider-button-next" v-if="$route.name === 'products-slug-id'">
+        <svgicon name="arrow-slider" />
+      </div>
+      <div class="slider-button-prev" v-if="$route.name === 'products-slug-id'">
+        <svgicon name="arrow-slider" />
       </div>
     </div>
   </div>
@@ -37,7 +49,27 @@ export default {
       },
 
       activeSlideInd: 0,
-
+      options: {
+        loop: true,
+        slidesPerView: 3,
+        slidesPerGroup: 3,
+        freeMode: true,
+        spaceBetween: 10,
+        navigation: {
+          nextEl: ".slider-button-next",
+          prevEl: ".slider-button-prev",
+        },
+        breakpoints: {
+          900: {
+            slidesPerView: 4,
+            slidesPerGroup: 4,
+          },
+          1840: {
+            slidesPerView: 5,
+            slidesPerGroup: 5,
+          },
+        },
+      },
       swiperOption: {
         speed: 1500,
         autoplay: {
@@ -165,6 +197,79 @@ export default {
       @media (max-width: 940px) {
         font-size: 14px;
       }
+    }
+  }
+  &--products {
+    margin-bottom: 0;
+    .swiper-wrapper {
+      gap: 5px;
+    }
+    .swiper-container {
+      overflow: hidden;
+    }
+    &::after,
+    &::before {
+      display: none;
+    }
+    .slider__img {
+      height: 260px;
+      img {
+        width: 220px;
+        height: 260px;
+        object-fit: cover;
+      }
+      // @media (max-width: 1100px) {
+      //   width: 350px;
+      //   height: 300px;
+      // }
+      // @media (max-width: 940px) {
+      //   width: 300px;
+      //   height: 250px;
+      //   margin-bottom: 5px;
+      // }
+    }
+    .slider__info {
+      &-title {
+        font-size: 14px;
+        line-height: 24px;
+        font-weight: 600;
+        margin-bottom: 5px;
+        @media (max-width: 940px) {
+          font-size: 13px;
+          margin-bottom: 0;
+        }
+      }
+      &-article {
+        font-size: 13px;
+        font-weight: 300;
+        color: #d1d0d0;
+        @media (max-width: 940px) {
+          font-size: 12px;
+        }
+      }
+    }
+
+    .slider-button-next,
+    .slider-button-prev {
+      position: absolute;
+
+      cursor: pointer;
+      svg {
+        width: 40px;
+        height: 40px;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+    .slider-button-next {
+      right: -20px;
+      top: 150px;
+    }
+    .slider-button-prev {
+      left: -20px;
+      top: 110px;
+      transform: rotate(180deg);
     }
   }
 }

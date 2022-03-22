@@ -28,15 +28,24 @@ export default {
   padding-top: 230px;
 
   @media (max-width: 991px) {
-    padding-top: 90px;
+    padding-top: 150px;
+    gap: 10px;
   }
 
   @media (max-width: 791px) {
-    padding-top: 60px;
+    padding-top: 120px;
+  }
+
+  @media (max-width: 730px) {
+    padding-top: 0;
+    opacity: 0;
   }
   .prew-item {
     position: relative;
     transition: 0.3s ease-in-out;
+    img {
+      width: 100%;
+    }
     &__title {
       position: absolute;
       top: 50%;
@@ -45,6 +54,9 @@ export default {
       white-space: nowrap;
       font-weight: 600;
       color: $primary;
+      @media (max-width: 1090px) {
+        font-size: 12px;
+      }
     }
     &:hover {
       box-shadow: 0px 20px 60px 0px #17202929;

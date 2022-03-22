@@ -1,5 +1,8 @@
 <template>
-  <div class="footer-feedback">
+  <div
+    class="footer-feedback"
+    :class="{ 'footer-feedback--products': $route.name === 'products-slug-id' }"
+  >
     <div :class="{ 'wave-wrap1': $route.name === 'solutions-id' }">
       <img :src="require(`@/assets/img/top.png`)" alt="img" class="wave" />
     </div>
@@ -41,6 +44,50 @@ export default {
   background-color: #f2f3f6;
   // transition: 0.8s ease-in-out;
   position: relative;
+  &--products {
+    .footer-feedback__wrap {
+      background-color: #fff;
+    }
+    .footer-feedback__title {
+      color: $primary;
+      span {
+        color: $black;
+      }
+    }
+    .wave {
+      display: none;
+    }
+    form {
+      .form-control {
+        background-color: #fff;
+        border-color: $black;
+        color: $black;
+        &::placeholder {
+          color: $black;
+        }
+        &:hover {
+          &::placeholder {
+            color: $black;
+          }
+        }
+      }
+      .form-group > div {
+        svg {
+          path {
+            fill: $primary;
+          }
+        }
+      }
+      .custom-control-label {
+        color: $black;
+      }
+    }
+    .feedback-popup__submit {
+      background-color: #fff;
+      color: $primary;
+      border-color: $primary;
+    }
+  }
   &--animate {
     transform: translateY(-1600px);
     transition: 0.8s ease-in-out;
@@ -114,17 +161,11 @@ export default {
   &__wrap {
     position: relative;
     width: 100%;
-    // top: 40%;
-    // left: 50%;
-    // transform: translate(-50%, -50%);
+
     background-color: #1726c9;
     z-index: 21;
     padding: 180px 0;
-    // opacity: 0;
-    // visibility: hidden;
-    // height: 0;
 
-    // background: #f2f3f7 url("~assets/img/2fon.png") center no-repeat;
     form {
       width: 100%;
     }
@@ -136,11 +177,7 @@ export default {
       }
     }
   }
-  // .waveicon2,
-  // .waveicon {
-  //   position: absolute;
-  //   z-index: 20;
-  // }
+
   .waveicon {
     top: -700px;
   }

@@ -11,11 +11,6 @@
             >
               <img :src="require(`@/assets/img/${item.img}`)" alt="img" />
             </div>
-            <template #prevArrow="arrowOption">
-              <div class="custom-arrow">
-                {{ arrowOption.currentSlide }}/{{ arrowOption.slideCount }}
-              </div>
-            </template>
           </VueSlickCarousel>
         </div>
         <div class="product-info__block">
@@ -137,6 +132,12 @@ export default {
   grid-template-columns: minmax(400px, 640px) 1fr;
   gap: 80px;
   margin-bottom: 50px;
+  @media (max-width: 991px) {
+    gap: 20px;
+  }
+  @media (max-width: 840px) {
+    grid-template-columns: 1fr;
+  }
   &__slider {
     max-width: 640px;
     img {
@@ -144,11 +145,85 @@ export default {
       width: 100%;
       object-fit: cover;
     }
+    @media (max-width: 840px) {
+      margin: 0 auto;
+      margin-bottom: 60px;
+    }
+    @media (max-width: 700px) {
+      max-width: 550px;
+    }
+    @media (max-width: 600px) {
+      max-width: 400px;
+    }
+    @media (max-width: 450px) {
+      max-width: 300px;
+    }
+    @media (max-width: 370px) {
+      max-width: 280px;
+    }
   }
   &__block {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    @media (max-width: 1300px) {
+      flex: 0 0 500px;
+      width: 500px;
+    }
+    @media (max-width: 991px) {
+      flex: 0 0 400px;
+      width: 400px;
+      .advantages__list {
+        &-item {
+          font-size: 16px;
+          margin-bottom: 10px;
+        }
+      }
+    }
+    @media (max-width: 500px) {
+      flex: 0 0 100%;
+      width: 100%;
+      .advantages__list {
+        &-item {
+          font-size: 14px;
+          line-height: 20px;
+          margin-bottom: 20px;
+        }
+      }
+    }
+  }
+
+  .slick-next {
+    position: absolute;
+    z-index: 10;
+
+    &::before {
+      position: absolute;
+      content: "";
+      width: 40px;
+      height: 40px;
+      background: url("~assets/svg/arrow-slider.svg") no-repeat;
+      top: 0;
+      right: 5px;
+      opacity: 1;
+    }
+  }
+
+  .slick-prev {
+    position: absolute;
+    z-index: 10;
+
+    &::before {
+      position: absolute;
+      content: "";
+      width: 40px;
+      height: 40px;
+      background: url("~assets/svg/arrow-slider.svg") no-repeat;
+      top: 5px;
+      left: 5px;
+      transform: rotate(180deg);
+      opacity: 1;
+    }
   }
 }
 </style>

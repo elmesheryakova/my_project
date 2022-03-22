@@ -11,6 +11,18 @@
       <label for="input-1">Ваше имя</label>
       <svgicon name="require" />
     </b-form-group>
+    <b-form-group id="input-group-3" label-for="input-3">
+      <b-form-input
+        v-model="form.email"
+        id="input-3"
+        type="text"
+        placeholder="Электронная почта"
+        required
+      >
+      </b-form-input>
+      <label for="input-3">Электронная почта</label>
+      <svgicon name="require" />
+    </b-form-group>
     <b-form-group id="input-group-2" label-for="input-2">
       <b-form-input
         v-model="form.phone"
@@ -54,6 +66,7 @@ export default {
     return {
       form: {
         name: "",
+        email: "",
         phone: "",
         text: "",
         status: "accepted",
