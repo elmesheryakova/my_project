@@ -11,13 +11,15 @@
             <nuxt-link :to="item.link" class="item-menu__link">{{
               item.title
             }}</nuxt-link>
-            <svgicon
-              class="item-menu__icon"
-              name="arrow-header"
-              v-if="item.icon"
-            />
-            <div class="submenu-wrapper" v-if="item.submenu">
-              <HeaderSubmenu :submenu="item.submenu" />
+            <div class="icon-wrap">
+              <svgicon
+                class="item-menu__icon"
+                name="arrow-header"
+                v-if="item.icon"
+              />
+              <div class="submenu-wrapper" v-if="item.submenu">
+                <HeaderSubmenu :submenu="item.submenu" />
+              </div>
             </div>
           </li>
         </ul>
@@ -60,6 +62,33 @@ export default {
         width: 100%;
         transition: 0.3s ease-out;
       }
+      .icon-wrap {
+        width: 40px;
+        height: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        &:hover {
+          transition: 0.3s ease-out;
+          .item-menu__icon {
+            path {
+              fill: $primary !important;
+              transition: 0.3s ease-out;
+            }
+          }
+          .item-menu__link {
+            color: $primary;
+            transition: 0.3s ease-out;
+          }
+          .submenu {
+            height: auto;
+            opacity: 1;
+            visibility: visible;
+            transition: 0.3s ease-out;
+          }
+        }
+      }
       &__icon {
         display: block;
         width: 5px;
@@ -78,12 +107,12 @@ export default {
             }
           }
         }
-        .submenu {
-          height: auto;
-          opacity: 1;
-          visibility: visible;
-          transition: 0.3s ease-out;
-        }
+        // .submenu {
+        //   height: auto;
+        //   opacity: 1;
+        //   visibility: visible;
+        //   transition: 0.3s ease-out;
+        // }
       }
     }
   }

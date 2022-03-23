@@ -15,7 +15,7 @@
     </full-page>
   </client-only>
   <div v-else class="partners">
-    <Banner />
+    <Banner :width="width" />
     <Advantages :width="width" :items="partners" />
     <Footer />
   </div>

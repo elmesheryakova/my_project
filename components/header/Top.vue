@@ -22,6 +22,14 @@
     <ModalHeader />
   </div>
 </template>
+<script>
+export default {
+  methods: {},
+  mounted() {
+    // console.log(this.$refs.body);
+  },
+};
+</script>
 <style lang="scss">
 .header-top {
   display: flex;

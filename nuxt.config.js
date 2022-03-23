@@ -33,6 +33,7 @@ export default {
     { src: "~/plugins/dev-device.js", mode: "client" },
     { src: "~/plugins/smooth-scroll.js", mode: "client" },
     { src: "~/plugins/vue-fullpage.js", mode: "client" },
+    { src: '~/plugins/ymapPlugin.js', mode: 'client' }
 
   ],
 

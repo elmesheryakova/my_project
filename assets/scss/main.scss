@@ -21,6 +21,11 @@ body {
   cursor: default;
   min-width: 320px;
   height: 100%;
+
+  // &.widthScroll {
+  //   overflow-y: scroll !important;
+  //   padding-right: 0 !important;
+  // }
 }
 
 #__nuxt,

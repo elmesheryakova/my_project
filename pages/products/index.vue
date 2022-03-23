@@ -100,9 +100,8 @@ export default {
         }
         @media (max-width: 510px) {
           font-size: 14px;
-        }
-        @media (max-width: 470px) {
-          padding-top: 0px;
+          line-height: 16px;
+          padding-top: 10px;
         }
       }
       &:hover {
@@ -118,8 +117,9 @@ export default {
       gap: 10px;
     }
     @media (max-width: 490px) {
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 150px 150px 150px 150px;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 186px 186px 186px 186px;
+      gap: 2px;
     }
   }
   img {
@@ -155,19 +155,19 @@ export default {
   @media (max-width: 490px) {
     .img-1 {
       grid-row: 1/2;
-      grid-column: 1/3;
+      grid-column: 1/4;
     }
     .img-2 {
       grid-row: 2/3;
-      grid-column: 1/2;
+      grid-column: 1/3;
     }
     .img-3 {
       grid-row: 2/3;
-      grid-column: 2/3;
+      grid-column: 3/3;
     }
     .img-4 {
       grid-row: 3/4;
-      grid-column: 1/3;
+      grid-column: 1/4;
     }
     .img-5 {
       grid-row: 4/5;
@@ -175,7 +175,7 @@ export default {
     }
     .img-6 {
       grid-row: 4/5;
-      grid-column: 2/3;
+      grid-column: 2/4;
     }
   }
 }

@@ -14,7 +14,10 @@
       </div>
       <h1 class="fullscreen-banner__title">Готовые решения</h1>
     </div>
-    <div class="fullscreen-banner" v-if="$route.name === 'partners'">
+    <div
+      class="fullscreen-banner fullscreen-banner--partners"
+      v-if="$route.name === 'partners'"
+    >
       <div>
         <picture class="fullscreen-banner__img">
           <source
@@ -27,7 +30,10 @@
       </div>
       <h1 class="fullscreen-banner__title">Партнерам</h1>
     </div>
-    <div class="fullscreen-banner" v-if="$route.name === 'concept'">
+    <div
+      class="fullscreen-banner fullscreen-banner--partners"
+      v-if="$route.name === 'concept'"
+    >
       <div>
         <picture class="fullscreen-banner__img">
           <source
@@ -48,7 +54,11 @@
 </template>
 <script>
 export default {
-  props: {},
+  props: {
+    width: {
+      type: Number,
+    },
+  },
   data() {
     return {};
   },
@@ -69,6 +79,17 @@ export default {
   position: relative;
   z-index: -1;
   height: 100vh;
+  &--partners {
+    @media (max-width: 860px) {
+      min-height: 300px;
+      & > div {
+        display: none;
+      }
+    }
+    @media (max-width: 550px) {
+      min-height: 250px;
+    }
+  }
   &__img {
     display: flex;
     flex: 0 0 50%;

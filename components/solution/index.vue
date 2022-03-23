@@ -56,13 +56,28 @@
             @click="onThumbClick(index)"
             :style="
               activeSlideInd == index
-                ? `background: #1B2AC9 url('${require(`../../assets/svg/${item.svgHover}.svg`)}') 60px no-repeat`
-                : `background:  url('${require(`../../assets/svg/${item.svg}.svg`)}') 60px no-repeat`
+                ? 'background: #1B2AC9'
+                : 'background: #fff'
             "
           >
-            <p class="gallery-trumbs__text">
-              {{ item.title }}
-            </p>
+            <div class="thumb-inner">
+              <img
+                :src="require(`@/assets/svg/${item.svg}.svg`)"
+                alt="img"
+                v-if="activeSlideInd == index"
+                class="img"
+              />
+              <img
+                :src="require(`@/assets/svg/${item.svgHover}.svg`)"
+                alt="img"
+                v-else
+                class="img"
+              />
+
+              <p class="gallery-trumbs__text">
+                {{ item.title }}
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -320,16 +335,6 @@ export default {
     }
     &:hover {
       border: 2px solid $primary;
-      background-position: 58px !important;
-      .gallery-trumbs__text {
-        margin-right: 98px;
-      }
-      @media (max-width: 1320px) {
-        background-position: 30px !important;
-      }
-      @media (max-width: 1010px) {
-        background-position: 10px !important;
-      }
     }
     @media (max-width: 1500px) {
       font-size: 20px;
@@ -349,17 +354,12 @@ export default {
     }
   }
 
-  .gallery-trumbs__text {
-    margin-left: auto;
-    margin-right: 100px;
-    @media (max-width: 1900px) {
-      margin-right: 50px;
-    }
-    @media (max-width: 1524px) {
-      margin-right: 30px;
-    }
-    @media (max-width: 910px) {
-      margin-right: 20px;
+  .thumb-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .img {
+      margin-right: 37px;
     }
   }
 }

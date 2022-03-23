@@ -1,12 +1,19 @@
 <template>
-  <div>
-    <b-modal id="modal-header" centered>
-      <ModalFeedback />
-    </b-modal>
-  </div>
+  <b-modal id="modal-header" centered ref="modal">
+    <ModalFeedback />
+  </b-modal>
 </template>
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      isOpen: false,
+    };
+  },
+  computed: {},
+  methods: {},
+  mounted() {},
+};
 </script>
 <style lang="scss">
 </style>

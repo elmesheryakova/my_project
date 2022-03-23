@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="contacts">
+    <!-- <div class="contacts">
       <div class="container">
         <div class="contacts-inner">
           <div class="contacts__info">
@@ -62,7 +62,8 @@
         </div>
       </div>
     </div>
-    <Feedback />
+
+    <Feedback /> -->
   </div>
 </template>
 <script>
