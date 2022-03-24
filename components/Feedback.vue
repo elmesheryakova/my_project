@@ -2,13 +2,17 @@
   <div
     class="footer-feedback"
     :class="{
-      'footer-feedback--products':
+      'footer-feedback--white':
         $route.name === 'products-slug-id' ||
         $route.name === 'accessories' ||
         $route.name === 'contacts',
     }"
   >
-    <div :class="{ 'wave-wrap1': $route.name === 'solutions-id' }">
+    <div
+      :class="{
+        'wave-wrap1': $route.name === 'solutions-id',
+      }"
+    >
       <img :src="require(`@/assets/img/top.png`)" alt="img" class="wave" />
     </div>
 
@@ -49,7 +53,7 @@ export default {
   background-color: #f2f3f6;
   // transition: 0.8s ease-in-out;
   position: relative;
-  &--products {
+  &--white {
     .footer-feedback__wrap {
       background-color: #fff;
     }
