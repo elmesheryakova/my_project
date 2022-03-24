@@ -11,3 +11,12 @@ $lightGrey: #f4f6f6;
 $white: #ffffff;
 
 $transition: 0.3s ease;
+
+$grid-breakpoints: (
+  xss: 0,
+  xs: 360px,
+  sm: 476px,
+  md: 768px,
+  lg: 992px,
+  xl: 1560px
+) !default;

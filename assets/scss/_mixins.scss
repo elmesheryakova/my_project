@@ -10,6 +10,12 @@
   }
 }
 
+@mixin down($breakpoint) {
+  @media screen and (max-width: map-get($grid-breakpoints, $breakpoint)) {
+    @content
+  }
+}
+
 @function max($numbers...) {
   @return m#{a}x(#{$numbers});
 }
