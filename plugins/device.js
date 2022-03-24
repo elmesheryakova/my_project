@@ -3,18 +3,18 @@ export default function (ctx, inject) {
     ? ctx.req.headers["user-agent"]
     : navigator.userAgent;
   const customIsTabet =
-    ctx.isTablet || (userAgent && userAgent.includes("iPad"));
+    ctx.$device.isTablet || (userAgent && userAgent.includes("iPad"));
 
   inject("device", {
-    env: ctx.isDev,
+    env: ctx.$device.isDev,
     isTablet: customIsTabet,
-    isMobile: ctx.isMobile,
-    isMobileOrTablet: ctx.isMobileOrTablet,
-    isDesktop: !ctx.isMobileOrTablet,
-    isIos: ctx.isIos,
-    isWindows: ctx.isWindows,
-    isMacOS: ctx.isMacOS,
-    isDesktopOrTablet: !ctx.isMobile,
-    isAndroid: ctx.isMobileOrTablet && !ctx.isIos
+    isMobile: ctx.$device.isMobile,
+    isMobileOrTablet: ctx.$device.isMobileOrTablet,
+    isDesktop: !ctx.$device.isMobileOrTablet,
+    isIos: ctx.$device.isIos,
+    isWindows: ctx.$device.isWindows,
+    isMacOS: ctx.$device.isMacOS,
+    isDesktopOrTablet: !ctx.$device.isMobile,
+    isAndroid: ctx.$device.isMobileOrTablet && !ctx.$device.isIos
   });
 }
