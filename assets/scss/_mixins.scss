@@ -16,6 +16,11 @@
   }
 }
 
+@mixin tr($props: all, $duration: 0.4s) {
+  transition-property: $props;
+  transition-duration: $duration;
+}
+
 @function max($numbers...) {
   @return m#{a}x(#{$numbers});
 }

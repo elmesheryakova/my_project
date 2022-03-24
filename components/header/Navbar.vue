@@ -185,7 +185,7 @@ export default {
       }
     }
 
-    @media (max-width: 790px) {
+    @media (max-width: map-get($grid-breakpoints, 'md')) {
       margin-left: 0;
     }
   }

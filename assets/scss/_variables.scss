@@ -7,6 +7,7 @@ $black-dark: #000000;
 
 $grey: #bdbbbb;
 $lightGrey: #f4f6f6;
+$grayPet: #d0d0d0;
 
 $white: #ffffff;
 
@@ -20,3 +21,7 @@ $grid-breakpoints: (
   lg: 992px,
   xl: 1560px
 ) !default;
+
+:root {
+  --header-height: 138px;
+}
