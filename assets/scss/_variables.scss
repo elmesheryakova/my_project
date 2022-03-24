@@ -1,6 +1,9 @@
 @import "mixins";
 
 $primary: #1b2ac9;
+$blue-2: #0073F0;
+
+$linear-gradient-primary: linear-gradient(271.8deg, $primary -0.56%, $blue-2 100.44%);
 
 $black: #151414;
 $black-dark: #000000;

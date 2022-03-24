@@ -1,33 +1,1121 @@
 <template>
-  <div id="fullpage-promo">
-    <Promo>
-      <template v-slot:main>
-        <PromoVideo />
-      </template>
-      <template v-slot:bottom>
-        <ChooseItem @click="onChooseItemClick"/>
-      </template>
-    </Promo>
+  <div>
+    <Header/>
+    <div id="fullpage-promo" ref="fullpagePromoElem">
+      <Promo>
+        <template v-slot:main>
+          <PromoVideo/>
+        </template>
+        <template v-slot:bottom>
+          <ChooseItem @click="onChooseItemClick"/>
+        </template>
+      </Promo>
+
+      <!-- START promo-slides -->
+      <div v-if="activeBottleType == 'beer'" v-for="(item, index) in beerSlides" :key="index"
+           class="js-section js-section-beer fp-auto-height">
+        <div
+          :class="['promo-slide promo-slide--beer', {'promo-slide-first js-promo-slide-first': index === 0}, `promo-slide--beer-${index+1}`]">
+          <div class="promo-slide__content" :class="{left: item.position === 'left'}">
+            <div class="anim-bottle" id="anim-beer-container" v-if="item.hasBg">
+              <div class="anim-bottle__inner" id="anim-beer-inner-container">
+                <canvas id="anim-beer" class="anim-bottle-canvas" width="1600" height="900"></canvas>
+              </div>
+            </div>
+            <div class="promo-slide__mobile-img"><img :src="item.mobileImgSrc" alt="ПЭТ"></div>
+            <div class="promo-slide__content-inner" v-bind:data-num="contentDigit(index)">
+              <div class="promo-slide__title"
+                   :class="{big: item.titleBig, 'promo-slide__title--small': item.titleSmall}">{{ item.title }}
+              </div>
+              <div class="promo-slide__desc">{{ item.desc }}</div>
+              <div class="promo-slide__items" v-if="item.list">
+                <ul>
+                  <li v-for="(i, index) in item.list" :key="index">{{ i }}</li>
+                </ul>
+              </div>
+              <a v-if="item.buttonTitle" :href="item.buttonHref" class="promo-slide__button"><span
+                class="promo-slide__button-text">Консультация специалиста</span></a>
+              <button class="promo-slide__go-down" v-if="index === 0" @click.prevent="activeSectionIndex++">
+                <svg width="15" height="18" viewBox="0 0 15 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M.4 11.8A.5.5 0 0 1 1 11l6.7 5.2a.5.5 0 1 1-.6.8L.4 11.8Z" fill="#1B2AC9"/>
+                  <path d="M14.1 10.9a.5.5 0 1 1 .6.8L8 16.9a.5.5 0 0 1-.6-.7l6.7-5.3Z" fill="#1B2AC9"/>
+                  <path d="M7 .5a.5.5 0 0 1 1 0v16a.5.5 0 0 1-1 0V.5Z" fill="#1B2AC9"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <button class="promo-slide-trigger js-promo-slideshow-change-trigger" id="promo-trigger-beer"
+                  data-bottle-type="water" v-if="index === 0">
+            <img src="~/assets/img/water-i.svg" alt="icon">
+            <span>Решение для воды</span>
+          </button>
+          <img v-if="index === 0" src="~/assets/img/big_bg.png" alt="bg" class="promo-slide__bg" aria-hidden="true">
+        </div>
+      </div>
+
+      <!-- START water-slides -->
+      <div class="js-section-water hidden fp-auto-height">
+        <div class="promo-slide promo-slide-first js-promo-slide-first promo-slide--water promo-slide--water-1">
+
+
+          <div class="promo-slide__content">
+
+            <div class="anim-bottle" id="anim-water-container">
+              <div class="anim-bottle__inner" id="anim-water-inner-container">
+                <canvas id="anim-water" class="anim-bottle-canvas" width="1600" height="900"></canvas>
+              </div>
+            </div>
+            <div class="promo-slide__content-inner">
+              <div class="promo-slide__title big">Вода</div>
+              <div class="promo-slide__desc">Замена металлических кег на ПЭТ</div>
+              <button class="promo-slide__go-down">
+                <svg width="15" height="18" viewBox="0 0 15 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M.4 11.8A.5.5 0 0 1 1 11l6.7 5.2a.5.5 0 1 1-.6.8L.4 11.8Z" fill="#1B2AC9"/>
+                  <path d="M14.1 10.9a.5.5 0 1 1 .6.8L8 16.9a.5.5 0 0 1-.6-.7l6.7-5.3Z" fill="#1B2AC9"/>
+                  <path d="M7 .5a.5.5 0 0 1 1 0v16a.5.5 0 0 1-1 0V.5Z" fill="#1B2AC9"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+
+          <button class="promo-slide-trigger js-promo-slideshow-change-trigger" id="promo-trigger-water"
+                  data-bottle-type="beer">
+            <svg width="69" height="144" viewBox="0 0 69 144" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M34.8 2c3.5 0 8.5.7 8.7 1.7.2.9-.7 1.3-1 2.2-.4 1.4.2 2.3-.3 3.7-.3.8-1.1 1.1-1.2 2 0 .9 0 1.5.8 2 .7.6 13.2 4.8 18.4 11.4a25 25 0 0 1 6.5 16v74.7c0 3.4-1.2 6.2-4.8 10.5-3.5 4.4-5 4-6.5 6.2-1.5 2-5.1 8.5-8.3 8.7-3.2.2-8.9-4-11.5-3.6-2.6.4-5.8 4.8-10 4.5-4-.4-6.3-5.4-6.3-5.4s-3.8.1-5.5-1.2c-1.7-1.3-1.7-3.5-3.5-4.8-1.7-1.3-8.3-8-8.3-15V41.2c0-5.9 3-13.7 10-19 7-5.2 14.4-8 15.9-8.4 1.5-.4 1.1-1.2 1.1-2 0-1-.8-1.3-1.1-2.1-.6-1.6-.8-4.3-.8-4.3s0-1-.7-1.6c-.8-.6 5-1.7 8.4-1.7Z"
+                stroke="url(#a2)" stroke-width="4" stroke-linejoin="round"/>
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M33.4 61v1c.2.9.3 1.9.2 2.6v.2H33c-1.5.2-2.9.5-4 1-.9.5-1.4.8-2.1 1.5-.7.6-1 1-1.4 1.6a11 11 0 0 0-1.8 4.7v.2h.3a17.2 17.2 0 0 0 6.1-1.3l.2.2a9.1 9.1 0 0 0 3.6 3l.3.2.2-.1 1.7-1a11 11 0 0 0 2.1-2.3l.4.2c1 .4 1.7.6 3 .8.8.2 1.8.3 2.5.3h.6v-.2a10.7 10.7 0 0 0-2.3-5.4c-.4-.5-1.5-1.4-2-1.8a10.5 10.5 0 0 0-4.9-1.5v-.3c0-1.2 0-2.3-.4-3.3-.2-.4-.4-.6-.8-.7-.4 0-.8.2-1 .5ZM25 76a5.6 5.6 0 0 0 .2 5.4l.3.3h.2a6 6 0 0 0 5-3.2l.6-1.7.1-.4-.2-.2-1-.8-.7-.7-.5.1a20.6 20.6 0 0 1-3.9.8l-.2.4Zm7.9 1.8a8.9 8.9 0 0 1-1.7 3v.6c.3 1.2 1 2.3 2 3l1 .7 1-.7c1-.7 1.7-1.7 2-3v-.5l-.3-.5a8.6 8.6 0 0 1-1.5-3 23.5 23.5 0 0 0-1.2.4l-.6-.2-.6-.2-.1.4Zm-6 6a5.7 5.7 0 0 0 2 4.5h.4A6.9 6.9 0 0 0 32 86l.2-.2-.7-.7-1-1a7.1 7.1 0 0 1-1-2l-.3.1a8.2 8.2 0 0 1-2.4 1v.4Zm10.2-7 .6 1.6c.4.7.6 1 1.3 1.7l1 .8c.7.4 1.3.6 2 .7h1l.3-.4c1-1.6 1-3.4.1-5.3l-.1-.3-.7-.1c-1-.1-2.6-.4-3.4-.7l-.3-.1-.7.7-1 .8-.2.2.1.4ZM33.5 87c-.3.5-.8 1-1.4 1.5l-.6.5.1.4c.5 1 1.4 2 2.4 2.5h.4c1-.5 1.9-1.5 2.4-2.5.1-.3.1-.4 0-.4l-.5-.5c-.7-.5-1-1-1.6-1.8H34c-.2 0-.2 0-.5.3Zm5.1-4.5c-.1.5-.4 1-.7 1.5l-1 1-.7.8.1.2a6.9 6.9 0 0 0 2.8 2c.2.2.3.2.4 0 .4-.2 1-.9 1.3-1.5a7 7 0 0 0 .7-2 5 5 0 0 0 0-1.3l-.3-.2a8.4 8.4 0 0 1-2.4-1s0 .3-.2.5Z"
+                    fill="url(#b2)"/>
+              <defs>
+                <linearGradient id="a2" x1="67.7" y1="99.6" x2=".3" y2="98.6" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#1B2AC9" offset="0"/>
+                  <stop offset="1" stop-color="#0073F0"/>
+                </linearGradient>
+                <linearGradient id="b2" x1="45.9" y1="86.2" x2="21.1" y2="66" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#1B2AC9" offset="0"/>
+                  <stop offset="1" stop-color="#0073F0"/>
+                </linearGradient>
+              </defs>
+            </svg>
+            <span>Решение для пива</span>
+          </button>
+          <img src="~/assets/img/big_bg.png" alt="bg" class="promo-slide__bg" aria-hidden="true">
+        </div>
+      </div>
+
+      <div class="js-section-water hidden fp-auto-height">
+        <div class="promo-slide promo-slide--water promo-slide--water-2">
+          <div class="promo-slide__content">
+            <div class="promo-slide__content-inner" data-num="1">
+              <div class="promo-slide__title">Эстетика упаковки</div>
+              <div class="promo-slide__items">
+                <ul>
+                  <li>Низкая теплопроводность</li>
+                  <li>Гарантия герметичности фитинга</li>
+                  <li>Стерильная среда внутри кега</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="js-section-water hidden fp-auto-height">
+        <div class="promo-slide promo-slide--water promo-slide--water-3">
+          <div class="promo-slide__content left">
+            <div class="promo-slide__content-inner" data-num="2">
+              <div class="promo-slide__title">Выгодная логистика</div>
+              <div class="promo-slide__items">
+                <ul>
+                  <li>Отсутствует необходимость возврата тары</li>
+                  <li>ПЭТ-КЕГ в 16 раз легче металлической</li>
+                  <li>Фура вмещает на 25% больше</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="js-section-water hidden fp-auto-height">
+        <div class="promo-slide promo-slide--water promo-slide--water-4">
+          <div class="promo-slide__content">
+            <div class="promo-slide__content-inner" data-num="3">
+              <div class="promo-slide__title">Сокращение издержек производства</div>
+              <div class="promo-slide__items">
+                <ul>
+                  <li>Разморозка денежных средств заложеных в тару</li>
+                  <li>Сокращение площади хранения КЕГ</li>
+                  <li>Отсутствие технического обслуживания и мойки</li>
+                  <li>Сокращение фонда оплаты труда</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="js-section-water hidden fp-auto-height">
+        <div class="promo-slide promo-slide--water promo-slide--water-3 js-promo-slide-last">
+          <div class="promo-slide__content left">
+            <div class="promo-slide__content-inner">
+              <div class="promo-slide__title promo-slide__title--small">Оптимизируйте бизнес и расширьте географию
+                сбыта!
+              </div>
+              <a href="#" class="promo-slide__button"><span
+                class="promo-slide__button-text">Консультация специалиста</span></a>
+            </div>
+          </div>
+          <img src="~/assets/img/big_bg.png" alt="bg" class="promo-slide__bg" aria-hidden="true">
+        </div>
+      </div>
+      <!-- END water-slides -->
+
+      <!-- END promo-slides -->
+
+
+      <div class="js-normal-scroll-section">
+        <Footer/>
+      </div>
+    </div>
   </div>
 </template>
 <script>
 import Promo from "~/components/promo/Promo";
 import PromoVideo from "~/components/promo/PromoVideo";
 import ChooseItem from "~/components/promo/ChooseItem";
+
 export default {
   components: {ChooseItem, PromoVideo, Promo},
+  layout: 'fullscreen',
   data() {
-    return {};
+    return {
+      activeBottleType: 'beer',
+      activeSectionIndex: 0,
+      beerSlides: [{
+        hasCanvas: true,
+        title: 'Пиво',
+        titleBig: true,
+        desc: 'Замена металлических кег на ПЭТ',
+        position: 'right',
+        hasBg: true,
+        mobileImgSrc: require('~/assets/img/promo-mobile-first.jpg'),
+      },
+        {
+          hasCanvas: false,
+          title: 'Эстетика упаковки',
+          titleBig: false,
+          position: 'right',
+          hasBg: false,
+          list: ['Низкая теплопроводность', 'Гарантия герметичности фитинга', 'Стерильная среда внутри кега'],
+          mobileImgSrc: require('~/assets/img/promo-mobile-first.jpg'),
+        },
+        {
+          hasCanvas: false,
+          title: 'Выгодная логистика',
+          titleBig: false,
+          position: 'left',
+          hasBg: false,
+          mobileImgSrc: require('~/assets/img/promo-mobile1.jpg'),
+          list: ['Отсутствует необходимость возврата тары', 'ПЭТ-КЕГ в 16 раз легче металлической', 'Фура вмещает на 25% больше']
+        },
+        {
+          hasCanvas: true,
+          title: 'Сокращение издержек производства',
+          titleBig: false,
+          position: 'right',
+          hasBg: false,
+          mobileImgSrc: require('~/assets/img/promo-mobile2.jpg'),
+          list: ['Разморозка денежных средств заложеных в тару', 'Сокращение площади хранения КЕГ', 'Отсутствие технического обслуживания и мойки', 'Сокращение фонда оплаты труда']
+        },
+        {
+          hasCanvas: true,
+          title: 'Оптимизируйте бизнес и расширьте географию сбыта!',
+          titleBig: false,
+          titleSmall: true,
+          position: 'left',
+          mobileImgSrc: require('~/assets/img/promo-mobile3.jpg'),
+          hasBg: true,
+          buttonTitle: 'Консультация специалиста',
+          buttonHref: '#hello',
+        },
+      ]
+    };
   },
   methods: {
     onChooseItemClick(clickedBottleType) {
       console.log(clickedBottleType);
+    },
+    contentDigit(index) {
+      var slidesLength = this.activeBottleType === 'beer' ? this.beerSlides.length - 1 : [];
+      if (index === 0 || index === this.beerSlides.length - 1) {
+        return false;
+      }
+      return index + 1;
     }
-  }
+  },
+
+  mounted() {
+    var fp = this.$fullpage;
+    var gsap = this.$gsap;
+    var fpPromo;
+    var fpPromoElem = document.getElementById('fullpage-promo');
+    var bottleTimeline;
+    var triggerTl;
+    var activeNormalSection = document.querySelector('.js-section-normal-scroll');
+    var SCREEN_UP_LG = '(min-width: 992px)';
+    var SCREEN_DOWN_LG = '(max-width: 992px)';
+    var SCREEN_UP_MD = '(min-width: 768px)';
+    var SCREEN_DOWN_MD = '(max-width: 768px)';
+    var isDesktop = this.$mq === 'lg' || this.$mq === 'xl' || this.$mq === 'xl2';
+    // @TODO make this through mq
+    var isTablet = window.matchMedia(SCREEN_DOWN_LG).matches && window.matchMedia(SCREEN_UP_MD).matches;
+    var isMobile = window.matchMedia(SCREEN_DOWN_MD).matches;
+    var beerSections = document.querySelectorAll('.js-section-beer');
+    var waterSections = document.querySelectorAll('.js-section-water');
+    var promoConceptsSections = document.querySelectorAll('.promo-concepts-section');
+    var promoSlideshowTriggerLocked = false;
+    var scrollLocked = false;
+    var scrollEventRegistered = false;
+
+    if (isDesktop) {
+      if (fpPromo) {
+        destroyFullpagePromo();
+      }
+      initSlideShow('beer');
+    }
+
+    function rebuildSlideShowSections() {
+      beerSections.forEach(function (item) {
+        item.classList.toggle('js-section');
+        item.classList.toggle('hidden');
+      });
+
+      waterSections.forEach(function (item) {
+        item.classList.toggle('js-section');
+        item.classList.toggle('hidden');
+      });
+    }
+
+    /*
+      Инициализируем нужные промо секции с бутылкой на главной странице.
+     */
+    function initSlideShow(bottleType) {
+      var canvas = document.getElementById("anim-" + bottleType);
+      var canvasContainer = document.getElementById("anim-" + bottleType + "-inner-container");
+      var context = canvas.getContext("2d");
+      var endTriggerElem = bottleType === 'beer' ? beerSections[beerSections.length - 1] : waterSections[waterSections.length - 1];
+
+      var img = {
+        width: 1600,
+        height: 900,
+      }
+
+      var wrh = img.width / img.height;
+      var newWidth = canvas.width;
+      var newHeight = newWidth / wrh;
+      if (newHeight > canvas.height) {
+        newHeight = canvas.height;
+        newWidth = newHeight * wrh;
+      }
+
+      var frameCount = bottleType === 'beer' ? 73 : 72;
+
+      var images = [];
+      var bottle = {
+        frame: 0
+      };
+
+      if (fpPromo) {
+        destroyFullpagePromo();
+        initFullpagePromo();
+      } else {
+        initFullpagePromo();
+      }
+
+      if (bottleTimeline) {
+        bottleTimeline.scrollTrigger.kill();
+        bottleTimeline.kill();
+      }
+
+      bottleTimeline = gsap.timeline(
+        {
+          ease: "none",
+          scrollTrigger: {
+            pin: true,
+            trigger: '#anim-' + bottleType + "-container",
+            spacer: false,
+            pinSpacing: false,
+            pinType: "fixed",
+            pinnedContainer: null,
+            start: 'top',
+            endTrigger: endTriggerElem,
+            end: 'bottom bottom',
+            scrub: 0,
+            ease: "none",
+          },
+        });
+
+      bottleTimeline.to(bottle, {
+        frame: frameCount - 1,
+        ease: "none",
+        snap: "frame",
+        duration: 1,
+        onUpdate: renderBottleSprite // use animation onUpdate instead of scrollTrigger's onUpdate
+      });
+
+      bottleTimeline.to(canvasContainer, {
+        x: '100%',
+        duration: '0.2',
+        ease: "ease-in-out",
+      }, '0.320');
+
+      if (bottleType === 'water') {
+        bottleTimeline.to(canvasContainer, {
+          x: '-40%',
+          duration: '0.2',
+          ease: "ease-in-out",
+        }, '0.100');
+      }
+
+      bottleTimeline.to(canvasContainer, {
+        x: '-20%',
+        duration: '0.20',
+        ease: "ease-in-out",
+      }, '0.534');
+
+      bottleTimeline.to(canvasContainer, {
+        x: '80%',
+        duration: '0.20',
+        ease: "ease-in-out",
+      }, '0.838');
+
+      if (triggerTl) {
+        triggerTl.scrollTrigger.kill();
+        triggerTl.kill();
+      }
+
+      var promoSections = document.querySelectorAll('.promo-slide--' + bottleType);
+      var promoSectionHeight = promoSections[0].clientHeight;
+      var triggerHeight = document.getElementById("promo-trigger-" + bottleType).clientHeight;
+
+      triggerTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: '#anim-' + bottleType + "-container",
+          spacer: true,
+          pinSpacing: true,
+          pin: "#promo-trigger-" + bottleType,
+          start: 'top',
+          endTrigger: endTriggerElem,
+          end: '+=' + (promoSectionHeight * (promoSections.length - 2) + triggerHeight) + 'px',
+          scrub: 0,
+          ease: "none",
+        },
+      });
+
+      for (var i = 0; i < frameCount; i++) {
+        var img = new Image();
+        img.src = renderBottleFrame(i, bottleType);
+        images.push(img);
+      }
+
+      images[0].onload = renderBottleSprite;
+
+      function renderBottleFrame(index, bottleType) {
+        var src = require(`@/assets/img/${bottleType}/${(index + 1)}.png`);
+        return src;
+      }
+
+      function renderBottleSprite() {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        if (bottleType == 'beer') {
+          context.drawImage(images[bottle.frame], 0, 0, newWidth, newHeight);
+        } else {
+          if (images[bottle.frame]) {
+            context.drawImage(images[bottle.frame], 0, 0, newWidth, newHeight);
+          }
+        }
+      }
+    }
+
+    function initFullpagePromo() {
+      fpPromo = new fp('#fullpage-promo', {
+        //options here
+        sectionSelector: '.js-section',
+        scrollBar: true,
+        fitToSection: false,
+        verticalCentered: false,
+
+        onLeave: function (section, next, direction) {
+          // @TODO: optimize animations
+          var targets = next.item.querySelectorAll('.promo-slide__title, .promo-slide__desc, .promo-slide__items li');
+          var button = next.item.querySelector('.promo-slide__button');
+          var goDownButton = next.item.querySelector('.promo-slide__go-down');
+          // if (section.index === 1 && direction === 'up') {
+          //   gsap.timeline()
+          //     .set('.header', {display: 'block'})
+          //     .to('.header', {alpha: 1});
+          // }
+
+          // Появление первого слайда
+
+          var tl = gsap.timeline();
+
+          if (section.isFirst && direction === 'down') {
+            gsap.timeline()
+              .to('.header', {alpha: 0})
+              .set('.header', {display: 'none'});
+
+            tl.fromTo(next.item.querySelector('.anim-bottle-canvas'), {
+              alpha: 0,
+              x: 30,
+            }, {alpha: 1, x: 0, delay: 0.5, stagger: 0.1});
+
+            tl.fromTo(next.item.querySelector('.promo-slide-trigger'), {
+              alpha: 0,
+            }, {alpha: 1, delay: 0.2});
+          }
+
+          if (targets && targets.length > 0) {
+            tl.fromTo(targets, {
+              alpha: 0,
+              x: 30,
+            }, {alpha: 1, x: 0, delay: 0.5, stagger: 0.1}, '0');
+            if (button) {
+              tl.fromTo(button, {
+                alpha: 0,
+                x: 30,
+              }, {alpha: 1, x: 0}, '0.6');
+            }
+          }
+
+          if (goDownButton) {
+            tl.fromTo(goDownButton, {
+              alpha: 0,
+            }, {alpha: 1}, '1');
+          }
+
+          var doesNotContainNormalClass = !next.item.classList.contains('js-section-normal-scroll')
+
+          if (doesNotContainNormalClass) {
+            fpPromo.setAutoScrolling(true);
+            fpPromo.setKeyboardScrolling(false);
+          }
+
+          var nextSectionIsNormal = section.item.classList.contains('promo-concepts-section') && next.item.classList.contains('js-section-normal-scroll') && direction === 'up';
+
+          if (nextSectionIsNormal) {
+            activeNormalSection = next.item;
+            destroyFullpagePromo();
+            gsap.to(window, {
+              duration: 1,
+              ease: "power2.inOut",
+              scrollTo: {y: activeNormalSection, offsetY: -activeNormalSection.clientHeight + window.innerHeight},
+              onComplete: function () {
+                document.addEventListener('scroll', onNormalSectionScroll);
+              }
+            });
+            return false;
+          }
+
+          return true;
+        },
+        afterLoad: function (anchorLink, section) {
+          if (section.item && section.item.classList.contains('js-section-normal-scroll')) {
+            destroyFullpagePromo();
+            activeNormalSection = section.item;
+            if (!scrollEventRegistered) {
+              document.addEventListener('scroll', onNormalSectionScroll);
+              scrollEventRegistered = true;
+            }
+          } else {
+            document.removeEventListener('scroll', onNormalSectionScroll);
+            scrollEventRegistered = false;
+          }
+        }
+      });
+    }
+
+    function destroyFullpagePromo(fp) {
+      var scrollY = window.scrollY;
+      if (fp) {
+        fpPromo.setAutoScrolling(false);
+        fpPromo.setKeyboardScrolling(false);
+        fpPromo.setFitToSection(false);
+        fpPromo.destroy('all');
+        window.scrollTo(0, scrollY);
+      }
+    }
+
+    function onNormalSectionScroll(e) {
+      if (activeNormalSection) {
+        var offsetTop = activeNormalSection.offsetTop;
+
+        if (offsetTop > window.scrollY) {
+
+          document.removeEventListener('scroll', onNormalSectionScroll);
+          var prevSection = activeNormalSection.previousElementSibling;
+
+          gsap.to(window, {
+            duration: 0.7, ease: "power2.inOut", scrollTo: prevSection, onComplete: function () {
+              prevSection.classList.add('active');
+              activeNormalSection.classList.remove('active');
+              initFullpagePromo();
+            }
+          });
+        }
+
+        if (offsetTop + activeNormalSection.clientHeight < (window.scrollY + window.innerHeight)) {
+          e.preventDefault();
+          var promoConceptsSection = document.querySelector('.promo-concepts-section');
+
+          gsap.to(window, {
+            duration: 1, ease: 'power2.inOut', scrollTo: promoConceptsSection, onComplete: function () {
+              document.removeEventListener('scroll', onNormalSectionScroll);
+
+              activeNormalSection.classList.remove('active');
+              promoConceptsSection.classList.add('active');
+              initFullpagePromo();
+            }
+          });
+
+          document.removeEventListener('scroll', onNormalSectionScroll);
+          var scrollLocked = true;
+        }
+      }
+    }
+  },
 };
 </script>
 <style lang="scss">
 #fullpage-promo {
   overflow-x: hidden;
 }
+
+/* start promo-slides */
+#fullpage-promo {
+  height: auto !important;
+  overflow: hidden;
+  transition: opacity 0.3s !important;
+  opacity: 1;
+
+  &.inactive {
+    opacity: 0;
+  }
+}
+
+.promo-slides-container {
+  overflow: hidden;
+}
+
+.promo-slide .container {
+  height: 100vh;
+  display: flex;
+}
+
+.promo-slides {
+  display: none;
+
+  &.active {
+    display: block;
+  }
+}
+
+.anim-bottle {
+  position: absolute;
+  left: 0;
+  display: block;
+  height: 100%;
+  top: 0;
+  width: 50%;
+  max-width: 1260px;
+  margin: 0 auto;
+}
+
+.anim-bottle canvas {
+  display: block;
+  width: 150%;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%) !important;
+}
+
+.anim-bottle__inner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.anim-bottle--img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  transition: 0.3s top linear, 1.5s left ease;
+  z-index: 999;
+}
+
+.promo-slide-trigger {
+  position: absolute;
+  right: 0;
+  bottom: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 30px;
+  border: 1px solid #dedee3;
+  background: #fff;
+  z-index: 9999;
+  cursor: pointer;
+  width: 290px;
+  box-sizing: border-box;
+  @include tr((color, border-color));
+
+  svg {
+    width: 40px;
+    height: auto;
+    margin-right: 30px;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    border-color: $primary;
+    color: $primary;
+  }
+}
+
+.promo-slide-trigger img {
+  margin-right: 30px;
+  width: 54px;
+  height: 90px;
+  object-fit: contain;
+  object-position: center;
+}
+
+.promo-slide {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: contain;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.promo-slide__content {
+  margin: 0 auto;
+  height: 100%;
+  width: 100%;
+  max-width: 1260px;
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+.promo-slide__content.left {
+  justify-content: flex-start;
+}
+
+.promo-slide__content-inner {
+  width: 60%;
+  flex-basis: 60%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+
+  &:before {
+    content: attr(data-num);
+    position: absolute;
+    font-size: 1100px;
+    line-height: 0.5;
+    pointer-events: none;
+    font-weight: 800;
+    opacity: 0;
+    transition: opacity 0.7s 0.1s;
+    top: 45%;
+    transform: translateY(-50%);
+    left: 20%;
+    color: #f6f6f6;
+  }
+}
+
+.promo-slide__mobile-img {
+  display: none;
+
+  img {
+    width: 100%;
+  }
+
+  margin-bottom: 70px;
+}
+
+.promo-slide__button {
+  height: 71px;
+  padding-left: 20px;
+  padding-right: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  position: relative;
+  color: white;
+  width: auto;
+  overflow: hidden;
+  background-color: $primary;
+  max-width: 320px;
+  margin-top: 50px;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: $linear-gradient-primary;
+    @include tr((opacity));
+  }
+
+  &-text {
+    position: relative;
+    z-index: 1;
+  }
+
+  &:hover {
+    text-decoration: none;
+    color: white;
+
+    &::before {
+      opacity: 0;
+    }
+  }
+}
+
+.js-section.active .promo-slide__content-inner:before {
+  opacity: 1;
+}
+
+.js-section.active .promo-slide__bg {
+  opacity: 1;
+}
+
+.js-promo-slide-last .promo-slide__bg {
+  transform: translateY(-90%);
+  left: 0;
+}
+
+.promo-slide__title {
+  font-weight: 700;
+  font-size: 56px;
+  line-height: 1.2;
+  color: #1b2ac9;
+
+  &--small {
+    font-size: 48px;
+    max-width: 540px;
+  }
+}
+
+.promo-slide__title.big {
+  font-size: 96px;
+}
+
+.promo-slide__desc {
+  margin-left: 5px;
+  margin-top: 20px;
+  font-size: 30px;
+}
+
+.promo-slide__items {
+  margin-top: 30px;
+}
+
+.promo-slide__items ul {
+  margin: 0;
+  padding: 0;
+  font-size: 24px;
+}
+
+.promo-slide__items ul li {
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 10px;
+  list-style: none;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+.promo-slide__items ul li::before {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  top: calc(50% - 6px);
+  left: 0;
+  background: linear-gradient(271.8deg, #1b2ac9 -0.56%, #0073f0 100.44%);
+}
+
+.promo-slide__bg {
+  position: absolute;
+  left: -200px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: -1;
+  transition: opacity 0.7s 0.3s;
+  max-width: 1811px;
+}
+
+.promo-slide__go-down {
+  background-color: transparent;
+  width: 47px;
+  height: 47px;
+  @include tr((background-color));
+  border-radius: 50%;
+  margin-top: 50px;
+  border: 1px solid $primary;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  svg path {
+    @include tr((fill));
+  }
+
+  &:hover {
+    background-color: $primary;
+
+    svg path {
+      fill: white;
+    }
+  }
+}
+
+.promo-slide--beer-1 {
+  .promo-slide__content-inner {
+    width: 60%;
+    flex-basis: 60%;
+  }
+}
+
+.promo-slide--beer-3 .promo-slide__content-inner:before,
+.promo-slide--beer-4 .promo-slide__content-inner:before {
+  left: -10%;
+}
+
+@include down('xl') {
+  .promo-slide__title.big {
+    font-size: 80px;
+  }
+  .promo-slide__title {
+    font-size: 60px;
+  }
+  .promo-slide__title--small {
+    font-size: 46px;
+  }
+  .promo-slide__content-inner:before {
+    font-size: 600px;
+  }
+  .promo-slide__desc {
+    font-size: 24px;
+  }
+  .promo-slide__items ul li {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .promo-slide__bg {
+    max-width: 1411px;
+    left: 0;
+  }
+}
+
+@include down('lg') {
+  .promo-slide {
+    height: auto;
+    padding-bottom: 130px;
+
+    .container {
+      display: block;
+      height: auto;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .anim-bottle {
+      display: none;
+    }
+  }
+  .promo-slide--beer-1 {
+    padding-bottom: 100px;
+  }
+  .promo-slide {
+    padding-bottom: 150px;
+  }
+  .promo-slide--beer-3 {
+    .promo-slide__content-inner:before {
+      top: 42px;
+    }
+  }
+  .promo-slide-last {
+    padding-bottom: 120px;
+  }
+  .promo-slide__content {
+    padding: 0;
+    margin: 0;
+    height: auto;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .promo-slide__content-inner {
+    width: 100%;
+    flex-basis: 100%;
+    padding-left: 26px;
+    padding-right: 26px;
+
+    &:before {
+      font-size: 400px;
+      opacity: 1;
+      top: 10px;
+      transform: none;
+      left: auto !important;
+      right: 20px;
+    }
+  }
+
+  .promo-slide__title, .promo-slide__desc, .promo-slide__items {
+    max-width: 384px;
+  }
+
+  .promo-slide__items ul li {
+    font-size: 18px;
+
+    &:before {
+      top: 0.4em;
+    }
+  }
+
+  .promo-slide__content-inner:before {
+    top: -10px;
+  }
+
+  .promo-slide-last .promo-slide__title {
+    font-size: 31px;
+  }
+
+  .promo-slide__mobile-img {
+    width: 100%;
+    display: block;
+  }
+
+  .promo-slide__mobile-img img {
+    width: 100%;
+  }
+
+  .promo-slide--beer-1 .promo-slide__content-inner {
+    width: 100%;
+    flex-basis: 100%;
+  }
+
+  .promo-slide--beer-1 .promo-slide__mobile-img {
+    margin-top: 20px;
+    margin-bottom: -140px;
+    margin-right: -40px;
+    text-align: right;
+
+    img {
+      width: auto;
+    }
+  }
+
+  .promo-slide__content-inner:before {
+    z-index: -1;
+  }
+
+  .promo-slide__title {
+    font-size: 32px;
+
+    &--small {
+      max-width: 340px;
+    }
+  }
+  .promo-slide__title.big {
+    font-size: 48px;
+  }
+  .promo-slide__desc {
+    font-size: 18px;
+  }
+  .promo-slide__go-down {
+    display: none;
+  }
+
+  .promo-slide__bg {
+    display: none;
+  }
+  .promo-slide-trigger {
+    display: none;
+  }
+  .promo-slide__button {
+    max-width: 288px;
+    font-size: 18px;
+    height: 51px;
+    padding-bottom: 2px;
+  }
+}
+
+@include down('md') {
+  .promo-slide {
+    padding-bottom: 85px;
+  }
+  .promo-slide--beer-1 {
+    padding-bottom: 60px;
+  }
+
+  .promo-slide--beer-1 .promo-slide__mobile-img {
+    margin-right: -20px;
+    width: 320px;
+    margin-bottom: -100px;
+    top: -26px;
+    margin-top: 0;
+    margin-left: auto;
+  }
+  .promo-slide__content-inner:before {
+    right: 0;
+    left: 0 !important;
+    z-index: -1;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .promo-slide__content-inner {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+/* end promo-slides */
 </style>

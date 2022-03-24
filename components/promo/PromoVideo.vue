@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="isTabletOrDesktop">
-      <video poster="img/banner.jpg"
+      <video :poster="require('~/assets/img/banner.jpg')"
              autoplay="autoplay" :muted="!toggled" loop="loop"
              :controls="toggled"
              @click="toggled ? toggled = false : true"
