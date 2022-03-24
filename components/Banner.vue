@@ -50,6 +50,20 @@
         компании
       </h1>
     </div>
+    <div class="fullscreen-banner" v-if="$route.name === 'company'">
+      <div>
+        <picture class="fullscreen-banner__img">
+          <source
+            :srcset="require('@/assets/img/company640.jpg')"
+            type="image/png"
+            media="(max-width: 640px)"
+          />
+          <img :src="require('@/assets/img/company.jpg')" alt="bg" />
+        </picture>
+      </div>
+
+      <h1 class="fullscreen-banner__title text-center">О компании</h1>
+    </div>
   </div>
 </template>
 <script>

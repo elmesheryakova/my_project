@@ -42,9 +42,9 @@ export default {
   background-color: #fff;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   z-index: 20;
-  transition: 0.8s ease-in-out;
+  transition: transform 0.8s ease-in-out;
 
   @media (max-width: 860px) {
     box-shadow: 0px 1px 6px 0px #00000029;
@@ -54,7 +54,7 @@ export default {
   }
   &--hidden {
     transform: translateY(-300px);
-    transition: 0.8s ease-in-out;
+    transition: transform 0.8s ease-in-out;
   }
 }
 </style>

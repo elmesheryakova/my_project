@@ -13,7 +13,7 @@
 </template>
 <style lang="scss">
 .concept-banner-inner {
-  height: 980px;
+  height: 930px;
   @media (max-width: 1400px) {
     height: 550px;
   }

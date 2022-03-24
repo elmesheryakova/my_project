@@ -58,7 +58,7 @@ export const state = () => ({
     },
     {
       title: "Компания",
-      link: "#",
+      link: { name: "company" },
       icon: true,
     },
     {
