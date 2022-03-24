@@ -40,7 +40,7 @@ export default {
     margin-right: 20px;
     svg {
       height: 33px;
-      @media (max-width: 790px) {
+      @media (max-width: map-get($grid-breakpoints, 'md')) {
         height: 25px;
       }
     }
@@ -85,7 +85,7 @@ export default {
           display: none;
         }
       }
-      @media (max-width: 790px) {
+      @media (max-width: map-get($grid-breakpoints, 'md')) {
         font-size: 14px;
       }
       @media (max-width: 400px) {
@@ -105,7 +105,7 @@ export default {
     padding: 11px 26px 12px;
     white-space: nowrap;
     transition: 0.3 ease-out;
-    @media (max-width: 790px) {
+    @media (max-width: map-get($grid-breakpoints, 'md')) {
       display: none;
     }
     &:hover {
@@ -116,7 +116,7 @@ export default {
   @media (max-width: 991px) {
     margin-bottom: 5px;
   }
-  @media (max-width: 791px) {
+  @media (max-width: map-get($grid-breakpoints, 'md')) {
     margin-bottom: 0px;
   }
 }
