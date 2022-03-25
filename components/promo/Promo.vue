@@ -32,6 +32,7 @@ export default {
   padding-top: var(--header-height);
   display: flex;
   flex-direction: column;
+  z-index: 4;
 }
 
 .promo__main {
@@ -51,7 +52,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  z-index: 1;
+  z-index: 3;
   background-color: #fff;
 
   &:after {

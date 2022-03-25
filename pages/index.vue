@@ -143,19 +143,20 @@
         <img src="~assets/img/wave.svg" alt="wave">
       </div>
       <div class="js-section js-section-normal-scroll after-slides-section">
+        <TeamSlider :pin-section="true" />
         <Footer/>
       </div>
     </div>
-  </div>
   </div>
 </template>
 <script>
 import Promo from "~/components/promo/Promo";
 import PromoVideo from "~/components/promo/PromoVideo";
 import ChooseItem from "~/components/promo/ChooseItem";
+import TeamSlider from "~/components/slider/TeamSlider";
 
 export default {
-  components: {ChooseItem, PromoVideo, Promo},
+  components: {TeamSlider, ChooseItem, PromoVideo, Promo},
   layout: 'fullscreen',
   data() {
     return {
@@ -294,7 +295,13 @@ export default {
       this.fpPromo.moveSectionDown();
     },
     onChooseItemClick(clickedBottleType) {
+      if (this.activeBottleType === clickedBottleType) {
+        this.fpPromo.moveSectionDown();
+        return;
+      }
+
       this.activeBottleType = clickedBottleType;
+
       if (this.isDesktop) {
         this.destroyFullpagePromo();
         var self = this;
@@ -364,6 +371,7 @@ export default {
         scrollBar: true,
         fitToSection: false,
         verticalCentered: false,
+        scrollingSpeed: 1300,
 
         onLeave: function (section, next, direction) {
           console.log(section);
@@ -380,23 +388,23 @@ export default {
             tl.fromTo(next.item.querySelector('.anim-bottle-canvas'), {
               alpha: 0,
               x: 30,
-            }, {alpha: 1, x: 0, delay: 0.5, stagger: 0.1});
+            }, {alpha: 1, x: 0, delay: 0.9, stagger: 0.1});
 
             tl.fromTo(next.item.querySelector('.promo-slide-trigger'), {
               alpha: 0,
-            }, {alpha: 1, delay: 0.2});
+            }, {alpha: 1, delay: 0.6});
           }
 
           if (targets && targets.length > 0) {
             tl.fromTo(targets, {
               alpha: 0,
               x: 30,
-            }, {alpha: 1, x: 0, delay: 0.5, stagger: 0.1}, '0');
+            }, {alpha: 1, x: 0, delay: 0.7, stagger: 0.1}, '0');
             if (button) {
               tl.fromTo(button, {
                 alpha: 0,
                 x: 30,
-              }, {alpha: 1, x: 0}, '0.6');
+              }, {alpha: 1, x: 0}, '0.7');
             }
           }
 
@@ -499,7 +507,7 @@ export default {
             start: 'top',
             endTrigger: endTriggerElem,
             end: 'bottom bottom',
-            scrub: 0.7,
+            scrub: 0,
             ease: "none",
           },
         });
@@ -530,7 +538,7 @@ export default {
         x: '-20%',
         duration: '0.20',
         ease: "ease-in-out",
-      }, '0.534');
+      }, '0.564');
 
       this.bottleTimeline.to(canvasContainer, {
         x: '80%',
@@ -832,6 +840,7 @@ export default {
   width: 50%;
   max-width: 1260px;
   margin: 0 auto;
+  pointer-events: none;
 }
 
 .anim-bottle canvas {
@@ -932,6 +941,11 @@ export default {
   flex-wrap: wrap;
   position: relative;
   z-index: 1;
+}
+
+.promo-slide--beer-1,
+.promo-slide--water-1 {
+  z-index: 2;
 }
 
 .promo-slide__content.left {
