@@ -13,4 +13,5 @@ export default (ctx, inject) => {
   gsap.registerPlugin(ScrollToPlugin);
   gsap.registerPlugin(SplitText);
   inject('ScrollTrigger', ScrollTrigger);
+  inject('SplitText', SplitText);
 }

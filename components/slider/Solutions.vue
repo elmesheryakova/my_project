@@ -1,6 +1,6 @@
 <template>
   <div :style="`background: #F2F3F6`" @wheel="wheel">
-    <div class="slider-solution">
+    <div class="slider-solution" :class="{'slider-solution--frontpage': view === 'frontpage'}">
       <div class="container">
         <h2 class="block__title"><span>Решения</span> для других напитков</h2>
       </div>
@@ -25,17 +25,17 @@
                     </div>
                   </div>
                   <div class="slider-solution__icon">
-                    <svgicon :name="item.svg" class="svg-color" />
-                    <svgicon :name="item.svgHover" class="svg-white" />
+                    <svgicon :name="item.svg" class="svg-color"/>
+                    <svgicon :name="item.svgHover" class="svg-white"/>
                   </div>
                 </div>
               </div>
             </div>
             <div class="swiper-button-prev" slot="button-prev">
-              <svgicon name="arrow-slider" />
+              <svgicon name="arrow-slider"/>
             </div>
             <div class="swiper-button-next" slot="button-next">
-              <svgicon name="arrow-slider" />
+              <svgicon name="arrow-slider"/>
             </div>
           </div>
         </div>
@@ -52,9 +52,14 @@
 
 
 <script>
-import { directive } from "vue-awesome-swiper";
+import {directive} from "vue-awesome-swiper";
+
 export default {
   props: {
+    view: {
+      type: String,
+      default: "default",
+    },
     items: {
       type: Array,
       default: () => [],
@@ -127,7 +132,8 @@ export default {
       // }
     },
   },
-  created() {},
+  created() {
+  },
   mounted() {
     this.swiper.slideTo();
     // window.addEventListener("scroll", this.offsetY);
@@ -141,6 +147,7 @@ export default {
   background-color: #f2f3f6;
   position: relative;
   height: 100vh;
+
   .swiper-wrapper {
     display: flex;
     gap: 35px;
@@ -148,15 +155,19 @@ export default {
       gap: 10px;
     }
   }
+
   .swiper-slide {
     margin-right: 80px;
   }
+
   .swiper-container {
     overflow: hidden;
   }
+
   &__container {
     margin-right: -600px;
   }
+
   .swiper-button-prev,
   .swiper-button-next {
     width: 45px;
@@ -165,13 +176,16 @@ export default {
     top: 50%;
     transform: translateY(-50%);
   }
+
   .swiper-button-prev {
     transform: rotate(180deg);
     left: 0;
     display: none;
   }
+
   .swiper-button-next {
     right: 0;
+
     &::before {
       position: absolute;
       content: "";
@@ -183,8 +197,8 @@ export default {
           -90deg,
           #f2f3f7 0%,
           rgba(242, 243, 247, 0) 100%
-        ),
-        linear-gradient(-90deg, #f2f3f7 0%, rgba(242, 243, 247, 0) 100%);
+      ),
+      linear-gradient(-90deg, #f2f3f7 0%, rgba(242, 243, 247, 0) 100%);
 
       z-index: -1;
       @media (max-width: 1024px) {
@@ -199,10 +213,12 @@ export default {
       padding: 10px 10px 0;
     }
   }
+
   &__item {
     background-color: #fff;
     margin-bottom: 60px;
     position: relative;
+
     &::after {
       position: absolute;
       content: "";
@@ -215,27 +231,32 @@ export default {
       border-left: 25px solid #fff;
     }
   }
+
   &__img {
     width: 250px;
     height: 220px;
     padding: 20px;
+
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
+
     @media (max-width: 1024px) {
       width: 200px;
       height: 180px;
       padding: 10px;
     }
   }
+
   &__icon {
     width: 160px;
     height: 160px;
     background-color: #fff;
     cursor: pointer;
     position: relative;
+
     .svg-color,
     .svg-white {
       position: absolute;
@@ -244,16 +265,20 @@ export default {
       fill: transparent;
       padding: 20px;
     }
+
     .svg-white {
       opacity: 0;
     }
+
     @media (max-width: 1024px) {
       width: 120px;
       height: 120px;
     }
   }
+
   &__wrap {
     cursor: pointer;
+
     &:hover {
       .svg-color {
         opacity: 0;
@@ -265,11 +290,19 @@ export default {
         background-color: $primary;
         transition: 0.3s ease-out;
       }
+
       .slider-solution__item {
         box-shadow: 0px 20px 60px 0px #17202929;
         transition: 0.3s ease-out;
       }
     }
   }
+
+  &--frontpage {
+    min-height: 100vh;
+    padding-bottom: 160px;
+    height: auto;
+  }
+
 }
 </style>

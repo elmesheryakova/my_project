@@ -11,7 +11,6 @@
         </template>
       </Promo>
 
-      <!-- START promo-slides -->
       <div v-if="activeBottleType == 'beer'" v-for="(item, index) in beerSlides" :key="index"
            class="js-section js-section-beer fp-auto-height" ref="beerSections">
         <div
@@ -55,7 +54,7 @@
         </div>
       </div>
       <div v-if="activeBottleType == 'water'" v-for="(item, index) in waterSlides" :key="index"
-           class="js-section js-section-beer fp-auto-height" ref="waterSections">
+           class="js-section js-section-water fp-auto-height" ref="waterSections">
         <div
           :class="['promo-slide promo-slide--water', {'promo-slide-first js-promo-slide-first': index === 0}, `promo-slide--water-${index+1}`]">
           <div class="promo-slide__content" :class="{left: item.position === 'left'}">
@@ -113,11 +112,41 @@
           <img v-if="index === 0" src="~/assets/img/big_bg.png" alt="bg" class="promo-slide__bg" aria-hidden="true">
         </div>
       </div>
-      <!-- END promo-slides -->
-      <div class="js-normal-scroll-section">
+      <!-- START normal-scroll-section -->
+
+      <div class="js-section js-section-normal-scroll after-slides-section">
+        <div class="container">
+          <h2 class="block__title">
+            <span>Группа товаров</span> для пивоварен и баров:
+          </h2>
+        </div>
+        <Slider :items="productsGroup" v-if="width > 790"/>
+        <GridMobile :items="productsGroup" :width="width" v-else/>
+        <div class="test" v-if="width > 870">
+          <SliderSolutions view="frontpage" ref="sliderSolutions"/>
+        </div>
+        <template v-else>
+          <div class="container">
+            <h2 class="block__title"><span>Решения</span> для других напитков</h2>
+          </div>
+          <SolutionMobile/>
+        </template>
+      </div>
+      <!-- END normal-scroll-section -->
+
+      <div class="promo-concepts-before-wave" aria-hidden="true">
+        <img src="~assets/img/wave.svg" alt="wave">
+      </div>
+      <PromoConcept :slides="promoConceptsSlides" v-for="(_, index) in promoConceptsSlides" :key="'concepts' + index"
+                    :index="index" ref="promoConcepts"/>
+      <div class="promo-concepts-after-wave" aria-hidden="true">
+        <img src="~assets/img/wave.svg" alt="wave">
+      </div>
+      <div class="js-section js-section-normal-scroll after-slides-section">
         <Footer/>
       </div>
     </div>
+  </div>
   </div>
 </template>
 <script>
@@ -131,6 +160,7 @@ export default {
   data() {
     return {
       activeBottleType: 'water',
+      width: 0,
       activeSectionIndex: 0,
       beerSlides: [{
         hasCanvas: true,
@@ -227,7 +257,28 @@ export default {
           buttonTitle: 'Консультация специалиста',
           buttonHref: '#hello',
         },
-      ]
+      ],
+      promoConceptsSlides: [
+        {
+          img: require('~/assets/img/promo-concept1.jpg'),
+          title: 'Качество',
+          desc: 'Международный бренд по производству ПЭТ-тары, отличающийся высочайшим качеством материалов, продукции и подхода к клиентам. Международный бренд отличающийся высочайшим качеством материалов, продукции и подхода к клиентам.',
+          href: '#hi',
+        },
+        {
+          img: require('~/assets/img/promo-concept2.jpg'),
+          title: 'Безопасность',
+          desc: 'Международный бренд по производству ПЭТ-тары, отличающийся высочайшим качеством материалов, продукции и подхода к клиентам. Международный бренд отличающийся высочайшим качеством материалов, продукции и подхода к клиентам.',
+          href: '#hi',
+        },
+        {
+          img: require('~/assets/img/promo-concept3.jpg'),
+          title: 'Доверие',
+          desc: 'Международный бренд по производству ПЭТ-тары, отличающийся высочайшим качеством материалов, продукции и подхода к клиентам. Международный бренд отличающийся высочайшим качеством материалов, продукции и подхода к клиентам.',
+          href: '#hi',
+        },
+      ],
+      productsGroup: this.$store.state.productsGroup,
     };
   },
   watch: {
@@ -236,6 +287,9 @@ export default {
     },
   },
   methods: {
+    updateWidth() {
+      this.width = window.innerWidth;
+    },
     moveSectionDown() {
       this.fpPromo.moveSectionDown();
     },
@@ -273,9 +327,8 @@ export default {
       return index;
     },
     init() {
+      var self = this;
       // @TODO: refactor this nightmare
-      var fp = this.$fullpage;
-      var gsap = this.$gsap;
 
       var SCREEN_UP_LG = '(min-width: 992px)';
       var SCREEN_DOWN_LG = '(max-width: 992px)';
@@ -288,13 +341,17 @@ export default {
       // @TODO make this through mq
       var isTablet = window.matchMedia(SCREEN_DOWN_LG).matches && window.matchMedia(SCREEN_UP_MD).matches;
       var isMobile = window.matchMedia(SCREEN_DOWN_MD).matches;
-      var promoConceptsSections = document.querySelectorAll('.promo-concepts-section');
       var promoSlideshowTriggerLocked = false;
       var scrollLocked = false;
-      var scrollEventRegistered = false;
+
+      this.scrollEventRegistered = false;
 
       if (this.isDesktop) {
-        this.initSlideShow(this.activeBottleType);
+        this.$nextTick(() => {
+          self.initSlideShow(self.activeBottleType);
+          self.initSliderSolutionsTimeline();
+          self.initPromoConceptsTimeline();
+        });
       }
     },
     initFullpagePromo() {
@@ -308,6 +365,8 @@ export default {
         verticalCentered: false,
 
         onLeave: function (section, next, direction) {
+          console.log(section);
+          console.log(next);
           // @TODO: optimize animations
           var targets = next.item.querySelectorAll('.promo-slide__title, .promo-slide__desc, .promo-slide__items li');
           var button = next.item.querySelector('.promo-slide__button');
@@ -375,17 +434,18 @@ export default {
           return true;
         },
         afterLoad: function (anchorLink, section) {
-          // if (section.item && section.item.classList.contains('js-section-normal-scroll')) {
-          //   destroyFullpagePromo();
-          //   activeNormalSection = section.item;
-          //   if (!scrollEventRegistered) {
-          //     document.addEventListener('scroll', self.onNormalSectionScroll);
-          //     scrollEventRegistered = true;
-          //   }
-          // } else {
-          //   document.removeEventListener('scroll', self.onNormalSectionScroll);
-          //   scrollEventRegistered = false;
-          // }
+          if (section.item && section.item.classList.contains('js-section-normal-scroll')) {
+            console.log('normal section started!');
+            self.destroyFullpagePromo();
+            self.activeNormalSection = section.item;
+            if (!self.scrollEventRegistered) {
+              document.addEventListener('scroll', self.onNormalSectionScroll);
+              self.scrollEventRegistered = true;
+            }
+          } else {
+            document.removeEventListener('scroll', self.onNormalSectionScroll);
+            self.scrollEventRegistered = false;
+          }
         }
       });
     },
@@ -409,9 +469,8 @@ export default {
         newWidth = newHeight * wrh;
       }
 
-      var frameCount = bottleType === 'beer' ? 73 : 149;
+      var frameCount = bottleType === 'beer' ? 73 : 148;
 
-      console.log(bottleType);
       var images = [];
       var bottle = {
         frame: 0
@@ -539,47 +598,175 @@ export default {
         this.fpPromo = undefined;
       }
     },
+    initSliderSolutionsTimeline() {
+      var sliderSolutionsTimeline = this.$gsap.timeline();
 
+      sliderSolutionsTimeline.to(this.$refs.sliderSolutions.$el, {
+        scrollTrigger: {
+          trigger: this.$refs.sliderSolutions.$el,
+          end: '+=200%',
+          start: 'bottom bottom',
+          pin: true,
+          pinSpacing: false,
+          scrub: true,
+        },
+      });
+
+    },
+    initPromoConceptsTimeline() {
+      var promoConceptsSections = this.$refs.promoConcepts;
+      var self = this;
+      console.log(promoConceptsSections);
+      // promoConceptsSections.forEach(function (item, index) {
+      //   var content = promoConceptsSections[0].$el.querySelectorAll('.promo-concepts__item')[index];
+      //   var image = promoConceptsSections[0].$el.querySelectorAll('.promo-concepts__image')[index];
+      //   var logo = promoConceptsSections[0].$el.querySelector('.promo-concepts__logo');
+      //   var sectionTitle = promoConceptsSections[0].$el.querySelector('.promo-concepts__section-title');
+      //   var title = promoConceptsSections[0].$el.querySelectorAll('.promo-concepts__title')[index];
+      //   var desc = promoConceptsSections[0].$el.querySelectorAll('.promo-concepts__desc')[index];
+      //   var descParagraphs = desc.querySelectorAll('p');
+      //   var link = promoConceptsSections[0].$el.querySelectorAll('.promo-concepts__link')[index];
+      //
+      //   var splitTitle = new self.$SplitText(title, {type: 'lines'});
+      //
+      //   var splitDesc = new self.$SplitText(descParagraphs, {type: 'lines'});
+      //   new self.$SplitText(descParagraphs, {type: 'lines'});
+      //
+      //   if (index === 0) {
+      //     var container = item.$el.querySelector('.container');
+      //     var logoTimeline = self.$gsap.timeline({
+      //       scrollTrigger: {
+      //         scrub: false,
+      //         trigger: item.$el,
+      //         start: '45% center',
+      //         end: '51% center',
+      //         onEnter: function () {
+      //           logoTimeline.timeScale(1);
+      //         },
+      //         onLeave: function () {
+      //         },
+      //         onLeaveBack: function () {
+      //           logoTimeline.timeScale(3).reverse();
+      //         }
+      //       },
+      //     });
+      //
+      //     logoTimeline.fromTo(logo, {alpha: 0}, {alpha: 1}, '0');
+      //     logoTimeline.fromTo(image, {alpha: 0, duration: 1}, {alpha: 1}, '0');
+      //     logoTimeline.fromTo(sectionTitle, {alpha: 0}, {alpha: 1, y: 0}, '0.3');
+      //   }
+      //
+      //   var tl = self.$gsap.timeline({
+      //     scrollTrigger: {
+      //       trigger: item,
+      //       start: '45% center',
+      //       end: '51% center',
+      //       scrub: false,
+      //       toggleActions: "restart none restart none",
+      //       toggleClass: {targets: [content], className: "is-active"},
+      //     }
+      //   });
+      //
+      //   tl.fromTo(splitTitle.lines, {
+      //     y: '100%',
+      //   }, {ease: "power2.out", y: 0, duration: 1});
+      //
+      //   tl.fromTo(splitDesc.lines, {
+      //     y: '150%',
+      //   }, {ease: "power2.out", y: 0, duration: 0.7, stagger: 0.05}, '0.2');
+      //
+      //   tl.fromTo(link, {
+      //     alpha: 0
+      //   }, {alpha: 1, duration: 1}, '-=0.4');
+      //
+      //   if (index > 0) {
+      //     var imagesTimeline = self.$gsap.timeline({
+      //       scrollTrigger: {
+      //         trigger: item,
+      //         end: '+=100%',
+      //         scrub: 0.5,
+      //       }
+      //     });
+      //
+      //     var prevImage = promoConceptsSections[0].$el.querySelectorAll('.promo-concepts__image')[index];
+      //
+      //     imagesTimeline.fromTo(image, {y: '100%'}, {y: 0}, '0');
+      //   }
+      //
+      //   var isLast = index === promoConceptsSections.length - 1;
+      //   if (!isLast) {
+      //     var imagesParallaxTimeline = self.$gsap.timeline({
+      //       scrollTrigger: {
+      //         trigger: item,
+      //         start: 'bottom bottom',
+      //         end: '+=100%',
+      //         scrub: 0,
+      //         immediateRender: false,
+      //       }
+      //     });
+      //
+      //     imagesParallaxTimeline.to(image, {y: '-30%', immediateRender: false}, '0');
+      //   }
+      // });
+    },
     onNormalSectionScroll(e) {
-      if (activeNormalSection) {
-        var offsetTop = activeNormalSection.offsetTop;
+      var self = this;
+      if (this.activeNormalSection) {
+        var offsetTop = this.activeNormalSection.offsetTop;
 
         if (offsetTop > window.scrollY) {
 
-          document.removeEventListener('scroll', onNormalSectionScroll);
-          var prevSection = activeNormalSection.previousElementSibling;
+          document.removeEventListener('scroll', this.onNormalSectionScroll);
+          var prevSection = this.activeNormalSection.previousElementSibling;
 
           gsap.to(window, {
             duration: 0.7, ease: "power2.inOut", scrollTo: prevSection, onComplete: function () {
               prevSection.classList.add('active');
-              activeNormalSection.classList.remove('active');
-              initFullpagePromo();
+              self.activeNormalSection.classList.remove('active');
+              self.initFullpagePromo();
             }
           });
         }
 
-        if (offsetTop + activeNormalSection.clientHeight < (window.scrollY + window.innerHeight)) {
+        // Если мы скроллим ниже секции с нормальным скроллом, то скролл анимируем вниз
+        if (offsetTop + this.activeNormalSection.clientHeight < (window.scrollY + window.innerHeight)) {
           e.preventDefault();
           var promoConceptsSection = document.querySelector('.promo-concepts-section');
+          document.removeEventListener('scroll', self.onNormalSectionScroll);
 
           gsap.to(window, {
             duration: 1, ease: 'power2.inOut', scrollTo: promoConceptsSection, onComplete: function () {
-              document.removeEventListener('scroll', onNormalSectionScroll);
-
-              activeNormalSection.classList.remove('active');
+              self.activeNormalSection.classList.remove('active');
               promoConceptsSection.classList.add('active');
-              initFullpagePromo();
+              self.initFullpagePromo();
             }
           });
 
-          document.removeEventListener('scroll', onNormalSectionScroll);
+          document.removeEventListener('scroll', this.onNormalSectionScroll);
           var scrollLocked = true;
         }
       }
     }
   },
 
+  beforeDestroy() {
+    if (this.fpPromo) {
+      this.destroyFullpagePromo();
+    }
+    if (this.bottleTimeline) {
+      this.bottleTimeline.scrollTrigger.kill();
+      this.bottleTimeline.kill();
+    }
+
+    if (this.triggerTl) {
+      this.triggerTl.scrollTrigger.kill();
+      this.triggerTl.kill();
+    }
+    return true;
+  },
   mounted() {
+    window.addEventListener("resize", this.updateWidth);
+    this.updateWidth();
     this.init();
   },
 };
@@ -595,6 +782,10 @@ export default {
   overflow: hidden;
   transition: opacity 0.3s !important;
   opacity: 1;
+
+  > .js-section {
+    height: auto !important;
+  }
 
   &.inactive {
     opacity: 0;
@@ -933,6 +1124,30 @@ export default {
 .promo-slide--beer-3 .promo-slide__content-inner:before,
 .promo-slide--beer-4 .promo-slide__content-inner:before {
   left: -10%;
+}
+
+.block__title {
+  font-weight: 900;
+  font-size: 48px;
+  color: $black-dark;
+  margin-bottom: 70px;
+
+  span {
+    color: $primary;
+  }
+
+  @media (max-width: 860px) {
+    font-size: 32px;
+    margin-bottom: 50px;
+  }
+  @media (max-width: 550px) {
+    font-size: 28px;
+    margin-bottom: 40px;
+  }
+}
+
+.after-slides-section {
+  padding-top: 40px;
 }
 
 @include down('xl') {
