@@ -13,7 +13,7 @@
 
       <!-- START promo-slides -->
       <div v-if="activeBottleType == 'beer'" v-for="(item, index) in beerSlides" :key="index"
-           class="js-section js-section-beer fp-auto-height">
+           class="js-section js-section-beer fp-auto-height" ref="beerSections">
         <div
           :class="['promo-slide promo-slide--beer', {'promo-slide-first js-promo-slide-first': index === 0}, `promo-slide--beer-${index+1}`]">
           <div class="promo-slide__content" :class="{left: item.position === 'left'}">
@@ -35,7 +35,7 @@
               </div>
               <a v-if="item.buttonTitle" :href="item.buttonHref" class="promo-slide__button"><span
                 class="promo-slide__button-text">Консультация специалиста</span></a>
-              <button class="promo-slide__go-down" v-if="index === 0" @click.prevent="activeSectionIndex++">
+              <button class="promo-slide__go-down" v-if="index === 0" @click.prevent="moveSectionDown()">
                 <svg width="15" height="18" viewBox="0 0 15 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M.4 11.8A.5.5 0 0 1 1 11l6.7 5.2a.5.5 0 1 1-.6.8L.4 11.8Z" fill="#1B2AC9"/>
                   <path d="M14.1 10.9a.5.5 0 1 1 .6.8L8 16.9a.5.5 0 0 1-.6-.7l6.7-5.3Z" fill="#1B2AC9"/>
@@ -45,7 +45,8 @@
             </div>
           </div>
 
-          <button class="promo-slide-trigger js-promo-slideshow-change-trigger" id="promo-trigger-beer"
+          <button @click.prevent="onPromoTriggerClick" class="promo-slide-trigger js-promo-slideshow-change-trigger"
+                  id="promo-trigger-beer"
                   data-bottle-type="water" v-if="index === 0">
             <img src="~/assets/img/water-i.svg" alt="icon">
             <span>Решение для воды</span>
@@ -53,23 +54,31 @@
           <img v-if="index === 0" src="~/assets/img/big_bg.png" alt="bg" class="promo-slide__bg" aria-hidden="true">
         </div>
       </div>
-
-      <!-- START water-slides -->
-      <div class="js-section-water hidden fp-auto-height">
-        <div class="promo-slide promo-slide-first js-promo-slide-first promo-slide--water promo-slide--water-1">
-
-
-          <div class="promo-slide__content">
-
-            <div class="anim-bottle" id="anim-water-container">
+      <div v-if="activeBottleType == 'water'" v-for="(item, index) in waterSlides" :key="index"
+           class="js-section js-section-beer fp-auto-height" ref="waterSections">
+        <div
+          :class="['promo-slide promo-slide--water', {'promo-slide-first js-promo-slide-first': index === 0}, `promo-slide--water-${index+1}`]">
+          <div class="promo-slide__content" :class="{left: item.position === 'left'}">
+            <div class="anim-bottle" id="anim-water-container" v-if="item.hasBg">
               <div class="anim-bottle__inner" id="anim-water-inner-container">
-                <canvas id="anim-water" class="anim-bottle-canvas" width="1600" height="900"></canvas>
+                <canvas id="anim-water" class="anim-bottle-canvas" width="960" height="900"></canvas>
               </div>
             </div>
-            <div class="promo-slide__content-inner">
-              <div class="promo-slide__title big">Вода</div>
-              <div class="promo-slide__desc">Замена металлических кег на ПЭТ</div>
-              <button class="promo-slide__go-down">
+            <div class="promo-slide__mobile-img"><img :src="item.mobileImgSrc" alt="ПЭТ"></div>
+            <div class="promo-slide__content-inner" v-bind:data-num="contentDigit(index)">
+
+              <div class="promo-slide__title"
+                   :class="{big: item.titleBig, 'promo-slide__title--small': item.titleSmall}">{{ item.title }}
+              </div>
+              <div class="promo-slide__desc">{{ item.desc }}</div>
+              <div class="promo-slide__items" v-if="item.list">
+                <ul>
+                  <li v-for="(i, index) in item.list" :key="index">{{ i }}</li>
+                </ul>
+              </div>
+              <a v-if="item.buttonTitle" :href="item.buttonHref" class="promo-slide__button"><span
+                class="promo-slide__button-text">Консультация специалиста</span></a>
+              <button class="promo-slide__go-down" v-if="index === 0" @click.prevent="moveSectionDown()">
                 <svg width="15" height="18" viewBox="0 0 15 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M.4 11.8A.5.5 0 0 1 1 11l6.7 5.2a.5.5 0 1 1-.6.8L.4 11.8Z" fill="#1B2AC9"/>
                   <path d="M14.1 10.9a.5.5 0 1 1 .6.8L8 16.9a.5.5 0 0 1-.6-.7l6.7-5.3Z" fill="#1B2AC9"/>
@@ -78,10 +87,9 @@
               </button>
             </div>
           </div>
-
-
-          <button class="promo-slide-trigger js-promo-slideshow-change-trigger" id="promo-trigger-water"
-                  data-bottle-type="beer">
+          <button @click.prevent="onPromoTriggerClick" class="promo-slide-trigger js-promo-slideshow-change-trigger"
+                  id="promo-trigger-water"
+                  data-bottle-type="beer" v-if="index === 0">
             <svg width="69" height="144" viewBox="0 0 69 144" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M34.8 2c3.5 0 8.5.7 8.7 1.7.2.9-.7 1.3-1 2.2-.4 1.4.2 2.3-.3 3.7-.3.8-1.1 1.1-1.2 2 0 .9 0 1.5.8 2 .7.6 13.2 4.8 18.4 11.4a25 25 0 0 1 6.5 16v74.7c0 3.4-1.2 6.2-4.8 10.5-3.5 4.4-5 4-6.5 6.2-1.5 2-5.1 8.5-8.3 8.7-3.2.2-8.9-4-11.5-3.6-2.6.4-5.8 4.8-10 4.5-4-.4-6.3-5.4-6.3-5.4s-3.8.1-5.5-1.2c-1.7-1.3-1.7-3.5-3.5-4.8-1.7-1.3-8.3-8-8.3-15V41.2c0-5.9 3-13.7 10-19 7-5.2 14.4-8 15.9-8.4 1.5-.4 1.1-1.2 1.1-2 0-1-.8-1.3-1.1-2.1-.6-1.6-.8-4.3-.8-4.3s0-1-.7-1.6c-.8-.6 5-1.7 8.4-1.7Z"
@@ -102,81 +110,10 @@
             </svg>
             <span>Решение для пива</span>
           </button>
-          <img src="~/assets/img/big_bg.png" alt="bg" class="promo-slide__bg" aria-hidden="true">
+          <img v-if="index === 0" src="~/assets/img/big_bg.png" alt="bg" class="promo-slide__bg" aria-hidden="true">
         </div>
       </div>
-
-      <div class="js-section-water hidden fp-auto-height">
-        <div class="promo-slide promo-slide--water promo-slide--water-2">
-          <div class="promo-slide__content">
-            <div class="promo-slide__content-inner" data-num="1">
-              <div class="promo-slide__title">Эстетика упаковки</div>
-              <div class="promo-slide__items">
-                <ul>
-                  <li>Низкая теплопроводность</li>
-                  <li>Гарантия герметичности фитинга</li>
-                  <li>Стерильная среда внутри кега</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="js-section-water hidden fp-auto-height">
-        <div class="promo-slide promo-slide--water promo-slide--water-3">
-          <div class="promo-slide__content left">
-            <div class="promo-slide__content-inner" data-num="2">
-              <div class="promo-slide__title">Выгодная логистика</div>
-              <div class="promo-slide__items">
-                <ul>
-                  <li>Отсутствует необходимость возврата тары</li>
-                  <li>ПЭТ-КЕГ в 16 раз легче металлической</li>
-                  <li>Фура вмещает на 25% больше</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="js-section-water hidden fp-auto-height">
-        <div class="promo-slide promo-slide--water promo-slide--water-4">
-          <div class="promo-slide__content">
-            <div class="promo-slide__content-inner" data-num="3">
-              <div class="promo-slide__title">Сокращение издержек производства</div>
-              <div class="promo-slide__items">
-                <ul>
-                  <li>Разморозка денежных средств заложеных в тару</li>
-                  <li>Сокращение площади хранения КЕГ</li>
-                  <li>Отсутствие технического обслуживания и мойки</li>
-                  <li>Сокращение фонда оплаты труда</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="js-section-water hidden fp-auto-height">
-        <div class="promo-slide promo-slide--water promo-slide--water-3 js-promo-slide-last">
-          <div class="promo-slide__content left">
-            <div class="promo-slide__content-inner">
-              <div class="promo-slide__title promo-slide__title--small">Оптимизируйте бизнес и расширьте географию
-                сбыта!
-              </div>
-              <a href="#" class="promo-slide__button"><span
-                class="promo-slide__button-text">Консультация специалиста</span></a>
-            </div>
-          </div>
-          <img src="~/assets/img/big_bg.png" alt="bg" class="promo-slide__bg" aria-hidden="true">
-        </div>
-      </div>
-      <!-- END water-slides -->
-
       <!-- END promo-slides -->
-
-
       <div class="js-normal-scroll-section">
         <Footer/>
       </div>
@@ -193,7 +130,7 @@ export default {
   layout: 'fullscreen',
   data() {
     return {
-      activeBottleType: 'beer',
+      activeBottleType: 'water',
       activeSectionIndex: 0,
       beerSlides: [{
         hasCanvas: true,
@@ -211,7 +148,7 @@ export default {
           position: 'right',
           hasBg: false,
           list: ['Низкая теплопроводность', 'Гарантия герметичности фитинга', 'Стерильная среда внутри кега'],
-          mobileImgSrc: require('~/assets/img/promo-mobile-first.jpg'),
+          mobileImgSrc: require('~/assets/img/promo-mobile1.jpg'),
         },
         {
           hasCanvas: false,
@@ -219,7 +156,7 @@ export default {
           titleBig: false,
           position: 'left',
           hasBg: false,
-          mobileImgSrc: require('~/assets/img/promo-mobile1.jpg'),
+          mobileImgSrc: require('~/assets/img/promo-mobile2.jpg'),
           list: ['Отсутствует необходимость возврата тары', 'ПЭТ-КЕГ в 16 раз легче металлической', 'Фура вмещает на 25% больше']
         },
         {
@@ -228,7 +165,7 @@ export default {
           titleBig: false,
           position: 'right',
           hasBg: false,
-          mobileImgSrc: require('~/assets/img/promo-mobile2.jpg'),
+          mobileImgSrc: require('~/assets/img/promo-mobile3.jpg'),
           list: ['Разморозка денежных средств заложеных в тару', 'Сокращение площади хранения КЕГ', 'Отсутствие технического обслуживания и мойки', 'Сокращение фонда оплаты труда']
         },
         {
@@ -237,7 +174,55 @@ export default {
           titleBig: false,
           titleSmall: true,
           position: 'left',
+          mobileImgSrc: require('~/assets/img/promo-mobile4.jpg'),
+          hasBg: true,
+          buttonTitle: 'Консультация специалиста',
+          buttonHref: '#hello',
+        },
+      ],
+      waterSlides: [{
+        hasCanvas: true,
+        title: 'Вода',
+        titleBig: true,
+        desc: 'Замена металлических кег на ПЭТ',
+        position: 'right',
+        hasBg: true,
+        mobileImgSrc: require('~/assets/img/promo-mobile-first.jpg'),
+      },
+        {
+          hasCanvas: false,
+          title: 'Эстетика упаковки',
+          titleBig: false,
+          position: 'right',
+          hasBg: false,
+          list: ['Низкая теплопроводность', 'Гарантия герметичности фитинга', 'Стерильная среда внутри кега'],
+          mobileImgSrc: require('~/assets/img/promo-mobile1.jpg'),
+        },
+        {
+          hasCanvas: false,
+          title: 'Выгодная логистика',
+          titleBig: false,
+          position: 'left',
+          hasBg: false,
+          mobileImgSrc: require('~/assets/img/promo-mobile2.jpg'),
+          list: ['Отсутствует необходимость возврата тары', 'ПЭТ-КЕГ в 16 раз легче металлической', 'Фура вмещает на 25% больше']
+        },
+        {
+          hasCanvas: true,
+          title: 'Сокращение издержек производства',
+          titleBig: false,
+          position: 'right',
+          hasBg: false,
           mobileImgSrc: require('~/assets/img/promo-mobile3.jpg'),
+          list: ['Разморозка денежных средств заложеных в тару', 'Сокращение площади хранения КЕГ', 'Отсутствие технического обслуживания и мойки', 'Сокращение фонда оплаты труда']
+        },
+        {
+          hasCanvas: true,
+          title: 'Оптимизируйте бизнес и расширьте географию сбыта!',
+          titleBig: false,
+          titleSmall: true,
+          position: 'left',
+          mobileImgSrc: require('~/assets/img/promo-mobile4.jpg'),
           hasBg: true,
           buttonTitle: 'Консультация специалиста',
           buttonHref: '#hello',
@@ -245,204 +230,76 @@ export default {
       ]
     };
   },
+  watch: {
+    activeBottleType() {
+      console.log('changed!');
+    },
+  },
   methods: {
+    moveSectionDown() {
+      this.fpPromo.moveSectionDown();
+    },
     onChooseItemClick(clickedBottleType) {
-      console.log(clickedBottleType);
+      this.activeBottleType = clickedBottleType;
+      this.destroyFullpagePromo();
+      var self = this;
+      this.$nextTick(() => {
+        self.initSlideShow(clickedBottleType);
+        self.fpPromo.moveSectionDown();
+      });
+    },
+    onPromoTriggerClick() {
+      var self = this;
+      var newBottleType = this.activeBottleType === 'beer' ? 'water' : 'beer';
+      this.sectionTimeline = null;
+      this.$refs.fullpagePromoElem.classList.add('inactive');
+      self.destroyFullpagePromo();
+      setTimeout(function () {
+        self.activeBottleType = newBottleType;
+        self.$nextTick(() => {
+          self.initSlideShow(newBottleType);
+          self.fpPromo.silentMoveTo(2);
+          self.$refs.fullpagePromoElem.classList.remove('inactive');
+        });
+      }, 701);
     },
     contentDigit(index) {
       var slidesLength = this.activeBottleType === 'beer' ? this.beerSlides.length - 1 : [];
       if (index === 0 || index === this.beerSlides.length - 1) {
         return false;
       }
-      return index + 1;
-    }
-  },
+      return index;
+    },
+    init() {
+      var fp = this.$fullpage;
+      var gsap = this.$gsap;
+      var fpPromo;
+      var fpPromoElem = document.getElementById('fullpage-promo');
+      var bottleTimeline;
+      var triggerTl;
+      var activeNormalSection = document.querySelector('.js-section-normal-scroll');
+      var SCREEN_UP_LG = '(min-width: 992px)';
+      var SCREEN_DOWN_LG = '(max-width: 992px)';
+      var SCREEN_UP_MD = '(min-width: 768px)';
+      var SCREEN_DOWN_MD = '(max-width: 768px)';
+      var isDesktop = this.$mq === 'lg' || this.$mq === 'xl' || this.$mq === 'xl2';
 
-  mounted() {
-    var fp = this.$fullpage;
-    var gsap = this.$gsap;
-    var fpPromo;
-    var fpPromoElem = document.getElementById('fullpage-promo');
-    var bottleTimeline;
-    var triggerTl;
-    var activeNormalSection = document.querySelector('.js-section-normal-scroll');
-    var SCREEN_UP_LG = '(min-width: 992px)';
-    var SCREEN_DOWN_LG = '(max-width: 992px)';
-    var SCREEN_UP_MD = '(min-width: 768px)';
-    var SCREEN_DOWN_MD = '(max-width: 768px)';
-    var isDesktop = this.$mq === 'lg' || this.$mq === 'xl' || this.$mq === 'xl2';
-    // @TODO make this through mq
-    var isTablet = window.matchMedia(SCREEN_DOWN_LG).matches && window.matchMedia(SCREEN_UP_MD).matches;
-    var isMobile = window.matchMedia(SCREEN_DOWN_MD).matches;
-    var beerSections = document.querySelectorAll('.js-section-beer');
-    var waterSections = document.querySelectorAll('.js-section-water');
-    var promoConceptsSections = document.querySelectorAll('.promo-concepts-section');
-    var promoSlideshowTriggerLocked = false;
-    var scrollLocked = false;
-    var scrollEventRegistered = false;
+      // @TODO make this through mq
+      var isTablet = window.matchMedia(SCREEN_DOWN_LG).matches && window.matchMedia(SCREEN_UP_MD).matches;
+      var isMobile = window.matchMedia(SCREEN_DOWN_MD).matches;
+      var promoConceptsSections = document.querySelectorAll('.promo-concepts-section');
+      var promoSlideshowTriggerLocked = false;
+      var scrollLocked = false;
+      var scrollEventRegistered = false;
 
-    if (isDesktop) {
-      if (fpPromo) {
-        destroyFullpagePromo();
+      if (isDesktop) {
+        this.initSlideShow(this.activeBottleType);
       }
-      initSlideShow('beer');
-    }
+    },
+    initFullpagePromo() {
+      var self = this;
 
-    function rebuildSlideShowSections() {
-      beerSections.forEach(function (item) {
-        item.classList.toggle('js-section');
-        item.classList.toggle('hidden');
-      });
-
-      waterSections.forEach(function (item) {
-        item.classList.toggle('js-section');
-        item.classList.toggle('hidden');
-      });
-    }
-
-    /*
-      Инициализируем нужные промо секции с бутылкой на главной странице.
-     */
-    function initSlideShow(bottleType) {
-      var canvas = document.getElementById("anim-" + bottleType);
-      var canvasContainer = document.getElementById("anim-" + bottleType + "-inner-container");
-      var context = canvas.getContext("2d");
-      var endTriggerElem = bottleType === 'beer' ? beerSections[beerSections.length - 1] : waterSections[waterSections.length - 1];
-
-      var img = {
-        width: 1600,
-        height: 900,
-      }
-
-      var wrh = img.width / img.height;
-      var newWidth = canvas.width;
-      var newHeight = newWidth / wrh;
-      if (newHeight > canvas.height) {
-        newHeight = canvas.height;
-        newWidth = newHeight * wrh;
-      }
-
-      var frameCount = bottleType === 'beer' ? 73 : 72;
-
-      var images = [];
-      var bottle = {
-        frame: 0
-      };
-
-      if (fpPromo) {
-        destroyFullpagePromo();
-        initFullpagePromo();
-      } else {
-        initFullpagePromo();
-      }
-
-      if (bottleTimeline) {
-        bottleTimeline.scrollTrigger.kill();
-        bottleTimeline.kill();
-      }
-
-      bottleTimeline = gsap.timeline(
-        {
-          ease: "none",
-          scrollTrigger: {
-            pin: true,
-            trigger: '#anim-' + bottleType + "-container",
-            spacer: false,
-            pinSpacing: false,
-            pinType: "fixed",
-            pinnedContainer: null,
-            start: 'top',
-            endTrigger: endTriggerElem,
-            end: 'bottom bottom',
-            scrub: 0,
-            ease: "none",
-          },
-        });
-
-      bottleTimeline.to(bottle, {
-        frame: frameCount - 1,
-        ease: "none",
-        snap: "frame",
-        duration: 1,
-        onUpdate: renderBottleSprite // use animation onUpdate instead of scrollTrigger's onUpdate
-      });
-
-      bottleTimeline.to(canvasContainer, {
-        x: '100%',
-        duration: '0.2',
-        ease: "ease-in-out",
-      }, '0.320');
-
-      if (bottleType === 'water') {
-        bottleTimeline.to(canvasContainer, {
-          x: '-40%',
-          duration: '0.2',
-          ease: "ease-in-out",
-        }, '0.100');
-      }
-
-      bottleTimeline.to(canvasContainer, {
-        x: '-20%',
-        duration: '0.20',
-        ease: "ease-in-out",
-      }, '0.534');
-
-      bottleTimeline.to(canvasContainer, {
-        x: '80%',
-        duration: '0.20',
-        ease: "ease-in-out",
-      }, '0.838');
-
-      if (triggerTl) {
-        triggerTl.scrollTrigger.kill();
-        triggerTl.kill();
-      }
-
-      var promoSections = document.querySelectorAll('.promo-slide--' + bottleType);
-      var promoSectionHeight = promoSections[0].clientHeight;
-      var triggerHeight = document.getElementById("promo-trigger-" + bottleType).clientHeight;
-
-      triggerTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: '#anim-' + bottleType + "-container",
-          spacer: true,
-          pinSpacing: true,
-          pin: "#promo-trigger-" + bottleType,
-          start: 'top',
-          endTrigger: endTriggerElem,
-          end: '+=' + (promoSectionHeight * (promoSections.length - 2) + triggerHeight) + 'px',
-          scrub: 0,
-          ease: "none",
-        },
-      });
-
-      for (var i = 0; i < frameCount; i++) {
-        var img = new Image();
-        img.src = renderBottleFrame(i, bottleType);
-        images.push(img);
-      }
-
-      images[0].onload = renderBottleSprite;
-
-      function renderBottleFrame(index, bottleType) {
-        var src = require(`@/assets/img/${bottleType}/${(index + 1)}.png`);
-        return src;
-      }
-
-      function renderBottleSprite() {
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        if (bottleType == 'beer') {
-          context.drawImage(images[bottle.frame], 0, 0, newWidth, newHeight);
-        } else {
-          if (images[bottle.frame]) {
-            context.drawImage(images[bottle.frame], 0, 0, newWidth, newHeight);
-          }
-        }
-      }
-    }
-
-    function initFullpagePromo() {
-      fpPromo = new fp('#fullpage-promo', {
+      this.fpPromo = new this.$fullpage('#fullpage-promo', {
         //options here
         sectionSelector: '.js-section',
         scrollBar: true,
@@ -454,21 +311,11 @@ export default {
           var targets = next.item.querySelectorAll('.promo-slide__title, .promo-slide__desc, .promo-slide__items li');
           var button = next.item.querySelector('.promo-slide__button');
           var goDownButton = next.item.querySelector('.promo-slide__go-down');
-          // if (section.index === 1 && direction === 'up') {
-          //   gsap.timeline()
-          //     .set('.header', {display: 'block'})
-          //     .to('.header', {alpha: 1});
-          // }
+
+          var tl = self.$gsap.timeline();
 
           // Появление первого слайда
-
-          var tl = gsap.timeline();
-
           if (section.isFirst && direction === 'down') {
-            gsap.timeline()
-              .to('.header', {alpha: 0})
-              .set('.header', {display: 'none'});
-
             tl.fromTo(next.item.querySelector('.anim-bottle-canvas'), {
               alpha: 0,
               x: 30,
@@ -501,21 +348,24 @@ export default {
           var doesNotContainNormalClass = !next.item.classList.contains('js-section-normal-scroll')
 
           if (doesNotContainNormalClass) {
-            fpPromo.setAutoScrolling(true);
-            fpPromo.setKeyboardScrolling(false);
+            self.fpPromo.setAutoScrolling(true);
+            self.fpPromo.setKeyboardScrolling(false);
           }
 
           var nextSectionIsNormal = section.item.classList.contains('promo-concepts-section') && next.item.classList.contains('js-section-normal-scroll') && direction === 'up';
 
           if (nextSectionIsNormal) {
-            activeNormalSection = next.item;
-            destroyFullpagePromo();
-            gsap.to(window, {
+            self.activeNormalSection = next.item;
+            self.destroyFullpagePromo();
+            self.$gsap.to(window, {
               duration: 1,
               ease: "power2.inOut",
-              scrollTo: {y: activeNormalSection, offsetY: -activeNormalSection.clientHeight + window.innerHeight},
+              scrollTo: {
+                y: self.activeNormalSection,
+                offsetY: -self.activeNormalSection.clientHeight + window.innerHeight
+              },
               onComplete: function () {
-                document.addEventListener('scroll', onNormalSectionScroll);
+                document.addEventListener('scroll', self.onNormalSectionScroll);
               }
             });
             return false;
@@ -524,33 +374,172 @@ export default {
           return true;
         },
         afterLoad: function (anchorLink, section) {
-          if (section.item && section.item.classList.contains('js-section-normal-scroll')) {
-            destroyFullpagePromo();
-            activeNormalSection = section.item;
-            if (!scrollEventRegistered) {
-              document.addEventListener('scroll', onNormalSectionScroll);
-              scrollEventRegistered = true;
-            }
-          } else {
-            document.removeEventListener('scroll', onNormalSectionScroll);
-            scrollEventRegistered = false;
-          }
+          // if (section.item && section.item.classList.contains('js-section-normal-scroll')) {
+          //   destroyFullpagePromo();
+          //   activeNormalSection = section.item;
+          //   if (!scrollEventRegistered) {
+          //     document.addEventListener('scroll', self.onNormalSectionScroll);
+          //     scrollEventRegistered = true;
+          //   }
+          // } else {
+          //   document.removeEventListener('scroll', self.onNormalSectionScroll);
+          //   scrollEventRegistered = false;
+          // }
         }
       });
-    }
+    },
+    initSlideShow(bottleType) {
+      var canvas = document.getElementById("anim-" + bottleType);
+      var canvasContainer = document.getElementById("anim-" + bottleType + "-inner-container");
+      var context = canvas.getContext("2d");
+      var sections = this.activeBottleType === 'beer' ? this.$refs.beerSections : this.$refs.waterSections;
+      var endTriggerElem = sections[sections.length - 1];
 
-    function destroyFullpagePromo(fp) {
-      var scrollY = window.scrollY;
-      if (fp) {
-        fpPromo.setAutoScrolling(false);
-        fpPromo.setKeyboardScrolling(false);
-        fpPromo.setFitToSection(false);
-        fpPromo.destroy('all');
-        window.scrollTo(0, scrollY);
+      var img = {
+        width: bottleType === 'beer' ? 1600 : 960,
+        height: 900,
       }
-    }
 
-    function onNormalSectionScroll(e) {
+      var wrh = img.width / img.height;
+      var newWidth = canvas.width;
+      var newHeight = newWidth / wrh;
+      if (newHeight > canvas.height) {
+        newHeight = canvas.height;
+        newWidth = newHeight * wrh;
+      }
+
+      var frameCount = bottleType === 'beer' ? 73 : 149;
+
+      console.log(bottleType);
+      var images = [];
+      var bottle = {
+        frame: 0
+      };
+
+      if (!this.fpPromo) {
+        this.initFullpagePromo();
+      }
+
+      if (this.bottleTimeline) {
+        this.bottleTimeline.scrollTrigger.kill();
+        this.bottleTimeline.kill();
+      }
+
+      this.bottleTimeline = this.$gsap.timeline(
+        {
+          ease: "none",
+          scrollTrigger: {
+            pin: true,
+            trigger: '#anim-' + bottleType + "-container",
+            spacer: false,
+            pinSpacing: false,
+            pinType: "fixed",
+            pinnedContainer: null,
+            start: 'top',
+            endTrigger: endTriggerElem,
+            end: 'bottom bottom',
+            scrub: 0,
+            ease: "none",
+          },
+        });
+
+      this.bottleTimeline.to(bottle, {
+        frame: frameCount - 1,
+        ease: "none",
+        snap: "frame",
+        duration: 1,
+        onUpdate: renderBottleSprite // use animation onUpdate instead of scrollTrigger's onUpdate
+      });
+
+      this.bottleTimeline.to(canvasContainer, {
+        x: '100%',
+        duration: '0.2',
+        ease: "ease-in-out",
+      }, '0.320');
+
+      if (this.activeBottleType === 'water') {
+        this.bottleTimeline.to(canvasContainer, {
+          x: '-10%',
+          duration: '0.2',
+          ease: "ease-in-out",
+        }, '0.100');
+      }
+
+      this.bottleTimeline.to(canvasContainer, {
+        x: '-20%',
+        duration: '0.20',
+        ease: "ease-in-out",
+      }, '0.534');
+
+      this.bottleTimeline.to(canvasContainer, {
+        x: '80%',
+        duration: '0.20',
+        ease: "ease-in-out",
+      }, '0.838');
+
+      if (this.triggerTl) {
+        this.triggerTl.scrollTrigger.kill();
+        this.triggerTl.kill();
+      }
+
+      var sectionHeight = sections[0].clientHeight;
+      var triggerHeight = document.getElementById("promo-trigger-" + bottleType).clientHeight;
+
+      this.triggerTl = this.$gsap.timeline({
+        scrollTrigger: {
+          trigger: '#anim-' + bottleType + "-container",
+          spacer: true,
+          pinSpacing: true,
+          pin: "#promo-trigger-" + bottleType,
+          start: 'top',
+          endTrigger: endTriggerElem,
+          end: '+=' + (sectionHeight * (sections.length - 2) + triggerHeight) + 'px',
+          scrub: 0,
+          ease: "none",
+        },
+      });
+
+      for (var i = 0; i < frameCount; i++) {
+        var img = new Image();
+        img.src = renderBottleFrame(i, bottleType);
+        images.push(img);
+      }
+
+      images[0].onload = renderBottleSprite;
+
+      function renderBottleFrame(index, bottleType) {
+        if (bottleType === 'beer') {
+          return require(`@/assets/img/${bottleType}/${(index + 1)}.png`);
+        } else {
+          return require(`@/assets/img/${bottleType}-new/water (${(index + 1)}).png`);
+        }
+      }
+
+      function renderBottleSprite() {
+        console.log('currentFrame:', bottle.frame);
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        if (this.activeBottleType == 'beer') {
+          context.drawImage(images[bottle.frame], 0, 0, newWidth, newHeight);
+        } else {
+          if (images[bottle.frame]) {
+            context.drawImage(images[bottle.frame], 0, 0, newWidth, newHeight);
+          }
+        }
+      }
+    },
+    destroyFullpagePromo() {
+      var scrollY = window.scrollY;
+      if (this.fpPromo) {
+        this.fpPromo.setAutoScrolling(false);
+        this.fpPromo.setKeyboardScrolling(false);
+        this.fpPromo.setFitToSection(false);
+        this.fpPromo.destroy('all');
+        window.scrollTo(0, scrollY);
+        this.fpPromo = undefined;
+      }
+    },
+
+    onNormalSectionScroll(e) {
       if (activeNormalSection) {
         var offsetTop = activeNormalSection.offsetTop;
 
@@ -587,6 +576,10 @@ export default {
         }
       }
     }
+  },
+
+  mounted() {
+    this.init();
   },
 };
 </script>
@@ -643,6 +636,10 @@ export default {
   top: 50%;
   left: 50%;
   transform: translateY(-50%) translateX(-50%) !important;
+}
+
+.promo-slide--water .anim-bottle canvas {
+  width: 100%;
 }
 
 .anim-bottle__inner {
@@ -752,12 +749,17 @@ export default {
     pointer-events: none;
     font-weight: 800;
     opacity: 0;
-    transition: opacity 0.7s 0.1s;
+    z-index: -1;
+    transition: opacity 0.7s 0.4s;
     top: 45%;
     transform: translateY(-50%);
     left: 20%;
     color: #f6f6f6;
   }
+}
+
+.promo-slide__content.left .promo-slide__content-inner:before {
+  left: 0;
 }
 
 .promo-slide__mobile-img {
@@ -830,6 +832,8 @@ export default {
   font-size: 56px;
   line-height: 1.2;
   color: #1b2ac9;
+  position: relative;
+  z-index: 1;
 
   &--small {
     font-size: 48px;
@@ -845,6 +849,8 @@ export default {
   margin-left: 5px;
   margin-top: 20px;
   font-size: 30px;
+  position: relative;
+  z-index: 1;
 }
 
 .promo-slide__items {
@@ -855,6 +861,8 @@ export default {
   margin: 0;
   padding: 0;
   font-size: 24px;
+  position: relative;
+  z-index: 1;
 }
 
 .promo-slide__items ul li {
