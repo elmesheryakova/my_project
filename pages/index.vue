@@ -469,7 +469,7 @@ export default {
         newWidth = newHeight * wrh;
       }
 
-      var frameCount = bottleType === 'beer' ? 73 : 148;
+      var frameCount = bottleType === 'beer' ? 73 : 76;
 
       var images = [];
       var bottle = {
