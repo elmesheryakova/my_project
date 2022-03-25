@@ -241,12 +241,14 @@ export default {
     },
     onChooseItemClick(clickedBottleType) {
       this.activeBottleType = clickedBottleType;
-      this.destroyFullpagePromo();
-      var self = this;
-      this.$nextTick(() => {
-        self.initSlideShow(clickedBottleType);
-        self.fpPromo.moveSectionDown();
-      });
+      if (this.isDesktop) {
+        this.destroyFullpagePromo();
+        var self = this;
+        this.$nextTick(() => {
+          self.initSlideShow(clickedBottleType);
+          self.fpPromo.moveSectionDown();
+        });
+      }
     },
     onPromoTriggerClick() {
       var self = this;
@@ -271,18 +273,17 @@ export default {
       return index;
     },
     init() {
+      // @TODO: refactor this nightmare
       var fp = this.$fullpage;
       var gsap = this.$gsap;
-      var fpPromo;
-      var fpPromoElem = document.getElementById('fullpage-promo');
-      var bottleTimeline;
-      var triggerTl;
-      var activeNormalSection = document.querySelector('.js-section-normal-scroll');
+
       var SCREEN_UP_LG = '(min-width: 992px)';
       var SCREEN_DOWN_LG = '(max-width: 992px)';
       var SCREEN_UP_MD = '(min-width: 768px)';
       var SCREEN_DOWN_MD = '(max-width: 768px)';
-      var isDesktop = this.$mq === 'lg' || this.$mq === 'xl' || this.$mq === 'xl2';
+      this.isDesktop = this.$mq === 'xl' || this.$mq === 'xl2';
+      this.isTablet = this.$mq === 'lg' || this.$mq === 'md';
+      console.log(this.isTablet);
 
       // @TODO make this through mq
       var isTablet = window.matchMedia(SCREEN_DOWN_LG).matches && window.matchMedia(SCREEN_UP_MD).matches;
@@ -292,7 +293,7 @@ export default {
       var scrollLocked = false;
       var scrollEventRegistered = false;
 
-      if (isDesktop) {
+      if (this.isDesktop) {
         this.initSlideShow(this.activeBottleType);
       }
     },
@@ -978,13 +979,15 @@ export default {
       display: none;
     }
   }
-  .promo-slide--beer-1 {
-    padding-bottom: 100px;
-  }
+
   .promo-slide {
     padding-bottom: 150px;
   }
-  .promo-slide--beer-3 {
+
+  .promo-slide--beer-1, .promo-slide--water-1 {
+    padding-bottom: 100px;
+  }
+  .promo-slide--beer-3, .promo-slide--water-3 {
     .promo-slide__content-inner:before {
       top: 42px;
     }
@@ -1044,12 +1047,14 @@ export default {
     width: 100%;
   }
 
-  .promo-slide--beer-1 .promo-slide__content-inner {
+  .promo-slide--beer-1 .promo-slide__content-inner,
+  .promo-slide--water-1 .promo-slide__content-inner {
     width: 100%;
     flex-basis: 100%;
   }
 
-  .promo-slide--beer-1 .promo-slide__mobile-img {
+  .promo-slide--beer-1 .promo-slide__mobile-img,
+  .promo-slide--water-1 .promo-slide__mobile-img {
     margin-top: 20px;
     margin-bottom: -140px;
     margin-right: -40px;
@@ -1099,11 +1104,11 @@ export default {
   .promo-slide {
     padding-bottom: 85px;
   }
-  .promo-slide--beer-1 {
+  .promo-slide--beer-1, .promo-slide--water-1 {
     padding-bottom: 60px;
   }
 
-  .promo-slide--beer-1 .promo-slide__mobile-img {
+  .promo-slide--beer-1 .promo-slide__mobile-img, .promo-slide--water-1 .promo-slide__mobile-img {
     margin-right: -20px;
     width: 320px;
     margin-bottom: -100px;
