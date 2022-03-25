@@ -350,6 +350,7 @@ export default {
         this.$nextTick(() => {
           self.initSlideShow(self.activeBottleType);
           self.initSliderSolutionsTimeline();
+          self.initPromoConceptsContentTimeline();
           self.initPromoConceptsTimeline();
         });
       }
@@ -498,7 +499,7 @@ export default {
             start: 'top',
             endTrigger: endTriggerElem,
             end: 'bottom bottom',
-            scrub: 0,
+            scrub: 0.7,
             ease: "none",
           },
         });
@@ -613,101 +614,114 @@ export default {
       });
 
     },
+    initPromoConceptsContentTimeline() {
+      var promoConceptsContentTimeline = this.$gsap.timeline();
+      var promoConceptsSections = this.$refs.promoConcepts;
+      promoConceptsContentTimeline.to(promoConceptsSections[0].$el, {
+        scrollTrigger: {
+          trigger: promoConceptsSections[0].$el.querySelector('.promo-concepts__inner'),
+          end: '+=' + promoConceptsSections.length.toString() + '00%',
+          start: 'top',
+          pinSpacing: false,
+          pin: true,
+          scrub: true,
+        },
+      });
+    },
     initPromoConceptsTimeline() {
       var promoConceptsSections = this.$refs.promoConcepts;
       var self = this;
-      console.log(promoConceptsSections);
-      // promoConceptsSections.forEach(function (item, index) {
-      //   var content = promoConceptsSections[0].$el.querySelectorAll('.promo-concepts__item')[index];
-      //   var image = promoConceptsSections[0].$el.querySelectorAll('.promo-concepts__image')[index];
-      //   var logo = promoConceptsSections[0].$el.querySelector('.promo-concepts__logo');
-      //   var sectionTitle = promoConceptsSections[0].$el.querySelector('.promo-concepts__section-title');
-      //   var title = promoConceptsSections[0].$el.querySelectorAll('.promo-concepts__title')[index];
-      //   var desc = promoConceptsSections[0].$el.querySelectorAll('.promo-concepts__desc')[index];
-      //   var descParagraphs = desc.querySelectorAll('p');
-      //   var link = promoConceptsSections[0].$el.querySelectorAll('.promo-concepts__link')[index];
-      //
-      //   var splitTitle = new self.$SplitText(title, {type: 'lines'});
-      //
-      //   var splitDesc = new self.$SplitText(descParagraphs, {type: 'lines'});
-      //   new self.$SplitText(descParagraphs, {type: 'lines'});
-      //
-      //   if (index === 0) {
-      //     var container = item.$el.querySelector('.container');
-      //     var logoTimeline = self.$gsap.timeline({
-      //       scrollTrigger: {
-      //         scrub: false,
-      //         trigger: item.$el,
-      //         start: '45% center',
-      //         end: '51% center',
-      //         onEnter: function () {
-      //           logoTimeline.timeScale(1);
-      //         },
-      //         onLeave: function () {
-      //         },
-      //         onLeaveBack: function () {
-      //           logoTimeline.timeScale(3).reverse();
-      //         }
-      //       },
-      //     });
-      //
-      //     logoTimeline.fromTo(logo, {alpha: 0}, {alpha: 1}, '0');
-      //     logoTimeline.fromTo(image, {alpha: 0, duration: 1}, {alpha: 1}, '0');
-      //     logoTimeline.fromTo(sectionTitle, {alpha: 0}, {alpha: 1, y: 0}, '0.3');
-      //   }
-      //
-      //   var tl = self.$gsap.timeline({
-      //     scrollTrigger: {
-      //       trigger: item,
-      //       start: '45% center',
-      //       end: '51% center',
-      //       scrub: false,
-      //       toggleActions: "restart none restart none",
-      //       toggleClass: {targets: [content], className: "is-active"},
-      //     }
-      //   });
-      //
-      //   tl.fromTo(splitTitle.lines, {
-      //     y: '100%',
-      //   }, {ease: "power2.out", y: 0, duration: 1});
-      //
-      //   tl.fromTo(splitDesc.lines, {
-      //     y: '150%',
-      //   }, {ease: "power2.out", y: 0, duration: 0.7, stagger: 0.05}, '0.2');
-      //
-      //   tl.fromTo(link, {
-      //     alpha: 0
-      //   }, {alpha: 1, duration: 1}, '-=0.4');
-      //
-      //   if (index > 0) {
-      //     var imagesTimeline = self.$gsap.timeline({
-      //       scrollTrigger: {
-      //         trigger: item,
-      //         end: '+=100%',
-      //         scrub: 0.5,
-      //       }
-      //     });
-      //
-      //     var prevImage = promoConceptsSections[0].$el.querySelectorAll('.promo-concepts__image')[index];
-      //
-      //     imagesTimeline.fromTo(image, {y: '100%'}, {y: 0}, '0');
-      //   }
-      //
-      //   var isLast = index === promoConceptsSections.length - 1;
-      //   if (!isLast) {
-      //     var imagesParallaxTimeline = self.$gsap.timeline({
-      //       scrollTrigger: {
-      //         trigger: item,
-      //         start: 'bottom bottom',
-      //         end: '+=100%',
-      //         scrub: 0,
-      //         immediateRender: false,
-      //       }
-      //     });
-      //
-      //     imagesParallaxTimeline.to(image, {y: '-30%', immediateRender: false}, '0');
-      //   }
-      // });
+      promoConceptsSections.forEach(function (item, index) {
+        var content = promoConceptsSections[0].$el.querySelectorAll('.promo-concepts__item')[index];
+        var image = promoConceptsSections[0].$el.querySelectorAll('.promo-concepts__image')[index];
+        var logo = promoConceptsSections[0].$el.querySelector('.promo-concepts__logo');
+        var sectionTitle = promoConceptsSections[0].$el.querySelector('.promo-concepts__section-title');
+        var title = promoConceptsSections[0].$el.querySelectorAll('.promo-concepts__title')[index];
+        var desc = promoConceptsSections[0].$el.querySelectorAll('.promo-concepts__desc')[index];
+        var descParagraphs = desc.querySelectorAll('p');
+        var link = promoConceptsSections[0].$el.querySelectorAll('.promo-concepts__link')[index];
+
+        var splitTitle = new self.$SplitText(title, {type: 'lines'});
+
+        var splitDesc = new self.$SplitText(descParagraphs, {type: 'lines'});
+        new self.$SplitText(descParagraphs, {type: 'lines'});
+
+        if (index === 0) {
+          var container = item.$el.querySelector('.container');
+          var logoTimeline = self.$gsap.timeline({
+            scrollTrigger: {
+              scrub: false,
+              trigger: item.$el,
+              start: '45% center',
+              end: '51% center',
+              onEnter: function () {
+                logoTimeline.timeScale(1);
+              },
+              onLeave: function () {
+              },
+              onLeaveBack: function () {
+                logoTimeline.timeScale(3).reverse();
+              }
+            },
+          });
+
+          logoTimeline.fromTo(logo, {alpha: 0}, {alpha: 1}, '0');
+          logoTimeline.fromTo(image, {alpha: 0, duration: 1}, {alpha: 1}, '0');
+          logoTimeline.fromTo(sectionTitle, {alpha: 0}, {alpha: 1, y: 0}, '0.3');
+        }
+
+        var tl = self.$gsap.timeline({
+          scrollTrigger: {
+            trigger: item.$el,
+            start: '45% center',
+            end: '51% center',
+            scrub: false,
+            toggleActions: "restart none restart none",
+            toggleClass: {targets: [content], className: "is-active"},
+          }
+        });
+
+        tl.fromTo(splitTitle.lines, {
+          y: '100%',
+        }, {ease: "power2.out", y: 0, duration: 1});
+
+        tl.fromTo(splitDesc.lines, {
+          y: '150%',
+        }, {ease: "power2.out", y: 0, duration: 0.7, stagger: 0.05}, '0.2');
+
+        tl.fromTo(link, {
+          alpha: 0
+        }, {alpha: 1, duration: 1}, '-=0.4');
+
+        if (index > 0) {
+          var imagesTimeline = self.$gsap.timeline({
+            scrollTrigger: {
+              trigger: item.$el,
+              end: '+=100%',
+              scrub: 0.5,
+            }
+          });
+
+          var prevImage = promoConceptsSections[0].$el.querySelectorAll('.promo-concepts__image')[index];
+
+          imagesTimeline.fromTo(image, {y: '100%'}, {y: 0}, '0');
+        }
+
+        var isLast = index === promoConceptsSections.length - 1;
+        if (!isLast) {
+          var imagesParallaxTimeline = self.$gsap.timeline({
+            scrollTrigger: {
+              trigger: item.$el,
+              start: 'bottom bottom',
+              end: '+=100%',
+              scrub: 0,
+              immediateRender: false,
+            }
+          });
+
+          imagesParallaxTimeline.to(image, {y: '-30%', immediateRender: false}, '0');
+        }
+      });
     },
     onNormalSectionScroll(e) {
       var self = this;
@@ -783,7 +797,7 @@ export default {
   transition: opacity 0.3s !important;
   opacity: 1;
 
-  > .js-section {
+  > .js-section-normal-scroll {
     height: auto !important;
   }
 

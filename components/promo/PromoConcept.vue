@@ -229,6 +229,7 @@ export default {
   font-size: 124px;
   margin-left: -0.05em;
   width: 250%;
+  font-weight: 700;
   line-height: 1;
   overflow: hidden;
   margin-top: 34px;
@@ -238,6 +239,7 @@ export default {
 .promo-concepts__desc {
   font-weight: 300;
   width: 100%;
+  line-height: 1.5;
 
   > p > div {
     overflow: hidden;
