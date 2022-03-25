@@ -18,7 +18,7 @@
       </div>
       <SolutionMobile :items="concept" />
     </template>
-    <News :width="width" />
+    <News :width="width" :items="news" />
     <Feedback />
     <Footer />
   </div>
@@ -29,6 +29,7 @@ export default {
   data() {
     return {
       concept: this.$store.state.concept,
+      news: this.$store.state.news,
       width: 0,
     };
   },

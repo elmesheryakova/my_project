@@ -1,10 +1,12 @@
 <template>
   <div class="container">
     <div class="news">
-      <h2 class="news__title">Новости <span>и статьи</span></h2>
+      <h2 class="news__title" v-if="$route.name === 'company'">
+        Новости <span>и статьи</span>
+      </h2>
       <div
         class="news__item-top"
-        v-for="(item, index) in news.slice(0, 1)"
+        v-for="(item, index) in items.slice(0, 1)"
         :key="index"
       >
         <div class="news__item-img">
@@ -26,7 +28,9 @@
       <div class="news__block" v-if="width > 760">
         <div
           class="news__item"
-          v-for="(item, index) in news.slice(1, 4)"
+          v-for="(item, index) in $route.name === 'news'
+            ? items.slice(1)
+            : items.slice(1, 4)"
           :key="index"
         >
           <div class="news__item-img">
@@ -51,7 +55,7 @@
           <div class="swiper-wrapper">
             <div
               class="swiper-slide d-flex flex-column"
-              v-for="(item, index) in news.slice(1, 4)"
+              v-for="(item, index) in items.slice(1, 4)"
               :key="`item-${index}`"
             >
               <div class="news__item">
@@ -75,7 +79,11 @@
           </div>
         </div>
       </div>
-      <nuxt-link class="advantages__item-link" :to="{ name: 'news' }">
+      <nuxt-link
+        class="advantages__item-link"
+        :to="{ name: 'news' }"
+        v-if="$route.name === 'company'"
+      >
         <p class="mb-0">Смотреть все новости</p>
         <svgicon name="arrow-blue" />
       </nuxt-link>
@@ -89,10 +97,13 @@ export default {
     width: {
       type: Number,
     },
+    items: {
+      type: Array,
+      default: () => [],
+    },
   },
   data() {
     return {
-      news: this.$store.state.news,
       settings: {
         arrow: false,
         infinite: true,
