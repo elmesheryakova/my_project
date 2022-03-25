@@ -374,8 +374,6 @@ export default {
         scrollingSpeed: 1300,
 
         onLeave: function (section, next, direction) {
-          console.log(section);
-          console.log(next);
           // @TODO: optimize animations
           var targets = next.item.querySelectorAll('.promo-slide__title, .promo-slide__desc, .promo-slide__items li');
           var button = next.item.querySelector('.promo-slide__button');
@@ -478,7 +476,7 @@ export default {
         newWidth = newHeight * wrh;
       }
 
-      var frameCount = bottleType === 'beer' ? 73 : 76;
+      var frameCount = bottleType === 'beer' ? 73 : 86;
 
       var images = [];
       var bottle = {

@@ -4,7 +4,7 @@
     <div class="container">
       <h2 class="team__title">Команда</h2>
     </div>
-    <div class="team__slider swiper">
+    <div class="team__slider swiper" v-swiper:mySwiper="swiperOption">
       <div class="swiper-wrapper">
         <!-- START team__slide -->
         <div class="swiper-slide team__slide">
@@ -88,197 +88,206 @@
 </template>
 
 <script>
+import {directive} from "vue-awesome-swiper";
+
 export default {
   name: "TeamSlider",
+  data() {
+    var self = this;
+    return {
+      swiperOption: {
+        slidesPerView: 2,
+        loop: true,
+        grabCursor: false,
+        spaceBetween: 0,
+        speed: 1000,
+        autoplay: {
+          delay: 2000,
+        },
+        freeModeMomentum: false,
+        allowTouchMove: true,
+        centeredSlides: true,
+        slideToClickedSlide: true,
+        on: {
+          init: function (swiper) {
+            console.log(swiper);
+          },
+        },
+        breakpoints: {
+          360: {
+            slidesPerView: 3,
+          },
+          600: {
+            slidesPerView: 5
+          },
+          992: {
+            centeredSlides: false,
+            slidesPerView: 6,
+            autoplay: false,
+            speed: 20000,
+            allowTouchMove: true,
+            slideToClickedSlide: false,
+            freeModeMomentum: false,
+            watchSlidesVisibility: false,
+            watchSlidesProgress: true,
+          },
+        },
+      }
+    }
+  },
   props: {
     pinSection: Boolean,
+    directives: {
+      swiper: directive,
+    },
   },
   mounted() {
-    var teamSwiper;
     var teamSection = this.$el;
-    var isDesktop = this.$mq === 'xl' || this.$mq === 'xl2';
-    var isTablet = this.$mq === 'lg' || this.$mq === 'md';
+    this.isDesktop = this.$mq === 'xl' || this.$mq === 'xl2';
+    this.isTablet = this.$mq === 'lg' || this.$mq === 'md';
 
-    if (isDesktop && this.pinSection) {
+    if (this.isDesktop && this.pinSection) {
+      var promoConceptsSections = this.$parent.$refs.promoConcepts;
 
       // Пропускаем элемент волны, получаем последнюю концепцию
-      console.log(teamSection.previousElementSibling);
-      // var lastPromoConceptsSection = teamSection.previousElementSibling.previousElementSibling.children;
-      // console.log(lastPromoConceptsSection);
+      var promoConceptsLastSection = promoConceptsSections[promoConceptsSections.length - 1].$el;
 
-      // this.$ScrollTrigger.create({
-      //   trigger: lastPromoConceptsSection,
-      //   start: 'top top',
-      //   endTrigger: teamSection,
-      //   end: 'top top',
-      //   pin: teamSection,
-      //   pinSpacing: false,
-      //   onEnter: function (data) {
-      //     gsap.set(data.pin, {position: 'fixed', top: 0, left: 0, width: '100%'});
-      //   },
-      //   onEnterBack: function (data) {
-      //     gsap.set(data.pin, {position: 'fixed', top: 0, left: 0, width: '100%'});
-      //   },
-      //   onLeaveBack: function (data) {
-      //     gsap.set(data.pin, {position: 'relative', top: 0, left: 0, width: '100%'});
-      //   },
-      //   onLeave: function (data) {
-      //     gsap.set(data.pin, {position: 'relative', top: 0, left: 0, width: '100%'});
-      //   }
-      // });
+      this.$ScrollTrigger.create({
+        trigger: promoConceptsLastSection,
+        start: 'top top',
+        endTrigger: teamSection,
+        end: 'top top',
+        pin: teamSection,
+        pinSpacing: false,
+        onEnter: function (data) {
+          gsap.set(data.pin, {position: 'fixed', top: 0, left: 0, width: '100%'});
+        },
+        onEnterBack: function (data) {
+          gsap.set(data.pin, {position: 'fixed', top: 0, left: 0, width: '100%'});
+        },
+        onLeaveBack: function (data) {
+          gsap.set(data.pin, {position: 'relative', top: 0, left: 0, width: '100%'});
+        },
+        onLeave: function (data) {
+          gsap.set(data.pin, {position: 'relative', top: 0, left: 0, width: '100%'});
+        }
+      });
     }
+    // console.log(this.$awesomeSwiper);
 
-    // // Слайдер для секции "Команда"
-    // var teamSlides = document.querySelectorAll('.team__slide');
-    // var teamSliderSpeed = 20000;
-    // var hoveredSlide = true;
-    // var hoveredSlides = [];
-    // var teamDurationAfterHover = null;
-    // teamSwiper = new Swiper('.team__slider', {
-    //   slidesPerView: 2,
-    //   loop: true,
-    //   grabCursor: false,
-    //   spaceBetween: 0,
-    //   speed: 1000,
-    //   autoplay: {
-    //     delay: 2000,
-    //   },
-    //   freeModeMomentum: false,
-    //   allowTouchMove: true,
-    //   centeredSlides: true,
-    //   slideToClickedSlide: true,
-    //   on: {
-    //     init: function (swiper) {
-    //       if (isDesktop) {
-    //
-    //         setTimeout(function () {
-    //           swiper.wrapperEl.classList.add('ease-linear');
-    //           teamInfiniteSlides(swiper);
-    //           swiper.el.addEventListener('mousemove', onTeamSliderMove);
-    //           swiper.el.addEventListener('mouseenter', onTeamSliderEnter);
-    //           swiper.el.addEventListener('mouseleave', onTeamSliderLeave);
-    //         }, 500);
-    //
-    //       } else if (isMobile || isTablet) {
-    //         // teamSwiper.el.addEventListener('click', onTeamSliderClick);
-    //       }
-    //     },
-    //   },
-    //   breakpoints: {
-    //     360: {
-    //       slidesPerView: 3,
-    //     },
-    //     600: {
-    //       slidesPerView: 5
-    //     },
-    //     992: {
-    //       centeredSlides: false,
-    //       slidesPerView: 6,
-    //       autoplay: false,
-    //       speed: teamSliderSpeed,
-    //       allowTouchMove: true,
-    //       slideToClickedSlide: false,
-    //       freeModeMomentum: false,
-    //       watchSlidesVisibility: false,
-    //       watchSlidesProgress: true,
-    //     },
-    //   },
-    // });
-    //
-    // function teamInfiniteSlides(swiper) {
-    //   console.log('teamInfiniteSlides started');
-    //
-    //   console.log(swiper.activeIndex);
-    //   var speed = swiper.activeIndex !== 0 ? 12000 : teamSliderSpeed;
-    //   swiper.slideTo(swiper.slides.length, speed);
-    //   swiper.once('transitionEnd', onInfiniteSlideRepeat);
-    // }
-    //
-    // function onInfiniteSlideRepeat(swiper) {
-    //
-    //   swiper.slideTo(0, 0);
-    //   setTimeout(function () {
-    //     teamInfiniteSlides(swiper);
-    //   }, 0);
-    // }
-    //
-    // var onTeamSliderMove = function (e) {
-    //   var translate = teamSwiper.getTranslate();
-    //
-    //   var newHoveredSlide = e.target.closest('.swiper-slide');
-    //
-    //   // @TODO: this breaks when hovered multiple times
-    //   if (newHoveredSlide && hoveredSlide !== newHoveredSlide) {
-    //     hoveredSlide = newHoveredSlide;
-    //
-    //     var hoveredSlideIndex = hoveredSlide.dataset.swiperSlideIndex;
-    //     var viewportOffset = hoveredSlide.getBoundingClientRect();
-    //     var left = viewportOffset.left;
-    //
-    //     // Если слайд еще не полностью в экране - игнорим
-    //     if (left + 100 < 0) {
-    //       return;
-    //     } else if ((left - 100 + hoveredSlide.clientWidth) >= window.innerWidth) {
-    //       return;
-    //     }
-    //
-    //     teamSwiper.off('transitionEnd');
-    //
-    //     teamSwiper.wrapperEl.classList.remove('ease-linear');
-    //
-    //     teamSwiper.params.speed = 1000;
-    //     teamSwiper.params.allowTouchMove = true;
-    //
-    //     var hoveredSlidesWithDuplicates = teamSwiper.slides.filter(function (item) {
-    //       return item.dataset.swiperSlideIndex == hoveredSlideIndex;
-    //     });
-    //
-    //     teamSwiper.slides.forEach(function (item) {
-    //       item.classList.remove('visible');
-    //     });
-    //
-    //     hoveredSlidesWithDuplicates.forEach(function (i) {
-    //       i.classList.add('visible');
-    //     });
-    //
-    //     hoveredSlides = hoveredSlidesWithDuplicates;
-    //   }
-    // };
-    //
-    // var onTeamSliderEnter = function () {
-    //   if (teamSwiper) {
-    //     teamSwiper.off('transitionEnd', onInfiniteSlideRepeat);
-    //     var translate = teamSwiper.getTranslate();
-    //     teamSwiper.setTransition(0);
-    //     teamSwiper.setTranslate(translate);
-    //     teamSwiper.updateProgress(translate);
-    //     setTimeout(function () {
-    //       teamSwiper.setProgress(teamSwiper.progress);
-    //     }, 50);
-    //   }
-    // }
-    // var onTeamSliderLeave = function () {
-    //
-    //   var translate = teamSwiper.getTranslate();
-    //   var maxTranslate = teamSwiper.maxTranslate();
-    //
-    //   teamSwiper.updateProgress(translate);
-    //   teamSwiper.params.speed = teamSliderSpeed;
-    //   teamSwiper.wrapperEl.classList.add('ease-linear');
-    //
-    //   var newSpeed = (teamSwiper.params.speed * (1 - teamSwiper.progress)).toFixed(0);
-    //
-    //   teamSwiper.translateTo(maxTranslate, parseInt(newSpeed));
-    //   teamSwiper.once('transitionEnd', onInfiniteSlideRepeat);
-    //   if (hoveredSlides && hoveredSlides.length > 0) {
-    //     hoveredSlides.forEach(function (i) {
-    //       i.classList.remove('visible');
-    //     });
-    //     hoveredSlides = [];
-    //   }
-    //   hoveredSlide = false;
-    // };
-  }
+    // Слайдер для секции "Команда"
+    var teamSlides = document.querySelectorAll('.team__slide');
+
+    this.sliderSpeed = 20000;
+    this.hoveredSlide = null;
+    this.hoveredSlides = [];
+    // this.swiper = new Swiper('.team__slider', {});
+  },
+  methods: {
+    onSliderInit(swiper, z) {
+      console.log('onSliderInit');
+      console.log(swiper);
+      console.log(z);
+      console.log(this.mySwiper);
+      var self = this;
+      if (self.isDesktop) {
+        setTimeout(function () {
+          swiper.wrapperEl.classList.add('ease-linear');
+          self.runInfiniteSlides(swiper);
+          // self.swiper.el.addEventListener('mousemove', self.onTeamSliderMove);
+          // self.swiper.el.addEventListener('mouseenter', self.onTeamSliderEnter);
+          // self.swiper.el.addEventListener('mouseleave', self.onTeamSliderLeave);
+        }, 500);
+      }
+    },
+    onTeamSliderEnter() {
+      var self = this;
+      if (this.swiper) {
+        this.swiper.off('transitionEnd', onInfiniteSlideRepeat);
+        var translate = this.swiper.getTranslate();
+        this.swiper.setTransition(0);
+        this.swiper.setTranslate(translate);
+        this.swiper.updateProgress(translate);
+        setTimeout(function () {
+          this.swiper.setProgress(self.swiper.progress);
+        }, 50);
+      }
+    },
+    onTeamSliderMove(e) {
+      var translate = this.swiper.getTranslate();
+
+      var newHoveredSlide = e.target.closest('.swiper-slide');
+
+      if (newHoveredSlide && this.hoveredSlide !== newHoveredSlide) {
+        this.hoveredSlide = newHoveredSlide;
+
+        var hoveredSlideIndex = this.hoveredSlide.dataset.swiperSlideIndex;
+        var viewportOffset = this.hoveredSlide.getBoundingClientRect();
+        var left = viewportOffset.left;
+
+        // Если слайд еще не полностью в экране - игнорим
+        if (left + 100 < 0) {
+          return;
+        } else if ((left - 100 + this.hoveredSlide.clientWidth) >= window.innerWidth) {
+          return;
+        }
+
+        this.swiper.off('transitionEnd');
+
+        this.swiper.wrapperEl.classList.remove('ease-linear');
+
+        this.swiper.params.speed = 1000;
+        this.swiper.params.allowTouchMove = true;
+
+        var hoveredSlidesWithDuplicates = this.swiper.slides.filter(function (item) {
+          return item.dataset.swiperSlideIndex == hoveredSlideIndex;
+        });
+
+        this.swiper.slides.forEach(function (item) {
+          item.classList.remove('visible');
+        });
+
+        hoveredSlidesWithDuplicates.forEach(function (i) {
+          i.classList.add('visible');
+        });
+
+        this.hoveredSlides = hoveredSlidesWithDuplicates;
+      }
+    },
+    onTeamSliderLeave() {
+      var translate = this.swiper.getTranslate();
+      var maxTranslate = this.swiper.maxTranslate();
+
+      this.swiper.updateProgress(translate);
+      this.swiper.params.speed = this.sliderSpeed;
+      this.swiper.wrapperEl.classList.add('ease-linear');
+
+      var newSpeed = (this.swiper.params.speed * (1 - this.swiper.progress)).toFixed(0);
+
+      this.swiper.translateTo(maxTranslate, parseInt(newSpeed));
+      this.swiper.once('transitionEnd', onInfiniteSlideRepeat);
+      if (this.hoveredSlides && this.hoveredSlides.length > 0) {
+        this.hoveredSlides.forEach(function (i) {
+          i.classList.remove('visible');
+        });
+        this.hoveredSlides = [];
+      }
+      this.hoveredSlide = false;
+    },
+    onInfiniteSlideRepeat(swiper) {
+      var self = this;
+      swiper.slideTo(0, 0);
+      setTimeout(function () {
+        self.teamInfiniteSlides(swiper);
+      }, 0);
+    },
+    runInfiniteSlides(swiper) {
+      console.log('run infiniteslides!');
+      var speed = swiper.activeIndex !== 0 ? 12000 : this.sliderSpeed;
+      swiper.slideTo(swiper.slides.length, speed);
+      swiper.once('transitionEnd', this.runInfiniteSlides(swiper));
+    },
+  },
 }
 </script>
 
