@@ -16,7 +16,7 @@
   </client-only>
   <div v-else>
     <Banner />
-    <SolutionMobile />
+    <SolutionMobile :items="solutions" />
     <Footer />
   </div>
 </template>
@@ -26,6 +26,7 @@ export default {
 
   data() {
     return {
+      solutions: this.$store.state.solutions,
       width: 0,
       options: {
         css3: true,

@@ -1,6 +1,7 @@
 /* eslint-disable */
 require('./2gis')
 require('./99')
+require('./ar-w')
 require('./arrow-blue')
 require('./arrow-fullscreen')
 require('./arrow-header')

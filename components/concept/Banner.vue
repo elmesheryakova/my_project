@@ -15,16 +15,16 @@
 .concept-banner-inner {
   height: 930px;
   @media (max-width: 1400px) {
-    height: 550px;
+    height: 500px;
   }
   @media (max-width: 810px) {
-    height: 490px;
+    height: 460px;
   }
   @media (max-width: 490px) {
-    height: 650px;
+    height: 600px;
   }
   @media (max-width: 420px) {
-    height: 550px;
+    height: 500px;
   }
 }
 .concept-banner {

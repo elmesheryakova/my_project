@@ -11,6 +11,7 @@
     <div
       :class="{
         'wave-wrap1': $route.name === 'solutions-id',
+        'wrap-white': $route.name === 'company',
       }"
     >
       <img :src="require(`@/assets/img/top.png`)" alt="img" class="wave" />
@@ -166,6 +167,9 @@ export default {
     @media (max-width: 870px) {
       background-color: #fff;
     }
+  }
+  .wrap-white {
+    background-color: #fff;
   }
   &__wrap {
     position: relative;

@@ -1,34 +1,36 @@
 <template>
-  <div class="story">
-    <b-card no-body>
-      <b-tabs pills card vertical end>
-        <h2 class="story__title">
-          История <br />
-          <span>развития</span>
-        </h2>
-        <b-tab v-for="(item, index) in story" :key="index">
-          <template #title>
-            <svgicon name="romb" />
-            {{ item.year }}
-          </template>
+  <client-only>
+    <div class="story">
+      <b-card no-body>
+        <b-tabs pills card vertical end>
+          <h2 class="story__title">
+            История <br />
+            <span>развития</span>
+          </h2>
+          <b-tab v-for="(item, index) in story" :key="index">
+            <template #title>
+              <svgicon name="romb" />
+              {{ item.year }}
+            </template>
 
-          <b-card-text>
-            <div class="story__items">
-              <div
-                class="story-item"
-                v-for="(item, index) in item.info"
-                :key="index"
-              >
-                <p class="story-item__num">{{ item.num }}</p>
-                <p class="story-item__subtitle">{{ item.subtitle }}</p>
-                <p class="story-item__text">{{ item.description }}</p>
+            <b-card-text>
+              <div class="story__items">
+                <div
+                  class="story-item"
+                  v-for="(item, index) in item.info"
+                  :key="index"
+                >
+                  <p class="story-item__num">{{ item.num }}</p>
+                  <p class="story-item__subtitle">{{ item.subtitle }}</p>
+                  <p class="story-item__text">{{ item.description }}</p>
+                </div>
               </div>
-            </div>
-          </b-card-text>
-        </b-tab>
-      </b-tabs>
-    </b-card>
-  </div>
+            </b-card-text>
+          </b-tab>
+        </b-tabs>
+      </b-card>
+    </div>
+  </client-only>
 </template>
 <script>
 export default {
@@ -222,12 +224,24 @@ export default {
       color: $black;
     }
     @media (max-width: 1870px) {
+      width: 85%;
+    }
+    @media (max-width: 1720px) {
+      width: 87%;
+    }
+    @media (max-width: 1650px) {
       width: 90%;
     }
-    @media (max-width: 1590px) {
-      width: 95%;
+    @media (max-width: 1560px) {
+      width: 92%;
     }
     @media (max-width: 1510px) {
+      width: 94%;
+    }
+    @media (max-width: 1410px) {
+      width: 97%;
+    }
+    @media (max-width: 1340px) {
       width: 99%;
     }
     @media (max-width: 1200px) {
@@ -238,6 +252,21 @@ export default {
         top: 150px;
         height: 60px;
       }
+    }
+    @media (max-width: 1180px) {
+      padding: 60px 0 40px;
+      &::after {
+        display: none;
+      }
+    }
+    @media (max-width: 580px) {
+      font-size: 36px;
+      line-height: 45px;
+      padding: 60px 0 20px;
+    }
+    @media (max-width: 500px) {
+      font-size: 32px;
+      line-height: 38px;
     }
   }
   .nav-link {
@@ -256,18 +285,38 @@ export default {
   }
   .card-body {
     padding-bottom: 0;
+    @media (max-width: 1180px) {
+      padding-left: 0;
+      padding-right: 0;
+    }
   }
   .card-text {
     margin-left: auto;
     width: 83%;
     @media (max-width: 1870px) {
+      width: 85%;
+    }
+    @media (max-width: 1720px) {
+      width: 87%;
+    }
+    @media (max-width: 1650px) {
       width: 90%;
     }
-    @media (max-width: 1590px) {
-      width: 95%;
+    @media (max-width: 1560px) {
+      width: 92%;
     }
     @media (max-width: 1510px) {
+      width: 94%;
+    }
+    @media (max-width: 1410px) {
+      width: 97%;
+    }
+    @media (max-width: 1340px) {
       width: 99%;
+    }
+    @media (max-width: 1180px) {
+      width: 100%;
+      margin: 0;
     }
   }
   .tab-content {
@@ -340,6 +389,12 @@ export default {
           justify-content: center;
           height: 100%;
         }
+        @media (max-width: 680px) {
+          font-size: 18px;
+        }
+        @media (max-width: 500px) {
+          font-size: 14px;
+        }
       }
       @media (max-width: 1180px) {
         padding: 0;
@@ -351,11 +406,17 @@ export default {
         display: flex;
         height: 100%;
       }
+      @media (max-width: 680px) {
+        font-size: 18px;
+      }
+      @media (max-width: 500px) {
+        font-size: 14px;
+      }
     }
     @media (max-width: 1870px) {
       width: 400px;
     }
-    @media (max-width: 1440px) {
+    @media (max-width: 1470px) {
       width: 350px;
     }
     @media (max-width: 1440px) {
@@ -383,6 +444,12 @@ export default {
         display: none;
       }
     }
+    @media (max-width: 680px) {
+      height: 72px !important;
+    }
+    @media (max-width: 500px) {
+      height: 50px !important;
+    }
   }
   .nav-item {
     @media (max-width: 1180px) {
@@ -392,6 +459,12 @@ export default {
   &__items {
     display: flex;
     gap: 20px;
+    @media (max-width: 1180px) {
+      gap: 0;
+    }
+    @media (max-width: 580px) {
+      flex-wrap: wrap;
+    }
   }
   &-item {
     display: flex;
@@ -425,6 +498,17 @@ export default {
       &__text {
         font-size: 14px;
         line-height: 18px;
+      }
+    }
+    @media (max-width: 1180px) {
+      width: 100%;
+      border: 1px solid #f2f3f6;
+    }
+    @media (max-width: 680px) {
+      padding: 20px 10px 10px;
+      &__num {
+        font-size: 30px;
+        line-height: 35px;
       }
     }
   }

@@ -1,9 +1,13 @@
 <template>
   <div class="solution-mobile">
     <nuxt-link
-      v-for="(item, index) in solutions"
+      v-for="(item, index) in items"
       :key="`item-${index}`"
-      :to="{ name: 'solutions-id', params: { id: item.id } }"
+      :to="
+        $route.name === 'solutions'
+          ? { name: 'solutions-id', params: { id: item.id } }
+          : { name: 'concept-id', params: { id: item.id } }
+      "
     >
       <div class="solution-mobile__btn">
         <div class="btn-img">
@@ -20,10 +24,14 @@
 </template>
 <script>
 export default {
+  props: {
+    items: {
+      type: Array,
+      default: () => [],
+    },
+  },
   data() {
-    return {
-      solutions: this.$store.state.solutions,
-    };
+    return {};
   },
   computed: {},
 };
@@ -33,7 +41,6 @@ export default {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 30px;
-
   padding: 60px 20px;
   padding-top: 0;
   &__btn {
@@ -60,6 +67,10 @@ export default {
         height: 100%;
         object-fit: cover;
       }
+      @media (max-width: 390px) {
+        width: 131px;
+        height: 67px;
+      }
     }
   }
   @media (max-width: 1300px) {
@@ -68,9 +79,12 @@ export default {
   @media (max-width: 720px) {
     grid-template-columns: 1fr;
   }
-  @media (max-width: 350px) {
+  @media (max-width: 390px) {
     padding: 60px 10px;
     padding-top: 0;
+    p {
+      font-size: 13px;
+    }
   }
 }
 </style>
