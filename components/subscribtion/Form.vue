@@ -23,6 +23,15 @@
       <label for="input-3">Электронная почта</label>
       <svgicon name="require" />
     </b-form-group>
+    <!-- <b-form-group v-if="$route.name === 'career'">
+      <div class="form-file">
+        <div class="form-file__icon"><svgicon name="clip" /></div>
+
+        <p>Прикрепите резюме</p>
+      </div>
+
+      <b-form-file v-model="file" plain> </b-form-file>
+    </b-form-group> -->
 
     <div class="d-flex feedback-popup__footer">
       <button class="feedback-popup__submit" type="submit">Отправить</button>
@@ -47,6 +56,7 @@ export default {
       form: {
         name: "",
         email: "",
+        file: "",
         status: "accepted",
       },
     };
@@ -60,3 +70,23 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+.form-control-file {
+  position: relative;
+  color: #fff;
+}
+.form-file {
+  &__icon {
+    width: 50px;
+    height: 70px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    svg {
+      width: 40px !important;
+      height: 60px !important;
+    }
+  }
+}
+</style>
