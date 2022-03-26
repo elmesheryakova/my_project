@@ -129,7 +129,7 @@
           <div class="container">
             <h2 class="block__title"><span>Решения</span> для других напитков</h2>
           </div>
-          <SolutionMobile/>
+          <SolutionMobile />
         </template>
       </div>
       <!-- END normal-scroll-section -->
@@ -144,6 +144,7 @@
       </div>
       <div class="js-section js-section-normal-scroll" data-offset-y="70">
         <TeamSlider :pin-section="true" />
+        <PartnersSlider />
         <Footer/>
       </div>
     </div>
@@ -154,9 +155,10 @@ import Promo from "~/components/promo/Promo";
 import PromoVideo from "~/components/promo/PromoVideo";
 import ChooseItem from "~/components/promo/ChooseItem";
 import TeamSlider from "~/components/slider/TeamSlider";
+import PartnersSlider from "~/components/slider/PartnersSlider";
 
 export default {
-  components: {TeamSlider, ChooseItem, PromoVideo, Promo},
+  components: {PartnersSlider, TeamSlider, ChooseItem, PromoVideo, Promo},
   layout: 'fullscreen',
   data() {
     return {
@@ -434,11 +436,6 @@ export default {
             self.activeNormalSection = next.item;
             self.destroyFullpagePromo();
             var offsetY = direction === 'up' ? self.activeNormalSection.clientHeight - window.innerHeight : 0;
-            // var additionalOffsetY = self.activeNormalSection.dataset.offsetY;
-            //
-            // if (additionalOffsetY) {
-            //   offsetY += parseInt(additionalOffsetY);
-            // }
 
             self.$gsap.to(window, {
               duration: 1.3,
