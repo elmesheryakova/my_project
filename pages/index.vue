@@ -142,7 +142,7 @@
       <div class="promo-concepts-after-wave" aria-hidden="true">
         <img src="~assets/img/wave.svg" alt="wave">
       </div>
-      <div class="js-section js-section-normal-scroll after-slides-section">
+      <div class="js-section js-section-normal-scroll" data-offset-y="70">
         <TeamSlider :pin-section="true" />
         <Footer/>
       </div>
@@ -434,8 +434,12 @@ export default {
             self.activeNormalSection = next.item;
             self.destroyFullpagePromo();
             var offsetY = direction === 'up' ? self.activeNormalSection.clientHeight - window.innerHeight : 0;
-            console.log(self.activeNormalSection);
-            console.log(offsetY);
+            // var additionalOffsetY = self.activeNormalSection.dataset.offsetY;
+            //
+            // if (additionalOffsetY) {
+            //   offsetY += parseInt(additionalOffsetY);
+            // }
+
             self.$gsap.to(window, {
               duration: 1.3,
               ease: "power2.inOut",
@@ -444,7 +448,9 @@ export default {
                 offsetY: -offsetY
               },
               onComplete: function () {
-                document.addEventListener('scroll', self.onNormalSectionScroll);
+                setTimeout(function () {
+                  document.addEventListener('scroll', self.onNormalSectionScroll);
+                }, 200);
               }
             });
             return false;
@@ -675,8 +681,6 @@ export default {
               onEnter: function () {
                 logoTimeline.timeScale(1);
               },
-              onLeave: function () {
-              },
               onLeaveBack: function () {
                 logoTimeline.timeScale(3).reverse();
               }
@@ -736,7 +740,6 @@ export default {
               immediateRender: false,
             }
           });
-
           imagesParallaxTimeline.to(image, {y: '-30%', immediateRender: false}, '0');
         }
       });
@@ -757,7 +760,7 @@ export default {
             prevSection = prevSection.previousElementSibling;
           }
 
-          gsap.to(window, {
+          self.$gsap.to(window, {
             duration: 0.7, ease: "power2.inOut", scrollTo: prevSection, onComplete: function () {
               prevSection.classList.add('active');
               self.activeNormalSection.classList.remove('active');
@@ -772,7 +775,7 @@ export default {
           var promoConceptsSection = document.querySelector('.promo-concepts-section');
           document.removeEventListener('scroll', self.onNormalSectionScroll);
 
-          gsap.to(window, {
+          self.$gsap.to(window, {
             duration: 1, ease: 'power2.inOut', scrollTo: promoConceptsSection, onComplete: function () {
               self.activeNormalSection.classList.remove('active');
               promoConceptsSection.classList.add('active');

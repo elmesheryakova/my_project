@@ -22,7 +22,7 @@
     "nuxt-mq": "^2.0.2",
     "scroll-behavior-polyfill": "^2.0.13",
     "smoothscroll-polyfill": "^0.4.4",
-    "swiper": "5.4.5",
+    "swiper": "^6.8.4",
     "vue": "^2.6.14",
     "vue-awesome-swiper": "^4.1.1",
     "vue-server-renderer": "^2.6.14",

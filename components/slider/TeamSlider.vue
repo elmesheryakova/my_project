@@ -109,9 +109,7 @@ export default {
         centeredSlides: true,
         slideToClickedSlide: true,
         on: {
-          init: function (swiper) {
-            console.log(swiper);
-          },
+          init: self.onSliderInit,
         },
         breakpoints: {
           360: {
@@ -135,6 +133,14 @@ export default {
       }
     }
   },
+  computed: {
+    isDesktop() {
+      return this.$mq === 'xl' || this.$mq === 'xl2';
+    },
+    isTablet() {
+      return this.$mq === 'lg' || this.$mq === 'md';
+    }
+  },
   props: {
     pinSection: Boolean,
     directives: {
@@ -143,78 +149,82 @@ export default {
   },
   mounted() {
     var teamSection = this.$el;
-    this.isDesktop = this.$mq === 'xl' || this.$mq === 'xl2';
-    this.isTablet = this.$mq === 'lg' || this.$mq === 'md';
+    var self = this;
+    this.sliderSpeed = 20000;
+    this.hoveredSlide = null;
+    this.hoveredSlides = [];
 
     if (this.isDesktop && this.pinSection) {
       var promoConceptsSections = this.$parent.$refs.promoConcepts;
 
-      // Пропускаем элемент волны, получаем последнюю концепцию
+      // Получаем последнюю концепцию
       var promoConceptsLastSection = promoConceptsSections[promoConceptsSections.length - 1].$el;
+      var sectionHeight = promoConceptsLastSection.clientHeight;
+      var afterWaveHeight = document.querySelector('.promo-concepts-after-wave').clientHeight;
 
       this.$ScrollTrigger.create({
         trigger: promoConceptsLastSection,
         start: 'top top',
-        endTrigger: teamSection,
-        end: 'top top',
+        end: `${sectionHeight + afterWaveHeight - 1}px`,
         pin: teamSection,
         pinSpacing: false,
         onEnter: function (data) {
-          gsap.set(data.pin, {position: 'fixed', top: 0, left: 0, width: '100%'});
+          console.log('onenter');
+          var normalSection = data.pin.closest('.js-section-normal-scroll');
+          normalSection.classList.remove('animation-finished');
+          if (self.mySwiper) {
+            self.mySwiper.slideTo(0, 0);
+          }
+          self.$gsap.set(data.pin, {position: 'fixed', top: 0, left: 0, width: '100%'});
         },
         onEnterBack: function (data) {
-          gsap.set(data.pin, {position: 'fixed', top: 0, left: 0, width: '100%'});
+          self.$gsap.set(data.pin, {position: 'fixed', top: 100, left: 0, width: '100%'});
         },
         onLeaveBack: function (data) {
-          gsap.set(data.pin, {position: 'relative', top: 0, left: 0, width: '100%'});
+          self.$gsap.set(data.pin, {position: 'relative', top: 0, left: 0, width: '100%'});
         },
         onLeave: function (data) {
-          gsap.set(data.pin, {position: 'relative', top: 0, left: 0, width: '100%'});
+          var normalSection = data.pin.closest('.js-section-normal-scroll');
+          setTimeout(() => {
+            normalSection.classList.add('animation-finished');
+            window.scrollTo({top: normalSection.offsetTop + 99});
+          }, 100);
         }
       });
     }
-    // console.log(this.$awesomeSwiper);
-
-    // Слайдер для секции "Команда"
-    var teamSlides = document.querySelectorAll('.team__slide');
-
-    this.sliderSpeed = 20000;
-    this.hoveredSlide = null;
-    this.hoveredSlides = [];
-    // this.swiper = new Swiper('.team__slider', {});
   },
   methods: {
-    onSliderInit(swiper, z) {
+    onSliderInit(swiper) {
       console.log('onSliderInit');
       console.log(swiper);
-      console.log(z);
-      console.log(this.mySwiper);
+      this.sliderSpeed = 20000;
       var self = this;
       if (self.isDesktop) {
-        setTimeout(function () {
+        console.log(self.isDesktop);
+        this.$nextTick(() => {
           swiper.wrapperEl.classList.add('ease-linear');
           self.runInfiniteSlides(swiper);
-          // self.swiper.el.addEventListener('mousemove', self.onTeamSliderMove);
-          // self.swiper.el.addEventListener('mouseenter', self.onTeamSliderEnter);
-          // self.swiper.el.addEventListener('mouseleave', self.onTeamSliderLeave);
+          swiper.el.addEventListener('mousemove', self.onTeamSliderMove);
+          swiper.el.addEventListener('mouseenter', self.onTeamSliderEnter);
+          swiper.el.addEventListener('mouseleave', self.onTeamSliderLeave);
         }, 500);
       }
     },
     onTeamSliderEnter() {
       var self = this;
-      if (this.swiper) {
-        this.swiper.off('transitionEnd', onInfiniteSlideRepeat);
-        var translate = this.swiper.getTranslate();
-        this.swiper.setTransition(0);
-        this.swiper.setTranslate(translate);
-        this.swiper.updateProgress(translate);
+      if (this.mySwiper) {
+        this.mySwiper.off('transitionEnd', self.onInfiniteSlideRepeat);
+        var translate = this.mySwiper.getTranslate();
+        this.mySwiper.setTransition(0);
+        this.mySwiper.setTranslate(translate);
+        this.mySwiper.updateProgress(translate);
         setTimeout(function () {
-          this.swiper.setProgress(self.swiper.progress);
+          self.mySwiper.setProgress(self.mySwiper.progress);
         }, 50);
       }
     },
     onTeamSliderMove(e) {
-      var translate = this.swiper.getTranslate();
+      var translate = this.mySwiper.getTranslate();
 
       var newHoveredSlide = e.target.closest('.swiper-slide');
 
@@ -232,18 +242,18 @@ export default {
           return;
         }
 
-        this.swiper.off('transitionEnd');
+        this.mySwiper.off('transitionEnd');
 
-        this.swiper.wrapperEl.classList.remove('ease-linear');
+        this.mySwiper.wrapperEl.classList.remove('ease-linear');
 
-        this.swiper.params.speed = 1000;
-        this.swiper.params.allowTouchMove = true;
+        this.mySwiper.params.speed = 1000;
+        this.mySwiper.params.allowTouchMove = true;
 
-        var hoveredSlidesWithDuplicates = this.swiper.slides.filter(function (item) {
+        var hoveredSlidesWithDuplicates = this.mySwiper.slides.filter(function (item) {
           return item.dataset.swiperSlideIndex == hoveredSlideIndex;
         });
 
-        this.swiper.slides.forEach(function (item) {
+        this.mySwiper.slides.forEach(function (item) {
           item.classList.remove('visible');
         });
 
@@ -255,17 +265,17 @@ export default {
       }
     },
     onTeamSliderLeave() {
-      var translate = this.swiper.getTranslate();
-      var maxTranslate = this.swiper.maxTranslate();
+      var translate = this.mySwiper.getTranslate();
+      var maxTranslate = this.mySwiper.maxTranslate();
 
-      this.swiper.updateProgress(translate);
-      this.swiper.params.speed = this.sliderSpeed;
-      this.swiper.wrapperEl.classList.add('ease-linear');
+      this.mySwiper.updateProgress(translate);
+      this.mySwiper.params.speed = this.sliderSpeed;
+      this.mySwiper.wrapperEl.classList.add('ease-linear');
 
-      var newSpeed = (this.swiper.params.speed * (1 - this.swiper.progress)).toFixed(0);
+      var newSpeed = (this.mySwiper.params.speed * (1 - this.mySwiper.progress)).toFixed(0);
 
-      this.swiper.translateTo(maxTranslate, parseInt(newSpeed));
-      this.swiper.once('transitionEnd', onInfiniteSlideRepeat);
+      this.mySwiper.translateTo(maxTranslate, parseInt(newSpeed));
+      this.mySwiper.once('transitionEnd', this.onInfiniteSlideRepeat);
       if (this.hoveredSlides && this.hoveredSlides.length > 0) {
         this.hoveredSlides.forEach(function (i) {
           i.classList.remove('visible');
@@ -275,17 +285,20 @@ export default {
       this.hoveredSlide = false;
     },
     onInfiniteSlideRepeat(swiper) {
+      console.log('onInfiniteSlideRepeat');
       var self = this;
-      swiper.slideTo(0, 0);
+      self.mySwiper.slideTo(0, 0);
       setTimeout(function () {
-        self.teamInfiniteSlides(swiper);
+        self.runInfiniteSlides(self.mySwiper);
       }, 0);
     },
     runInfiniteSlides(swiper) {
       console.log('run infiniteslides!');
-      var speed = swiper.activeIndex !== 0 ? 12000 : this.sliderSpeed;
-      swiper.slideTo(swiper.slides.length, speed);
-      swiper.once('transitionEnd', this.runInfiniteSlides(swiper));
+      var self = this;
+      var speed = this.mySwiper.activeIndex !== 0 ? 12000 : this.sliderSpeed;
+      console.log(this.mySwiper.slides.length);
+      this.mySwiper.slideTo(this.mySwiper.slides.length, speed, true);
+      this.mySwiper.once('transitionEnd', self.onInfiniteSlideRepeat);
     },
   },
 }
@@ -297,8 +310,15 @@ export default {
   position: relative;
   z-index: 2;
   transform: none !important;
-  padding-top: 0;
+}
+
+.js-section-normal-scroll.animation-finished {
+  padding-top: 100px;
+}
+
+.team__slider {
   padding-bottom: 123px;
+  position: relative;
 
   &:after {
     content: '';
@@ -405,7 +425,7 @@ export default {
 }
 
 @include down('xl') {
-  .team {
+  .team__slider {
     padding-top: 100px;
   }
   .team__title {
@@ -414,7 +434,7 @@ export default {
 }
 
 @include down('lg') {
-  .team {
+  .team__slider {
     padding-top: 74px;
   }
   .team__title {
@@ -461,7 +481,7 @@ export default {
 }
 
 @include down('sm') {
-  .team {
+  .team__slider {
     padding-top: 40px;
   }
 }
