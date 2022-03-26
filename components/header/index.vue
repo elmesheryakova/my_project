@@ -1,5 +1,5 @@
 <template>
-  <header class="header" :class="{ 'header--hidden': !showHeader }">
+  <header class="header" :class="{ 'header--hidden': !showHeader, [`header--view-${view}`]: true }">
     <HeaderTop />
     <HeaderBottom />
   </header>
@@ -7,6 +7,10 @@
 
 <script>
 export default {
+  props: {
+    view: String,
+    default: () => 'default',
+  },
   data() {
     return {
       showHeader: true,
@@ -29,10 +33,15 @@ export default {
     },
   },
   mounted() {
-    window.addEventListener("scroll", this.onScroll);
+    // На главной странице отключаем показ/скрытие при скролле
+    if (this.view !== 'frontpage') {
+      window.addEventListener("scroll", this.onScroll);
+    }
   },
   beforeDestroy() {
-    window.removeEventListener("scroll", this.onScroll);
+    if (this.view !== 'frontpage') {
+      window.removeEventListener("scroll", this.onScroll);
+    }
   },
 };
 </script>

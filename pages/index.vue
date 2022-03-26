@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header/>
+    <Header :view="'frontpage'" />
     <div id="fullpage-promo" ref="fullpagePromoElem">
       <Promo>
         <template v-slot:main>
@@ -343,7 +343,6 @@ export default {
       var SCREEN_DOWN_MD = '(max-width: 768px)';
       this.isDesktop = this.$mq === 'xl' || this.$mq === 'xl2';
       this.isTablet = this.$mq === 'lg' || this.$mq === 'md';
-      console.log(this.isTablet);
 
       // @TODO make this through mq
       var isTablet = window.matchMedia(SCREEN_DOWN_LG).matches && window.matchMedia(SCREEN_UP_MD).matches;
@@ -381,8 +380,18 @@ export default {
 
           var tl = self.$gsap.timeline();
 
+          if (section.index === 1 && direction === 'up') {
+            self.$gsap.timeline()
+              .set('.header', {display: 'block'})
+              .to('.header', {alpha: 1});
+          }
+
           // Появление первого слайда
           if (section.isFirst && direction === 'down') {
+            self.$gsap.timeline()
+              .to('.header', {alpha: 0})
+              .set('.header', {display: 'none'});
+
             tl.fromTo(next.item.querySelector('.anim-bottle-canvas'), {
               alpha: 0,
               x: 30,
@@ -419,17 +428,20 @@ export default {
             self.fpPromo.setKeyboardScrolling(false);
           }
 
-          var nextSectionIsNormal = section.item.classList.contains('promo-concepts-section') && next.item.classList.contains('js-section-normal-scroll') && direction === 'up';
+          var nextSectionIsNormal = next.item.classList.contains('js-section-normal-scroll');
 
           if (nextSectionIsNormal) {
             self.activeNormalSection = next.item;
             self.destroyFullpagePromo();
+            var offsetY = direction === 'up' ? self.activeNormalSection.clientHeight - window.innerHeight : 0;
+            console.log(self.activeNormalSection);
+            console.log(offsetY);
             self.$gsap.to(window, {
-              duration: 1,
+              duration: 1.3,
               ease: "power2.inOut",
               scrollTo: {
                 y: self.activeNormalSection,
-                offsetY: -self.activeNormalSection.clientHeight + window.innerHeight
+                offsetY: -offsetY
               },
               onComplete: function () {
                 document.addEventListener('scroll', self.onNormalSectionScroll);
@@ -476,7 +488,7 @@ export default {
         newWidth = newHeight * wrh;
       }
 
-      var frameCount = bottleType === 'beer' ? 73 : 86;
+      var frameCount = bottleType === 'beer' ? 73 : 88;
 
       var images = [];
       var bottle = {
@@ -738,6 +750,12 @@ export default {
 
           document.removeEventListener('scroll', this.onNormalSectionScroll);
           var prevSection = this.activeNormalSection.previousElementSibling;
+
+          // если предыдущий элемент не секция - пропускаем его и берем следующий
+          // это нужно для обхода волны
+          if (!prevSection.classList.contains('js-section')) {
+            prevSection = prevSection.previousElementSibling;
+          }
 
           gsap.to(window, {
             duration: 0.7, ease: "power2.inOut", scrollTo: prevSection, onComplete: function () {
