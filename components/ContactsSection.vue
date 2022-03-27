@@ -87,7 +87,7 @@
 
         <!-- START contacts__right -->
         <div class="contacts__right">
-          <div class="contacts__person-slider swiper">
+          <div class="contacts__person-slider swiper" v-swiper:mySwiper="swiperOption">
             <div class="swiper-wrapper">
               <!-- START contacts__person-slide -->
               <div class="contacts__person-slide swiper-slide" v-for="(item, index) in staff" :key="index">
@@ -161,9 +161,30 @@
 </template>
 
 <script>
+import {directive} from "vue-awesome-swiper";
+
 export default {
   name: "ContactsSection",
+  data() {
+    return {
+      swiperOption: {
+        slidesPerView: 2,
+        loopedSlides: 4,
+        loop: true,
+        watchSlidesVisibility: true,
+        spaceBetween: 38,
+        breakpoints: {
+          600: {
+            slidesPerView: 3,
+          }
+        }
+      }
+    }
+  },
   props: {
+    directives: {
+      swiper: directive,
+    },
     staff: Array,
     default: () => []
   }
@@ -486,6 +507,10 @@ export default {
   display: block;
 }
 
+.contacts__person-slider {
+  overflow: visible;
+}
+
 @media screen and (min-width: map-get($grid-breakpoints, 'lg')) {
   .contacts__person-slider .swiper-wrapper {
     flex-wrap: wrap;
@@ -675,6 +700,21 @@ export default {
   .contacts__right {
     padding-left: 24px;
     padding-right: 60px;
+  }
+  .contacts__phone {
+    font-size: 32px;
+  }
+  .contacts__email, .contacts__address{
+    font-size: 24px;
+  }
+}
+
+@include down('xs') {
+  .contacts__phone {
+    font-size: 26px;
+  }
+  .contacts__email, .contacts__address{
+    font-size: 18px;
   }
 }
 

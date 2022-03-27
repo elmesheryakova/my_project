@@ -1301,9 +1301,15 @@ export default {
   .promo-slide--beer-1, .promo-slide--water-1 {
     padding-bottom: 100px;
   }
+
   .promo-slide--beer-3, .promo-slide--water-3 {
     .promo-slide__content-inner:before {
-      top: 42px;
+      top: 20px;
+    }
+  }
+  .promo-slide--beer-4, .promo-slide--water-4 {
+    .promo-slide__content-inner:before {
+      top: 40px;
     }
   }
   .promo-slide-last {
@@ -1319,8 +1325,8 @@ export default {
   .promo-slide__content-inner {
     width: 100%;
     flex-basis: 100%;
-    padding-left: 26px;
-    padding-right: 26px;
+    padding-left: 23px;
+    padding-right: 23px;
 
     &:before {
       font-size: 400px;
@@ -1441,16 +1447,34 @@ export default {
     top: -60px;
     line-height: 0.7;
   }
-  .promo-slide--beer-3 .promo-slide__content-inner:before, .promo-slide--water-3 .promo-slide__content-inner:before {
-    top: -30px;
-  }
 }
 
 @include down('sm') {
+  .promo-slide__title--small {
+    font-size: 26px;
+    max-width: 300px;
+  }
   .promo-slide .promo-slide__content-inner:before {
     top: -30px;
     right: auto;
     left: 0;
+  }
+
+  .promo-slide--beer-2, .promo-slide--water-2 {
+    .promo-slide__content-inner:before {
+      top: -60px;
+      margin-left: -4px;
+    }
+  }
+  .promo-slide--beer-3, .promo-slide--water-3 {
+    .promo-slide__content-inner:before {
+      top: -50px;
+    }
+  }
+  .promo-slide--beer-4, .promo-slide--water-4 {
+    .promo-slide__content-inner:before {
+      top: 40px;
+    }
   }
 }
 

@@ -337,6 +337,10 @@ export default {
   background-color: transparent;
   border: none;
   transition: opacity 0.3s, transform 0.3s;
+  img {
+    max-width: 100%;
+    height: auto;
+  }
 
   &:hover {
     opacity: 0.5;
