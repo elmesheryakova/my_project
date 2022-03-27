@@ -165,7 +165,7 @@ export default {
       this.$ScrollTrigger.create({
         trigger: promoConceptsLastSection,
         start: 'top top',
-        end: `${sectionHeight + afterWaveHeight - 10}px`,
+        end: `${sectionHeight + afterWaveHeight - 1}px`,
         pin: teamSection,
         pinSpacing: false,
         onEnter: function (data) {
