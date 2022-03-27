@@ -5,6 +5,7 @@
       'footer-feedback--white':
         $route.name === 'products-slug-id' ||
         $route.name === 'accessories' ||
+        $route.name === 'index' ||
         $route.name === 'contacts',
     }"
   >

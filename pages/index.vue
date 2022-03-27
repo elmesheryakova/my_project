@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header :view="'frontpage'" />
+    <Header :view="'frontpage'"/>
     <div id="fullpage-promo" ref="fullpagePromoElem">
       <Promo>
         <template v-slot:main>
@@ -129,7 +129,7 @@
           <div class="container">
             <h2 class="block__title"><span>Решения</span> для других напитков</h2>
           </div>
-          <SolutionMobile />
+          <SolutionMobile/>
         </template>
       </div>
       <!-- END normal-scroll-section -->
@@ -143,8 +143,10 @@
         <img src="~assets/img/wave.svg" alt="wave">
       </div>
       <div class="js-section js-section-normal-scroll" data-offset-y="70">
-        <TeamSlider :pin-section="true" />
-        <PartnersSlider />
+        <TeamSlider :pin-section="true"/>
+        <PartnersSlider/>
+        <ContactsSection :staff="staff" />
+        <Feedback />
         <Footer/>
       </div>
     </div>
@@ -156,9 +158,11 @@ import PromoVideo from "~/components/promo/PromoVideo";
 import ChooseItem from "~/components/promo/ChooseItem";
 import TeamSlider from "~/components/slider/TeamSlider";
 import PartnersSlider from "~/components/slider/PartnersSlider";
+import ContactsSection from "~/components/ContactsSection";
+import Feedback from "~/components/Feedback";
 
 export default {
-  components: {PartnersSlider, TeamSlider, ChooseItem, PromoVideo, Promo},
+  components: {Feedback, ContactsSection, PartnersSlider, TeamSlider, ChooseItem, PromoVideo, Promo},
   layout: 'fullscreen',
   data() {
     return {
@@ -282,6 +286,56 @@ export default {
         },
       ],
       productsGroup: this.$store.state.productsGroup,
+      staff: [
+        {
+          id: 1,
+          person: "Владимир Константинов",
+          department: "Продажи",
+          icon: "sales",
+          phone: "Доб.123",
+          photo: "staff.jpg",
+        },
+        {
+          id: 2,
+          person: "Владимир Константинов",
+          department: "Закупки",
+          icon: "buy",
+          phone: "Доб.123",
+          photo: "",
+        },
+        {
+          id: 3,
+          person: "Владимир Константинов",
+          department: "Секретарь",
+          icon: "secretary",
+          phone: "Доб.123",
+          photo: "staff2.jpg",
+        },
+        {
+          id: 4,
+          person: "Владимир Константинов",
+          department: "Дирекция",
+          icon: "chief",
+          phone: "Доб.123",
+          photo: "staff3.jpg",
+        },
+        {
+          id: 1,
+          person: "Владимир Константинов",
+          department: "Доставка",
+          icon: "delivery",
+          phone: "Доб.123",
+          photo: "staff4.jpg",
+        },
+        {
+          id: 1,
+          person: "Владимир Константинов",
+          department: "Качество",
+          icon: "shield",
+          phone: "Доб.123",
+          photo: "staff5.jpg",
+        },
+      ]
     };
   },
   watch: {
@@ -1085,6 +1139,7 @@ export default {
   margin-left: 5px;
   margin-top: 20px;
   font-size: 30px;
+  line-height: 1.5;
   position: relative;
   z-index: 1;
 }
@@ -1369,12 +1424,16 @@ export default {
 
   .promo-slide--beer-1 .promo-slide__mobile-img, .promo-slide--water-1 .promo-slide__mobile-img {
     margin-right: -20px;
-    width: 320px;
     margin-bottom: -100px;
     top: -26px;
     margin-top: 0;
     margin-left: auto;
   }
+
+  .promo-slide--beer-1 .promo-slide__mobile-img img, .promo-slide--water-1 .promo-slide__mobile-img img {
+    max-width: 100%;
+  }
+
   .promo-slide__content-inner:before {
     right: 0;
     left: 0 !important;
