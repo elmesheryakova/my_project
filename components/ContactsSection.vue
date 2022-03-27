@@ -87,7 +87,38 @@
 
         <!-- START contacts__right -->
         <div class="contacts__right">
-          <div class="contacts__person-slider swiper" v-swiper:mySwiper="swiperOption">
+          <div class="contacts__person-slider swiper" v-swiper:mySwiper="swiperOption" v-if="!isDesktop">
+            <div class="swiper-wrapper">
+              <!-- START contacts__person-slide -->
+              <div class="contacts__person-slide swiper-slide" v-for="(item, index) in staff" :key="index">
+                <div class="contact-card">
+                  <div class="contact-card__img">
+                    <img
+                      :src="require(`@/assets/img/${item.photo}`)"
+                      :alt="item.person"
+                      v-if="item.photo"
+                    />
+                    <img
+                      :src="require(`@/assets/img/placeholder.jpg`)"
+                      :alt="item.person"
+                      v-else
+                    />
+                  </div>
+                  <div class="contact-card__full-name">
+                    <div class="contact-card__name">{{ item.person }}</div>
+                  </div>
+                  <div class="contact-card__job">
+                    <svgicon :name="item.icon"/>
+                    <div>{{ item.department }}</div>
+                  </div>
+                  <div class="contact-card__phone-add">({{ item.phone }})</div>
+                </div>
+              </div>
+              <!-- END contacts__person-slide -->
+            </div>
+          </div>
+
+          <div class="contacts__person-slider swiper" v-else>
             <div class="swiper-wrapper">
               <!-- START contacts__person-slide -->
               <div class="contacts__person-slide swiper-slide" v-for="(item, index) in staff" :key="index">
@@ -166,6 +197,7 @@ import {directive} from "vue-awesome-swiper";
 export default {
   name: "ContactsSection",
   data() {
+    var self = this;
     return {
       swiperOption: {
         slidesPerView: 2,
@@ -179,6 +211,11 @@ export default {
           }
         }
       }
+    }
+  },
+  computed: {
+    isDesktop() {
+      return this.$mq === 'xl' || this.$mq === 'xl2';
     }
   },
   props: {
@@ -704,7 +741,7 @@ export default {
   .contacts__phone {
     font-size: 32px;
   }
-  .contacts__email, .contacts__address{
+  .contacts__email, .contacts__address {
     font-size: 24px;
   }
 }
@@ -713,7 +750,7 @@ export default {
   .contacts__phone {
     font-size: 26px;
   }
-  .contacts__email, .contacts__address{
+  .contacts__email, .contacts__address {
     font-size: 18px;
   }
 }
