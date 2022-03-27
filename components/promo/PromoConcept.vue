@@ -75,6 +75,10 @@ export default {
     width: 100%;
     z-index: 3;
   }
+
+  @include down('lg') {
+    background-color: transparent;
+  }
 }
 
 .promo-concepts-after-wave {

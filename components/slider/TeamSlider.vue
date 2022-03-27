@@ -165,7 +165,7 @@ export default {
       this.$ScrollTrigger.create({
         trigger: promoConceptsLastSection,
         start: 'top top',
-        end: `${sectionHeight + afterWaveHeight - 1}px`,
+        end: `${sectionHeight + afterWaveHeight - 10}px`,
         pin: teamSection,
         pinSpacing: false,
         onEnter: function (data) {
@@ -425,20 +425,19 @@ export default {
 }
 
 @include down('xl') {
-  .team__slider {
-    padding-top: 100px;
-  }
   .team__title {
     font-size: 80px;
   }
 }
 
 @include down('lg') {
-  .team__slider {
-    padding-top: 74px;
+  .team {
+    padding-top: 70px;
   }
   .team__title {
     font-size: 48px;
+    padding-left: 10px;
+    margin-bottom: 30px;
   }
 
   .team__slide {
@@ -468,7 +467,7 @@ export default {
     }
   }
 
-  .team {
+  .team__slider {
     padding-bottom: 74px;
 
     &:after {
@@ -478,12 +477,12 @@ export default {
 }
 
 @include down('md') {
+  .team__title {
+    padding-left: 0;
+  }
 }
 
 @include down('sm') {
-  .team__slider {
-    padding-top: 40px;
-  }
 }
 
 </style>

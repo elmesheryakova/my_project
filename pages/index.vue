@@ -122,7 +122,7 @@
         </div>
         <Slider :items="productsGroup" v-if="width > 790"/>
         <GridMobile :items="productsGroup" :width="width" v-else/>
-        <div class="test" v-if="width > 870">
+        <div class="test" v-if="width > 992">
           <SliderSolutions view="frontpage" ref="sliderSolutions"/>
         </div>
         <template v-else>
@@ -652,7 +652,6 @@ export default {
       }
 
       function renderBottleSprite() {
-        console.log('currentFrame:', bottle.frame);
         context.clearRect(0, 0, canvas.width, canvas.height);
         if (this.activeBottleType == 'beer') {
           context.drawImage(images[bottle.frame], 0, 0, newWidth, newHeight);
@@ -812,7 +811,7 @@ export default {
           }
 
           self.$gsap.to(window, {
-            duration: 0.7, ease: "power2.inOut", scrollTo: prevSection, onComplete: function () {
+            duration: 1.3, ease: "power2.inOut", scrollTo: prevSection, onComplete: function () {
               prevSection.classList.add('active');
               self.activeNormalSection.classList.remove('active');
               self.initFullpagePromo();
@@ -1161,6 +1160,7 @@ export default {
   padding-left: 30px;
   margin-bottom: 10px;
   list-style: none;
+  line-height: 1.45;
 
   &:last-of-type {
     margin-bottom: 0;
@@ -1436,8 +1436,21 @@ export default {
 
   .promo-slide__content-inner:before {
     right: 0;
-    left: 0 !important;
+    left: auto;
     z-index: -1;
+    top: -60px;
+    line-height: 0.7;
+  }
+  .promo-slide--beer-3 .promo-slide__content-inner:before, .promo-slide--water-3 .promo-slide__content-inner:before {
+    top: -30px;
+  }
+}
+
+@include down('sm') {
+  .promo-slide .promo-slide__content-inner:before {
+    top: -30px;
+    right: auto;
+    left: 0;
   }
 }
 
