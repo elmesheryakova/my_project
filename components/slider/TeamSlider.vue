@@ -165,7 +165,7 @@ export default {
       this.$ScrollTrigger.create({
         trigger: promoConceptsLastSection,
         start: 'top top',
-        end: `${sectionHeight + afterWaveHeight - 1}px`,
+        end: `${sectionHeight + afterWaveHeight - 2}px`,
         pin: teamSection,
         pinSpacing: false,
         onEnter: function (data) {
@@ -184,10 +184,11 @@ export default {
           self.$gsap.set(data.pin, {position: 'relative', top: 0, left: 0, width: '100%'});
         },
         onLeave: function (data) {
+          console.log('onLeave');
           var normalSection = data.pin.closest('.js-section-normal-scroll');
           setTimeout(() => {
             normalSection.classList.add('animation-finished');
-            window.scrollTo({top: normalSection.offsetTop + 99});
+            window.scrollTo({top: normalSection.offsetTop + 100});
           }, 100);
         }
       });
