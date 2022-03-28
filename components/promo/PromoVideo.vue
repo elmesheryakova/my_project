@@ -4,10 +4,10 @@
       <video :poster="require('~/assets/img/banner.jpg')"
              autoplay="autoplay" :muted="!toggled" loop="loop"
              :controls="toggled"
-             @click="toggled ? toggled = false : true"
+             @click="toggled ? toggled = false : true; $emit('video-change', false)"
              class="promo__video js-promo-video" :src="videoSrc" data-autoplay></video>
       <a v-if="!toggled" href="#" role="button" class="promo__play-video-button js-promo-play-video"
-         @click.prevent="toggled = !toggled; $emit('play-click', toggled);">
+         @click.prevent="toggled = !toggled; $emit('video-change', toggled);">
         <img :src="require('@/assets/img/play.svg')" alt="Воспроизвести видео">
       </a>
     </div>

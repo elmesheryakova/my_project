@@ -405,6 +405,7 @@ export default {
   font-weight: 700;
   font-size: 124px;
   margin-bottom: 50px;
+  padding-top: 36px;
 }
 
 .team__img {

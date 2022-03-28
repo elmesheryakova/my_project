@@ -4,7 +4,7 @@
       <div class="promo__main">
         <slot name="main"></slot>
       </div>
-      <slot name="bottom" v-if="showBottom"></slot>
+      <slot name="bottom"></slot>
     </div>
   </div>
 </template>

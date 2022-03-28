@@ -2,11 +2,11 @@
   <div>
     <Header :view="'frontpage'"/>
     <div id="fullpage-promo" ref="fullpagePromoElem">
-      <Promo :showBottom="showPromoBottom">
+      <Promo>
         <template v-slot:main>
-          <PromoVideo @play-click="onPromoVideoPlayClick"/>
+          <PromoVideo @video-change="onPromoVideoPlayClick"/>
         </template>
-        <template v-slot:bottom>
+        <template v-slot:bottom v-if="showPromoBottom">
           <ChooseItem @click="onChooseItemClick"/>
         </template>
       </Promo>
@@ -282,6 +282,7 @@ export default {
       }
     },
     onPromoVideoPlayClick(isToggled) {
+      console.log(isToggled);
       this.showPromoBottom = !isToggled;
     },
     onPromoTriggerClick() {
@@ -402,7 +403,7 @@ export default {
             var offsetY = direction === 'up' ? self.activeNormalSection.clientHeight - window.innerHeight : 0;
 
             self.$gsap.to(window, {
-              duration: 0.7,
+              duration: 1,
               ease: "power2.inOut",
               scrollTo: {
                 y: self.activeNormalSection,
