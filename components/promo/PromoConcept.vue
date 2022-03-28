@@ -104,7 +104,6 @@ export default {
   position: relative;
   height: 100vh !important;
   display: flex !important;
-  overflow: hidden;
   z-index: 4;
 
   .fp-tableCell {
@@ -125,6 +124,11 @@ export default {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
 
   .container {
     position: relative;
@@ -317,6 +321,11 @@ export default {
       padding-left: 24px;
       padding-right: 0;
     }
+  }
+
+  .promo-concepts__inner {
+    position: relative;
+    overflow: hidden;
   }
 
   .promo-concepts-section--first {

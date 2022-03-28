@@ -597,17 +597,17 @@ export default {
           scrub: true,
         },
       });
-
     },
     initPromoConceptsContentTimeline() {
       var promoConceptsContentTimeline = this.$gsap.timeline();
       var promoConceptsSections = this.$refs.promoConcepts;
+      var end ='+=' + (promoConceptsSections.length - 1).toString() + '00%';
       promoConceptsContentTimeline.to(promoConceptsSections[0].$el, {
         scrollTrigger: {
           trigger: promoConceptsSections[0].$el.querySelector('.promo-concepts__inner'),
-          end: '+=' + promoConceptsSections.length.toString() + '00%',
+          end: end,
           start: 'top',
-          pinSpacing: false,
+          pinSpacing: true,
           pin: true,
           scrub: true,
         },
