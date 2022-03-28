@@ -171,6 +171,7 @@ export default {
   overflow: hidden;
   max-height: 800px;
   height: 100%;
+  width: 100%;
 
   .swiper-wrapper {
     display: flex;
