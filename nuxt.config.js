@@ -43,7 +43,6 @@ export default {
 
   components: true,
 
-
   buildModules: [
     '@nuxtjs/device'
   ],
@@ -71,7 +70,7 @@ export default {
       xl2: Infinity,
     }
   },
-
+  loading: '@/components/loading.vue',
   axios: {
     baseURL: '/',
   },
