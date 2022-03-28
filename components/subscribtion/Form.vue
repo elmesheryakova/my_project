@@ -23,16 +23,20 @@
       <label for="input-3">Электронная почта</label>
       <svgicon name="require" />
     </b-form-group>
-    <!-- <b-form-group v-if="$route.name === 'career'">
-      <div class="form-file">
-        <div class="form-file__icon"><svgicon name="clip" /></div>
 
-        <p>Прикрепите резюме</p>
+    <div class="file" v-if="$route.name === 'career'">
+      <label>
+        <input
+          type="file"
+          id="files"
+          ref="files"
+          @change="handleFileUploads()"
+        />
+      </label>
+      <div @click="addFiles()" class="file-btn">
+        <svgicon name="clip" /> Прикрепите резюме
       </div>
-
-      <b-form-file v-model="file" plain> </b-form-file>
-    </b-form-group> -->
-
+    </div>
     <div class="d-flex feedback-popup__footer">
       <button class="feedback-popup__submit" type="submit">Отправить</button>
       <b-form-checkbox
@@ -67,10 +71,44 @@ export default {
       event.preventDefault();
       console.log(JSON.stringify(this.form));
     },
+    handleFileUploads() {
+      let uploadedFiles = this.$refs.files.files;
+
+      for (var i = 0; i < uploadedFiles.length; i++) {
+        this.form.files.push(uploadedFiles[i]);
+      }
+    },
+    addFiles() {
+      this.$refs.files.click();
+    },
   },
 };
 </script>
 <style lang="scss">
+input[type="file"] {
+  position: absolute;
+  left: -1000px;
+}
+.file {
+  margin-bottom: 30px;
+}
+.file-btn {
+  font-size: 24px;
+  color: $primary;
+
+  svg {
+    width: 40px;
+    height: 60px;
+    margin-right: 10px;
+  }
+  @media (max-width: 600px) {
+    font-size: 20px;
+    svg {
+      width: 30px;
+      height: 40px;
+    }
+  }
+}
 .form-control-file {
   position: relative;
   color: #fff;

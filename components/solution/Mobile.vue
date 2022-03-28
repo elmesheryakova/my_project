@@ -1,5 +1,8 @@
 <template>
-  <div class="solution-mobile" :class="{'solution-mobile--frontpage': view === 'frontpage'}">
+  <div
+    class="solution-mobile"
+    :class="{ 'solution-mobile--frontpage': view === 'frontpage' }"
+  >
     <nuxt-link
       v-for="(item, index) in items"
       :key="`item-${index}`"
@@ -31,8 +34,8 @@ export default {
     },
     view: {
       type: String,
-      default: () => "default"
-    }
+      default: () => "default",
+    },
   },
   data() {
     return {};

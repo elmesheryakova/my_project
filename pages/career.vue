@@ -180,17 +180,22 @@ export default {
 
     .career-city {
       display: flex;
-      margin-bottom: 45px;
+      // margin-bottom: 45px;
       font-size: 48px;
-      line-height: 48px;
+      line-height: 100px;
       font-weight: 600;
+      position: relative;
       cursor: pointer;
       &__icon {
+        position: absolute;
+        bottom: 0;
+        right: 0;
         width: 20px;
         height: 20px;
         transition: 0.2s ease-out;
         display: block;
         margin-left: 100px;
+        transform: translateY(-60px);
         svg {
           width: 20px;
           height: 20px;
@@ -210,11 +215,8 @@ export default {
     }
     &.not-collapsed {
       .career-city__icon {
-        transform: rotate(-180deg) translateY(-40px);
+        transform: rotate(-180deg) translateY(-20px);
         transition: 0.2s ease-out;
-        @media (max-width: 410px) {
-          transform: rotate(-180deg) translateY(-15px);
-        }
       }
       .career-city {
         color: $primary;

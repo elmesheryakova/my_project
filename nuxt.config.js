@@ -1,5 +1,5 @@
 export default {
-
+  loading: '@/components/loading.vue',
   head: {
     title: 'pet-expert',
     htmlAttrs: {
@@ -38,6 +38,7 @@ export default {
     { src: '~/plugins/ymapPlugin.js', mode: 'client' },
     { src: '~/plugins/fullpage.js', mode: 'client' },
     { src: '~/plugins/gsap.js', mode: 'client' },
+
     '~/plugins/eventBus.js',
   ],
 
@@ -70,7 +71,7 @@ export default {
       xl2: Infinity,
     }
   },
-  loading: '@/components/loading.vue',
+
   axios: {
     baseURL: '/',
   },

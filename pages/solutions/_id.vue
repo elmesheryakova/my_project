@@ -44,7 +44,7 @@
       <div class="container">
         <h2 class="block__title"><span>Решения</span> для других напитков</h2>
       </div>
-      <SolutionMobile
+      <SolutionMobile :items="solutions"
     /></template>
     <Feedback :offsetTop="offsetTop" :elemHeight="elemHeight" />
   </div>
@@ -56,6 +56,7 @@ export default {
       width: 0,
       advantages: this.$store.state.advantages,
       productsGroup: this.$store.state.productsGroup,
+      solutions: this.$store.state.solutions,
       offsetTop: 0,
       elemHeight: 0,
     };

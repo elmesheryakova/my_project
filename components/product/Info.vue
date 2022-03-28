@@ -127,7 +127,7 @@ export default {
   mounted() {},
 };
 </script>
-<style lang="scss">
+<style lang="scss" >
 .product-info {
   display: grid;
   grid-template-columns: minmax(400px, 640px) 1fr;
