@@ -337,7 +337,7 @@ export default {
         scrollBar: true,
         fitToSection: false,
         verticalCentered: false,
-        scrollingSpeed: 1000,
+        scrollingSpeed: 1300,
 
         onLeave: function (section, next, direction) {
           // @TODO: optimize animations
@@ -362,11 +362,11 @@ export default {
             tl.fromTo(next.item.querySelector('.anim-bottle-canvas'), {
               alpha: 0,
               x: 30,
-            }, {alpha: 1, x: 0, delay: 0.8, stagger: 0.1});
+            }, {alpha: 1, x: 0, delay: 1.2});
 
             tl.fromTo(next.item.querySelector('.promo-slide-trigger'), {
               alpha: 0,
-            }, {alpha: 1, delay: 0.6});
+            }, {alpha: 1, delay: 1.4});
           }
 
           if (targets && targets.length > 0) {
@@ -378,14 +378,14 @@ export default {
               tl.fromTo(button, {
                 alpha: 0,
                 x: 30,
-              }, {alpha: 1, x: 0}, '0.8');
+              }, {alpha: 1, x: 0}, '1');
             }
           }
 
           if (goDownButton) {
             tl.fromTo(goDownButton, {
               alpha: 0,
-            }, {alpha: 1}, '1.2');
+            }, {alpha: 1}, '1');
           }
 
           var doesNotContainNormalClass = !next.item.classList.contains('js-section-normal-scroll')
@@ -403,7 +403,7 @@ export default {
             var offsetY = direction === 'up' ? self.activeNormalSection.clientHeight - window.innerHeight : 0;
 
             self.$gsap.to(window, {
-              duration: 1,
+              duration: 1.3,
               ease: "power2.inOut",
               scrollTo: {
                 y: self.activeNormalSection,
