@@ -31,7 +31,7 @@
 
       <div class="js-section js-section-normal-scroll after-slides-section">
         <div class="container">
-          <h2 class="block__title">
+          <h2 class="block__title block__title--frontpage">
             <span>Группа товаров</span> для пивоварен и баров:
           </h2>
         </div>
@@ -42,9 +42,9 @@
         </div>
         <template v-else>
           <div class="container">
-            <h2 class="block__title"><span>Решения</span> для других напитков</h2>
+            <h2 class="block__title block__title--frontpage"><span>Готовые решения</span> для вашего бизнеса</h2>
           </div>
-          <SolutionMobile/>
+          <SolutionMobile :items="$store.state.solutions" view="frontpage"/>
         </template>
       </div>
       <!-- END normal-scroll-section -->
@@ -1327,6 +1327,13 @@ export default {
     font-size: 18px;
     height: 51px;
     padding-bottom: 2px;
+  }
+  .block__title--frontpage {
+    max-width: 350px;
+  }
+
+  .block__title--frontpage--wide {
+    max-width: 360px;
   }
 }
 
