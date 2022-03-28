@@ -16,6 +16,7 @@
   </div>
 </template>
 <style lang="scss">
+.reviews,
 .docs {
   padding: 135px 0 160px;
   background: #f2f3f7;

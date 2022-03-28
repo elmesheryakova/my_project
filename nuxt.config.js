@@ -6,16 +6,16 @@ export default {
       lang: 'en'
     },
     meta: [
-      {charset: 'utf-8'},
+      { charset: 'utf-8' },
       {
         name: 'viewport',
         content: 'width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no, shrink-to-fit=no'
       },
-      {hid: 'description', name: 'description', content: ''},
-      {name: 'format-detection', content: 'telephone=no'},
+      { hid: 'description', name: 'description', content: '' },
+      { name: 'format-detection', content: 'telephone=no' },
     ],
     link: [
-      {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
   styleResources: {
@@ -30,14 +30,15 @@ export default {
 
   plugins: [
     '@/plugins/vue-svgicon.js',
-    {src: '~/plugins/vue-awesome-swiper.js', mode: "client"},
-    {src: "~/plugins/device.js", mode: "client"},
-    {src: "~/plugins/dev-device.js", mode: "client"},
-    {src: "~/plugins/smooth-scroll.js", mode: "client"},
-    {src: "~/plugins/vue-fullpage.js", mode: "client"},
-    {src: '~/plugins/ymapPlugin.js', mode: 'client'},
-    {src: '~/plugins/fullpage.js', mode: 'client'},
-    {src: '~/plugins/gsap.js', mode: 'client'},
+    { src: '~/plugins/vue-awesome-swiper.js', mode: "client" },
+    { src: "~/plugins/device.js", mode: "client" },
+    { src: "~/plugins/dev-device.js", mode: "client" },
+    { src: "~/plugins/smooth-scroll.js", mode: "client" },
+    { src: "~/plugins/vue-fullpage.js", mode: "client" },
+    { src: '~/plugins/ymapPlugin.js', mode: 'client' },
+    { src: '~/plugins/fullpage.js', mode: 'client' },
+    { src: '~/plugins/gsap.js', mode: 'client' },
+    '~/plugins/eventBus.js',
   ],
 
   components: true,

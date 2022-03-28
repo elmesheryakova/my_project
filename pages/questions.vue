@@ -73,6 +73,7 @@ export default {
 };
 </script>
 <style lang="scss">
+.contacts-page,
 .questions {
   padding: 135px 0 160px;
 

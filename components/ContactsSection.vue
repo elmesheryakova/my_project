@@ -8,76 +8,136 @@
           <h2 class="contacts__title">Контакты</h2>
           <div class="contacts__tab-buttons">
             <!-- в своей верстке я вынес координаты и ссылки маршрутов в data аттрибуты, но во вью можно все вывести через пропсы -->
-            <button class="contacts__tab-button js-contact-tab active" data-tab-trigger="#contact-tab-1"
-                    data-coords="55.386574,36.728607"
-                    data-route-yandex="https://www.google.com/maps/dir//55.386574,36.728607"
-                    data-route-google="https://www.google.com/maps/dir//55.386574,36.728607"
-                    data-route-2gis="https://2gis.ru/directions/points/|36.728607,55.386574?m=36.728607,55.386574">
+            <button
+              class="contacts__tab-button js-contact-tab active"
+              data-tab-trigger="#contact-tab-1"
+              data-coords="55.386574,36.728607"
+              data-route-yandex="https://www.google.com/maps/dir//55.386574,36.728607"
+              data-route-google="https://www.google.com/maps/dir//55.386574,36.728607"
+              data-route-2gis="https://2gis.ru/directions/points/|36.728607,55.386574?m=36.728607,55.386574"
+            >
               Москва
             </button>
-            <button class="contacts__tab-button js-contact-tab" data-tab-trigger="#contact-tab-2"
-                    data-coords="54.983242,82.870423"
-                    data-route-yandex="https://www.google.com/maps/dir//54.983242,82.870423"
-                    data-route-google="https://www.google.com/maps/dir//54.983242,82.870423"
-                    data-route-2gis="https://2gis.ru/directions/points/|82.870423,54.983242?m=82.870423,54.983242">
+            <button
+              class="contacts__tab-button js-contact-tab"
+              data-tab-trigger="#contact-tab-2"
+              data-coords="54.983242,82.870423"
+              data-route-yandex="https://www.google.com/maps/dir//54.983242,82.870423"
+              data-route-google="https://www.google.com/maps/dir//54.983242,82.870423"
+              data-route-2gis="https://2gis.ru/directions/points/|82.870423,54.983242?m=82.870423,54.983242"
+            >
               Новосибирск
             </button>
-            <button class="contacts__tab-button js-contact-tab" data-tab-trigger="#contact-tab-3"
-                    data-coords="45.034214,39.014469"
-                    data-route-yandex="https://www.google.com/maps/dir//45.034214,39.014469"
-                    data-route-google="https://www.google.com/maps/dir//45.034214,39.014469"
-                    data-route-2gis="https://2gis.ru/directions/points/|39.014469,45.034214?m=39.014469,45.034214">
+            <button
+              class="contacts__tab-button js-contact-tab"
+              data-tab-trigger="#contact-tab-3"
+              data-coords="45.034214,39.014469"
+              data-route-yandex="https://www.google.com/maps/dir//45.034214,39.014469"
+              data-route-google="https://www.google.com/maps/dir//45.034214,39.014469"
+              data-route-2gis="https://2gis.ru/directions/points/|39.014469,45.034214?m=39.014469,45.034214"
+            >
               Краснодар
             </button>
           </div>
           <div class="contacts__tab-contents">
-            <div class="tab-content contacts__tab-content tab-active tab-visible" data-parent="#contacts-info"
-                 id="contact-tab-1">
+            <div
+              class="tab-content contacts__tab-content tab-active tab-visible"
+              data-parent="#contacts-info"
+              id="contact-tab-1"
+            >
               <a class="contacts__phone" href="tel:74995770006">
                 +7 (499) 577-00-06
               </a>
               <a class="contacts__email" href="mailto:info@petexpert.pro">
                 info@petexpert.pro
               </a>
-              <div class="contacts__address">143300, Московская область, г. Наро-Фоминск, площадь Свободы, 10</div>
+              <div class="contacts__address">
+                143300, Московская область, г. Наро-Фоминск, площадь Свободы, 10
+              </div>
             </div>
           </div>
           <div class="contacts__social-icons">
-            <a href="#" class="contacts__social-icon contacts__social-icon--fb" target="_blank">
+            <a
+              href="#"
+              class="contacts__social-icon contacts__social-icon--fb"
+              target="_blank"
+            >
               <div class="contacts__social-icon-wrap">
-                <svg width="12" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        d="M7.7.3a4.3 4.3 0 0 0-3.8 3.6V8.1H.5V12h3.2v9.8h3.8v-9.9h3.2l.4-3.8H7.6V6.5l.1-1.8C8 4.2 8.3 4 9 4h2.4V.3h-.5C10 .2 8.1.1 7.7.2Z"
-                        fill="currentColor"/>
+                <svg
+                  width="12"
+                  height="22"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M7.7.3a4.3 4.3 0 0 0-3.8 3.6V8.1H.5V12h3.2v9.8h3.8v-9.9h3.2l.4-3.8H7.6V6.5l.1-1.8C8 4.2 8.3 4 9 4h2.4V.3h-.5C10 .2 8.1.1 7.7.2Z"
+                    fill="currentColor"
+                  />
                 </svg>
               </div>
             </a>
-            <a href="#" class="contacts__social-icon contacts__social-icon--insta" target="_blank">
+            <a
+              href="#"
+              class="contacts__social-icon contacts__social-icon--insta"
+              target="_blank"
+            >
               <div class="contacts__social-icon-wrap">
-                <svg width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg
+                  width="22"
+                  height="22"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
                   <path
                     d="M3.7 1.6A5.5 5.5 0 0 0 .9 5.8v.6a124.6 124.6 0 0 0 0 9.8h.2-.2A5.5 5.5 0 0 0 6 21v-.2.2h.5a124.8 124.8 0 0 0 9.8 0v-.2.2a5.5 5.5 0 0 0 4.9-5.5 122 122 0 0 0 0-9.8A5.5 5.5 0 0 0 16 1v.2-.2h-.5a139.4 139.4 0 0 0-9.8 0c-.7.1-1.5.4-2.1.7Zm0 0v.1Zm2.2.8a5.4 5.4 0 0 1 .4 0 156.2 156.2 0 0 1 4.8 0h5.4a4.1 4.1 0 0 1 3 3h.2-.2l.1.4V16.5a4.1 4.1 0 0 1-3 3v.2-.2l-.4.1H5.5a4.1 4.1 0 0 1-3-3l-.1-.4V5.5A4.1 4.1 0 0 1 6 2.4Zm0 0v-.2.2ZM17 3.5c.6.2 1.1.8 1.2 1.5.2 1.2-1 2.2-2.1 2-.7-.3-1.1-.7-1.3-1.4h.1c-.2-1 .4-1.8 1.4-2h.7Zm0 0a2 2 0 0 0-.7 0h.7Zm-.3 2h-.3a.3.3 0 0 1-.1-.5H16.7c.2 0 .2.3 0 .4Zm-6.6 0c-2.2.3-4 2-4.6 4.1-.5 2 0 4 1.5 5.3a5.5 5.5 0 0 0 7.8 0 5.5 5.5 0 0 0 0-7.8 5.5 5.5 0 0 0-4.7-1.6ZM8.1 8 8 8a4 4 0 0 1 6 0 4.1 4.1 0 0 1 0 6 4.1 4.1 0 0 1-6 0 4.1 4.1 0 0 1 0-6Z"
-                    fill="currentColor" stroke="currentColor" stroke-width=".3"/>
+                    fill="currentColor"
+                    stroke="currentColor"
+                    stroke-width=".3"
+                  />
                 </svg>
               </div>
             </a>
-            <a href="#" class="contacts__social-icon contacts__social-icon--tg" target="_blank">
+            <a
+              href="#"
+              class="contacts__social-icon contacts__social-icon--tg"
+              target="_blank"
+            >
               <div class="contacts__social-icon-wrap">
-                <svg width="24" height="19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        d="M22.8 0 .7 8c-.8.3-1 .8-.4 1.3.3.2.5.3 3.2 1.1l2.6.9 6.4-3.7L20 3.2c.5 0 .6.1.3.5a524.2 524.2 0 0 1-10.9 9c0 .1 8.8 6.2 9 6.2.7.2 1.5 0 1.8-.6A624 624 0 0 0 24 .5c0-.4-.5-.6-1.2-.5Z"
-                        fill="currentColor"/>
+                <svg
+                  width="24"
+                  height="19"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M22.8 0 .7 8c-.8.3-1 .8-.4 1.3.3.2.5.3 3.2 1.1l2.6.9 6.4-3.7L20 3.2c.5 0 .6.1.3.5a524.2 524.2 0 0 1-10.9 9c0 .1 8.8 6.2 9 6.2.7.2 1.5 0 1.8-.6A624 624 0 0 0 24 .5c0-.4-.5-.6-1.2-.5Z"
+                    fill="currentColor"
+                  />
                 </svg>
               </div>
             </a>
-            <a href="#" class="contacts__social-icon contacts__social-icon--whatsapp" target="_blank">
+            <a
+              href="#"
+              class="contacts__social-icon contacts__social-icon--whatsapp"
+              target="_blank"
+            >
               <div class="contacts__social-icon-wrap">
-                <svg width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd" clip-rule="evenodd"
-                        d="M9.8.1c-7.6 1-12 8.8-8.6 15.6.4.8.4.3-.5 3.5A71 71 0 0 0 0 22a79 79 0 0 0 5.9-1.4c3.5 2.3 9.6 1.3 13-2C26 11.3 19.9-1.3 9.8 0Zm1.9 1.8a9 9 0 0 1 5.8 15.3 9 9 0 0 1-11.3 1.4l-.1-.1-1.7.4-1.7.4.4-1.7.5-1.5-.3-.6A9 9 0 0 1 11.7 2Zm-4.8 4c-1 .3-1.7 2.2-1.3 3.5a12 12 0 0 0 5.2 5.8c2.5 1.2 4 1.2 5.3 0 .7-.7.7-2 0-2l-1-.4c-1.3-.7-1.3-.7-1.8 0-.8 1-.8 1-1.6.6a7.3 7.3 0 0 1-3.2-2.9c-.3-.4-.3-.4.2-1l.5-.8-1-2.6c-.2-.3-.9-.4-1.3-.2Z"
-                        fill="currentColor"/>
+                <svg
+                  width="22"
+                  height="22"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M9.8.1c-7.6 1-12 8.8-8.6 15.6.4.8.4.3-.5 3.5A71 71 0 0 0 0 22a79 79 0 0 0 5.9-1.4c3.5 2.3 9.6 1.3 13-2C26 11.3 19.9-1.3 9.8 0Zm1.9 1.8a9 9 0 0 1 5.8 15.3 9 9 0 0 1-11.3 1.4l-.1-.1-1.7.4-1.7.4.4-1.7.5-1.5-.3-.6A9 9 0 0 1 11.7 2Zm-4.8 4c-1 .3-1.7 2.2-1.3 3.5a12 12 0 0 0 5.2 5.8c2.5 1.2 4 1.2 5.3 0 .7-.7.7-2 0-2l-1-.4c-1.3-.7-1.3-.7-1.8 0-.8 1-.8 1-1.6.6a7.3 7.3 0 0 1-3.2-2.9c-.3-.4-.3-.4.2-1l.5-.8-1-2.6c-.2-.3-.9-.4-1.3-.2Z"
+                    fill="currentColor"
+                  />
                 </svg>
               </div>
             </a>
@@ -87,10 +147,18 @@
 
         <!-- START contacts__right -->
         <div class="contacts__right">
-          <div class="contacts__person-slider swiper" v-swiper:mySwiper="swiperOption" v-if="!isDesktop">
+          <div
+            class="contacts__person-slider swiper"
+            v-swiper:mySwiper="swiperOption"
+            v-if="!isDesktop"
+          >
             <div class="swiper-wrapper">
               <!-- START contacts__person-slide -->
-              <div class="contacts__person-slide swiper-slide" v-for="(item, index) in staff" :key="index">
+              <div
+                class="contacts__person-slide swiper-slide"
+                v-for="(item, index) in staff"
+                :key="index"
+              >
                 <div class="contact-card">
                   <div class="contact-card__img">
                     <img
@@ -108,7 +176,7 @@
                     <div class="contact-card__name">{{ item.person }}</div>
                   </div>
                   <div class="contact-card__job">
-                    <svgicon :name="item.icon"/>
+                    <svgicon :name="item.icon" />
                     <div>{{ item.department }}</div>
                   </div>
                   <div class="contact-card__phone-add">({{ item.phone }})</div>
@@ -121,7 +189,11 @@
           <div class="contacts__person-slider swiper" v-else>
             <div class="swiper-wrapper">
               <!-- START contacts__person-slide -->
-              <div class="contacts__person-slide swiper-slide" v-for="(item, index) in staff" :key="index">
+              <div
+                class="contacts__person-slide swiper-slide"
+                v-for="(item, index) in staff"
+                :key="index"
+              >
                 <div class="contact-card">
                   <div class="contact-card__img">
                     <img
@@ -139,7 +211,7 @@
                     <div class="contact-card__name">{{ item.person }}</div>
                   </div>
                   <div class="contact-card__job">
-                    <svgicon :name="item.icon"/>
+                    <svgicon :name="item.icon" />
                     <div>{{ item.department }}</div>
                   </div>
                   <div class="contact-card__phone-add">({{ item.phone }})</div>
@@ -152,47 +224,16 @@
         <!-- END contacts__right -->
 
         <!-- START contacts-map -->
-        <div class="contacts-map">
-          <div class="contacts-map__map" id="contact-map"></div>
-          <div class="contacts-map__bottom">
-            <div class="contacts-map__route-title">
-              <img src="~/assets/img/route-icon.svg" alt="Маршрут">
-              <span>Маршрут</span>
-            </div>
-            <div class="contacts-map__route-links">
-              <a href="https://www.google.com/maps/dir//55.386574,36.728607" target="_blank"
-                 class="contacts-map__route-link contacts-map__route-link--google js-route-google">
-                <div class="contacts-map__route-link-icon"><img src="~/assets/img/google-colored.svg" alt="Google maps">
-                </div>
-                <span class="contacts-map__route-link-title">Google maps</span>
-              </a>
-              <a href="https://yandex.ru/maps/?mode=routes&rtext=~55.386574,36.728607&rtt=auto" target="_blank"
-                 class="contacts-map__route-link contacts-map__route-link--google js-route-yandex">
-                <div class="contacts-map__route-link-icon"><img src="~/assets/img/yandex-maps-colored.svg"
-                                                                alt="Яндекс карты">
-                </div>
-                <span class="contacts-map__route-link-title">Яндекс карты</span>
-              </a>
-              <a
-                href="https%3A%2F%2F2gis.ru%2Fdirections%2Fpoints%2F%7C36.728607%2C55.386574%3Fm%3D36.728607%2C55.386574"
-                target="_blank"
-                class="contacts-map__route-link contacts-map__route-link--2gis js-route-2gis">
-                <div class="contacts-map__route-link-icon"><img src="~/assets/img/2gis-colored.svg" alt="2 gis"></div>
-                <span class="contacts-map__route-link-title">2 gis</span>
-              </a>
-            </div>
-          </div>
-        </div>
+        <Map />
         <!-- END contacts-map -->
       </div>
     </div>
-
   </section>
   <!-- END contacts -->
 </template>
 
 <script>
-import {directive} from "vue-awesome-swiper";
+import { directive } from "vue-awesome-swiper";
 
 export default {
   name: "ContactsSection",
@@ -208,35 +249,34 @@ export default {
         breakpoints: {
           600: {
             slidesPerView: 3,
-          }
-        }
-      }
-    }
+          },
+        },
+      },
+    };
   },
   computed: {
     isDesktop() {
-      return this.$mq === 'xl' || this.$mq === 'xl2';
-    }
+      return this.$mq === "xl" || this.$mq === "xl2";
+    },
   },
   props: {
     directives: {
       swiper: directive,
     },
     staff: Array,
-    default: () => []
-  }
-}
+    default: () => [],
+  },
+};
 </script>
 
 <style lang="scss">
-
 /* start contacts */
 .contacts {
   position: relative;
   margin-bottom: 350px;
 
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     top: 0;
@@ -302,14 +342,16 @@ export default {
   padding-left: 28px;
   padding-right: 28px;
 
-  &:hover, &.active {
+  &:hover,
+  &.active {
     background-color: white;
     border-color: white;
     color: $primary;
   }
 }
 
-.contacts__phone, .contacts__email {
+.contacts__phone,
+.contacts__email {
   color: white;
   display: block;
   @include tr((opacity));
@@ -398,7 +440,6 @@ export default {
   margin-bottom: 8px;
 }
 
-
 .contact-card__img img {
   width: 100%;
 }
@@ -406,7 +447,7 @@ export default {
 .contact-card__job {
   display: flex;
   align-items: center;
-  color: #8E95A7;
+  color: #8e95a7;
 
   > svg {
     margin-right: 10px;
@@ -433,13 +474,17 @@ export default {
   margin-top: 50px;
 
   &:after {
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     bottom: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 76.58%, #FFFFFF 100%);
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0) 76.58%,
+      #ffffff 100%
+    );
     pointer-events: none;
   }
 }
@@ -548,7 +593,7 @@ export default {
   overflow: visible;
 }
 
-@media screen and (min-width: map-get($grid-breakpoints, 'lg')) {
+@media screen and (min-width: map-get($grid-breakpoints, "lg")) {
   .contacts__person-slider .swiper-wrapper {
     flex-wrap: wrap;
   }
@@ -557,7 +602,7 @@ export default {
   }
 }
 
-@include down('xl') {
+@include down("xl") {
   .contacts__title {
     font-size: 84px;
   }
@@ -573,12 +618,13 @@ export default {
   .contacts__phone {
     font-size: 36px;
   }
-  .contacts__email, .contacts__address {
+  .contacts__email,
+  .contacts__address {
     font-size: 24px;
   }
 }
 
-@include down('lg') {
+@include down("lg") {
   .contacts__title {
     font-size: 48px;
   }
@@ -662,7 +708,7 @@ export default {
     display: block;
 
     &:after {
-      content: 'Построить маршрут:';
+      content: "Построить маршрут:";
       font-size: 16px;
       font-weight: 700;
       display: block;
@@ -678,7 +724,6 @@ export default {
     }
   }
   .contacts-map__bottom {
-
     &:hover {
       .contacts-map__route-title {
         opacity: 1;
@@ -708,7 +753,7 @@ export default {
   }
 }
 
-@include down('md') {
+@include down("md") {
   .contacts__title {
     margin-bottom: 28px;
   }
@@ -733,7 +778,7 @@ export default {
   }
 }
 
-@include down('sm') {
+@include down("sm") {
   .contacts__right {
     padding-left: 24px;
     padding-right: 60px;
@@ -741,16 +786,18 @@ export default {
   .contacts__phone {
     font-size: 32px;
   }
-  .contacts__email, .contacts__address {
+  .contacts__email,
+  .contacts__address {
     font-size: 24px;
   }
 }
 
-@include down('xs') {
+@include down("xs") {
   .contacts__phone {
     font-size: 26px;
   }
-  .contacts__email, .contacts__address {
+  .contacts__email,
+  .contacts__address {
     font-size: 18px;
   }
 }

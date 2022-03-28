@@ -18,7 +18,7 @@
       </div>
       <SolutionMobile :items="concept" />
     </template>
-    <SliderTeamSlider/>
+    <SliderTeamSlider />
     <News :width="width" :items="news" />
     <Feedback />
     <Footer />
@@ -49,7 +49,4 @@ export default {
 };
 </script>
 <style lang="scss">
-.company {
-  // background: #f2f3f6;
-}
 </style>

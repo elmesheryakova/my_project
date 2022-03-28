@@ -4,13 +4,28 @@ export const state = () => ({
       title: "Решения",
       link: { name: "solutions" },
       icon: true,
-
+      submenu: [
+        {
+          title: "Пиво",
+          img: '',
+          id: 1,
+          link: { name: 'solutions-id', params: { id: 1 } },
+        },
+      ]
     },
     {
       title: "Продукция",
       link: { name: "products" },
       icon: true,
-
+      submenu: [
+        {
+          title: "Кеги",
+          img: '',
+          id: 1,
+          slug: 'kegs',
+          link: { name: 'products-slug', params: { slug: 'kegs' } },
+        },
+      ]
     },
     {
       title: "Партнерам",
@@ -54,7 +69,14 @@ export const state = () => ({
       title: "Концепция",
       link: { name: 'concept' },
       icon: true,
-
+      submenu: [
+        {
+          title: "Качество",
+          img: '',
+          id: 1,
+          link: { name: 'concept-id', params: { id: 1 } },
+        },
+      ]
     },
     {
       title: "Компания",
