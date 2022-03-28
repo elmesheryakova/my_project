@@ -169,7 +169,6 @@ export default {
         pin: teamSection,
         pinSpacing: false,
         onEnter: function (data) {
-          console.log('onenter');
           var normalSection = data.pin.closest('.js-section-normal-scroll');
           normalSection.classList.remove('animation-finished');
           if (self.mySwiper) {
@@ -184,11 +183,10 @@ export default {
           self.$gsap.set(data.pin, {position: 'relative', top: 0, left: 0, width: '100%'});
         },
         onLeave: function (data) {
-          console.log('onLeave');
           var normalSection = data.pin.closest('.js-section-normal-scroll');
           setTimeout(() => {
             normalSection.classList.add('animation-finished');
-            window.scrollTo({top: normalSection.offsetTop + 100});
+            window.scrollTo({top: window.scrollY + 100});
           }, 100);
         }
       });
@@ -196,12 +194,9 @@ export default {
   },
   methods: {
     onSliderInit(swiper) {
-      console.log('onSliderInit');
-      console.log(swiper);
       this.sliderSpeed = 20000;
       var self = this;
       if (self.isDesktop) {
-        console.log(self.isDesktop);
         this.$nextTick(() => {
           swiper.wrapperEl.classList.add('ease-linear');
           self.runInfiniteSlides(swiper);
@@ -286,7 +281,6 @@ export default {
       this.hoveredSlide = false;
     },
     onInfiniteSlideRepeat(swiper) {
-      console.log('onInfiniteSlideRepeat');
       var self = this;
       self.mySwiper.slideTo(0, 0);
       setTimeout(function () {
@@ -294,10 +288,8 @@ export default {
       }, 0);
     },
     runInfiniteSlides(swiper) {
-      console.log('run infiniteslides!');
       var self = this;
       var speed = this.mySwiper.activeIndex !== 0 ? 12000 : this.sliderSpeed;
-      console.log(this.mySwiper.slides.length);
       this.mySwiper.slideTo(this.mySwiper.slides.length, speed, true);
       this.mySwiper.once('transitionEnd', self.onInfiniteSlideRepeat);
     },

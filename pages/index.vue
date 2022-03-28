@@ -254,11 +254,6 @@ export default {
       ]
     };
   },
-  watch: {
-    activeBottleType() {
-      console.log('changed!');
-    },
-  },
   methods: {
     updateWidth() {
       this.width = window.innerWidth;
@@ -420,7 +415,6 @@ export default {
         },
         afterLoad: function (anchorLink, section) {
           if (section.item && section.item.classList.contains('js-section-normal-scroll')) {
-            console.log('normal section started!');
             self.destroyFullpagePromo();
             self.activeNormalSection = section.item;
             if (!self.scrollEventRegistered) {
@@ -502,8 +496,6 @@ export default {
         ease: "ease-in-out",
       }, '0.320');
 
-      console.log(this.activeBottleType);
-      console.log(canvasContainer);
       if (this.activeBottleType === 'water') {
         this.bottleTimeline.to(canvasContainer, {
           x: '-10%',
