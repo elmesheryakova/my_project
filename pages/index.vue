@@ -396,7 +396,7 @@ export default {
             var offsetY = direction === 'up' ? self.activeNormalSection.clientHeight - window.innerHeight : 0;
 
             self.$gsap.to(window, {
-              duration: 1.3,
+              duration: 1,
               ease: "power2.inOut",
               scrollTo: {
                 y: self.activeNormalSection,
@@ -448,7 +448,7 @@ export default {
         newWidth = newHeight * wrh;
       }
 
-      var frameCount = bottleType === 'beer' ? 73 : 88;
+      var frameCount = bottleType === 'beer' ? 73 : 68;
 
       var images = [];
       var bottle = {
@@ -714,7 +714,7 @@ export default {
           }
 
           self.$gsap.to(window, {
-            duration: 1.3, ease: "power2.inOut", scrollTo: prevSection, onComplete: function () {
+            duration: 1, ease: "power2.inOut", scrollTo: prevSection, onComplete: function () {
               prevSection.classList.add('active');
               self.activeNormalSection.classList.remove('active');
               self.initFullpagePromo();
