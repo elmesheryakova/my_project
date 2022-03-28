@@ -4,7 +4,7 @@
       <div class="promo__main">
         <slot name="main"></slot>
       </div>
-      <slot name="bottom"></slot>
+      <slot name="bottom" v-if="showBottom"></slot>
     </div>
   </div>
 </template>
@@ -14,9 +14,8 @@ import PromoVideo from "~/components/promo/PromoVideo";
 export default {
   components: {PromoVideo},
 
-  data() {
-    return {
-    };
+  props: {
+    showBottom: Boolean,
   },
 };
 </script>

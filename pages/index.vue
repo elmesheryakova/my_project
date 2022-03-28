@@ -2,9 +2,9 @@
   <div>
     <Header :view="'frontpage'"/>
     <div id="fullpage-promo" ref="fullpagePromoElem">
-      <Promo>
+      <Promo :showBottom="showPromoBottom">
         <template v-slot:main>
-          <PromoVideo/>
+          <PromoVideo @play-click="onPromoVideoPlayClick"/>
         </template>
         <template v-slot:bottom>
           <ChooseItem @click="onChooseItemClick"/>
@@ -14,14 +14,16 @@
       <PromoSlide v-if="activeBottleType === 'beer'" v-for="(item, index) in beerSlides" :key="index + 'beerSlides'"
                   :bottleType="'beer'" :desc="item.desc"
                   :list="item.list" :position="item.position" :index="index" :mobileImgSrc="item.mobileImgSrc"
-                  :titleSmall="item.titleSmall" :title="item.title" :titleBig="item.titleBig" :buttonTitle="item.buttonTitle"
+                  :titleSmall="item.titleSmall" :title="item.title" :titleBig="item.titleBig"
+                  :buttonTitle="item.buttonTitle"
                   :buttonHref="item.buttonHref" @promo-trigger-click="onPromoTriggerClick" :isLast="item.isLast"
                   @move-down-click="moveSectionDown" ref="beerSections"/>
 
       <PromoSlide v-if="activeBottleType === 'water'" v-for="(item, index) in waterSlides" :key="index + 'waterSlides'"
                   :bottleType="'water'" :desc="item.desc"
                   :list="item.list" :position="item.position" :index="index" :mobileImgSrc="item.mobileImgSrc"
-                  :titleSmall="item.titleSmall" :title="item.title" :titleBig="item.titleBig" :buttonTitle="item.buttonTitle"
+                  :titleSmall="item.titleSmall" :title="item.title" :titleBig="item.titleBig"
+                  :buttonTitle="item.buttonTitle"
                   :buttonHref="item.buttonHref" @promo-trigger-click="onPromoTriggerClick" :isLast="item.isLast"
                   @move-down-click="moveSectionDown" ref="waterSections"/>
 
@@ -81,6 +83,7 @@ export default {
   data() {
     return {
       activeBottleType: 'water',
+      showPromoBottom: true,
       width: 0,
       activeSectionIndex: 0,
       beerSlides: [{
@@ -278,6 +281,9 @@ export default {
         });
       }
     },
+    onPromoVideoPlayClick(isToggled) {
+      this.showPromoBottom = !isToggled;
+    },
     onPromoTriggerClick() {
       var self = this;
       var newBottleType = this.activeBottleType === 'beer' ? 'water' : 'beer';
@@ -330,7 +336,7 @@ export default {
         scrollBar: true,
         fitToSection: false,
         verticalCentered: false,
-        scrollingSpeed: 1300,
+        scrollingSpeed: 1000,
 
         onLeave: function (section, next, direction) {
           // @TODO: optimize animations
@@ -355,7 +361,7 @@ export default {
             tl.fromTo(next.item.querySelector('.anim-bottle-canvas'), {
               alpha: 0,
               x: 30,
-            }, {alpha: 1, x: 0, delay: 0.9, stagger: 0.1});
+            }, {alpha: 1, x: 0, delay: 0.8, stagger: 0.1});
 
             tl.fromTo(next.item.querySelector('.promo-slide-trigger'), {
               alpha: 0,
@@ -371,14 +377,14 @@ export default {
               tl.fromTo(button, {
                 alpha: 0,
                 x: 30,
-              }, {alpha: 1, x: 0}, '0.7');
+              }, {alpha: 1, x: 0}, '0.8');
             }
           }
 
           if (goDownButton) {
             tl.fromTo(goDownButton, {
               alpha: 0,
-            }, {alpha: 1}, '1');
+            }, {alpha: 1}, '1.2');
           }
 
           var doesNotContainNormalClass = !next.item.classList.contains('js-section-normal-scroll')
@@ -396,7 +402,7 @@ export default {
             var offsetY = direction === 'up' ? self.activeNormalSection.clientHeight - window.innerHeight : 0;
 
             self.$gsap.to(window, {
-              duration: 1,
+              duration: 0.7,
               ease: "power2.inOut",
               scrollTo: {
                 y: self.activeNormalSection,
@@ -593,7 +599,7 @@ export default {
     initPromoConceptsContentTimeline() {
       var promoConceptsContentTimeline = this.$gsap.timeline();
       var promoConceptsSections = this.$refs.promoConcepts;
-      var end ='+=' + (promoConceptsSections.length - 1).toString() + '00%';
+      var end = '+=' + (promoConceptsSections.length - 1).toString() + '00%';
       promoConceptsContentTimeline.to(promoConceptsSections[0].$el, {
         scrollTrigger: {
           trigger: promoConceptsSections[0].$el.querySelector('.promo-concepts__inner'),

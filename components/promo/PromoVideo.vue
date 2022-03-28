@@ -7,7 +7,7 @@
              @click="toggled ? toggled = false : true"
              class="promo__video js-promo-video" :src="videoSrc" data-autoplay></video>
       <a v-if="!toggled" href="#" role="button" class="promo__play-video-button js-promo-play-video"
-         @click.prevent="toggled = !toggled">
+         @click.prevent="toggled = !toggled; $emit('play-click', toggled);">
         <img :src="require('@/assets/img/play.svg')" alt="Воспроизвести видео">
       </a>
     </div>
