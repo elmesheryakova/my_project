@@ -1,6 +1,9 @@
 <template>
   <div :style="`background: #F2F3F6`" @wheel="wheel">
-    <div class="slider-solution" :class="{'slider-solution--frontpage': view === 'frontpage'}">
+    <div
+      class="slider-solution"
+      :class="{ 'slider-solution--frontpage': view === 'frontpage' }"
+    >
       <div class="container">
         <h2 class="block__title"><span>Решения</span> для других напитков</h2>
       </div>
@@ -25,17 +28,17 @@
                     </div>
                   </div>
                   <div class="slider-solution__icon">
-                    <svgicon :name="item.svg" class="svg-color"/>
-                    <svgicon :name="item.svgHover" class="svg-white"/>
+                    <svgicon :name="item.svgHover" class="svg-color" />
+                    <svgicon :name="item.svg" class="svg-white" />
                   </div>
                 </div>
               </div>
             </div>
             <div class="swiper-button-prev" slot="button-prev">
-              <svgicon name="arrow-slider"/>
+              <svgicon name="arrow-slider" />
             </div>
             <div class="swiper-button-next" slot="button-next">
-              <svgicon name="arrow-slider"/>
+              <svgicon name="arrow-slider" />
             </div>
           </div>
         </div>
@@ -52,7 +55,7 @@
 
 
 <script>
-import {directive} from "vue-awesome-swiper";
+import { directive } from "vue-awesome-swiper";
 
 export default {
   props: {
@@ -132,8 +135,7 @@ export default {
       // }
     },
   },
-  created() {
-  },
+  created() {},
   mounted() {
     this.swiper.slideTo();
     // window.addEventListener("scroll", this.offsetY);
@@ -197,8 +199,8 @@ export default {
           -90deg,
           #f2f3f7 0%,
           rgba(242, 243, 247, 0) 100%
-      ),
-      linear-gradient(-90deg, #f2f3f7 0%, rgba(242, 243, 247, 0) 100%);
+        ),
+        linear-gradient(-90deg, #f2f3f7 0%, rgba(242, 243, 247, 0) 100%);
 
       z-index: -1;
       @media (max-width: 1024px) {
@@ -233,8 +235,6 @@ export default {
   }
 
   &__img {
-    width: 250px;
-    height: 220px;
     padding: 20px;
 
     img {
@@ -303,6 +303,5 @@ export default {
     padding-bottom: 160px;
     height: auto;
   }
-
 }
 </style>

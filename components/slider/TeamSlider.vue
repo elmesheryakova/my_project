@@ -1,28 +1,24 @@
 <template>
   <!-- START team -->
   <section class="team">
-    <div class="container">
+    <div class="container" v-if="$route.name === 'index'">
       <h2 class="team__title">Команда</h2>
     </div>
+    <div class="container" v-else>
+      <h2 class="news__title">Команда <span> PET-Expert</span></h2>
+    </div>
+
     <div class="team__slider swiper" v-swiper:mySwiper="swiperOption">
       <div class="swiper-wrapper">
         <!-- START team__slide -->
         <div class="swiper-slide team__slide">
-          <div class="team__img"><img src="~assets/img/team1.png" width="412" height="618" alt="Павлова Мария Игоревна">
-          </div>
-          <div class="team__slide-content">
-            <div class="team__slide-content-wrap">
-
-              <div class="team__slide-name">Павлова Мария Игоревна</div>
-              <div class="team__slide-job">Менеджер по продажам</div>
-
-            </div>
-          </div>
-        </div>
-        <!-- END team__slide -->
-        <!-- START team__slide -->
-        <div class="swiper-slide team__slide">
-          <div class="team__img"><img src="~assets/img/team2.png" width="412" height="618" alt="Павлова Мария Игоревна">
+          <div class="team__img">
+            <img
+              src="~assets/img/team1.png"
+              width="412"
+              height="618"
+              alt="Павлова Мария Игоревна"
+            />
           </div>
           <div class="team__slide-content">
             <div class="team__slide-content-wrap">
@@ -34,7 +30,13 @@
         <!-- END team__slide -->
         <!-- START team__slide -->
         <div class="swiper-slide team__slide">
-          <div class="team__img"><img src="~assets/img/team3.png" width="412" height="618" alt="Павлова Мария Игоревна">
+          <div class="team__img">
+            <img
+              src="~assets/img/team2.png"
+              width="412"
+              height="618"
+              alt="Павлова Мария Игоревна"
+            />
           </div>
           <div class="team__slide-content">
             <div class="team__slide-content-wrap">
@@ -46,7 +48,13 @@
         <!-- END team__slide -->
         <!-- START team__slide -->
         <div class="swiper-slide team__slide">
-          <div class="team__img"><img src="~assets/img/team4.png" width="412" height="618" alt="Павлова Мария Игоревна">
+          <div class="team__img">
+            <img
+              src="~assets/img/team3.png"
+              width="412"
+              height="618"
+              alt="Павлова Мария Игоревна"
+            />
           </div>
           <div class="team__slide-content">
             <div class="team__slide-content-wrap">
@@ -58,7 +66,13 @@
         <!-- END team__slide -->
         <!-- START team__slide -->
         <div class="swiper-slide team__slide">
-          <div class="team__img"><img src="~assets/img/team5.png" width="412" height="618" alt="Павлова Мария Игоревна">
+          <div class="team__img">
+            <img
+              src="~assets/img/team4.png"
+              width="412"
+              height="618"
+              alt="Павлова Мария Игоревна"
+            />
           </div>
           <div class="team__slide-content">
             <div class="team__slide-content-wrap">
@@ -70,7 +84,31 @@
         <!-- END team__slide -->
         <!-- START team__slide -->
         <div class="swiper-slide team__slide">
-          <div class="team__img"><img src="~assets/img/team6.png" width="412" height="618" alt="Павлова Мария Игоревна">
+          <div class="team__img">
+            <img
+              src="~assets/img/team5.png"
+              width="412"
+              height="618"
+              alt="Павлова Мария Игоревна"
+            />
+          </div>
+          <div class="team__slide-content">
+            <div class="team__slide-content-wrap">
+              <div class="team__slide-name">Павлова Мария Игоревна</div>
+              <div class="team__slide-job">Менеджер по продажам</div>
+            </div>
+          </div>
+        </div>
+        <!-- END team__slide -->
+        <!-- START team__slide -->
+        <div class="swiper-slide team__slide">
+          <div class="team__img">
+            <img
+              src="~assets/img/team6.png"
+              width="412"
+              height="618"
+              alt="Павлова Мария Игоревна"
+            />
           </div>
           <div class="team__slide-content">
             <div class="team__slide-content-wrap">
@@ -82,13 +120,12 @@
         <!-- END team__slide -->
       </div>
     </div>
-
   </section>
   <!-- END team -->
 </template>
 
 <script>
-import {directive} from "vue-awesome-swiper";
+import { directive } from "vue-awesome-swiper";
 
 export default {
   name: "TeamSlider",
@@ -116,7 +153,7 @@ export default {
             slidesPerView: 3,
           },
           600: {
-            slidesPerView: 5
+            slidesPerView: 5,
           },
           992: {
             centeredSlides: false,
@@ -130,16 +167,16 @@ export default {
             watchSlidesProgress: true,
           },
         },
-      }
-    }
+      },
+    };
   },
   computed: {
     isDesktop() {
-      return this.$mq === 'xl' || this.$mq === 'xl2';
+      return this.$mq === "xl" || this.$mq === "xl2";
     },
     isTablet() {
-      return this.$mq === 'lg' || this.$mq === 'md';
-    }
+      return this.$mq === "lg" || this.$mq === "md";
+    },
   },
   props: {
     pinSection: Boolean,
@@ -158,37 +195,55 @@ export default {
       var promoConceptsSections = this.$parent.$refs.promoConcepts;
 
       // Получаем последнюю концепцию
-      var promoConceptsLastSection = promoConceptsSections[promoConceptsSections.length - 1].$el;
+      var promoConceptsLastSection =
+        promoConceptsSections[promoConceptsSections.length - 1].$el;
       var sectionHeight = promoConceptsLastSection.clientHeight;
-      var afterWaveHeight = document.querySelector('.promo-concepts-after-wave').clientHeight;
+      var afterWaveHeight = document.querySelector(
+        ".promo-concepts-after-wave"
+      ).clientHeight;
 
       this.$ScrollTrigger.create({
         trigger: promoConceptsLastSection,
-        start: 'top top',
+        start: "top top",
         end: `${sectionHeight + afterWaveHeight - 2}px`,
         pin: teamSection,
         pinSpacing: false,
         onEnter: function (data) {
-          var normalSection = data.pin.closest('.js-section-normal-scroll');
-          normalSection.classList.remove('animation-finished');
+          var normalSection = data.pin.closest(".js-section-normal-scroll");
+          normalSection.classList.remove("animation-finished");
           if (self.mySwiper) {
             self.mySwiper.slideTo(0, 0);
           }
-          self.$gsap.set(data.pin, {position: 'fixed', top: 0, left: 0, width: '100%'});
+          self.$gsap.set(data.pin, {
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100%",
+          });
         },
         onEnterBack: function (data) {
-          self.$gsap.set(data.pin, {position: 'fixed', top: 100, left: 0, width: '100%'});
+          self.$gsap.set(data.pin, {
+            position: "fixed",
+            top: 100,
+            left: 0,
+            width: "100%",
+          });
         },
         onLeaveBack: function (data) {
-          self.$gsap.set(data.pin, {position: 'relative', top: 0, left: 0, width: '100%'});
+          self.$gsap.set(data.pin, {
+            position: "relative",
+            top: 0,
+            left: 0,
+            width: "100%",
+          });
         },
         onLeave: function (data) {
-          var normalSection = data.pin.closest('.js-section-normal-scroll');
+          var normalSection = data.pin.closest(".js-section-normal-scroll");
           setTimeout(() => {
-            normalSection.classList.add('animation-finished');
-            window.scrollTo({top: window.scrollY + 100});
+            normalSection.classList.add("animation-finished");
+            window.scrollTo({ top: window.scrollY + 100 });
           }, 100);
-        }
+        },
       });
     }
   },
@@ -198,18 +253,18 @@ export default {
       var self = this;
       if (self.isDesktop) {
         this.$nextTick(() => {
-          swiper.wrapperEl.classList.add('ease-linear');
+          swiper.wrapperEl.classList.add("ease-linear");
           self.runInfiniteSlides(swiper);
-          swiper.el.addEventListener('mousemove', self.onTeamSliderMove);
-          swiper.el.addEventListener('mouseenter', self.onTeamSliderEnter);
-          swiper.el.addEventListener('mouseleave', self.onTeamSliderLeave);
+          swiper.el.addEventListener("mousemove", self.onTeamSliderMove);
+          swiper.el.addEventListener("mouseenter", self.onTeamSliderEnter);
+          swiper.el.addEventListener("mouseleave", self.onTeamSliderLeave);
         }, 500);
       }
     },
     onTeamSliderEnter() {
       var self = this;
       if (this.mySwiper) {
-        this.mySwiper.off('transitionEnd', self.onInfiniteSlideRepeat);
+        this.mySwiper.off("transitionEnd", self.onInfiniteSlideRepeat);
         var translate = this.mySwiper.getTranslate();
         this.mySwiper.setTransition(0);
         this.mySwiper.setTranslate(translate);
@@ -222,7 +277,7 @@ export default {
     onTeamSliderMove(e) {
       var translate = this.mySwiper.getTranslate();
 
-      var newHoveredSlide = e.target.closest('.swiper-slide');
+      var newHoveredSlide = e.target.closest(".swiper-slide");
 
       if (newHoveredSlide && this.hoveredSlide !== newHoveredSlide) {
         this.hoveredSlide = newHoveredSlide;
@@ -234,27 +289,32 @@ export default {
         // Если слайд еще не полностью в экране - игнорим
         if (left + 100 < 0) {
           return;
-        } else if ((left - 100 + this.hoveredSlide.clientWidth) >= window.innerWidth) {
+        } else if (
+          left - 100 + this.hoveredSlide.clientWidth >=
+          window.innerWidth
+        ) {
           return;
         }
 
-        this.mySwiper.off('transitionEnd');
+        this.mySwiper.off("transitionEnd");
 
-        this.mySwiper.wrapperEl.classList.remove('ease-linear');
+        this.mySwiper.wrapperEl.classList.remove("ease-linear");
 
         this.mySwiper.params.speed = 1000;
         this.mySwiper.params.allowTouchMove = true;
 
-        var hoveredSlidesWithDuplicates = this.mySwiper.slides.filter(function (item) {
+        var hoveredSlidesWithDuplicates = this.mySwiper.slides.filter(function (
+          item
+        ) {
           return item.dataset.swiperSlideIndex == hoveredSlideIndex;
         });
 
         this.mySwiper.slides.forEach(function (item) {
-          item.classList.remove('visible');
+          item.classList.remove("visible");
         });
 
         hoveredSlidesWithDuplicates.forEach(function (i) {
-          i.classList.add('visible');
+          i.classList.add("visible");
         });
 
         this.hoveredSlides = hoveredSlidesWithDuplicates;
@@ -266,15 +326,18 @@ export default {
 
       this.mySwiper.updateProgress(translate);
       this.mySwiper.params.speed = this.sliderSpeed;
-      this.mySwiper.wrapperEl.classList.add('ease-linear');
+      this.mySwiper.wrapperEl.classList.add("ease-linear");
 
-      var newSpeed = (this.mySwiper.params.speed * (1 - this.mySwiper.progress)).toFixed(0);
+      var newSpeed = (
+        this.mySwiper.params.speed *
+        (1 - this.mySwiper.progress)
+      ).toFixed(0);
 
       this.mySwiper.translateTo(maxTranslate, parseInt(newSpeed));
-      this.mySwiper.once('transitionEnd', this.onInfiniteSlideRepeat);
+      this.mySwiper.once("transitionEnd", this.onInfiniteSlideRepeat);
       if (this.hoveredSlides && this.hoveredSlides.length > 0) {
         this.hoveredSlides.forEach(function (i) {
-          i.classList.remove('visible');
+          i.classList.remove("visible");
         });
         this.hoveredSlides = [];
       }
@@ -291,14 +354,18 @@ export default {
       var self = this;
       var speed = this.mySwiper.activeIndex !== 0 ? 12000 : this.sliderSpeed;
       this.mySwiper.slideTo(this.mySwiper.slides.length, speed, true);
-      this.mySwiper.once('transitionEnd', self.onInfiniteSlideRepeat);
+      this.mySwiper.once("transitionEnd", self.onInfiniteSlideRepeat);
     },
   },
-}
+};
 </script>
 
 <style lang="scss">
-
+.news__title {
+  span {
+    white-space: nowrap;
+  }
+}
 .team {
   position: relative;
   z-index: 2;
@@ -314,8 +381,8 @@ export default {
   position: relative;
 
   &:after {
-    content: '';
-    background: #F2F3F6;
+    content: "";
+    background: #f2f3f6;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -386,7 +453,8 @@ export default {
   position: relative;
 }
 
-.team__slide.visible .team__slide-name, .team__slide.visible .team__slide-job {
+.team__slide.visible .team__slide-name,
+.team__slide.visible .team__slide-job {
   opacity: 1;
   transform: none;
 }
@@ -417,15 +485,15 @@ export default {
   }
 }
 
-@include down('xl') {
+@include down("xl") {
   .team__title {
     font-size: 80px;
   }
 }
 
-@include down('lg') {
+@include down("lg") {
   .team {
-    padding-top: 70px;
+    padding-top: 40px;
   }
   .team__title {
     font-size: 48px;
@@ -450,7 +518,8 @@ export default {
     font-size: 12px;
   }
   .team__slide.swiper-slide-active {
-    .team__slide-name, .team__slide-job {
+    .team__slide-name,
+    .team__slide-job {
       opacity: 1;
       transform: none;
     }
@@ -469,13 +538,12 @@ export default {
   }
 }
 
-@include down('md') {
+@include down("md") {
   .team__title {
     padding-left: 0;
   }
 }
 
-@include down('sm') {
+@include down("sm") {
 }
-
 </style>

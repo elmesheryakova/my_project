@@ -18,6 +18,7 @@
       </div>
       <SolutionMobile :items="concept" />
     </template>
+    <SliderTeamSlider/>
     <News :width="width" :items="news" />
     <Feedback />
     <Footer />
