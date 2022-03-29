@@ -7,8 +7,10 @@
       :to="item.link"
       :style="`background-image: url('${require(`../../assets/img/${item.img}`)}')`"
     >
-      <h4 class="submenu__item-title">{{ item.title }}</h4>
-      <div class="submenu__item-btn"><svgicon name="arrow-slider" /></div>
+      <div class="submenu__item-wrap">
+        <h4 class="submenu__item-title">{{ item.title }}</h4>
+        <div class="submenu__item-btn"><svgicon name="arrow-slider" /></div>
+      </div>
     </nuxt-link>
   </div>
 </template>
@@ -34,6 +36,19 @@ export default {
   grid-template-columns: repeat(2, 220px);
   gap: 2px;
   z-index: 10;
+  &__item-wrap {
+    background: linear-gradient(
+      180deg,
+      #ffffff 0%,
+      rgba(255, 255, 255, 0.713542) 28.65%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
   &__item {
     cursor: pointer;
     height: 155px;
@@ -41,12 +56,8 @@ export default {
     background-repeat: no-repeat;
     background-size: 0%;
     box-shadow: 0px 1px 3px rgba(189, 187, 187, 0.25);
-    padding: 20px;
-
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+
     &-title {
       font-size: 14px;
       transition: 0.3s ease-out;
