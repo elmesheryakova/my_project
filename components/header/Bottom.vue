@@ -54,6 +54,25 @@ export default {
       justify-content: space-between;
       padding-top: 7px;
       position: relative;
+      &:hover {
+        transition: 0.3s ease-out;
+        .item-menu__icon {
+          path {
+            fill: $primary !important;
+            transition: 0.3s ease-out;
+          }
+        }
+        .item-menu__link {
+          color: $primary;
+          transition: 0.3s ease-out;
+        }
+        .submenu {
+          height: auto;
+          opacity: 1;
+          visibility: visible;
+          transition: 0.3s ease-out;
+        }
+      }
       &__link {
         color: $grey;
         font-size: 15px;
@@ -69,25 +88,6 @@ export default {
         justify-content: center;
         align-items: center;
         cursor: pointer;
-        &:hover {
-          transition: 0.3s ease-out;
-          .item-menu__icon {
-            path {
-              fill: $primary !important;
-              transition: 0.3s ease-out;
-            }
-          }
-          .item-menu__link {
-            color: $primary;
-            transition: 0.3s ease-out;
-          }
-          .submenu {
-            height: auto;
-            opacity: 1;
-            visibility: visible;
-            transition: 0.3s ease-out;
-          }
-        }
       }
       &__icon {
         display: block;

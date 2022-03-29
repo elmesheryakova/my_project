@@ -7,7 +7,7 @@ export const state = () => ({
       submenu: [
         {
           title: "Пиво",
-          img: '',
+          img: 'nav1.png',
           id: 1,
           link: { name: 'solutions-id', params: { id: 1 } },
         },
@@ -20,10 +20,16 @@ export const state = () => ({
       submenu: [
         {
           title: "Кеги",
-          img: '',
+          img: 'nav2.png',
           id: 1,
           slug: 'kegs',
           link: { name: 'products-slug', params: { slug: 'kegs' } },
+        },
+        {
+          title: "Комплектующие",
+          img: 'nav3.png',
+          id: 2,
+          link: { name: "accessories" },
         },
       ]
     },
@@ -35,31 +41,31 @@ export const state = () => ({
         {
           title: "Ценообразование",
           link: { name: 'prices' },
-          img: '',
+          img: 'nav4.png',
           id: 1
         },
         {
           title: "Поставка продукции",
           link: { name: 'shipment' },
-          img: '',
+          img: 'nav5.png',
           id: 2
         },
         {
           title: "Поддержка и сервис",
           link: { name: 'service' },
-          img: '',
+          img: 'nav6.png',
           id: 3
         },
         {
           title: "Вопросы и ответы",
           link: { name: 'questions' },
-          img: '',
+          img: 'nav7.png',
           id: 4
         },
         {
           title: "Документы",
           link: { name: 'docs' },
-          img: '',
+          img: 'nav8.png',
           id: 5
         },
 
@@ -72,7 +78,7 @@ export const state = () => ({
       submenu: [
         {
           title: "Качество",
-          img: '',
+          img: 'nav9.png',
           id: 1,
           link: { name: 'concept-id', params: { id: 1 } },
         },
@@ -86,37 +92,37 @@ export const state = () => ({
         {
           title: "Оборудование",
           link: { name: 'equipment' },
-          img: '',
+          img: 'nav10.png',
           id: 1
         },
         {
           title: "Новости и статьи",
           link: { name: 'news' },
-          img: '',
+          img: 'nav11.png',
           id: 2
         },
         {
           title: "Партнеры и отзывы",
           link: { name: 'reviews' },
-          img: '',
+          img: 'nav12.png',
           id: 3
         },
         {
           title: "Карьера",
           link: { name: 'career' },
-          img: '',
+          img: 'nav13.png',
           id: 4
         },
         {
           title: "Наша команда",
           link: { name: 'team' },
-          img: '',
+          img: 'nav14.png',
           id: 5
         },
         {
           title: "Сертификаты",
           link: { name: 'certificates' },
-          img: '',
+          img: 'nav15.png',
           id: 6
         },
 
