@@ -14,7 +14,7 @@
       <Fullscroll :width="width"> <Footer /> </Fullscroll>
     </full-page>
   </client-only>
-  <div v-else class="partners">
+  <div v-else class="partners-page">
     <Banner :width="width" />
     <Advantages :width="width" :items="partners" />
     <Footer />
@@ -81,7 +81,7 @@ export default {
     display: none;
   }
 }
-.partners {
+.partners-page {
   .advantages__item {
     margin-bottom: 150px;
     @media (max-width: 1300px) {

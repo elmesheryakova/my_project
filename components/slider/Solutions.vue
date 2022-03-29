@@ -8,7 +8,7 @@
       <div class="container">
         <div class="slider-sol">
           <div class="slider-sol__container">
-            <div class="swiper-container">
+            <div class="swiper-container-sol">
               <!-- Additional required wrapper -->
               <div class="swiper-wrapper">
                 <div
@@ -57,7 +57,7 @@ export default {
     };
   },
   mounted() {
-    new Swiper(".swiper-container", {
+    new Swiper(".swiper-container-sol", {
       loop: true,
 
       navigation: {
@@ -104,7 +104,7 @@ export default {
     margin-right: 80px;
   }
 
-  .swiper-container {
+  .swiper-container-sol {
     overflow: hidden;
   }
 
@@ -133,7 +133,7 @@ export default {
     &::before {
       position: absolute;
       content: "";
-      top: -250px;
+      top: -210px;
       right: 0;
       height: 600px;
       width: 300px;
@@ -153,7 +153,7 @@ export default {
       }
     }
     @media (max-width: 1940px) {
-      top: 60%;
+      top: 65%;
     }
   }
 

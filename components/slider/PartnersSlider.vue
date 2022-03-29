@@ -231,6 +231,7 @@ export default {
   data() {
     var self = this;
     return {
+      reviews: [{}],
       swiperOption: {
         loop: true,
         speed: 1000,
