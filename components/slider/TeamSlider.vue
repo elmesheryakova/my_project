@@ -377,7 +377,7 @@ export default {
 }
 
 .team__slider {
-  padding-bottom: 123px;
+  padding-bottom: 123px !important;
   position: relative;
 
   &:after {
