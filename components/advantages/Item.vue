@@ -7,7 +7,10 @@
     }"
   >
     <div class="advantages__item-inner">
-      <div class="advantages__item-info">
+      <div
+        class="advantages__item-info"
+        :class="{ 'advantages__item-info--white': $route.name === 'partners' }"
+      >
         <h3 class="advantages__item-title">{{ item.title }}</h3>
         <p v-if="item.description" class="advantages__item-text">
           {{ item.description }}
@@ -24,7 +27,10 @@
             {{ item }}
           </li>
         </ul>
-        <ProductSpecifications :items="item.specifications" />
+        <ProductSpecifications
+          :items="item.specifications"
+          v-if="item.specifications"
+        />
       </div>
       <nuxt-link
         no-prefetch
@@ -131,7 +137,9 @@ export default {
         border-top: 0px solid transparent;
         border-left: 25px solid #fff;
       }
-
+      &--white {
+        background-color: #fff;
+      }
       @media (max-width: 991px) {
         min-height: 400px;
         padding: 10px 30px;

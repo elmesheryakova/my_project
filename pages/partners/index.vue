@@ -1,18 +1,24 @@
 <template>
   <client-only v-if="width > 1300">
-    <full-page :options="options" ref="fullpage">
-      <Fullscroll :width="width" class="section-top">
-        <Banner />
-        <div class="sections-menu" @click="scrollToSlide">
-          <svgicon name="arrow-blue" />
-        </div>
-      </Fullscroll>
+    <div :style="'background: #f2f3f7;'">
+      <full-page :options="options" ref="fullpage">
+        <Fullscroll :width="width" class="section-top">
+          <Banner />
+          <div class="sections-menu" @click="scrollToSlide">
+            <svgicon name="arrow-blue" />
+          </div>
+        </Fullscroll>
 
-      <Fullscroll :width="width" v-for="(item, index) in partners" :key="index">
-        <div class="container"><AdvantagesItem :item="item" /></div>
-      </Fullscroll>
-      <Fullscroll :width="width"> <Footer /> </Fullscroll>
-    </full-page>
+        <Fullscroll
+          :width="width"
+          v-for="(item, index) in partners"
+          :key="index"
+        >
+          <div class="container"><AdvantagesItem :item="item" /></div>
+        </Fullscroll>
+        <Fullscroll :width="width"> <Footer /> </Fullscroll>
+      </full-page>
+    </div>
   </client-only>
   <div v-else class="partners-page">
     <Banner :width="width" />
