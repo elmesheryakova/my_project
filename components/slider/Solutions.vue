@@ -1,6 +1,9 @@
 <template>
   <div :style="`background: #F2F3F6`">
-    <div class="slider-sol">
+    <div
+      class="slider-sol"
+      :class="{ 'slider-sol--frontpage': $route.name === 'index' }"
+    >
       <div class="container">
         <h2 class="block__title"><span>Решения</span> для других напитков</h2>
       </div>
@@ -250,6 +253,9 @@ export default {
     min-height: 100vh;
     padding-bottom: 160px;
     height: auto;
+    .swiper-button-next {
+      top: 41%;
+    }
   }
 }
 </style>

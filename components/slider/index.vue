@@ -3,38 +3,35 @@
     class="slider"
     :class="{ 'slider--products': $route.name === 'products-slug-id' }"
   >
-    <div
-      v-swiper="$route.name === 'products-slug-id' ? options : swiperOption"
-      ref="swiper"
-    >
-      <div class="swiper-wrapper">
-        <div
-          class="swiper-slide d-flex flex-column"
-          v-for="(item, index) in items"
-          :key="`item-${index}`"
-        >
-          <div class="slider__img">
-            <img :src="require(`@/assets/img/${item.img}`)" alt="img" />
-          </div>
-          <div class="slider__info">
-            <h2 class="slider__info-title">{{ item.title }}</h2>
-            <p class="slider__info-article">{{ item.article }}</p>
-          </div>
+    <div class="swiper-wrapper">
+      <div
+        class="swiper-slide d-flex flex-column"
+        v-for="(item, index) in items"
+        :key="`item-${index}`"
+      >
+        <div class="slider__img">
+          <img :src="require(`@/assets/img/${item.img}`)" alt="img" />
+        </div>
+        <div class="slider__info">
+          <h2 class="slider__info-title">{{ item.title }}</h2>
+          <p class="slider__info-article">{{ item.article }}</p>
         </div>
       </div>
-      <div class="slider-button-next" v-if="$route.name === 'products-slug-id'">
-        <svgicon name="arrow-slider" />
-      </div>
-      <div class="slider-button-prev" v-if="$route.name === 'products-slug-id'">
-        <svgicon name="arrow-slider" />
-      </div>
+    </div>
+    <div class="swiper-button-next">
+      <svgicon name="arrow-slider" />
+    </div>
+    <div class="swiper-button-prev">
+      <svgicon name="arrow-slider" />
     </div>
   </div>
 </template>
-
-
 <script>
-import { directive } from "vue-awesome-swiper";
+import Swiper, { Navigation, Pagination } from "swiper";
+import "swiper/swiper-bundle.css";
+
+Swiper.use([Navigation, Pagination]);
+
 export default {
   props: {
     items: {
@@ -44,79 +41,36 @@ export default {
   },
   data() {
     return {
-      directives: {
-        swiper: directive,
-      },
-
-      activeSlideInd: 0,
-      options: {
-        loop: true,
-        slidesPerView: 3,
-        slidesPerGroup: 3,
-        freeMode: true,
-        spaceBetween: 10,
-        navigation: {
-          nextEl: ".slider-button-next",
-          prevEl: ".slider-button-prev",
-        },
-        breakpoints: {
-          900: {
-            slidesPerView: 4,
-            slidesPerGroup: 4,
-          },
-          1840: {
-            slidesPerView: 5,
-            slidesPerGroup: 5,
-          },
-        },
-      },
-      swiperOption: {
-        speed: 1500,
-        autoplay: {
-          delay: 3000,
-          disableOnInteraction: true,
-        },
-
-        loop: true,
-        slidesPerView: 3,
-        slidesPerGroup: 3,
-        freeMode: true,
-        spaceBetween: 30,
-        // on: {
-        //   init() {
-        //     this.el.addEventListener("mouseenter", () => {
-        //       this.autoplay.stop();
-        //     });
-
-        //     this.el.addEventListener("mouseleave", () => {
-        //       this.autoplay.start();
-        //     });
-        //   },
-        // },
-        breakpoints: {
-          1475: {
-            slidesPerView: 4,
-            slidesPerGroup: 4,
-          },
-          1840: {
-            slidesPerView: 5,
-            slidesPerGroup: 5,
-          },
-        },
-      },
+      solutions: this.$store.state.solutions,
     };
   },
-
-  computed: {
-    swiper() {
-      return this.$refs.swiper.swiper;
-    },
-  },
-
-  methods: {},
-  created() {},
   mounted() {
-    this.swiper.slideTo();
+    new Swiper(".slider", {
+      loop: true,
+
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+
+      slidesPerView: 3,
+      slidesPerGroup: 3,
+      spaceBetween: 10,
+      breakpoints: {
+        900: {
+          slidesPerView: 3,
+          slidesPerGroup: 3,
+        },
+        1540: {
+          slidesPerView: 4,
+          slidesPerGroup: 4,
+        },
+        1840: {
+          slidesPerView: 5,
+          slidesPerGroup: 5,
+        },
+      },
+    });
   },
 };
 </script>
@@ -124,6 +78,21 @@ export default {
 .slider {
   position: relative;
   margin-bottom: 120px;
+  .swiper-button-prev,
+  .swiper-button-next {
+    width: 50px !important;
+    svg {
+      width: 50px;
+    }
+  }
+  .swiper-button-prev:after,
+  .swiper-button-next:after {
+    opacity: 0;
+    width: 0;
+  }
+  .swiper-button-prev {
+    transform: rotate(180deg);
+  }
   &::after {
     position: absolute;
     content: "";
@@ -146,7 +115,7 @@ export default {
       #ffffff 0%,
       rgba(255, 255, 255, 0) 100%
     );
-    z-index: 1;
+    z-index: 2;
   }
   @media (max-width: 1100px) {
     &::after,
@@ -158,9 +127,9 @@ export default {
     display: flex;
     gap: 35px;
   }
-  .swiper-slide {
-    margin-right: 30px;
-  }
+  // .swiper-slide {
+  //   margin-right: 30px;
+  // }
   &__img {
     width: 400px;
     height: 360px;
@@ -201,16 +170,15 @@ export default {
   }
   &--products {
     margin-bottom: 0;
+    overflow: hidden;
+    &::after,
+    &::before {
+      width: 130px;
+    }
     .swiper-wrapper {
       gap: 5px;
     }
-    .swiper-container {
-      overflow: hidden;
-    }
-    &::after,
-    &::before {
-      display: none;
-    }
+
     .slider__img {
       height: 260px;
       img {
@@ -218,15 +186,6 @@ export default {
         height: 260px;
         object-fit: cover;
       }
-      // @media (max-width: 1100px) {
-      //   width: 350px;
-      //   height: 300px;
-      // }
-      // @media (max-width: 940px) {
-      //   width: 300px;
-      //   height: 250px;
-      //   margin-bottom: 5px;
-      // }
     }
     .slider__info {
       &-title {
@@ -248,28 +207,18 @@ export default {
         }
       }
     }
-
-    .slider-button-next,
-    .slider-button-prev {
-      position: absolute;
-
-      cursor: pointer;
+    .swiper-button-next,
+    .swiper-button-prev {
+      top: 150px;
       svg {
-        width: 40px;
-        height: 40px;
-        position: relative;
-        top: 50%;
-        transform: translateY(-50%);
+        width: 35px;
       }
     }
-    .slider-button-next {
-      right: -20px;
-      top: 150px;
+    .swiper-button-next {
+      right: -13px;
     }
-    .slider-button-prev {
-      left: -20px;
-      top: 110px;
-      transform: rotate(180deg);
+    .swiper-button-prev {
+      left: -12px;
     }
   }
 }
