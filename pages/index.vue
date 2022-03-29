@@ -1,31 +1,57 @@
 <template>
   <div>
-    <Header :view="'frontpage'"/>
+    <Header :view="'frontpage'" />
     <div id="fullpage-promo" ref="fullpagePromoElem">
       <Promo>
         <template v-slot:main>
-          <PromoVideo @video-change="onPromoVideoPlayClick"/>
+          <PromoVideo @video-change="onPromoVideoPlayClick" />
         </template>
         <template v-slot:bottom v-if="showPromoBottom">
-          <ChooseItem @click="onChooseItemClick"/>
+          <ChooseItem @click="onChooseItemClick" />
         </template>
       </Promo>
 
-      <PromoSlide v-if="activeBottleType === 'beer'" v-for="(item, index) in beerSlides" :key="index + 'beerSlides'"
-                  :bottleType="'beer'" :desc="item.desc"
-                  :list="item.list" :position="item.position" :index="index" :mobileImgSrc="item.mobileImgSrc"
-                  :titleSmall="item.titleSmall" :title="item.title" :titleBig="item.titleBig"
-                  :buttonTitle="item.buttonTitle"
-                  :buttonHref="item.buttonHref" @promo-trigger-click="onPromoTriggerClick" :isLast="item.isLast"
-                  @move-down-click="moveSectionDown" ref="beerSections"/>
+      <PromoSlide
+        v-if="activeBottleType === 'beer'"
+        v-for="(item, index) in beerSlides"
+        :key="index + 'beerSlides'"
+        :bottleType="'beer'"
+        :desc="item.desc"
+        :list="item.list"
+        :position="item.position"
+        :index="index"
+        :mobileImgSrc="item.mobileImgSrc"
+        :titleSmall="item.titleSmall"
+        :title="item.title"
+        :titleBig="item.titleBig"
+        :buttonTitle="item.buttonTitle"
+        :buttonHref="item.buttonHref"
+        @promo-trigger-click="onPromoTriggerClick"
+        :isLast="item.isLast"
+        @move-down-click="moveSectionDown"
+        ref="beerSections"
+      />
 
-      <PromoSlide v-if="activeBottleType === 'water'" v-for="(item, index) in waterSlides" :key="index + 'waterSlides'"
-                  :bottleType="'water'" :desc="item.desc"
-                  :list="item.list" :position="item.position" :index="index" :mobileImgSrc="item.mobileImgSrc"
-                  :titleSmall="item.titleSmall" :title="item.title" :titleBig="item.titleBig"
-                  :buttonTitle="item.buttonTitle"
-                  :buttonHref="item.buttonHref" @promo-trigger-click="onPromoTriggerClick" :isLast="item.isLast"
-                  @move-down-click="moveSectionDown" ref="waterSections"/>
+      <PromoSlide
+        v-if="activeBottleType === 'water'"
+        v-for="(item, index) in waterSlides"
+        :key="index + 'waterSlides'"
+        :bottleType="'water'"
+        :desc="item.desc"
+        :list="item.list"
+        :position="item.position"
+        :index="index"
+        :mobileImgSrc="item.mobileImgSrc"
+        :titleSmall="item.titleSmall"
+        :title="item.title"
+        :titleBig="item.titleBig"
+        :buttonTitle="item.buttonTitle"
+        :buttonHref="item.buttonHref"
+        @promo-trigger-click="onPromoTriggerClick"
+        :isLast="item.isLast"
+        @move-down-click="moveSectionDown"
+        ref="waterSections"
+      />
 
       <!-- START normal-scroll-section -->
 
@@ -35,34 +61,41 @@
             <span>Группа товаров</span> для пивоварен и баров:
           </h2>
         </div>
-        <Slider :items="productsGroup" v-if="width > 790"/>
-        <GridMobile :items="productsGroup" :width="width" v-else/>
+        <Slider :items="productsGroup" v-if="width > 790" />
+        <GridMobile :items="productsGroup" :width="width" v-else />
         <div class="test" v-if="width > 992">
-          <SliderSolutions view="frontpage" ref="sliderSolutions"/>
+          <SliderSolutions view="frontpage" ref="sliderSolutions" />
         </div>
         <template v-else>
           <div class="container">
-            <h2 class="block__title block__title--frontpage"><span>Готовые решения</span> для вашего бизнеса</h2>
+            <h2 class="block__title block__title--frontpage">
+              <span>Готовые решения</span> для вашего бизнеса
+            </h2>
           </div>
-          <SolutionMobile :items="$store.state.solutions" view="frontpage"/>
+          <SolutionMobile :items="$store.state.solutions" view="frontpage" />
         </template>
       </div>
       <!-- END normal-scroll-section -->
 
       <div class="promo-concepts-before-wave" aria-hidden="true">
-        <img src="~assets/img/wave.svg" alt="wave">
+        <img src="~assets/img/wave.svg" alt="wave" />
       </div>
-      <PromoConcept :slides="promoConceptsSlides" v-for="(_, index) in promoConceptsSlides" :key="'concepts' + index"
-                    :index="index" ref="promoConcepts"/>
+      <PromoConcept
+        :slides="promoConceptsSlides"
+        v-for="(_, index) in promoConceptsSlides"
+        :key="'concepts' + index"
+        :index="index"
+        ref="promoConcepts"
+      />
       <div class="promo-concepts-after-wave" aria-hidden="true">
-        <img src="~assets/img/wave.svg" alt="wave">
+        <img src="~assets/img/wave.svg" alt="wave" />
       </div>
       <div class="js-section js-section-normal-scroll" data-offset-y="70">
-        <TeamSlider :pin-section="true"/>
-        <PartnersSlider/>
-        <ContactsSection :staff="staff"/>
-        <Feedback/>
-        <Footer/>
+        <TeamSlider :pin-section="true" />
+        <PartnersSlider />
+        <ContactsSection :staff="staff" />
+        <Feedback />
+        <Footer />
       </div>
     </div>
   </div>
@@ -78,130 +111,166 @@ import ContactsSection from "~/components/ContactsSection";
 import Feedback from "~/components/Feedback";
 
 export default {
-  components: {Feedback, ContactsSection, PartnersSlider, TeamSlider, ChooseItem, PromoVideo, Promo},
-  layout: 'fullscreen',
+  components: {
+    Feedback,
+    ContactsSection,
+    PartnersSlider,
+    TeamSlider,
+    ChooseItem,
+    PromoVideo,
+    Promo,
+  },
+  layout: "fullscreen",
   data() {
     return {
-      activeBottleType: 'water',
+      activeBottleType: "water",
       showPromoBottom: true,
       width: 0,
       activeSectionIndex: 0,
-      beerSlides: [{
-        hasCanvas: true,
-        title: 'Пиво',
-        titleBig: true,
-        desc: 'Замена металлических кег на ПЭТ',
-        position: 'right',
-        hasBg: true,
-        mobileImgSrc: require('~/assets/img/promo-mobile-first.jpg'),
-      },
+      beerSlides: [
         {
-          hasCanvas: false,
-          title: 'Эстетика упаковки',
-          titleBig: false,
-          position: 'right',
-          hasBg: false,
-          list: ['Низкая теплопроводность', 'Гарантия герметичности фитинга', 'Стерильная среда внутри кега'],
-          mobileImgSrc: require('~/assets/img/promo-mobile1.jpg'),
+          hasCanvas: true,
+          title: "Пиво",
+          titleBig: true,
+          desc: "Замена металлических кег на ПЭТ",
+          position: "right",
+          hasBg: true,
+          mobileImgSrc: require("~/assets/img/promo-mobile-first.jpg"),
         },
         {
           hasCanvas: false,
-          title: 'Выгодная логистика',
+          title: "Эстетика упаковки",
           titleBig: false,
-          position: 'left',
+          position: "right",
           hasBg: false,
-          mobileImgSrc: require('~/assets/img/promo-mobile2.jpg'),
-          list: ['Отсутствует необходимость возврата тары', 'ПЭТ-КЕГ в 16 раз легче металлической', 'Фура вмещает на 25% больше']
+          list: [
+            "Низкая теплопроводность",
+            "Гарантия герметичности фитинга",
+            "Стерильная среда внутри кега",
+          ],
+          mobileImgSrc: require("~/assets/img/promo-mobile1.jpg"),
+        },
+        {
+          hasCanvas: false,
+          title: "Выгодная логистика",
+          titleBig: false,
+          position: "left",
+          hasBg: false,
+          mobileImgSrc: require("~/assets/img/promo-mobile2.jpg"),
+          list: [
+            "Отсутствует необходимость возврата тары",
+            "ПЭТ-КЕГ в 16 раз легче металлической",
+            "Фура вмещает на 25% больше",
+          ],
         },
         {
           hasCanvas: true,
-          title: 'Сокращение издержек производства',
+          title: "Сокращение издержек производства",
           titleBig: false,
-          position: 'right',
+          position: "right",
           hasBg: false,
-          mobileImgSrc: require('~/assets/img/promo-mobile3.jpg'),
-          list: ['Разморозка денежных средств заложеных в тару', 'Сокращение площади хранения КЕГ', 'Отсутствие технического обслуживания и мойки', 'Сокращение фонда оплаты труда']
+          mobileImgSrc: require("~/assets/img/promo-mobile3.jpg"),
+          list: [
+            "Разморозка денежных средств заложеных в тару",
+            "Сокращение площади хранения КЕГ",
+            "Отсутствие технического обслуживания и мойки",
+            "Сокращение фонда оплаты труда",
+          ],
         },
         {
           hasCanvas: true,
-          title: 'Оптимизируйте бизнес и расширьте географию сбыта!',
+          title: "Оптимизируйте бизнес и расширьте географию сбыта!",
           titleBig: false,
           isLast: true,
           titleSmall: true,
-          position: 'left',
-          mobileImgSrc: require('~/assets/img/promo-mobile4.jpg'),
+          position: "left",
+          mobileImgSrc: require("~/assets/img/promo-mobile4.jpg"),
           hasBg: true,
-          buttonTitle: 'Консультация специалиста',
-          buttonHref: '#hello',
+          buttonTitle: "Консультация специалиста",
+          buttonHref: "#hello",
         },
       ],
-      waterSlides: [{
-        hasCanvas: true,
-        title: 'Вода',
-        titleBig: true,
-        desc: 'Замена металлических кег на ПЭТ',
-        position: 'right',
-        hasBg: true,
-        mobileImgSrc: require('~/assets/img/promo-mobile-first.jpg'),
-      },
+      waterSlides: [
         {
-          hasCanvas: false,
-          title: 'Эстетика упаковки',
-          titleBig: false,
-          position: 'right',
-          hasBg: false,
-          list: ['Низкая теплопроводность', 'Гарантия герметичности фитинга', 'Стерильная среда внутри кега'],
-          mobileImgSrc: require('~/assets/img/promo-mobile1.jpg'),
+          hasCanvas: true,
+          title: "Вода",
+          titleBig: true,
+          desc: "Замена металлических кег на ПЭТ",
+          position: "right",
+          hasBg: true,
+          mobileImgSrc: require("~/assets/img/promo-mobile-first.jpg"),
         },
         {
           hasCanvas: false,
-          title: 'Выгодная логистика',
+          title: "Эстетика упаковки",
           titleBig: false,
-          position: 'left',
+          position: "right",
           hasBg: false,
-          mobileImgSrc: require('~/assets/img/promo-mobile2.jpg'),
-          list: ['Отсутствует необходимость возврата тары', 'ПЭТ-КЕГ в 16 раз легче металлической', 'Фура вмещает на 25% больше']
+          list: [
+            "Низкая теплопроводность",
+            "Гарантия герметичности фитинга",
+            "Стерильная среда внутри кега",
+          ],
+          mobileImgSrc: require("~/assets/img/promo-mobile1.jpg"),
+        },
+        {
+          hasCanvas: false,
+          title: "Выгодная логистика",
+          titleBig: false,
+          position: "left",
+          hasBg: false,
+          mobileImgSrc: require("~/assets/img/promo-mobile2.jpg"),
+          list: [
+            "Отсутствует необходимость возврата тары",
+            "ПЭТ-КЕГ в 16 раз легче металлической",
+            "Фура вмещает на 25% больше",
+          ],
         },
         {
           hasCanvas: true,
-          title: 'Сокращение издержек производства',
+          title: "Сокращение издержек производства",
           titleBig: false,
-          position: 'right',
+          position: "right",
           hasBg: false,
-          mobileImgSrc: require('~/assets/img/promo-mobile3.jpg'),
-          list: ['Разморозка денежных средств заложеных в тару', 'Сокращение площади хранения КЕГ', 'Отсутствие технического обслуживания и мойки', 'Сокращение фонда оплаты труда']
+          mobileImgSrc: require("~/assets/img/promo-mobile3.jpg"),
+          list: [
+            "Разморозка денежных средств заложеных в тару",
+            "Сокращение площади хранения КЕГ",
+            "Отсутствие технического обслуживания и мойки",
+            "Сокращение фонда оплаты труда",
+          ],
         },
         {
           hasCanvas: true,
-          title: 'Оптимизируйте бизнес и расширьте географию сбыта!',
+          title: "Оптимизируйте бизнес и расширьте географию сбыта!",
           titleBig: false,
           titleSmall: true,
           isLast: true,
-          position: 'left',
-          mobileImgSrc: require('~/assets/img/promo-mobile4.jpg'),
+          position: "left",
+          mobileImgSrc: require("~/assets/img/promo-mobile4.jpg"),
           hasBg: true,
-          buttonTitle: 'Консультация специалиста',
-          buttonHref: '#hello',
+          buttonTitle: "Консультация специалиста",
+          buttonHref: "#hello",
         },
       ],
       promoConceptsSlides: [
         {
-          img: require('~/assets/img/promo-concept1.jpg'),
-          title: 'Качество',
-          desc: 'Международный бренд по производству ПЭТ-тары, отличающийся высочайшим качеством материалов, продукции и подхода к клиентам. Международный бренд отличающийся высочайшим качеством материалов, продукции и подхода к клиентам.',
-          href: '#hi',
+          img: require("~/assets/img/promo-concept1.jpg"),
+          title: "Качество",
+          desc: "Международный бренд по производству ПЭТ-тары, отличающийся высочайшим качеством материалов, продукции и подхода к клиентам. Международный бренд отличающийся высочайшим качеством материалов, продукции и подхода к клиентам.",
+          href: "#hi",
         },
         {
-          img: require('~/assets/img/promo-concept2.jpg'),
-          title: 'Безопасность',
-          desc: 'Международный бренд по производству ПЭТ-тары, отличающийся высочайшим качеством материалов, продукции и подхода к клиентам. Международный бренд отличающийся высочайшим качеством материалов, продукции и подхода к клиентам.',
-          href: '#hi',
+          img: require("~/assets/img/promo-concept2.jpg"),
+          title: "Безопасность",
+          desc: "Международный бренд по производству ПЭТ-тары, отличающийся высочайшим качеством материалов, продукции и подхода к клиентам. Международный бренд отличающийся высочайшим качеством материалов, продукции и подхода к клиентам.",
+          href: "#hi",
         },
         {
-          img: require('~/assets/img/promo-concept3.jpg'),
-          title: 'Доверие',
-          desc: 'Международный бренд по производству ПЭТ-тары, отличающийся высочайшим качеством материалов, продукции и подхода к клиентам. Международный бренд отличающийся высочайшим качеством материалов, продукции и подхода к клиентам.',
-          href: '#hi',
+          img: require("~/assets/img/promo-concept3.jpg"),
+          title: "Доверие",
+          desc: "Международный бренд по производству ПЭТ-тары, отличающийся высочайшим качеством материалов, продукции и подхода к клиентам. Международный бренд отличающийся высочайшим качеством материалов, продукции и подхода к клиентам.",
+          href: "#hi",
         },
       ],
       productsGroup: this.$store.state.productsGroup,
@@ -254,7 +323,7 @@ export default {
           phone: "Доб.123",
           photo: "staff5.jpg",
         },
-      ]
+      ],
     };
   },
   methods: {
@@ -287,16 +356,16 @@ export default {
     },
     onPromoTriggerClick() {
       var self = this;
-      var newBottleType = this.activeBottleType === 'beer' ? 'water' : 'beer';
+      var newBottleType = this.activeBottleType === "beer" ? "water" : "beer";
       this.sectionTimeline = null;
-      this.$refs.fullpagePromoElem.classList.add('inactive');
+      this.$refs.fullpagePromoElem.classList.add("inactive");
       self.destroyFullpagePromo();
       setTimeout(function () {
         self.activeBottleType = newBottleType;
         self.$nextTick(() => {
           self.initSlideShow(newBottleType);
           self.fpPromo.silentMoveTo(2);
-          self.$refs.fullpagePromoElem.classList.remove('inactive');
+          self.$refs.fullpagePromoElem.classList.remove("inactive");
         });
       }, 701);
     },
@@ -304,15 +373,17 @@ export default {
       var self = this;
       // @TODO: refactor this nightmare
 
-      var SCREEN_UP_LG = '(min-width: 992px)';
-      var SCREEN_DOWN_LG = '(max-width: 992px)';
-      var SCREEN_UP_MD = '(min-width: 768px)';
-      var SCREEN_DOWN_MD = '(max-width: 768px)';
-      this.isDesktop = this.$mq === 'xl' || this.$mq === 'xl2';
-      this.isTablet = this.$mq === 'lg' || this.$mq === 'md';
+      var SCREEN_UP_LG = "(min-width: 992px)";
+      var SCREEN_DOWN_LG = "(max-width: 992px)";
+      var SCREEN_UP_MD = "(min-width: 768px)";
+      var SCREEN_DOWN_MD = "(max-width: 768px)";
+      this.isDesktop = this.$mq === "xl" || this.$mq === "xl2";
+      this.isTablet = this.$mq === "lg" || this.$mq === "md";
 
       // @TODO make this through mq
-      var isTablet = window.matchMedia(SCREEN_DOWN_LG).matches && window.matchMedia(SCREEN_UP_MD).matches;
+      var isTablet =
+        window.matchMedia(SCREEN_DOWN_LG).matches &&
+        window.matchMedia(SCREEN_UP_MD).matches;
       var isMobile = window.matchMedia(SCREEN_DOWN_MD).matches;
       var promoSlideshowTriggerLocked = false;
       var scrollLocked = false;
@@ -331,9 +402,9 @@ export default {
     initFullpagePromo() {
       var self = this;
 
-      this.fpPromo = new this.$fullpage('#fullpage-promo', {
+      this.fpPromo = new this.$fullpage("#fullpage-promo", {
         //options here
-        sectionSelector: '.js-section',
+        sectionSelector: ".js-section",
         scrollBar: true,
         fitToSection: false,
         verticalCentered: false,
@@ -341,79 +412,116 @@ export default {
 
         onLeave: function (section, next, direction) {
           // @TODO: optimize animations
-          var targets = next.item.querySelectorAll('.promo-slide__title, .promo-slide__desc, .promo-slide__items li');
-          var button = next.item.querySelector('.promo-slide__button');
-          var goDownButton = next.item.querySelector('.promo-slide__go-down');
+          var targets = next.item.querySelectorAll(
+            ".promo-slide__title, .promo-slide__desc, .promo-slide__items li"
+          );
+          var button = next.item.querySelector(".promo-slide__button");
+          var goDownButton = next.item.querySelector(".promo-slide__go-down");
 
           var tl = self.$gsap.timeline();
 
-          if (section.index === 1 && direction === 'up') {
-            self.$gsap.timeline()
-              .set('.header', {display: 'block'})
-              .to('.header', {alpha: 1});
+          if (section.index === 1 && direction === "up") {
+            self.$gsap
+              .timeline()
+              .set(".header", { display: "block" })
+              .to(".header", { alpha: 1 });
           }
 
           // Появление первого слайда
-          if (section.isFirst && direction === 'down') {
-            self.$gsap.timeline()
-              .to('.header', {alpha: 0})
-              .set('.header', {display: 'none'});
+          if (section.isFirst && direction === "down") {
+            self.$gsap
+              .timeline()
+              .to(".header", { alpha: 0 })
+              .set(".header", { display: "none" });
 
-            tl.fromTo(next.item.querySelector('.anim-bottle-canvas'), {
-              alpha: 0,
-              x: 30,
-            }, {alpha: 1, x: 0, delay: 1.2});
+            tl.fromTo(
+              next.item.querySelector(".anim-bottle-canvas"),
+              {
+                alpha: 0,
+                x: 30,
+              },
+              { alpha: 1, x: 0, delay: 1.2 }
+            );
 
-            tl.fromTo(next.item.querySelector('.promo-slide-trigger'), {
-              alpha: 0,
-            }, {alpha: 1, delay: 1.4});
+            tl.fromTo(
+              next.item.querySelector(".promo-slide-trigger"),
+              {
+                alpha: 0,
+              },
+              { alpha: 1, delay: 1.4 }
+            );
           }
 
           if (targets && targets.length > 0) {
-            tl.fromTo(targets, {
-              alpha: 0,
-              x: 30,
-            }, {alpha: 1, x: 0, delay: 0.7, stagger: 0.1}, '0');
-            if (button) {
-              tl.fromTo(button, {
+            tl.fromTo(
+              targets,
+              {
                 alpha: 0,
                 x: 30,
-              }, {alpha: 1, x: 0}, '1');
+              },
+              { alpha: 1, x: 0, delay: 0.7, stagger: 0.1 },
+              "0"
+            );
+            if (button) {
+              tl.fromTo(
+                button,
+                {
+                  alpha: 0,
+                  x: 30,
+                },
+                { alpha: 1, x: 0 },
+                "1"
+              );
             }
           }
 
           if (goDownButton) {
-            tl.fromTo(goDownButton, {
-              alpha: 0,
-            }, {alpha: 1}, '1');
+            tl.fromTo(
+              goDownButton,
+              {
+                alpha: 0,
+              },
+              { alpha: 1 },
+              "1"
+            );
           }
 
-          var doesNotContainNormalClass = !next.item.classList.contains('js-section-normal-scroll')
+          var doesNotContainNormalClass = !next.item.classList.contains(
+            "js-section-normal-scroll"
+          );
 
           if (doesNotContainNormalClass) {
             self.fpPromo.setAutoScrolling(true);
             self.fpPromo.setKeyboardScrolling(false);
           }
 
-          var nextSectionIsNormal = next.item.classList.contains('js-section-normal-scroll');
+          var nextSectionIsNormal = next.item.classList.contains(
+            "js-section-normal-scroll"
+          );
 
           if (nextSectionIsNormal) {
             self.activeNormalSection = next.item;
             self.destroyFullpagePromo();
-            var offsetY = direction === 'up' ? self.activeNormalSection.clientHeight - window.innerHeight : 0;
+            var offsetY =
+              direction === "up"
+                ? self.activeNormalSection.clientHeight - window.innerHeight
+                : 0;
 
             self.$gsap.to(window, {
               duration: 1.3,
               ease: "power2.inOut",
               scrollTo: {
                 y: self.activeNormalSection,
-                offsetY: -offsetY
+                offsetY: -offsetY,
               },
               onComplete: function () {
                 setTimeout(function () {
-                  document.addEventListener('scroll', self.onNormalSectionScroll);
+                  document.addEventListener(
+                    "scroll",
+                    self.onNormalSectionScroll
+                  );
                 }, 200);
-              }
+              },
             });
             return false;
           }
@@ -421,31 +529,39 @@ export default {
           return true;
         },
         afterLoad: function (anchorLink, section) {
-          if (section.item && section.item.classList.contains('js-section-normal-scroll')) {
+          if (
+            section.item &&
+            section.item.classList.contains("js-section-normal-scroll")
+          ) {
             self.destroyFullpagePromo();
             self.activeNormalSection = section.item;
             if (!self.scrollEventRegistered) {
-              document.addEventListener('scroll', self.onNormalSectionScroll);
+              document.addEventListener("scroll", self.onNormalSectionScroll);
               self.scrollEventRegistered = true;
             }
           } else {
-            document.removeEventListener('scroll', self.onNormalSectionScroll);
+            document.removeEventListener("scroll", self.onNormalSectionScroll);
             self.scrollEventRegistered = false;
           }
-        }
+        },
       });
     },
     initSlideShow(bottleType) {
       var canvas = document.getElementById("anim-" + bottleType);
-      var canvasContainer = document.getElementById("anim-" + bottleType + "-inner-container");
+      var canvasContainer = document.getElementById(
+        "anim-" + bottleType + "-inner-container"
+      );
       var context = canvas.getContext("2d");
-      var sections = this.activeBottleType === 'beer' ? this.$refs.beerSections : this.$refs.waterSections;
+      var sections =
+        this.activeBottleType === "beer"
+          ? this.$refs.beerSections
+          : this.$refs.waterSections;
       var endTriggerElem = sections[sections.length - 1].$el;
 
       var img = {
-        width: bottleType === 'beer' ? 1600 : 960,
+        width: bottleType === "beer" ? 1600 : 960,
         height: 900,
-      }
+      };
 
       var wrh = img.width / img.height;
       var newWidth = canvas.width;
@@ -455,11 +571,13 @@ export default {
         newWidth = newHeight * wrh;
       }
 
-      var frameCount = bottleType === 'beer' ? 73 : 68;
+      // 1 цифра это бутылка с пивом, вторая вода
+      // кадры с бутылкой пива в папке beer, а булылки воды в water-new
+      var frameCount = bottleType === "beer" ? 73 : 69;
 
       var images = [];
       var bottle = {
-        frame: 0
+        frame: 0,
       };
 
       if (!this.fpPromo) {
@@ -471,57 +589,72 @@ export default {
         this.bottleTimeline.kill();
       }
 
-      this.bottleTimeline = this.$gsap.timeline(
-        {
+      this.bottleTimeline = this.$gsap.timeline({
+        ease: "none",
+        scrollTrigger: {
+          pin: true,
+          trigger: "#anim-" + bottleType + "-container",
+          spacer: false,
+          pinSpacing: false,
+          pinType: "fixed",
+          pinnedContainer: null,
+          start: "top",
+          endTrigger: endTriggerElem,
+          end: "bottom bottom",
+          scrub: 0,
           ease: "none",
-          scrollTrigger: {
-            pin: true,
-            trigger: '#anim-' + bottleType + "-container",
-            spacer: false,
-            pinSpacing: false,
-            pinType: "fixed",
-            pinnedContainer: null,
-            start: 'top',
-            endTrigger: endTriggerElem,
-            end: 'bottom bottom',
-            scrub: 0,
-            ease: "none",
-          },
-        });
+        },
+      });
 
       this.bottleTimeline.to(bottle, {
         frame: frameCount - 1,
         ease: "none",
         snap: "frame",
         duration: 1,
-        onUpdate: renderBottleSprite // use animation onUpdate instead of scrollTrigger's onUpdate
+        onUpdate: renderBottleSprite, // use animation onUpdate instead of scrollTrigger's onUpdate
       });
 
-      this.bottleTimeline.to(canvasContainer, {
-        x: '100%',
-        duration: '0.2',
-        ease: "ease-in-out",
-      }, '0.320');
-
-      if (this.activeBottleType === 'water') {
-        this.bottleTimeline.to(canvasContainer, {
-          x: '-10%',
-          duration: '0.2',
+      this.bottleTimeline.to(
+        canvasContainer,
+        {
+          x: "100%",
+          duration: "0.2",
           ease: "ease-in-out",
-        }, '0.100');
+        },
+        "0.320"
+      );
+
+      if (this.activeBottleType === "water") {
+        this.bottleTimeline.to(
+          canvasContainer,
+          {
+            x: "-10%",
+            duration: "0.2",
+            ease: "ease-in-out",
+          },
+          "0.100"
+        );
       }
 
-      this.bottleTimeline.to(canvasContainer, {
-        x: '-20%',
-        duration: '0.20',
-        ease: "ease-in-out",
-      }, '0.564');
+      this.bottleTimeline.to(
+        canvasContainer,
+        {
+          x: "-20%",
+          duration: "0.20",
+          ease: "ease-in-out",
+        },
+        "0.564"
+      );
 
-      this.bottleTimeline.to(canvasContainer, {
-        x: '80%',
-        duration: '0.20',
-        ease: "ease-in-out",
-      }, '0.838');
+      this.bottleTimeline.to(
+        canvasContainer,
+        {
+          x: "80%",
+          duration: "0.20",
+          ease: "ease-in-out",
+        },
+        "0.838"
+      );
 
       if (this.triggerTl) {
         this.triggerTl.scrollTrigger.kill();
@@ -529,17 +662,22 @@ export default {
       }
 
       var sectionHeight = sections[0].$el.clientHeight;
-      var triggerHeight = document.getElementById("promo-trigger-" + bottleType).clientHeight;
+      var triggerHeight = document.getElementById(
+        "promo-trigger-" + bottleType
+      ).clientHeight;
 
       this.triggerTl = this.$gsap.timeline({
         scrollTrigger: {
-          trigger: '#anim-' + bottleType + "-container",
+          trigger: "#anim-" + bottleType + "-container",
           spacer: true,
           pinSpacing: true,
           pin: "#promo-trigger-" + bottleType,
-          start: 'top',
+          start: "top",
           endTrigger: endTriggerElem,
-          end: '+=' + (sectionHeight * (sections.length - 2) + triggerHeight) + 'px',
+          end:
+            "+=" +
+            (sectionHeight * (sections.length - 2) + triggerHeight) +
+            "px",
           scrub: 0,
           ease: "none",
         },
@@ -554,16 +692,20 @@ export default {
       images[0].onload = renderBottleSprite;
 
       function renderBottleFrame(index, bottleType) {
-        if (bottleType === 'beer') {
-          return require(`@/assets/img/${bottleType}/${(index + 1)}.png`);
+        // тут пути прописаны до файлов.
+
+        if (bottleType === "beer") {
+          return require(`@/assets/img/${bottleType}/${index + 1}.png`);
         } else {
-          return require(`@/assets/img/${bottleType}-new/water (${(index + 1)}).png`);
+          return require(`@/assets/img/${bottleType}-new/water (${
+            index + 1
+          }).png`);
         }
       }
 
       function renderBottleSprite() {
         context.clearRect(0, 0, canvas.width, canvas.height);
-        if (this.activeBottleType == 'beer') {
+        if (this.activeBottleType == "beer") {
           context.drawImage(images[bottle.frame], 0, 0, newWidth, newHeight);
         } else {
           if (images[bottle.frame]) {
@@ -578,7 +720,7 @@ export default {
         this.fpPromo.setAutoScrolling(false);
         this.fpPromo.setKeyboardScrolling(false);
         this.fpPromo.setFitToSection(false);
-        this.fpPromo.destroy('all');
+        this.fpPromo.destroy("all");
         window.scrollTo(0, scrollY);
         this.fpPromo = undefined;
       }
@@ -589,8 +731,8 @@ export default {
       sliderSolutionsTimeline.to(this.$refs.sliderSolutions.$el, {
         scrollTrigger: {
           trigger: this.$refs.sliderSolutions.$el,
-          end: '+=200%',
-          start: 'bottom bottom',
+          end: "+=200%",
+          start: "bottom bottom",
           pin: true,
           pinSpacing: false,
           scrub: true,
@@ -600,12 +742,14 @@ export default {
     initPromoConceptsContentTimeline() {
       var promoConceptsContentTimeline = this.$gsap.timeline();
       var promoConceptsSections = this.$refs.promoConcepts;
-      var end = '+=' + (promoConceptsSections.length - 1).toString() + '00%';
+      var end = "+=" + (promoConceptsSections.length - 1).toString() + "00%";
       promoConceptsContentTimeline.to(promoConceptsSections[0].$el, {
         scrollTrigger: {
-          trigger: promoConceptsSections[0].$el.querySelector('.promo-concepts__inner'),
+          trigger: promoConceptsSections[0].$el.querySelector(
+            ".promo-concepts__inner"
+          ),
           end: end,
-          start: 'top',
+          start: "top",
           pinSpacing: true,
           pin: true,
           scrub: true,
@@ -616,77 +760,117 @@ export default {
       var promoConceptsSections = this.$refs.promoConcepts;
       var self = this;
       promoConceptsSections.forEach(function (item, index) {
-        var content = promoConceptsSections[0].$el.querySelectorAll('.promo-concepts__item')[index];
-        var image = promoConceptsSections[0].$el.querySelectorAll('.promo-concepts__image')[index];
-        var logo = promoConceptsSections[0].$el.querySelector('.promo-concepts__logo');
-        var sectionTitle = promoConceptsSections[0].$el.querySelector('.promo-concepts__section-title');
-        var title = promoConceptsSections[0].$el.querySelectorAll('.promo-concepts__title')[index];
-        var desc = promoConceptsSections[0].$el.querySelectorAll('.promo-concepts__desc')[index];
-        var descParagraphs = desc.querySelectorAll('p');
-        var link = promoConceptsSections[0].$el.querySelectorAll('.promo-concepts__link')[index];
+        var content = promoConceptsSections[0].$el.querySelectorAll(
+          ".promo-concepts__item"
+        )[index];
+        var image = promoConceptsSections[0].$el.querySelectorAll(
+          ".promo-concepts__image"
+        )[index];
+        var logo = promoConceptsSections[0].$el.querySelector(
+          ".promo-concepts__logo"
+        );
+        var sectionTitle = promoConceptsSections[0].$el.querySelector(
+          ".promo-concepts__section-title"
+        );
+        var title = promoConceptsSections[0].$el.querySelectorAll(
+          ".promo-concepts__title"
+        )[index];
+        var desc = promoConceptsSections[0].$el.querySelectorAll(
+          ".promo-concepts__desc"
+        )[index];
+        var descParagraphs = desc.querySelectorAll("p");
+        var link = promoConceptsSections[0].$el.querySelectorAll(
+          ".promo-concepts__link"
+        )[index];
 
-        var splitTitle = new self.$SplitText(title, {type: 'lines'});
+        var splitTitle = new self.$SplitText(title, { type: "lines" });
 
-        var splitDesc = new self.$SplitText(descParagraphs, {type: 'lines'});
-        new self.$SplitText(descParagraphs, {type: 'lines'});
+        var splitDesc = new self.$SplitText(descParagraphs, { type: "lines" });
+        new self.$SplitText(descParagraphs, { type: "lines" });
 
         if (index === 0) {
-          var container = item.$el.querySelector('.container');
+          var container = item.$el.querySelector(".container");
           var logoTimeline = self.$gsap.timeline({
             scrollTrigger: {
               scrub: false,
               trigger: item.$el,
-              start: '45% center',
-              end: '51% center',
+              start: "45% center",
+              end: "51% center",
               onEnter: function () {
                 logoTimeline.timeScale(1);
               },
               onLeaveBack: function () {
                 logoTimeline.timeScale(3).reverse();
-              }
+              },
             },
           });
 
-          logoTimeline.fromTo(logo, {alpha: 0}, {alpha: 1}, '0');
-          logoTimeline.fromTo(image, {alpha: 0, duration: 1}, {alpha: 1}, '0');
-          logoTimeline.fromTo(sectionTitle, {alpha: 0}, {alpha: 1, y: 0}, '0.3');
+          logoTimeline.fromTo(logo, { alpha: 0 }, { alpha: 1 }, "0");
+          logoTimeline.fromTo(
+            image,
+            { alpha: 0, duration: 1 },
+            { alpha: 1 },
+            "0"
+          );
+          logoTimeline.fromTo(
+            sectionTitle,
+            { alpha: 0 },
+            { alpha: 1, y: 0 },
+            "0.3"
+          );
         }
 
         var tl = self.$gsap.timeline({
           scrollTrigger: {
             trigger: item.$el,
-            start: '45% center',
-            end: '51% center',
+            start: "45% center",
+            end: "51% center",
             scrub: false,
             toggleActions: "restart none restart none",
-            toggleClass: {targets: [content], className: "is-active"},
-          }
+            toggleClass: { targets: [content], className: "is-active" },
+          },
         });
 
-        tl.fromTo(splitTitle.lines, {
-          y: '100%',
-        }, {ease: "power2.out", y: 0, duration: 1});
+        tl.fromTo(
+          splitTitle.lines,
+          {
+            y: "100%",
+          },
+          { ease: "power2.out", y: 0, duration: 1 }
+        );
 
-        tl.fromTo(splitDesc.lines, {
-          y: '150%',
-        }, {ease: "power2.out", y: 0, duration: 0.7, stagger: 0.05}, '0.2');
+        tl.fromTo(
+          splitDesc.lines,
+          {
+            y: "150%",
+          },
+          { ease: "power2.out", y: 0, duration: 0.7, stagger: 0.05 },
+          "0.2"
+        );
 
-        tl.fromTo(link, {
-          alpha: 0
-        }, {alpha: 1, duration: 1}, '-=0.4');
+        tl.fromTo(
+          link,
+          {
+            alpha: 0,
+          },
+          { alpha: 1, duration: 1 },
+          "-=0.4"
+        );
 
         if (index > 0) {
           var imagesTimeline = self.$gsap.timeline({
             scrollTrigger: {
               trigger: item.$el,
-              end: '+=100%',
+              end: "+=100%",
               scrub: 0.5,
-            }
+            },
           });
 
-          var prevImage = promoConceptsSections[0].$el.querySelectorAll('.promo-concepts__image')[index];
+          var prevImage = promoConceptsSections[0].$el.querySelectorAll(
+            ".promo-concepts__image"
+          )[index];
 
-          imagesTimeline.fromTo(image, {y: '100%'}, {y: 0}, '0');
+          imagesTimeline.fromTo(image, { y: "100%" }, { y: 0 }, "0");
         }
 
         var isLast = index === promoConceptsSections.length - 1;
@@ -694,13 +878,17 @@ export default {
           var imagesParallaxTimeline = self.$gsap.timeline({
             scrollTrigger: {
               trigger: item.$el,
-              start: 'bottom bottom',
-              end: '+=100%',
+              start: "bottom bottom",
+              end: "+=100%",
               scrub: 0,
               immediateRender: false,
-            }
+            },
           });
-          imagesParallaxTimeline.to(image, {y: '-30%', immediateRender: false}, '0');
+          imagesParallaxTimeline.to(
+            image,
+            { y: "-30%", immediateRender: false },
+            "0"
+          );
         }
       });
     },
@@ -710,46 +898,58 @@ export default {
         var offsetTop = this.activeNormalSection.offsetTop;
 
         if (offsetTop > window.scrollY) {
-
-          document.removeEventListener('scroll', this.onNormalSectionScroll);
+          document.removeEventListener("scroll", this.onNormalSectionScroll);
           var prevSection = this.activeNormalSection.previousElementSibling;
 
           // если предыдущий элемент не секция - пропускаем его и берем следующий
           // это нужно для обхода волны
-          if (!prevSection.classList.contains('js-section')) {
+          if (!prevSection.classList.contains("js-section")) {
             prevSection = prevSection.previousElementSibling;
           }
 
           self.$gsap.to(window, {
-            duration: 1, ease: "power2.inOut", scrollTo: prevSection, onComplete: function () {
-              prevSection.classList.add('active');
-              self.activeNormalSection.classList.remove('active');
+            duration: 1,
+            ease: "power2.inOut",
+            scrollTo: prevSection,
+            onComplete: function () {
+              prevSection.classList.add("active");
+              self.activeNormalSection.classList.remove("active");
               self.initFullpagePromo();
-            }
+            },
           });
         }
 
         // Если мы скроллим ниже секции с нормальным скроллом, то скролл анимируем вниз
-        if (offsetTop + this.activeNormalSection.clientHeight < (window.scrollY + window.innerHeight)) {
+        if (
+          offsetTop + this.activeNormalSection.clientHeight <
+          window.scrollY + window.innerHeight
+        ) {
           e.preventDefault();
-          var promoConceptsSection = document.querySelector('.promo-concepts-section');
-          document.removeEventListener('scroll', self.onNormalSectionScroll);
+          var promoConceptsSection = document.querySelector(
+            ".promo-concepts-section"
+          );
+          document.removeEventListener("scroll", self.onNormalSectionScroll);
 
           self.$gsap.to(window, {
-            duration: 1, ease: 'power2.inOut', scrollTo: promoConceptsSection, onComplete: function () {
-              self.activeNormalSection.classList.remove('active');
-              promoConceptsSection.classList.add('active');
+            duration: 1,
+            ease: "power2.inOut",
+            scrollTo: promoConceptsSection,
+            onComplete: function () {
+              self.activeNormalSection.classList.remove("active");
+              promoConceptsSection.classList.add("active");
               self.initFullpagePromo();
-            }
+            },
           });
 
-          document.removeEventListener('scroll', this.onNormalSectionScroll);
+          document.removeEventListener("scroll", this.onNormalSectionScroll);
           var scrollLocked = true;
         }
       }
-    }
+    },
   },
-
+  // сначала надо распаковать архив с кадрами. Где они?
+  // отключи сервер. который nuxt dev. Он иногда не дает перезаписать старые кадры
+  // Кадры залили. теперь ставим количество кадров.
   beforeDestroy() {
     if (this.fpPromo) {
       this.destroyFullpagePromo();
@@ -988,7 +1188,7 @@ export default {
   margin-top: 50px;
 
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     top: 0;
@@ -1159,7 +1359,7 @@ export default {
   padding-top: 40px;
 }
 
-@include down('xl') {
+@include down("xl") {
   .promo-slide__title.big {
     font-size: 80px;
   }
@@ -1187,7 +1387,7 @@ export default {
   }
 }
 
-@include down('lg') {
+@include down("lg") {
   .promo-slide {
     height: auto;
     padding-bottom: 130px;
@@ -1208,16 +1408,19 @@ export default {
     padding-bottom: 150px;
   }
 
-  .promo-slide--beer-1, .promo-slide--water-1 {
+  .promo-slide--beer-1,
+  .promo-slide--water-1 {
     padding-bottom: 100px;
   }
 
-  .promo-slide--beer-3, .promo-slide--water-3 {
+  .promo-slide--beer-3,
+  .promo-slide--water-3 {
     .promo-slide__content-inner:before {
       top: 20px;
     }
   }
-  .promo-slide--beer-4, .promo-slide--water-4 {
+  .promo-slide--beer-4,
+  .promo-slide--water-4 {
     .promo-slide__content-inner:before {
       top: 40px;
     }
@@ -1248,7 +1451,9 @@ export default {
     }
   }
 
-  .promo-slide__title, .promo-slide__desc, .promo-slide__items {
+  .promo-slide__title,
+  .promo-slide__desc,
+  .promo-slide__items {
     max-width: 384px;
   }
 
@@ -1337,15 +1542,17 @@ export default {
   }
 }
 
-@include down('md') {
+@include down("md") {
   .promo-slide {
     padding-bottom: 85px;
   }
-  .promo-slide--beer-1, .promo-slide--water-1 {
+  .promo-slide--beer-1,
+  .promo-slide--water-1 {
     padding-bottom: 60px;
   }
 
-  .promo-slide--beer-1 .promo-slide__mobile-img, .promo-slide--water-1 .promo-slide__mobile-img {
+  .promo-slide--beer-1 .promo-slide__mobile-img,
+  .promo-slide--water-1 .promo-slide__mobile-img {
     margin-right: -20px;
     margin-bottom: -100px;
     top: -26px;
@@ -1353,7 +1560,8 @@ export default {
     margin-left: auto;
   }
 
-  .promo-slide--beer-1 .promo-slide__mobile-img img, .promo-slide--water-1 .promo-slide__mobile-img img {
+  .promo-slide--beer-1 .promo-slide__mobile-img img,
+  .promo-slide--water-1 .promo-slide__mobile-img img {
     max-width: 100%;
   }
 
@@ -1366,7 +1574,7 @@ export default {
   }
 }
 
-@include down('sm') {
+@include down("sm") {
   .promo-slide__title--small {
     font-size: 26px;
     max-width: 300px;
@@ -1377,18 +1585,21 @@ export default {
     left: 0;
   }
 
-  .promo-slide--beer-2, .promo-slide--water-2 {
+  .promo-slide--beer-2,
+  .promo-slide--water-2 {
     .promo-slide__content-inner:before {
       top: -60px;
       margin-left: -4px;
     }
   }
-  .promo-slide--beer-3, .promo-slide--water-3 {
+  .promo-slide--beer-3,
+  .promo-slide--water-3 {
     .promo-slide__content-inner:before {
       top: -50px;
     }
   }
-  .promo-slide--beer-4, .promo-slide--water-4 {
+  .promo-slide--beer-4,
+  .promo-slide--water-4 {
     .promo-slide__content-inner:before {
       top: 40px;
     }

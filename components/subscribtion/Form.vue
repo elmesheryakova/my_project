@@ -91,6 +91,7 @@ input[type="file"] {
 }
 .file {
   margin-bottom: 30px;
+  cursor: pointer;
 }
 .file-btn {
   font-size: 24px;

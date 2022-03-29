@@ -2,7 +2,10 @@
   <div class="footer-feedback--white">
     <div class="footer-feedback__wrap">
       <div class="container d-flex justify-content-between">
-        <h3 class="footer-feedback__title" v-if="$route.name === 'news'">
+        <h3
+          class="footer-feedback__title"
+          v-if="$route.name === 'news' || $route.name === 'news-id'"
+        >
           Подпишитесь <br />
           <span> на рассылку новостей</span>
         </h3>
