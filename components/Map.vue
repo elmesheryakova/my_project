@@ -8,7 +8,8 @@
           :placemarks="items"
           :zoom="zoom"
           @set-coords="coords = $event"
-        ></yandex-maps>
+        >
+        </yandex-maps>
       </div>
       <div class="contacts-map__bottom">
         <div class="contacts-map__route-title">
