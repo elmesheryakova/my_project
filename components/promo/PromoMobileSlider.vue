@@ -30,7 +30,7 @@ export default {
 
 <style lang="scss">
 .promo__mobile-slider {
-  position: absolute;
+  position: absolute !important;
   left: 0;
   top: 0;
   width: 100%;

@@ -1569,7 +1569,7 @@ export default {
     right: 0;
     left: auto;
     z-index: -1;
-    top: -60px;
+    top: -30px;
     line-height: 0.7;
   }
 }
@@ -1588,20 +1588,20 @@ export default {
   .promo-slide--beer-2,
   .promo-slide--water-2 {
     .promo-slide__content-inner:before {
-      top: -60px;
+      top: -30px;
       margin-left: -4px;
     }
   }
   .promo-slide--beer-3,
   .promo-slide--water-3 {
     .promo-slide__content-inner:before {
-      top: -50px;
+      top: -20px;
     }
   }
   .promo-slide--beer-4,
   .promo-slide--water-4 {
     .promo-slide__content-inner:before {
-      top: 40px;
+      top: 10px;
     }
   }
 }
