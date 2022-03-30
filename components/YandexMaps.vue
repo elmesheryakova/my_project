@@ -4,8 +4,8 @@
     :controls="[]"
     :behaviors="{
       scrollZoom: false,
+      drag: false,
     }"
-    :dragable="false"
     :zoom="12"
     @map-was-initialized="initHandler"
     :options="{
