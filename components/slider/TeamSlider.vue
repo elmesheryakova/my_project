@@ -546,5 +546,9 @@ export default {
 }
 
 @include down("sm") {
+  .team__slide {
+    -webkit-transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+  }
 }
 </style>
