@@ -215,8 +215,12 @@ export default {
 }
 
 @include down('sm') {
+  .promo {
+    height: 100vh;
+  }
   .promo__main {
-    padding-bottom: 128%;
+    padding-bottom: 0;
+    height: auto;
   }
 }
 
