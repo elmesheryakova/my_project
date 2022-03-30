@@ -86,6 +86,9 @@ export default {
 };
 </script>
 <style lang="scss">
+.wrapper-map * {
+  touch-action: auto;
+}
 .wrapper-map {
   background-color: #ccc;
   height: 100%;

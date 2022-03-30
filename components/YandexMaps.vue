@@ -4,7 +4,7 @@
     :controls="[]"
     :zoom="12"
     :behaviors="{
-      multiTouch: true,
+      drag: false,
     }"
     @map-was-initialized="initHandler"
     :options="{
@@ -78,8 +78,12 @@ export default {
 </script>
 
 <style scoped>
+.wrapper-map * {
+  touch-action: auto;
+}
 .ymap-container {
   height: 100%;
+  touch-action: auto;
 }
 </style>
 
