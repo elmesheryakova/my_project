@@ -348,6 +348,14 @@ export default {
           self.initSlideShow(clickedBottleType);
           self.fpPromo.moveSectionDown();
         });
+      } else {
+        this.$nextTick(() => {
+          var sections =
+            this.activeBottleType === "beer"
+              ? this.$refs.beerSections
+              : this.$refs.waterSections;
+          this.$gsap.to(window, {scrollTo: {y: sections[0].$el}, duration: 1.3});
+        });
       }
     },
     onPromoVideoPlayClick(isToggled) {
