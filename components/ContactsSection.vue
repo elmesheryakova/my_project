@@ -241,14 +241,15 @@ export default {
     var self = this;
     return {
       swiperOption: {
-        slidesPerView: 2,
+        slidesPerView: 3,
         loopedSlides: 4,
         loop: true,
         watchSlidesVisibility: true,
-        spaceBetween: 38,
+        spaceBetween: 10,
         breakpoints: {
           600: {
-            slidesPerView: 3,
+            slidesPerView: 4,
+            spaceBetween: 38,
           },
         },
       },
@@ -302,10 +303,11 @@ export default {
 
 .contacts__right {
   width: calc(50% - 20px);
-  padding-top: 104px;
+
   position: relative;
   z-index: 1;
-  padding-left: 50px;
+  padding: 50px;
+  padding-right: 0;
 }
 
 .contacts-map {
@@ -428,6 +430,9 @@ export default {
   max-width: 128px;
   display: block;
   margin-bottom: 50px;
+  @media (max-width: 991px) {
+    max-width: 200px;
+  }
 }
 
 .contact-card__img {
@@ -662,7 +667,7 @@ export default {
     width: 100%;
     padding-left: 30px;
     padding-top: 60px;
-    padding-bottom: 60px;
+    margin-bottom: 60px;
   }
   .contacts-map {
     margin-top: 0;
@@ -745,9 +750,6 @@ export default {
     }
   }
 
-  .contacts__right {
-    padding-right: 100px;
-  }
   .contacts-map {
     height: 666px;
   }
@@ -781,7 +783,8 @@ export default {
 @include down("sm") {
   .contacts__right {
     padding-left: 24px;
-    padding-right: 60px;
+    padding-bottom: 30px;
+    padding-top: 40px;
   }
   .contacts__phone {
     font-size: 32px;
