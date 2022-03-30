@@ -2,7 +2,7 @@
   <yandex-map
     :coords="coords"
     :controls="[]"
-    :zoom="12"
+    :zoom="15"
     :scrollZoom="false"
     :multiTouch="true"
     @map-was-initialized="initHandler"
@@ -25,6 +25,12 @@
       :coords="location"
       :callbacks="{ click: getDataOfCoords }"
       cluster-name="1"
+      :icon="{
+        layout: 'default#image',
+        imageHref: require(`@/assets/svg/map.svg`),
+        imageSize: [30, 40],
+        imageOffset: [-15, -35],
+      }"
     ></ymap-marker>
   </yandex-map>
 </template>
@@ -43,7 +49,7 @@ export default {
     },
     zoom: {
       type: Number,
-      default: 12,
+      default: 15,
       required: true,
     },
   },

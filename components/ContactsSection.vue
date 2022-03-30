@@ -408,7 +408,7 @@ export default {
 
 .contacts__left {
   width: calc(50% + 20px);
-  padding-top: 84px;
+  padding-top: 35px;
   color: white;
   padding-right: 50px;
   .nav {
@@ -425,6 +425,7 @@ export default {
   }
   .nav-tabs {
     border-bottom: none;
+    margin-right: 30px;
   }
   .nav-link {
     border: 1px solid $white;

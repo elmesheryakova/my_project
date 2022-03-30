@@ -77,7 +77,7 @@ export default {
   },
   data() {
     return {
-      zoom: 9,
+      zoom: 15,
       items: [
         [55.386021, 36.728357],
         [54.983242, 82.870423],
@@ -115,14 +115,16 @@ export default {
   width: 100%;
   position: relative;
   margin: 50px auto;
-  -webkit-filter: grayscale(100%);
-  -moz-filter: grayscale(100%);
-  -ms-filter: grayscale(100%);
-  -o-filter: grayscale(100%);
-  filter: grayscale(100%);
 
-  filter: gray; /* IE 6-9 */
+  [class*="ymaps-2"][class*="-ground-pane"] {
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+  }
 }
+
 .contacts-map__bottom {
   position: absolute;
   bottom: 0;
