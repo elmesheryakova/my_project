@@ -2,7 +2,9 @@
   <yandex-map
     :coords="coords"
     :controls="[]"
-    :scrollZoom="false"
+    :behaviors="{
+      scrollZoom: false,
+    }"
     :dragable="false"
     :zoom="12"
     @map-was-initialized="initHandler"
