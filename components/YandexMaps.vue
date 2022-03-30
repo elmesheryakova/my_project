@@ -3,9 +3,8 @@
     :coords="coords"
     :controls="[]"
     :zoom="12"
-    :behaviors="{
-      drag: false,
-    }"
+    :scrollZoom="false"
+    :multiTouch="true"
     @map-was-initialized="initHandler"
     :options="{
       suppressMapOpenBlock: true,
@@ -51,6 +50,7 @@ export default {
   data() {
     return {
       map: {},
+      width: 0,
     };
   },
   methods: {
@@ -73,17 +73,22 @@ export default {
     initHandler(obj) {
       this.map = obj;
     },
+    updateWidth() {
+      this.width = window.innerWidth;
+    },
+  },
+
+  mounted() {
+    window.addEventListener("resize", this.updateWidth);
+
+    this.updateWidth();
   },
 };
 </script>
 
 <style scoped>
-.wrapper-map * {
-  touch-action: auto;
-}
 .ymap-container {
   height: 100%;
-  touch-action: auto;
 }
 </style>
 
