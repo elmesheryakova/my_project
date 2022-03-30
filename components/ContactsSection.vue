@@ -1,151 +1,43 @@
 <template>
-  <!-- START contacts -->
   <section class="contacts">
     <div class="contacts__inner">
       <div class="container">
-        <!-- START contacts__left -->
         <div class="contacts__left" id="contacts-info">
           <h2 class="contacts__title">Контакты</h2>
-          <div class="contacts__tab-buttons">
-            <!-- в своей верстке я вынес координаты и ссылки маршрутов в data аттрибуты, но во вью можно все вывести через пропсы -->
-            <button
-              class="contacts__tab-button js-contact-tab active"
-              data-tab-trigger="#contact-tab-1"
-              data-coords="55.386574,36.728607"
-              data-route-yandex="https://www.google.com/maps/dir//55.386574,36.728607"
-              data-route-google="https://www.google.com/maps/dir//55.386574,36.728607"
-              data-route-2gis="https://2gis.ru/directions/points/|36.728607,55.386574?m=36.728607,55.386574"
+          <b-tabs content-class="mt-3" v-model="tabIndex">
+            <b-tab
+              v-for="(item, index) in contacts"
+              :key="index"
+              :title="item.city"
             >
-              Москва
-            </button>
-            <button
-              class="contacts__tab-button js-contact-tab"
-              data-tab-trigger="#contact-tab-2"
-              data-coords="54.983242,82.870423"
-              data-route-yandex="https://www.google.com/maps/dir//54.983242,82.870423"
-              data-route-google="https://www.google.com/maps/dir//54.983242,82.870423"
-              data-route-2gis="https://2gis.ru/directions/points/|82.870423,54.983242?m=82.870423,54.983242"
-            >
-              Новосибирск
-            </button>
-            <button
-              class="contacts__tab-button js-contact-tab"
-              data-tab-trigger="#contact-tab-3"
-              data-coords="45.034214,39.014469"
-              data-route-yandex="https://www.google.com/maps/dir//45.034214,39.014469"
-              data-route-google="https://www.google.com/maps/dir//45.034214,39.014469"
-              data-route-2gis="https://2gis.ru/directions/points/|39.014469,45.034214?m=39.014469,45.034214"
-            >
-              Краснодар
-            </button>
-          </div>
-          <div class="contacts__tab-contents">
-            <div
-              class="tab-content contacts__tab-content tab-active tab-visible"
-              data-parent="#contacts-info"
-              id="contact-tab-1"
-            >
-              <a class="contacts__phone" href="tel:74995770006">
-                +7 (499) 577-00-06
-              </a>
-              <a class="contacts__email" href="mailto:info@petexpert.pro">
-                info@petexpert.pro
-              </a>
-              <div class="contacts__address">
-                143300, Московская область, г. Наро-Фоминск, площадь Свободы, 10
+              <div class="contacts__tab-contents">
+                <a class="contacts__phone" href="tel:74995770006">
+                  {{ item.phone }}
+                </a>
+                <a class="contacts__email" :href="`mailto:${item.email}`">
+                  {{ item.email }}
+                </a>
+                <div class="contacts__address">
+                  {{ item.address }}
+                </div>
               </div>
-            </div>
-          </div>
-          <div class="contacts__social-icons">
-            <a
-              href="#"
-              class="contacts__social-icon contacts__social-icon--fb"
-              target="_blank"
-            >
-              <div class="contacts__social-icon-wrap">
-                <svg
-                  width="12"
-                  height="22"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
+              <div class="contacts__social-icons">
+                <a
+                  class="contacts__social-icon"
+                  target="_blank"
+                  v-for="(item, index) in item.social"
+                  :key="index"
+                  :href="item.link"
                 >
-                  <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M7.7.3a4.3 4.3 0 0 0-3.8 3.6V8.1H.5V12h3.2v9.8h3.8v-9.9h3.2l.4-3.8H7.6V6.5l.1-1.8C8 4.2 8.3 4 9 4h2.4V.3h-.5C10 .2 8.1.1 7.7.2Z"
-                    fill="currentColor"
-                  />
-                </svg>
+                  <div class="contacts__social-icon-wrap">
+                    <svgicon :name="item.name" />
+                  </div>
+                </a>
               </div>
-            </a>
-            <a
-              href="#"
-              class="contacts__social-icon contacts__social-icon--insta"
-              target="_blank"
-            >
-              <div class="contacts__social-icon-wrap">
-                <svg
-                  width="22"
-                  height="22"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M3.7 1.6A5.5 5.5 0 0 0 .9 5.8v.6a124.6 124.6 0 0 0 0 9.8h.2-.2A5.5 5.5 0 0 0 6 21v-.2.2h.5a124.8 124.8 0 0 0 9.8 0v-.2.2a5.5 5.5 0 0 0 4.9-5.5 122 122 0 0 0 0-9.8A5.5 5.5 0 0 0 16 1v.2-.2h-.5a139.4 139.4 0 0 0-9.8 0c-.7.1-1.5.4-2.1.7Zm0 0v.1Zm2.2.8a5.4 5.4 0 0 1 .4 0 156.2 156.2 0 0 1 4.8 0h5.4a4.1 4.1 0 0 1 3 3h.2-.2l.1.4V16.5a4.1 4.1 0 0 1-3 3v.2-.2l-.4.1H5.5a4.1 4.1 0 0 1-3-3l-.1-.4V5.5A4.1 4.1 0 0 1 6 2.4Zm0 0v-.2.2ZM17 3.5c.6.2 1.1.8 1.2 1.5.2 1.2-1 2.2-2.1 2-.7-.3-1.1-.7-1.3-1.4h.1c-.2-1 .4-1.8 1.4-2h.7Zm0 0a2 2 0 0 0-.7 0h.7Zm-.3 2h-.3a.3.3 0 0 1-.1-.5H16.7c.2 0 .2.3 0 .4Zm-6.6 0c-2.2.3-4 2-4.6 4.1-.5 2 0 4 1.5 5.3a5.5 5.5 0 0 0 7.8 0 5.5 5.5 0 0 0 0-7.8 5.5 5.5 0 0 0-4.7-1.6ZM8.1 8 8 8a4 4 0 0 1 6 0 4.1 4.1 0 0 1 0 6 4.1 4.1 0 0 1-6 0 4.1 4.1 0 0 1 0-6Z"
-                    fill="currentColor"
-                    stroke="currentColor"
-                    stroke-width=".3"
-                  />
-                </svg>
-              </div>
-            </a>
-            <a
-              href="#"
-              class="contacts__social-icon contacts__social-icon--tg"
-              target="_blank"
-            >
-              <div class="contacts__social-icon-wrap">
-                <svg
-                  width="24"
-                  height="19"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M22.8 0 .7 8c-.8.3-1 .8-.4 1.3.3.2.5.3 3.2 1.1l2.6.9 6.4-3.7L20 3.2c.5 0 .6.1.3.5a524.2 524.2 0 0 1-10.9 9c0 .1 8.8 6.2 9 6.2.7.2 1.5 0 1.8-.6A624 624 0 0 0 24 .5c0-.4-.5-.6-1.2-.5Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </div>
-            </a>
-            <a
-              href="#"
-              class="contacts__social-icon contacts__social-icon--whatsapp"
-              target="_blank"
-            >
-              <div class="contacts__social-icon-wrap">
-                <svg
-                  width="22"
-                  height="22"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M9.8.1c-7.6 1-12 8.8-8.6 15.6.4.8.4.3-.5 3.5A71 71 0 0 0 0 22a79 79 0 0 0 5.9-1.4c3.5 2.3 9.6 1.3 13-2C26 11.3 19.9-1.3 9.8 0Zm1.9 1.8a9 9 0 0 1 5.8 15.3 9 9 0 0 1-11.3 1.4l-.1-.1-1.7.4-1.7.4.4-1.7.5-1.5-.3-.6A9 9 0 0 1 11.7 2Zm-4.8 4c-1 .3-1.7 2.2-1.3 3.5a12 12 0 0 0 5.2 5.8c2.5 1.2 4 1.2 5.3 0 .7-.7.7-2 0-2l-1-.4c-1.3-.7-1.3-.7-1.8 0-.8 1-.8 1-1.6.6a7.3 7.3 0 0 1-3.2-2.9c-.3-.4-.3-.4.2-1l.5-.8-1-2.6c-.2-.3-.9-.4-1.3-.2Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </div>
-            </a>
-          </div>
+            </b-tab>
+          </b-tabs>
         </div>
-        <!-- END contacts__left -->
 
-        <!-- START contacts__right -->
         <div class="contacts__right">
           <div
             class="contacts__person-slider swiper"
@@ -153,10 +45,9 @@
             v-if="!isDesktop"
           >
             <div class="swiper-wrapper">
-              <!-- START contacts__person-slide -->
               <div
                 class="contacts__person-slide swiper-slide"
-                v-for="(item, index) in staff"
+                v-for="(item, index) in contacts[tabIndex].staff"
                 :key="index"
               >
                 <div class="contact-card">
@@ -182,16 +73,14 @@
                   <div class="contact-card__phone-add">({{ item.phone }})</div>
                 </div>
               </div>
-              <!-- END contacts__person-slide -->
             </div>
           </div>
 
           <div class="contacts__person-slider swiper" v-else>
             <div class="swiper-wrapper">
-              <!-- START contacts__person-slide -->
               <div
                 class="contacts__person-slide swiper-slide"
-                v-for="(item, index) in staff"
+                v-for="(item, index) in contacts[tabIndex].staff"
                 :key="index"
               >
                 <div class="contact-card">
@@ -217,19 +106,14 @@
                   <div class="contact-card__phone-add">({{ item.phone }})</div>
                 </div>
               </div>
-              <!-- END contacts__person-slide -->
             </div>
           </div>
         </div>
-        <!-- END contacts__right -->
 
-        <!-- START contacts-map -->
-        <Map />
-        <!-- END contacts-map -->
+        <Map :tabIndex="tabIndex" />
       </div>
     </div>
   </section>
-  <!-- END contacts -->
 </template>
 
 <script>
@@ -240,6 +124,235 @@ export default {
   data() {
     var self = this;
     return {
+      tabIndex: 0,
+      contacts: [
+        {
+          id: 1,
+          city: "Москва",
+          phone: "+7 (499) 577-00-06",
+          email: "info@petexpert.pro",
+          address:
+            "143300, Московская область, г. Наро-Фоминск, площадь Свободы, 10",
+          social: [
+            {
+              name: "facebook",
+              link: "#",
+            },
+            {
+              name: "instagram",
+              link: "#",
+            },
+            {
+              name: "telegramm",
+              link: "#",
+            },
+            {
+              name: "whatsapp",
+              link: "#",
+            },
+          ],
+          staff: [
+            {
+              id: 1,
+              person: "Владимир Константинов",
+              department: "Продажи",
+              icon: "sales",
+              phone: "Доб.123",
+              photo: "staff.jpg",
+            },
+            {
+              id: 2,
+              person: "Владимир Константинов",
+              department: "Закупки",
+              icon: "buy",
+              phone: "Доб.123",
+              photo: "",
+            },
+            {
+              id: 3,
+              person: "Владимир Константинов",
+              department: "Секретарь",
+              icon: "secretary",
+              phone: "Доб.123",
+              photo: "staff2.jpg",
+            },
+            {
+              id: 4,
+              person: "Владимир Константинов",
+              department: "Дирекция",
+              icon: "chief",
+              phone: "Доб.123",
+              photo: "staff3.jpg",
+            },
+            {
+              id: 5,
+              person: "Владимир Константинов",
+              department: "Доставка",
+              icon: "delivery",
+              phone: "Доб.123",
+              photo: "staff4.jpg",
+            },
+            {
+              id: 6,
+              person: "Владимир Константинов",
+              department: "Качество",
+              icon: "shield",
+              phone: "Доб.123",
+              photo: "staff5.jpg",
+            },
+          ],
+        },
+        {
+          id: 2,
+          city: "Новосибирск",
+          phone: "+7 (499) 577-00-07",
+          email: "info@petexpert.pro",
+          address: "143300,  г. Новосибирск, площадь Свободы, 10",
+          social: [
+            {
+              name: "facebook",
+              link: "#",
+            },
+            {
+              name: "instagram",
+              link: "#",
+            },
+            {
+              name: "telegramm",
+              link: "#",
+            },
+            {
+              name: "whatsapp",
+              link: "#",
+            },
+          ],
+          staff: [
+            {
+              id: 1,
+              person: "Иван Петров",
+              department: "Продажи",
+              icon: "sales",
+              phone: "Доб.123",
+              photo: "staff.jpg",
+            },
+            {
+              id: 2,
+              person: "Иван Петров",
+              department: "Закупки",
+              icon: "buy",
+              phone: "Доб.123",
+              photo: "",
+            },
+            {
+              id: 3,
+              person: "Иван Петров",
+              department: "Секретарь",
+              icon: "secretary",
+              phone: "Доб.123",
+              photo: "staff2.jpg",
+            },
+            {
+              id: 4,
+              person: "Иван Петров",
+              department: "Дирекция",
+              icon: "chief",
+              phone: "Доб.123",
+              photo: "staff3.jpg",
+            },
+            {
+              id: 5,
+              person: "Иван Петров",
+              department: "Доставка",
+              icon: "delivery",
+              phone: "Доб.123",
+              photo: "staff4.jpg",
+            },
+            {
+              id: 6,
+              person: "Иван Петров",
+              department: "Качество",
+              icon: "shield",
+              phone: "Доб.123",
+              photo: "staff5.jpg",
+            },
+          ],
+        },
+        {
+          id: 3,
+          city: "Краснодар",
+          phone: "+7 (499) 577-00-08",
+          email: "info@petexpert.pro",
+          address: "143300,  г. Краснодар, площадь Свободы, 10",
+          social: [
+            {
+              name: "facebook",
+              link: "#",
+            },
+            {
+              name: "instagram",
+              link: "#",
+            },
+            {
+              name: "telegramm",
+              link: "#",
+            },
+            {
+              name: "whatsapp",
+              link: "#",
+            },
+          ],
+          staff: [
+            {
+              id: 1,
+              person: "Сергей Сергеев",
+              department: "Продажи",
+              icon: "sales",
+              phone: "Доб.123",
+              photo: "staff.jpg",
+            },
+            {
+              id: 2,
+              person: "Сергей Сергеев",
+              department: "Закупки",
+              icon: "buy",
+              phone: "Доб.123",
+              photo: "",
+            },
+            {
+              id: 3,
+              person: "Сергей Сергеев",
+              department: "Секретарь",
+              icon: "secretary",
+              phone: "Доб.123",
+              photo: "staff2.jpg",
+            },
+            {
+              id: 4,
+              person: "Сергей Сергеев",
+              department: "Дирекция",
+              icon: "chief",
+              phone: "Доб.123",
+              photo: "staff3.jpg",
+            },
+            {
+              id: 5,
+              person: "Сергей Сергеев",
+              department: "Доставка",
+              icon: "delivery",
+              phone: "Доб.123",
+              photo: "staff4.jpg",
+            },
+            {
+              id: 6,
+              person: "Сергей Сергеев",
+              department: "Качество",
+              icon: "shield",
+              phone: "Доб.123",
+              photo: "staff5.jpg",
+            },
+          ],
+        },
+      ],
       swiperOption: {
         slidesPerView: 3,
         loopedSlides: 4,
@@ -260,12 +373,11 @@ export default {
       return this.$mq === "xl" || this.$mq === "xl2";
     },
   },
+  methods: {},
   props: {
     directives: {
       swiper: directive,
     },
-    staff: Array,
-    default: () => [],
   },
 };
 </script>
@@ -299,6 +411,45 @@ export default {
   padding-top: 84px;
   color: white;
   padding-right: 50px;
+  .nav {
+    justify-content: space-between;
+
+    @media (max-width: 993px) {
+      justify-content: start;
+      gap: 30px;
+    }
+    @media (max-width: 600px) {
+      display: block;
+      width: fit-content;
+    }
+  }
+  .nav-tabs {
+    border-bottom: none;
+  }
+  .nav-link {
+    border: 1px solid $white;
+    border-radius: 44px;
+    height: 40px;
+    padding: 9px 25px 10px;
+    &.active {
+      color: $primary;
+      font-weight: 400;
+    }
+    &:hover {
+      color: $primary;
+      background-color: #fff;
+      font-weight: 400;
+    }
+    @media (max-width: 600px) {
+      justify-content: flex-start;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 30px;
+      width: fit-content;
+    }
+  }
 }
 
 .contacts__right {
@@ -372,7 +523,7 @@ export default {
 .contacts__phone {
   font-weight: 700;
   font-size: 36px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 .contacts__email {
@@ -390,11 +541,15 @@ export default {
 .contacts__social-icons {
   display: flex;
   align-items: center;
+  margin-bottom: 50px;
+  @media (max-width: 600px) {
+    margin-bottom: 10px;
+  }
 }
 
 .contacts__social-icon {
   color: white;
-  margin-right: 10px;
+  margin-right: 25px;
   border-radius: 50%;
   width: 46px;
   height: 46px;
@@ -402,19 +557,20 @@ export default {
   align-items: center;
   justify-content: center;
   @include tr((background-color, color));
-
+  svg {
+    height: 25px;
+  }
   &:hover {
     background-color: white;
-    color: $primary;
+
+    svg path {
+      fill: $primary;
+    }
   }
 }
 
 .contacts__social-icon-wrap {
   display: flex;
-}
-
-.contacts__social-icon--insta .contacts__social-icon-wrap {
-  //margin-top: -1px;
 }
 
 .contacts__social-icon--whatsapp .contacts__social-icon-wrap {
@@ -755,7 +911,7 @@ export default {
 
 @include down("md") {
   .contacts__title {
-    margin-bottom: 28px;
+    text-align: center;
   }
   .contacts__tab-buttons {
     flex-direction: column;

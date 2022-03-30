@@ -50,7 +50,6 @@ export default {
   data() {
     return {
       map: {},
-      width: 0,
     };
   },
   methods: {
@@ -72,17 +71,11 @@ export default {
     },
     initHandler(obj) {
       this.map = obj;
-    },
-    updateWidth() {
-      this.width = window.innerWidth;
+      // event.behaviors.disable(["drag", "multiTouch"]);
     },
   },
 
-  mounted() {
-    window.addEventListener("resize", this.updateWidth);
-
-    this.updateWidth();
-  },
+  mounted() {},
 };
 </script>
 

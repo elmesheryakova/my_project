@@ -4,7 +4,7 @@
       <!-- <div class="contacts-map__map" id="contact-map"></div> -->
       <div class="wrapper-map">
         <yandex-maps
-          :coords="coords"
+          :coords="this.mapCoords"
           :placemarks="items"
           :zoom="zoom"
           @set-coords="coords = $event"
@@ -70,12 +70,32 @@ export default {
   components: {
     YandexMaps,
   },
+  props: {
+    tabIndex: {
+      type: Number,
+    },
+  },
   data() {
     return {
       zoom: 9,
-      items: [[55.386021, 36.728357]],
+      items: [
+        [55.386021, 36.728357],
+        [54.983242, 82.870423],
+        [45.034214, 39.014469],
+      ],
       coords: [55.386021, 36.728357],
     };
+  },
+  computed: {
+    mapCoords() {
+      if (this.tabIndex === 0) {
+        return [55.386021, 36.728357];
+      } else if (this.tabIndex === 1) {
+        return [54.983242, 82.870423];
+      } else if (this.tabIndex === 2) {
+        return [45.034214, 39.014469];
+      }
+    },
   },
   created() {
     this.$bus.$on("get-data-point", (coords) => {});
