@@ -28,7 +28,7 @@ export default {
       return this.$mq === 'md' || this.$mq === 'lg' || this.$mq === 'xl' || this.$mq === 'xl2';
     },
     videoSrc() {
-      return this.toggled ? require('@/assets/video/video1.mp4') : require('@/assets/video/video-thumb.mp4');
+      return this.toggled ? require('@/assets/video/video1.mp4') : require('@/assets/video/video-thumb.webm');
     }
   },
   data() {
