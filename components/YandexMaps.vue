@@ -3,6 +3,7 @@
     :coords="coords"
     :controls="[]"
     :scrollZoom="false"
+    :dragable="false"
     :zoom="12"
     @map-was-initialized="initHandler"
     :options="{
