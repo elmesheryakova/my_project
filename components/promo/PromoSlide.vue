@@ -14,7 +14,7 @@
           <div class="promo-slide__title"
                :class="{big: titleBig, 'promo-slide__title--small': titleSmall}">{{ title }}
           </div>
-          <div class="promo-slide__desc">{{ desc }}</div>
+          <div class="promo-slide__desc" v-if="desc">{{ desc }}</div>
           <div class="promo-slide__items" v-if="list">
             <ul>
               <li v-for="(i, index) in list" :key="index">{{ i }}</li>
