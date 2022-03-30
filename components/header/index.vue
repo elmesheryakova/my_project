@@ -1,7 +1,7 @@
 <template>
   <header class="header" :class="{ 'header--hidden': !showHeader, [`header--view-${view}`]: true }">
-    <HeaderTop />
-    <HeaderBottom />
+    <HeaderTop/>
+    <HeaderBottom/>
   </header>
 </template>
 
@@ -17,7 +17,11 @@ export default {
       lastScrollPosition: 0,
     };
   },
-  computed: {},
+  computed: {
+    isDesktop() {
+      return this.$mq === "xl" || this.$mq === "xl2"
+    }
+  },
   methods: {
     onScroll() {
       const currentScrollPosition =
@@ -34,12 +38,12 @@ export default {
   },
   mounted() {
     // На главной странице отключаем показ/скрытие при скролле
-    if (this.view !== 'frontpage') {
+    if (!this.isDesktop || this.view !== 'frontpage') {
       window.addEventListener("scroll", this.onScroll);
     }
   },
   beforeDestroy() {
-    if (this.view !== 'frontpage') {
+    if (!this.isDesktop || this.view !== 'frontpage') {
       window.removeEventListener("scroll", this.onScroll);
     }
   },
@@ -62,6 +66,7 @@ export default {
   @media (max-width: map-get($grid-breakpoints, 'md')) {
     padding: 10px 0;
   }
+
   &--hidden {
     transform: translateY(-300px);
     transition: transform 0.8s ease-in-out;
