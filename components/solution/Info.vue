@@ -40,6 +40,8 @@
 </template>
 <style lang="scss">
 .info {
+  max-width: 1920px;
+  margin: 0 auto;
   img {
     width: 100%;
   }
