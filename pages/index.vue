@@ -351,7 +351,6 @@ export default {
       }
     },
     onPromoVideoPlayClick(isToggled) {
-      console.log(isToggled);
       this.showPromoBottom = !isToggled;
     },
     onPromoTriggerClick() {
@@ -389,6 +388,9 @@ export default {
       var scrollLocked = false;
 
       this.scrollEventRegistered = false;
+
+      let root = document.documentElement;
+      root.style.setProperty('--screen-height', root.clientHeight + 'px')
 
       if (this.isDesktop) {
         this.$nextTick(() => {

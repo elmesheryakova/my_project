@@ -216,15 +216,7 @@ export default {
 
 @include down('sm') {
   .promo {
-    height: 100vh;
-  }
-  /* Avoid Chrome to see Safari hack */
-  @supports (-webkit-touch-callout: none) {
-    .promo {
-      /* The hack for Safari */
-      padding-top: 0;
-      height: -webkit-fill-available;
-    }
+    height: var(--screen-height);
   }
   .promo__main {
     padding-bottom: 0;
