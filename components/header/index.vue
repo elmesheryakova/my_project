@@ -54,6 +54,7 @@ export default {
   width: 100vw;
   z-index: 20;
   transition: transform 0.8s ease-in-out;
+  position: fixed;
 
   @media (max-width: 860px) {
     box-shadow: 0px 1px 6px 0px #00000029;

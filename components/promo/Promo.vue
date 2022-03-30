@@ -216,11 +216,25 @@ export default {
 
 @include down('sm') {
   .promo {
-    height: 100vh;
+    min-height: 100vh;
+  }
+  @supports (min-height: -webkit-fill-available) {
+    .promo {
+      padding-top: 0;
+      min-height: -webkit-fill-available;
+    }
   }
   .promo__main {
     padding-bottom: 0;
     height: auto;
+  }
+
+  .promo__play-video-button {
+    display: block;
+  }
+
+  .promo__play-video-button {
+    display: none;
   }
 }
 
