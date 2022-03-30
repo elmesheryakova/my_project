@@ -123,7 +123,7 @@ export default {
   layout: "fullscreen",
   data() {
     return {
-      activeBottleType: "water",
+      activeBottleType: "beer",
       showPromoBottom: true,
       width: 0,
       activeSectionIndex: 0,
