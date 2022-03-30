@@ -2,11 +2,10 @@
   <yandex-map
     :coords="coords"
     :controls="[]"
-    :behaviors="{
-      scrollZoom: false,
-      drag: false,
-    }"
     :zoom="12"
+    :behaviors="{
+      multiTouch: true,
+    }"
     @map-was-initialized="initHandler"
     :options="{
       suppressMapOpenBlock: true,
