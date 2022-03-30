@@ -334,7 +334,7 @@ export default {
       this.fpPromo.moveSectionDown();
     },
     onChooseItemClick(clickedBottleType) {
-      if (this.activeBottleType === clickedBottleType) {
+      if (this.activeBottleType === clickedBottleType && this.fpPromo) {
         this.fpPromo.moveSectionDown();
         return;
       }
