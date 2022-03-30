@@ -475,7 +475,7 @@ export default {
   display: flex;
   align-items: flex-end;
   position: relative;
-  margin-bottom: -300px;
+  margin-bottom: -350px;
   margin-top: 50px;
 
   &:after {
@@ -671,7 +671,7 @@ export default {
   }
   .contacts-map {
     margin-top: 0;
-    height: 666px;
+    height: 500px;
   }
   .contacts-map__bottom {
     flex-direction: column;
@@ -681,6 +681,8 @@ export default {
     height: auto;
     padding-top: 24px;
     padding-left: 30px;
+    left: 50% !important;
+    transform: translate(-50%);
     background-color: white;
   }
   .contacts-map__route-links {
@@ -748,10 +750,6 @@ export default {
     &.swiper-slide-visible {
       opacity: 1;
     }
-  }
-
-  .contacts-map {
-    height: 666px;
   }
 }
 
