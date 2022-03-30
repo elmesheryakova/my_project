@@ -69,13 +69,13 @@ export default {
       },
 
       slidesPerView: 3,
-      spaceBetween: 20,
+      spaceBetween: 80,
       breakpoints: {
         600: {
           slidesPerView: 4,
         },
         900: {
-          slidesPerView: 6,
+          slidesPerView: 5,
         },
       },
     });
@@ -97,10 +97,10 @@ export default {
 
   .swiper-wrapper {
     display: flex;
-    gap: 35px;
-    @media (max-width: 1024px) {
-      gap: 10px;
-    }
+    // gap: 35px;
+    // @media (max-width: 1024px) {
+    //   gap: 10px;
+    // }
   }
 
   .swiper-slide {
@@ -136,9 +136,9 @@ export default {
     &::before {
       position: absolute;
       content: "";
-      top: -210px;
+      top: -310px;
       right: 0;
-      height: 600px;
+      height: 800px;
       width: 300px;
       background: linear-gradient(
           -90deg,
@@ -149,7 +149,7 @@ export default {
 
       z-index: -1;
       @media (max-width: 1940px) {
-        top: -210px;
+        top: -310px;
       }
       @media (max-width: 1024px) {
         width: 150px;
