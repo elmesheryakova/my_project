@@ -95,7 +95,7 @@ export default {
     top: -29px;
     left: -6px;
     background: url("~assets/svg/angle.svg") no-repeat;
-    width: 40px;
+    width: 100%;
     height: 40px;
     z-index: -1;
   }

@@ -1,7 +1,10 @@
 <template>
-  <header class="header" :class="{ 'header--hidden': !showHeader, [`header--view-${view}`]: true }">
-    <HeaderTop/>
-    <HeaderBottom/>
+  <header
+    class="header"
+    :class="{ 'header--hidden': !showHeader, [`header--view-${view}`]: true }"
+  >
+    <HeaderTop />
+    <HeaderBottom />
   </header>
 </template>
 
@@ -9,7 +12,7 @@
 export default {
   props: {
     view: String,
-    default: () => 'default',
+    default: () => "default",
   },
   data() {
     return {
@@ -19,8 +22,8 @@ export default {
   },
   computed: {
     isDesktop() {
-      return this.$mq === "xl" || this.$mq === "xl2"
-    }
+      return this.$mq === "xl" || this.$mq === "xl2";
+    },
   },
   methods: {
     onScroll() {
@@ -38,12 +41,12 @@ export default {
   },
   mounted() {
     // На главной странице отключаем показ/скрытие при скролле
-    if (!this.isDesktop || this.view !== 'frontpage') {
+    if (!this.isDesktop || this.view !== "frontpage") {
       window.addEventListener("scroll", this.onScroll);
     }
   },
   beforeDestroy() {
-    if (!this.isDesktop || this.view !== 'frontpage') {
+    if (!this.isDesktop || this.view !== "frontpage") {
       window.removeEventListener("scroll", this.onScroll);
     }
   },
@@ -51,7 +54,7 @@ export default {
 </script>
 <style lang="scss">
 .header {
-  padding: 25px 0 20px;
+  padding: 25px 0 0;
   background-color: #fff;
   top: 0;
   left: 0;
@@ -63,7 +66,7 @@ export default {
   @media (max-width: 860px) {
     box-shadow: 0px 1px 6px 0px #00000029;
   }
-  @media (max-width: map-get($grid-breakpoints, 'md')) {
+  @media (max-width: map-get($grid-breakpoints, "md")) {
     padding: 10px 0;
   }
 
