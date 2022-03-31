@@ -583,7 +583,7 @@ export default {
 
       // 1 цифра это бутылка с пивом, вторая вода
       // кадры с бутылкой пива в папке beer, а булылки воды в water-new
-      var frameCount = bottleType === "beer" ? 73 : 69;
+      var frameCount = bottleType === "beer" ? 73 : 70;
 
       var images = [];
       var bottle = {

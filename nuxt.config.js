@@ -1,5 +1,8 @@
 export default {
   loading: '@/components/loading.vue',
+  server: {
+    host: '0.0.0.0',
+  },
   head: {
     title: 'pet-expert',
     htmlAttrs: {
