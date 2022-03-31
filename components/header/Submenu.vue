@@ -31,7 +31,7 @@ export default {
   opacity: 0;
   visibility: hidden;
   position: absolute;
-  top: 50px;
+  top: 75px;
   left: 0;
   grid-template-columns: repeat(2, 220px);
   gap: 2px;
@@ -55,33 +55,49 @@ export default {
     background: $white;
     background-repeat: no-repeat;
     background-size: 0%;
-    box-shadow: 0px 1px 3px rgba(189, 187, 187, 0.25);
+    box-shadow: 0px 2px 2px 1px rgb(0 0 0 / 16%);
     overflow: hidden;
 
     &-title {
       font-size: 14px;
       transition: 0.3s ease-out;
-      color: #1b2ac9;
+      color: #57595a;
     }
     &-btn {
       width: 40px;
       height: 40px;
       margin-left: -6px;
+      svg rect {
+        &:first-child {
+          fill: #57595a;
+        }
+      }
     }
     &:hover {
       background-size: 100%;
+      .submenu__item-title {
+        color: #1b2ac9;
+      }
+
+      .submenu__item-btn {
+        svg rect {
+          &:first-child {
+            fill: #1b2ac9;
+          }
+        }
+      }
     }
   }
-  &::after {
-    position: absolute;
+
+  &::before {
     content: "";
-    width: 100%;
-    top: -28px;
-    left: 0;
-    z-index: 8;
-    border: 30px solid transparent;
-    border-bottom: 0px solid transparent;
-    border-left: 25px solid #fff;
+    position: absolute;
+    top: -29px;
+    left: -6px;
+    background: url("~assets/svg/angle.svg") no-repeat;
+    width: 40px;
+    height: 40px;
+    z-index: -1;
   }
 }
 </style>

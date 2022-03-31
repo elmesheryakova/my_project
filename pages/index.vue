@@ -72,13 +72,13 @@
               <span>Готовые решения</span> для вашего бизнеса
             </h2>
           </div>
-          <SolutionMobile :items="$store.state.solutions" view="frontpage"/>
+          <SolutionMobile :items="$store.state.solutions" view="frontpage" />
         </template>
       </div>
       <!-- END normal-scroll-section -->
 
       <div class="promo-concepts-before-wave" aria-hidden="true">
-        <img src="~assets/img/wave.svg" alt="wave"/>
+        <img src="~assets/img/wave.svg" alt="wave" />
       </div>
       <PromoConcept
         :slides="promoConceptsSlides"
@@ -88,15 +88,23 @@
         ref="promoConcepts"
       />
       <div class="promo-concepts-after-wave" aria-hidden="true">
-        <img src="~assets/img/wave.svg" alt="wave"/>
+        <img src="~assets/img/wave.svg" alt="wave" />
       </div>
-      <div class="js-section js-section-normal-scroll" data-offset-y="70">
+      <div
+        class="js-section js-section-normal-scroll"
+        data-offset-y="70"
+        id="fix-up"
+      >
         <TeamSlider :pin-section="true"/>
         <PartnersSlider/>
         <ContactsSection :staff="staff"/>
         <Feedback/>
         <Footer/>
       </div>
+    </div>
+    <div class="arrow-up" @click="updatePage">
+      <svgicon name="ar-bl" class="arr-bl" />
+      <svgicon name="ar-w" class="arr-w" />
     </div>
   </div>
 </template>
@@ -123,11 +131,10 @@ export default {
   layout: "fullscreen",
   data() {
     return {
-      activeBottleType: "water",
+      activeBottleType: "beer",
       showPromoBottom: true,
       width: 0,
       activeSectionIndex: 0,
-      disableHeader: false,
       beerSlides: [
         {
           hasCanvas: true,
@@ -328,6 +335,9 @@ export default {
     };
   },
   methods: {
+    updatePage() {
+      location.reload();
+    },
     updateWidth() {
       this.width = window.innerWidth;
     },
@@ -355,7 +365,10 @@ export default {
             this.activeBottleType === "beer"
               ? this.$refs.beerSections
               : this.$refs.waterSections;
-          this.$gsap.to(window, {scrollTo: {y: sections[0].$el}, duration: 1.3});
+          this.$gsap.to(window, {
+            scrollTo: { y: sections[0].$el },
+            duration: 1.3,
+          });
         });
       }
     },
@@ -403,7 +416,7 @@ export default {
       this.scrollEventRegistered = false;
 
       let root = document.documentElement;
-      root.style.setProperty('--screen-height', root.clientHeight + 'px')
+      root.style.setProperty("--screen-height", root.clientHeight + "px");
 
       if (this.isDesktop) {
         this.$nextTick(() => {
@@ -436,18 +449,26 @@ export default {
           var tl = self.$gsap.timeline();
 
           if (section.index === 1 && direction === "up") {
-            self.disableHeader = false;
+            self.$gsap
+              .timeline()
+              .set(".header", { display: "block" })
+              .to(".header", { alpha: 1 });
           }
 
           // Появление первого слайда
           if (section.isFirst && direction === "down") {
+            self.$gsap
+              .timeline()
+              .to(".header", { alpha: 0 })
+              .set(".header", { display: "none" });
+
             tl.fromTo(
               next.item.querySelector(".anim-bottle-canvas"),
               {
                 alpha: 0,
                 x: 30,
               },
-              {alpha: 1, x: 0, delay: 1.2}
+              { alpha: 1, x: 0, delay: 1.2 }
             );
 
             tl.fromTo(
@@ -455,7 +476,7 @@ export default {
               {
                 alpha: 0,
               },
-              {alpha: 1, delay: 1.4}
+              { alpha: 1, delay: 1.4 }
             );
           }
 
@@ -466,7 +487,7 @@ export default {
                 alpha: 0,
                 x: 30,
               },
-              {alpha: 1, x: 0, delay: 0.7, stagger: 0.1},
+              { alpha: 1, x: 0, delay: 0.7, stagger: 0.1 },
               "0"
             );
             if (button) {
@@ -476,7 +497,7 @@ export default {
                   alpha: 0,
                   x: 30,
                 },
-                {alpha: 1, x: 0},
+                { alpha: 1, x: 0 },
                 "1"
               );
             }
@@ -488,7 +509,7 @@ export default {
               {
                 alpha: 0,
               },
-              {alpha: 1},
+              { alpha: 1 },
               "1"
             );
           }
@@ -801,10 +822,10 @@ export default {
           ".promo-concepts__link"
         )[index];
 
-        var splitTitle = new self.$SplitText(title, {type: "lines"});
+        var splitTitle = new self.$SplitText(title, { type: "lines" });
 
-        var splitDesc = new self.$SplitText(descParagraphs, {type: "lines"});
-        new self.$SplitText(descParagraphs, {type: "lines"});
+        var splitDesc = new self.$SplitText(descParagraphs, { type: "lines" });
+        new self.$SplitText(descParagraphs, { type: "lines" });
 
         if (index === 0) {
           var container = item.$el.querySelector(".container");
@@ -823,17 +844,17 @@ export default {
             },
           });
 
-          logoTimeline.fromTo(logo, {alpha: 0}, {alpha: 1}, "0");
+          logoTimeline.fromTo(logo, { alpha: 0 }, { alpha: 1 }, "0");
           logoTimeline.fromTo(
             image,
-            {alpha: 0, duration: 1},
-            {alpha: 1},
+            { alpha: 0, duration: 1 },
+            { alpha: 1 },
             "0"
           );
           logoTimeline.fromTo(
             sectionTitle,
-            {alpha: 0},
-            {alpha: 1, y: 0},
+            { alpha: 0 },
+            { alpha: 1, y: 0 },
             "0.3"
           );
         }
@@ -845,7 +866,7 @@ export default {
             end: "51% center",
             scrub: false,
             toggleActions: "restart none restart none",
-            toggleClass: {targets: [content], className: "is-active"},
+            toggleClass: { targets: [content], className: "is-active" },
           },
         });
 
@@ -854,7 +875,7 @@ export default {
           {
             y: "100%",
           },
-          {ease: "power2.out", y: 0, duration: 1}
+          { ease: "power2.out", y: 0, duration: 1 }
         );
 
         tl.fromTo(
@@ -862,7 +883,7 @@ export default {
           {
             y: "150%",
           },
-          {ease: "power2.out", y: 0, duration: 0.7, stagger: 0.05},
+          { ease: "power2.out", y: 0, duration: 0.7, stagger: 0.05 },
           "0.2"
         );
 
@@ -871,7 +892,7 @@ export default {
           {
             alpha: 0,
           },
-          {alpha: 1, duration: 1},
+          { alpha: 1, duration: 1 },
           "-=0.4"
         );
 
@@ -888,7 +909,7 @@ export default {
             ".promo-concepts__image"
           )[index];
 
-          imagesTimeline.fromTo(image, {y: "100%"}, {y: 0}, "0");
+          imagesTimeline.fromTo(image, { y: "100%" }, { y: 0 }, "0");
         }
 
         var isLast = index === promoConceptsSections.length - 1;
@@ -904,7 +925,7 @@ export default {
           });
           imagesParallaxTimeline.to(
             image,
-            {y: "-30%", immediateRender: false},
+            { y: "-30%", immediateRender: false },
             "0"
           );
         }
@@ -1091,10 +1112,82 @@ export default {
     window.addEventListener("resize", this.updateWidth);
     this.updateWidth();
     this.init();
+
+    function getBodyScrollTop() {
+      var offset =
+        self.pageYOffset ||
+        (document.documentElement && document.documentElement.scrollTop) ||
+        (document.body && document.body.scrollTop);
+      let heightSection = document.getElementById("fix-up").offsetHeight;
+
+      if (offset > heightSection) {
+        document.querySelector(".arrow-up").style.display = "block";
+      }
+      if (offset < heightSection) {
+        document.querySelector(".arrow-up").style.display = "none";
+      }
+    }
+
+    window.addEventListener("scroll", getBodyScrollTop);
+
+    // let scrolled;
+    // let timer;
+    // document.querySelector(".arrow-up").addEventListener("click", (event) => {
+    //   scrolled = window.pageYOffset;
+    //   scrollToTop();
+    // });
+
+    // function scrollToTop() {
+    //   if (scrolled > 0) {
+    //     window.scrollTo(0, scrolled);
+    //     scrolled = scrolled - 90;
+    //     timer = setTimeout(scrollToTop, 1);
+    //   } else {
+    //     clearTimeout(timer);
+    //     window.scrollTo(0, 0);
+    //   }
+    // }
   },
 };
 </script>
 <style lang="scss">
+.arrow-up {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  border: 1px solid $primary;
+  z-index: 999999;
+  border-radius: 50%;
+  display: none;
+  cursor: pointer;
+  .arr-bl,
+  .arr-w {
+    position: absolute;
+    height: 20px;
+    top: 15px;
+    left: 15px;
+    transition: 0.2s ease-in-out;
+  }
+  .arr-w {
+    transform: rotate(-90deg);
+    opacity: 0;
+  }
+  &:hover {
+    background: $primary;
+
+    .arr-bl {
+      opacity: 0;
+      transition: 0.2s ease-in-out;
+    }
+    .arr-w {
+      opacity: 1;
+      top: 10px;
+      left: 12px;
+    }
+  }
+}
 #fullpage-promo {
   overflow-x: hidden;
 }
