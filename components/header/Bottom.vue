@@ -53,7 +53,9 @@ export default {
       align-items: center;
       justify-content: space-between;
       padding-top: 7px;
+      padding-bottom: 20px;
       position: relative;
+      cursor: pointer;
       &:hover {
         transition: 0.3s ease-out;
         .item-menu__icon {
