@@ -1038,7 +1038,7 @@ export default {
   border: 1px solid $primary;
   z-index: 999999;
   border-radius: 50%;
-  display: block;
+  display: none;
   cursor: pointer;
   .arr-bl,
   .arr-w {
