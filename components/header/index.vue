@@ -10,6 +10,10 @@ export default {
   props: {
     view: String,
     default: () => 'default',
+    disableHeader: {
+      type: Boolean,
+      default: () => false
+    }
   },
   data() {
     return {
@@ -26,6 +30,10 @@ export default {
     onScroll() {
       const currentScrollPosition =
         window.pageYOffset || document.documentElement.scrollTop;
+      console.log(this.disableHeader);
+      if (this.disableHeader) {
+        return;
+      }
       if (currentScrollPosition < 0) {
         return;
       }
@@ -38,14 +46,10 @@ export default {
   },
   mounted() {
     // На главной странице отключаем показ/скрытие при скролле
-    if (!this.isDesktop || this.view !== 'frontpage') {
-      window.addEventListener("scroll", this.onScroll);
-    }
+    window.addEventListener("scroll", this.onScroll);
   },
   beforeDestroy() {
-    if (!this.isDesktop || this.view !== 'frontpage') {
-      window.removeEventListener("scroll", this.onScroll);
-    }
+    window.removeEventListener("scroll", this.onScroll);
   },
 };
 </script>
