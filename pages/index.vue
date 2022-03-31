@@ -102,7 +102,7 @@
         <Footer />
       </div>
     </div>
-    <div class="arrow-up">
+    <div class="arrow-up" @click="updatePage">
       <svgicon name="ar-bl" class="arr-bl" />
       <svgicon name="ar-w" class="arr-w" />
     </div>
@@ -335,6 +335,9 @@ export default {
     };
   },
   methods: {
+    updatePage() {
+      location.reload();
+    },
     updateWidth() {
       this.width = window.innerWidth;
     },
@@ -1008,23 +1011,23 @@ export default {
 
     window.addEventListener("scroll", getBodyScrollTop);
 
-    let scrolled;
-    let timer;
-    document.querySelector(".arrow-up").addEventListener("click", (event) => {
-      scrolled = window.pageYOffset;
-      scrollToTop();
-    });
+    // let scrolled;
+    // let timer;
+    // document.querySelector(".arrow-up").addEventListener("click", (event) => {
+    //   scrolled = window.pageYOffset;
+    //   scrollToTop();
+    // });
 
-    function scrollToTop() {
-      if (scrolled > 0) {
-        window.scrollTo(0, scrolled);
-        scrolled = scrolled - 90;
-        timer = setTimeout(scrollToTop, 1);
-      } else {
-        clearTimeout(timer);
-        window.scrollTo(0, 0);
-      }
-    }
+    // function scrollToTop() {
+    //   if (scrolled > 0) {
+    //     window.scrollTo(0, scrolled);
+    //     scrolled = scrolled - 90;
+    //     timer = setTimeout(scrollToTop, 1);
+    //   } else {
+    //     clearTimeout(timer);
+    //     window.scrollTo(0, 0);
+    //   }
+    // }
   },
 };
 </script>
