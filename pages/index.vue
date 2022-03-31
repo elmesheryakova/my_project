@@ -450,18 +450,11 @@ export default {
           var tl = self.$gsap.timeline();
 
           if (section.index === 1 && direction === "up") {
-            self.$gsap
-              .timeline()
-              .set(".header", { display: "block" })
-              .to(".header", { alpha: 1 });
+            self.disableHeader = false;
           }
 
           // Появление первого слайда
           if (section.isFirst && direction === "down") {
-            self.$gsap
-              .timeline()
-              .to(".header", { alpha: 0 })
-              .set(".header", { display: "none" });
 
             tl.fromTo(
               next.item.querySelector(".anim-bottle-canvas"),
@@ -995,15 +988,47 @@ export default {
 
       if (this.activeBottleType === 'beer') {
         var progress = (nextSectionIndex - 1) / 4;
-        console.log(progress);
-        var toFrame = Math.floor(progress * (this.frameCount-1));
-        console.log(toFrame);
+        var toFrame = Math.floor(progress * (this.frameCount - 1));
+        var bottleMoves = {
+          1: {
+            duration: 1.3,
+            xPercent: 0,
+            delay: 0,
+          },
+          2: {
+            duration: 1,
+            xPercent: -5,
+            delay: 0.2,
+          },
+          3: {
+            duration: 1,
+            xPercent: 90,
+            delay: 0.2,
+          },
+          4: {
+            duration: 1.3,
+            delay: 0,
+            xPercent: -30,
+          },
+          5: {
+            duration: 1,
+            delay: 0.2,
+            xPercent: 80,
+          },
+        };
+
         this.$gsap.to(this.bottleData, {
           frame: toFrame,
           ease: "power2.inOut",
           snap: "frame",
           duration: 1.3,
           onUpdate: this.renderBottleSprite, // use animation onUpdate instead of scrollTrigger's onUpdate
+        });
+        this.$gsap.to(this.canvasContainer, {
+          ease: "power2.inOut",
+          duration: bottleMoves[nextSectionIndex].duration,
+          delay: bottleMoves[nextSectionIndex].delay,
+          xPercent: bottleMoves[nextSectionIndex].xPercent,
         });
       }
 
