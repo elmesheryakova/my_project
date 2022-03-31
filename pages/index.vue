@@ -90,13 +90,21 @@
       <div class="promo-concepts-after-wave" aria-hidden="true">
         <img src="~assets/img/wave.svg" alt="wave" />
       </div>
-      <div class="js-section js-section-normal-scroll" data-offset-y="70">
+      <div
+        class="js-section js-section-normal-scroll"
+        data-offset-y="70"
+        id="fix-up"
+      >
         <TeamSlider :pin-section="true" />
         <PartnersSlider />
         <ContactsSection :staff="staff" />
         <Feedback />
         <Footer />
       </div>
+    </div>
+    <div class="arrow-up">
+      <svgicon name="ar-bl" class="arr-bl" />
+      <svgicon name="ar-w" class="arr-w" />
     </div>
   </div>
 </template>
@@ -354,7 +362,10 @@ export default {
             this.activeBottleType === "beer"
               ? this.$refs.beerSections
               : this.$refs.waterSections;
-          this.$gsap.to(window, {scrollTo: {y: sections[0].$el}, duration: 1.3});
+          this.$gsap.to(window, {
+            scrollTo: { y: sections[0].$el },
+            duration: 1.3,
+          });
         });
       }
     },
@@ -398,7 +409,7 @@ export default {
       this.scrollEventRegistered = false;
 
       let root = document.documentElement;
-      root.style.setProperty('--screen-height', root.clientHeight + 'px')
+      root.style.setProperty("--screen-height", root.clientHeight + "px");
 
       if (this.isDesktop) {
         this.$nextTick(() => {
@@ -979,10 +990,82 @@ export default {
     window.addEventListener("resize", this.updateWidth);
     this.updateWidth();
     this.init();
+
+    function getBodyScrollTop() {
+      var offset =
+        self.pageYOffset ||
+        (document.documentElement && document.documentElement.scrollTop) ||
+        (document.body && document.body.scrollTop);
+      let heightSection = document.getElementById("fix-up").offsetHeight;
+
+      if (offset > heightSection) {
+        document.querySelector(".arrow-up").style.display = "block";
+      }
+      if (offset < heightSection) {
+        document.querySelector(".arrow-up").style.display = "none";
+      }
+    }
+
+    window.addEventListener("scroll", getBodyScrollTop);
+
+    let scrolled;
+    let timer;
+    document.querySelector(".arrow-up").addEventListener("click", (event) => {
+      scrolled = window.pageYOffset;
+      scrollToTop();
+    });
+
+    function scrollToTop() {
+      if (scrolled > 0) {
+        window.scrollTo(0, scrolled);
+        scrolled = scrolled - 90;
+        timer = setTimeout(scrollToTop, 1);
+      } else {
+        clearTimeout(timer);
+        window.scrollTo(0, 0);
+      }
+    }
   },
 };
 </script>
 <style lang="scss">
+.arrow-up {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  border: 1px solid $primary;
+  z-index: 999999;
+  border-radius: 50%;
+  display: block;
+  cursor: pointer;
+  .arr-bl,
+  .arr-w {
+    position: absolute;
+    height: 20px;
+    top: 15px;
+    left: 15px;
+    transition: 0.2s ease-in-out;
+  }
+  .arr-w {
+    transform: rotate(-90deg);
+    opacity: 0;
+  }
+  &:hover {
+    background: $primary;
+
+    .arr-bl {
+      opacity: 0;
+      transition: 0.2s ease-in-out;
+    }
+    .arr-w {
+      opacity: 1;
+      top: 10px;
+      left: 12px;
+    }
+  }
+}
 #fullpage-promo {
   overflow-x: hidden;
 }
