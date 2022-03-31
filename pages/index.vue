@@ -135,6 +135,7 @@ export default {
       showPromoBottom: true,
       width: 0,
       activeSectionIndex: 0,
+      disableHeader: false,
       beerSlides: [
         {
           hasCanvas: true,
