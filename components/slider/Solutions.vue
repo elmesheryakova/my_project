@@ -29,7 +29,12 @@
                         />
                       </div>
                     </div>
-                    <div class="slider-sol__icon">
+                    <div
+                      class="slider-sol__icon"
+                      :class="{
+                        'slider-sol__icon--coffe': item.title === 'Кофе',
+                      }"
+                    >
                       <svgicon :name="item.svgHover" class="svg-color" />
                       <svgicon :name="item.svg" class="svg-white" />
                     </div>
@@ -224,6 +229,12 @@ export default {
     @media (max-width: 1024px) {
       width: 120px;
       height: 120px;
+    }
+    &--coffe {
+      .svg-white,
+      .svg-color {
+        padding: 38px;
+      }
     }
   }
 
