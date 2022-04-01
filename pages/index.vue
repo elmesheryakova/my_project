@@ -1,13 +1,13 @@
 <template>
   <div>
-    <Header :view="'frontpage'" :disableHeader="disableHeader" ref="header"/>
+    <Header :view="'frontpage'" :disableHeader="disableHeader" ref="header" />
     <div id="fullpage-promo" ref="fullpagePromoElem">
       <Promo>
         <template v-slot:main>
-          <PromoVideo @video-change="onPromoVideoPlayClick"/>
+          <PromoVideo @video-change="onPromoVideoPlayClick" />
         </template>
         <template v-slot:bottom v-if="showPromoBottom">
-          <ChooseItem @click="onChooseItemClick"/>
+          <ChooseItem @click="onChooseItemClick" />
         </template>
       </Promo>
 
@@ -61,10 +61,10 @@
             <span>Группа товаров</span> для пивоварен и баров:
           </h2>
         </div>
-        <Slider :items="productsGroup" v-if="width > 790"/>
-        <GridMobile :items="productsGroup" :width="width" v-else/>
+        <Slider :items="productsGroup" v-if="width > 790" />
+        <GridMobile :items="productsGroup" :width="width" v-else />
         <div class="test" v-if="width > 992">
-          <SliderSolutions view="frontpage" ref="sliderSolutions"/>
+          <SliderSolutions view="frontpage" ref="sliderSolutions" />
         </div>
         <template v-else>
           <div class="container">
@@ -95,11 +95,11 @@
         data-offset-y="70"
         id="fix-up"
       >
-        <TeamSlider :pin-section="true"/>
-        <PartnersSlider/>
-        <ContactsSection :staff="staff"/>
-        <Feedback/>
-        <Footer/>
+        <TeamSlider :pin-section="true" />
+        <PartnersSlider />
+        <ContactsSection :staff="staff" />
+        <Feedback />
+        <Footer />
       </div>
     </div>
     <div class="arrow-up" @click="updatePage">
@@ -440,7 +440,6 @@ export default {
         scrollingSpeed: 1300,
 
         onLeave: function (section, next, direction) {
-
           var targets = next.item.querySelectorAll(
             ".promo-slide__title, .promo-slide__desc, .promo-slide__items li"
           );
@@ -455,7 +454,6 @@ export default {
 
           // Появление первого слайда
           if (section.isFirst && direction === "down") {
-
             tl.fromTo(
               next.item.querySelector(".anim-bottle-canvas"),
               {
@@ -568,7 +566,7 @@ export default {
             }
           } else {
             // self.disableHeader = true;
-            console.log('triggered!');
+            console.log("triggered!");
             if (section.index !== 0) {
               self.disableHeader = true;
             }
@@ -734,16 +732,27 @@ export default {
           }).png`);
         }
       }
-
     },
 
     renderBottleSprite() {
       this.canvasContext.clearRect(0, 0, this.canvas.width, this.canvas.height);
       if (this.activeBottleType == "beer") {
-        this.canvasContext.drawImage(this.spriteImages[this.bottleData.frame], 0, 0, this.newWidth, this.newHeight);
+        this.canvasContext.drawImage(
+          this.spriteImages[this.bottleData.frame],
+          0,
+          0,
+          this.newWidth,
+          this.newHeight
+        );
       } else {
         if (this.spriteImages[this.bottleData.frame]) {
-          this.canvasContext.drawImage(this.spriteImages[this.bottleData.frame], 0, 0, this.newWidth, this.newHeight);
+          this.canvasContext.drawImage(
+            this.spriteImages[this.bottleData.frame],
+            0,
+            0,
+            this.newWidth,
+            this.newHeight
+          );
         }
       }
     },
@@ -933,7 +942,7 @@ export default {
         if (offsetTop > window.scrollY) {
           self.disableHeader = true;
           if (self.$refs.header.$el) {
-            self.$refs.header.$el.classList.add('header--hidden');
+            self.$refs.header.$el.classList.add("header--hidden");
           }
           document.removeEventListener("scroll", this.onNormalSectionScroll);
           var prevSection = this.activeNormalSection.previousElementSibling;
@@ -985,8 +994,7 @@ export default {
       }
     },
     animateBottle(nextSectionIndex, direction) {
-
-      if (this.activeBottleType === 'beer') {
+      if (this.activeBottleType === "beer") {
         var progress = (nextSectionIndex - 1) / 4;
         var toFrame = Math.floor(progress * (this.frameCount - 1));
         var bottleMoves = {
@@ -1032,7 +1040,7 @@ export default {
         });
       }
 
-      if (this.activeBottleType === 'water') {
+      if (this.activeBottleType === "water") {
         if (nextSectionIndex === 1) {
           this.$gsap.to(this.bottleData, {
             frame: 0,
@@ -1077,7 +1085,7 @@ export default {
             xPercent: 90,
             ease: "power2.inOut",
             duration: 1,
-            delay: 0.2
+            delay: 0.2,
           });
         }
 
@@ -1093,7 +1101,7 @@ export default {
             xPercent: -20,
             ease: "power2.inOut",
             duration: 1,
-            delay: 0.2
+            delay: 0.2,
           });
         }
 
@@ -1109,12 +1117,11 @@ export default {
             xPercent: 80,
             ease: "power2.inOut",
             duration: 1,
-            delay: 0.2
+            delay: 0.2,
           });
         }
       }
-    }
-
+    },
   },
   // сначала надо распаковать архив с кадрами. Где они?
   // отключи сервер. который nuxt dev. Он иногда не дает перезаписать старые кадры

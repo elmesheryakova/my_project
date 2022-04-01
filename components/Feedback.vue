@@ -9,6 +9,7 @@
         $route.name === 'contacts',
     }"
   >
+    <!-- 'footer-feedback--animate': offsetTop < 0, -->
     <div
       :class="{
         'wave-wrap1': $route.name === 'solutions-id',
@@ -53,7 +54,7 @@ export default {
   width: 100%;
   height: 100%;
   background-color: #f2f3f6;
-  // transition: 0.8s ease-in-out;
+  transition: 0.8s ease-in-out;
   position: relative;
   &--white {
     .footer-feedback__wrap {
