@@ -1396,6 +1396,9 @@ export default {
     left: 20%;
     color: #f6f6f6;
   }
+  &.safari:before {
+    top: 65%;
+  }
 }
 
 .promo-slide__content.left .promo-slide__content-inner:before {

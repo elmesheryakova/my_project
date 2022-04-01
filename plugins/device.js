@@ -14,6 +14,7 @@ export default function (ctx, inject) {
     isIos: ctx.$device.isIos,
     isWindows: ctx.$device.isWindows,
     isMacOS: ctx.$device.isMacOS,
+    isSafari: ctx.$device.isSafari,
     isDesktopOrTablet: !ctx.$device.isMobile,
     isAndroid: ctx.$device.isMobileOrTablet && !ctx.$device.isIos
   });
