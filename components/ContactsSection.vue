@@ -9,6 +9,7 @@
               v-for="(item, index) in contacts"
               :key="index"
               :title="item.city"
+              @click="animateMap"
             >
               <div class="contacts__tab-contents">
                 <a class="contacts__phone" href="tel:74995770006">
@@ -229,11 +230,11 @@ export default {
           staff: [
             {
               id: 1,
-              person: "Иван Петров",
+              person: "Иван Петров Иванович",
               department: "Продажи",
               icon: "sales",
               phone: "Доб.123",
-              photo: "staff.jpg",
+              photo: "staff5.jpg",
             },
             {
               id: 2,
@@ -241,7 +242,7 @@ export default {
               department: "Закупки",
               icon: "buy",
               phone: "Доб.123",
-              photo: "",
+              photo: "staff2.jpg",
             },
             {
               id: 3,
@@ -249,7 +250,7 @@ export default {
               department: "Секретарь",
               icon: "secretary",
               phone: "Доб.123",
-              photo: "staff2.jpg",
+              photo: "staff.jpg",
             },
             {
               id: 4,
@@ -257,7 +258,7 @@ export default {
               department: "Дирекция",
               icon: "chief",
               phone: "Доб.123",
-              photo: "staff3.jpg",
+              photo: "staff4.jpg",
             },
             {
               id: 5,
@@ -265,7 +266,7 @@ export default {
               department: "Доставка",
               icon: "delivery",
               phone: "Доб.123",
-              photo: "staff4.jpg",
+              photo: "",
             },
             {
               id: 6,
@@ -308,7 +309,7 @@ export default {
               department: "Продажи",
               icon: "sales",
               phone: "Доб.123",
-              photo: "staff.jpg",
+              photo: "staff5.jpg",
             },
             {
               id: 2,
@@ -316,11 +317,11 @@ export default {
               department: "Закупки",
               icon: "buy",
               phone: "Доб.123",
-              photo: "",
+              photo: "staff3.jpg",
             },
             {
               id: 3,
-              person: "Сергей Сергеев",
+              person: "Сергей Сергеев Сергеевич",
               department: "Секретарь",
               icon: "secretary",
               phone: "Доб.123",
@@ -332,7 +333,7 @@ export default {
               department: "Дирекция",
               icon: "chief",
               phone: "Доб.123",
-              photo: "staff3.jpg",
+              photo: "",
             },
             {
               id: 5,
@@ -340,7 +341,7 @@ export default {
               department: "Доставка",
               icon: "delivery",
               phone: "Доб.123",
-              photo: "staff4.jpg",
+              photo: "staff.jpg",
             },
             {
               id: 6,
@@ -373,7 +374,33 @@ export default {
       return this.$mq === "xl" || this.$mq === "xl2";
     },
   },
-  methods: {},
+  methods: {
+    animateMap() {
+      const map = document.querySelector(".wrapper-map");
+      const contacts = document.querySelectorAll(".contacts__tab-contents");
+      const imgs = document.querySelectorAll(".contact-card");
+
+      contacts.forEach((el) => {
+        el.classList.add("animate");
+        setTimeout(() => {
+          el.classList.remove("animate");
+        }, 200);
+      });
+      if (this.isDesktop) {
+        imgs.forEach((el) => {
+          el.classList.add("animate");
+          setTimeout(() => {
+            el.classList.remove("animate");
+          }, 400);
+        });
+      }
+
+      map.classList.add("animate");
+      setTimeout(() => {
+        map.classList.remove("animate");
+      }, 500);
+    },
+  },
   props: {
     directives: {
       swiper: directive,
@@ -384,6 +411,15 @@ export default {
 
 <style lang="scss">
 /* start contacts */
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
 .contacts {
   position: relative;
   margin-bottom: 350px;
@@ -432,14 +468,13 @@ export default {
     border-radius: 44px;
     height: 40px;
     padding: 9px 25px 10px;
+    font-weight: 400;
     &.active {
       color: $primary;
-      font-weight: 400;
     }
     &:hover {
       color: $primary;
       background-color: #fff;
-      font-weight: 400;
     }
     @media (max-width: 600px) {
       justify-content: flex-start;
@@ -455,11 +490,13 @@ export default {
 
 .contacts__right {
   width: calc(50% - 20px);
-
   position: relative;
   z-index: 1;
-  padding: 50px;
+  // padding: 50px;
   padding-right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .contacts-map {
@@ -519,6 +556,12 @@ export default {
 
 .contacts__tab-contents {
   margin: 60px 0 30px;
+  transition: 0.3s ease-in-out;
+  &.animate {
+    opacity: 0;
+    transform: translateX(80px);
+    transition: 0.3s ease-in-out;
+  }
 }
 
 .contacts__phone {
@@ -537,6 +580,7 @@ export default {
   font-size: 24px;
   font-weight: 300;
   line-height: 1.5;
+  height: 80px;
 }
 
 .contacts__social-icons {
@@ -587,8 +631,14 @@ export default {
   max-width: 128px;
   display: block;
   margin-bottom: 50px;
+  transition: 0.3s ease-in-out;
   @media (max-width: 991px) {
     max-width: 200px;
+  }
+  &.animate {
+    opacity: 0;
+    transform: translateX(80px);
+    transition: 0.3s ease-in-out;
   }
 }
 
@@ -604,6 +654,8 @@ export default {
 
 .contact-card__img img {
   width: 100%;
+
+  transition: 0.7s ease-in;
 }
 
 .contact-card__job {
@@ -754,13 +806,14 @@ export default {
 .contacts__person-slider {
   overflow: visible;
 }
-
+.contact-card__name {
+  min-height: 40px;
+}
 @media screen and (min-width: map-get($grid-breakpoints, "lg")) {
   .contacts__person-slider .swiper-wrapper {
-    flex-wrap: wrap;
-  }
-  .contacts__person-slide {
-    flex: 0 0 33.3333%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 60px;
   }
 }
 
@@ -823,11 +876,11 @@ export default {
   .contacts__right {
     width: 100%;
     padding-left: 30px;
-    padding-top: 60px;
-    margin-bottom: 60px;
+    // padding-top: 60px;
+    margin: 60px 0;
   }
   .contacts-map {
-    margin-top: 0;
+    // margin-top: 0;
     height: 500px;
   }
   .contacts-map__bottom {
@@ -940,6 +993,7 @@ export default {
     padding-left: 24px;
     padding-bottom: 30px;
     padding-top: 40px;
+    margin: 0;
   }
   .contacts__phone {
     font-size: 32px;

@@ -1,7 +1,7 @@
 <template>
   <yandex-map
     :coords="coords"
-    :controls="[]"
+    :controls="['zoomControl']"
     :zoom="15"
     :scrollZoom="false"
     :multiTouch="true"

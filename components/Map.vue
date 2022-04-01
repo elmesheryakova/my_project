@@ -10,6 +10,12 @@
           @set-coords="coords = $event"
         >
         </yandex-maps>
+        <div class="animate-wrap">
+          <div class="lds-ripple">
+            <div></div>
+            <div></div>
+          </div>
+        </div>
       </div>
       <div class="contacts-map__bottom">
         <div class="contacts-map__route-title">
@@ -123,8 +129,58 @@ export default {
     -ms-filter: grayscale(100%);
     -o-filter: grayscale(100%);
   }
+  &.animate {
+    .animate-wrap,
+    .lds-ripple {
+      display: block;
+    }
+  }
 }
-
+.animate-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f2f3f6;
+  display: none;
+}
+.lds-ripple {
+  // display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  display: none;
+}
+.lds-ripple div {
+  position: absolute;
+  border: 4px solid rgb(146, 213, 247);
+  opacity: 1;
+  border-radius: 50%;
+  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+.lds-ripple div:nth-child(2) {
+  animation-delay: -0.5s;
+}
+@keyframes lds-ripple {
+  0% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 0px;
+    left: 0px;
+    width: 72px;
+    height: 72px;
+    opacity: 0;
+  }
+}
 .contacts-map__bottom {
   position: absolute;
   bottom: 0;
