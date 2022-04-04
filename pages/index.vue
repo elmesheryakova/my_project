@@ -427,24 +427,24 @@ export default {
           duration: 1,
           xPercent: 0,
           delay: 0.2,
-          frame: 39,
+          frame: 18,
         },
         3: {
           duration: 1,
           xPercent: 90,
           delay: 0.2,
-          frame: 127,
+          frame: 48,
         },
         4: {
           duration: 1.3,
           delay: 0,
-          frame: 188,
+          frame: 70,
           xPercent: -30,
         },
         5: {
           duration: 1,
           delay: 0.2,
-          frame: 274,
+          frame: 107,
           xPercent: 80,
         },
       };
@@ -671,7 +671,7 @@ export default {
 
       // 1 цифра это бутылка с пивом, вторая вода
       // кадры с бутылкой пива в папке beer, а булылки воды в water-new
-      this.frameCount = bottleType === "beer" ? 275 : 130;
+      this.frameCount = bottleType === "beer" ? 108 : 130;
 
       this.spriteImages = [];
       if (!this.fpPromo) {
