@@ -121,7 +121,7 @@ export default {
       return index;
     },
     canvasWidth() {
-      return this.bottleType === 'beer' ? 1600 : 960;
+      return this.bottleType === 'beer' ? 1240 : 960;
     }
   },
 }

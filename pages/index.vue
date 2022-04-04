@@ -1,13 +1,13 @@
 <template>
   <div>
-    <Header :view="'frontpage'" :disableHeader="disableHeader" ref="header" />
+    <Header :view="'frontpage'" :disableHeader="disableHeader" ref="header"/>
     <div id="fullpage-promo" ref="fullpagePromoElem">
       <Promo>
         <template v-slot:main>
-          <PromoVideo @video-change="onPromoVideoPlayClick" />
+          <PromoVideo @video-change="onPromoVideoPlayClick"/>
         </template>
         <template v-slot:bottom v-if="showPromoBottom">
-          <ChooseItem @click="onChooseItemClick" />
+          <ChooseItem @click="onChooseItemClick"/>
         </template>
       </Promo>
 
@@ -61,10 +61,10 @@
             <span>Группа товаров</span> для пивоварен и баров:
           </h2>
         </div>
-        <Slider :items="productsGroup" v-if="width > 790" />
-        <GridMobile :items="productsGroup" :width="width" v-else />
+        <Slider :items="productsGroup" v-if="width > 790"/>
+        <GridMobile :items="productsGroup" :width="width" v-else/>
         <div class="test" v-if="width > 992">
-          <SliderSolutions view="frontpage" ref="sliderSolutions" />
+          <SliderSolutions view="frontpage" ref="sliderSolutions"/>
         </div>
         <template v-else>
           <div class="container">
@@ -72,13 +72,13 @@
               <span>Готовые решения</span> для вашего бизнеса
             </h2>
           </div>
-          <SolutionMobile :items="$store.state.solutions" view="frontpage" />
+          <SolutionMobile :items="$store.state.solutions" view="frontpage"/>
         </template>
       </div>
       <!-- END normal-scroll-section -->
 
       <div class="promo-concepts-before-wave" aria-hidden="true">
-        <img src="~assets/img/wave.svg" alt="wave" />
+        <img src="~assets/img/wave.svg" alt="wave"/>
       </div>
       <PromoConcept
         :slides="promoConceptsSlides"
@@ -88,23 +88,23 @@
         ref="promoConcepts"
       />
       <div class="promo-concepts-after-wave" aria-hidden="true">
-        <img src="~assets/img/wave.svg" alt="wave" />
+        <img src="~assets/img/wave.svg" alt="wave"/>
       </div>
       <div
         class="js-section js-section-normal-scroll"
         data-offset-y="70"
         id="fix-up"
       >
-        <TeamSlider :pin-section="true" />
-        <PartnersSlider />
-        <ContactsSection :staff="staff" />
-        <Feedback />
-        <Footer />
+        <TeamSlider :pin-section="true"/>
+        <PartnersSlider/>
+        <ContactsSection :staff="staff"/>
+        <Feedback/>
+        <Footer/>
       </div>
     </div>
     <div class="arrow-up" @click="updatePage">
-      <svgicon name="ar-bl" class="arr-bl" />
-      <svgicon name="ar-w" class="arr-w" />
+      <svgicon name="ar-bl" class="arr-bl"/>
+      <svgicon name="ar-w" class="arr-w"/>
     </div>
   </div>
 </template>
@@ -367,7 +367,7 @@ export default {
               ? this.$refs.beerSections
               : this.$refs.waterSections;
           this.$gsap.to(window, {
-            scrollTo: { y: sections[0].$el },
+            scrollTo: {y: sections[0].$el},
             duration: 1.3,
           });
         });
@@ -416,6 +416,72 @@ export default {
 
       this.scrollEventRegistered = false;
 
+      this.beerMoves = {
+        1: {
+          duration: 1.3,
+          xPercent: 0,
+          delay: 0,
+          frame: 0,
+        },
+        2: {
+          duration: 1,
+          xPercent: 0,
+          delay: 0.2,
+          frame: 39,
+        },
+        3: {
+          duration: 1,
+          xPercent: 90,
+          delay: 0.2,
+          frame: 127,
+        },
+        4: {
+          duration: 1.3,
+          delay: 0,
+          frame: 188,
+          xPercent: -30,
+        },
+        5: {
+          duration: 1,
+          delay: 0.2,
+          frame: 274,
+          xPercent: 80,
+        },
+      };
+
+      this.waterMoves = {
+        1: {
+          duration: 1.3,
+          xPercent: 0,
+          delay: 0,
+          frame: 0,
+        },
+        2: {
+          duration: 1,
+          xPercent: -5,
+          delay: 0.2,
+          frame: 17,
+        },
+        3: {
+          duration: 1,
+          xPercent: 90,
+          delay: 0.2,
+          frame: 65,
+        },
+        4: {
+          duration: 1.3,
+          delay: 0,
+          frame: 107,
+          xPercent: -30,
+        },
+        5: {
+          duration: 1,
+          delay: 0.2,
+          frame: 129,
+          xPercent: 80,
+        },
+      };
+
       let root = document.documentElement;
       root.style.setProperty("--screen-height", root.clientHeight + "px");
 
@@ -460,7 +526,7 @@ export default {
                 alpha: 0,
                 x: 30,
               },
-              { alpha: 1, x: 0, delay: 1.2 }
+              {alpha: 1, x: 0, delay: 1.2}
             );
 
             tl.fromTo(
@@ -468,7 +534,7 @@ export default {
               {
                 alpha: 0,
               },
-              { alpha: 1, delay: 1.4 }
+              {alpha: 1, delay: 1.4}
             );
           }
 
@@ -479,7 +545,7 @@ export default {
                 alpha: 0,
                 x: 30,
               },
-              { alpha: 1, x: 0, delay: 0.7, stagger: 0.1 },
+              {alpha: 1, x: 0, delay: 0.7, stagger: 0.1},
               "0"
             );
             if (button) {
@@ -489,7 +555,7 @@ export default {
                   alpha: 0,
                   x: 30,
                 },
-                { alpha: 1, x: 0 },
+                {alpha: 1, x: 0},
                 "1"
               );
             }
@@ -501,7 +567,7 @@ export default {
               {
                 alpha: 0,
               },
-              { alpha: 1 },
+              {alpha: 1},
               "1"
             );
           }
@@ -589,7 +655,7 @@ export default {
       var endTriggerElem = sections[sections.length - 1].$el;
 
       var img = {
-        width: bottleType === "beer" ? 1600 : 960,
+        width: bottleType === "beer" ? 1240 : 960,
         height: 900,
       };
 
@@ -605,7 +671,7 @@ export default {
 
       // 1 цифра это бутылка с пивом, вторая вода
       // кадры с бутылкой пива в папке beer, а булылки воды в water-new
-      this.frameCount = bottleType === "beer" ? 73 : 130;
+      this.frameCount = bottleType === "beer" ? 275 : 130;
 
       this.spriteImages = [];
       if (!this.fpPromo) {
@@ -633,58 +699,6 @@ export default {
           ease: "none",
         },
       });
-
-      // this.bottleAnimationTimeline = this.$gsap.timeline({ease: "none", paused: true});
-      //
-      // this.bottleAnimationTimeline.to(this.bottleData, {
-      //   frame: this.frameCount - 1,
-      //   ease: "none",
-      //   snap: "frame",
-      //   duration: 1,
-      //   onUpdate: this.renderBottleSprite, // use animation onUpdate instead of scrollTrigger's onUpdate
-      // });
-
-      // this.bottleTimeline.to(
-      //   this.canvasContainer,
-      //   {
-      //     x: "100%",
-      //     duration: "0.2",
-      //     ease: "ease-in-out",
-      //   },
-      //   "0.320"
-      // );
-      //
-      // if (this.activeBottleType === "water") {
-      //   this.bottleTimeline.to(
-      //     this.canvasContainer,
-      //     {
-      //       x: "-10%",
-      //       duration: "0.2",
-      //       ease: "ease-in-out",
-      //     },
-      //     "0.100"
-      //   );
-      // }
-      //
-      // this.bottleTimeline.to(
-      //   this.canvasContainer,
-      //   {
-      //     x: "-20%",
-      //     duration: "0.20",
-      //     ease: "ease-in-out",
-      //   },
-      //   "0.564"
-      // );
-      //
-      // this.bottleTimeline.to(
-      //   this.canvasContainer,
-      //   {
-      //     x: "80%",
-      //     duration: "0.20",
-      //     ease: "ease-in-out",
-      //   },
-      //   "0.838"
-      // );
 
       if (this.triggerTl) {
         this.triggerTl.scrollTrigger.kill();
@@ -725,7 +739,7 @@ export default {
         // тут пути прописаны до файлов.
 
         if (bottleType === "beer") {
-          return require(`@/assets/img/${bottleType}/${index + 1}.png`);
+          return require(`@/assets/img/${bottleType}/beer (${index + 1}).png`);
         } else {
           return require(`@/assets/img/${bottleType}-new/wa (${
             index + 1
@@ -825,10 +839,10 @@ export default {
           ".promo-concepts__link"
         )[index];
 
-        var splitTitle = new self.$SplitText(title, { type: "lines" });
+        var splitTitle = new self.$SplitText(title, {type: "lines"});
 
-        var splitDesc = new self.$SplitText(descParagraphs, { type: "lines" });
-        new self.$SplitText(descParagraphs, { type: "lines" });
+        var splitDesc = new self.$SplitText(descParagraphs, {type: "lines"});
+        new self.$SplitText(descParagraphs, {type: "lines"});
 
         if (index === 0) {
           var container = item.$el.querySelector(".container");
@@ -847,17 +861,17 @@ export default {
             },
           });
 
-          logoTimeline.fromTo(logo, { alpha: 0 }, { alpha: 1 }, "0");
+          logoTimeline.fromTo(logo, {alpha: 0}, {alpha: 1}, "0");
           logoTimeline.fromTo(
             image,
-            { alpha: 0, duration: 1 },
-            { alpha: 1 },
+            {alpha: 0, duration: 1},
+            {alpha: 1},
             "0"
           );
           logoTimeline.fromTo(
             sectionTitle,
-            { alpha: 0 },
-            { alpha: 1, y: 0 },
+            {alpha: 0},
+            {alpha: 1, y: 0},
             "0.3"
           );
         }
@@ -869,7 +883,7 @@ export default {
             end: "51% center",
             scrub: false,
             toggleActions: "restart none restart none",
-            toggleClass: { targets: [content], className: "is-active" },
+            toggleClass: {targets: [content], className: "is-active"},
           },
         });
 
@@ -878,7 +892,7 @@ export default {
           {
             y: "100%",
           },
-          { ease: "power2.out", y: 0, duration: 1 }
+          {ease: "power2.out", y: 0, duration: 1}
         );
 
         tl.fromTo(
@@ -886,7 +900,7 @@ export default {
           {
             y: "150%",
           },
-          { ease: "power2.out", y: 0, duration: 0.7, stagger: 0.05 },
+          {ease: "power2.out", y: 0, duration: 0.7, stagger: 0.05},
           "0.2"
         );
 
@@ -895,7 +909,7 @@ export default {
           {
             alpha: 0,
           },
-          { alpha: 1, duration: 1 },
+          {alpha: 1, duration: 1},
           "-=0.4"
         );
 
@@ -912,7 +926,7 @@ export default {
             ".promo-concepts__image"
           )[index];
 
-          imagesTimeline.fromTo(image, { y: "100%" }, { y: 0 }, "0");
+          imagesTimeline.fromTo(image, {y: "100%"}, {y: 0}, "0");
         }
 
         var isLast = index === promoConceptsSections.length - 1;
@@ -928,7 +942,7 @@ export default {
           });
           imagesParallaxTimeline.to(
             image,
-            { y: "-30%", immediateRender: false },
+            {y: "-30%", immediateRender: false},
             "0"
           );
         }
@@ -997,36 +1011,9 @@ export default {
       if (this.activeBottleType === "beer") {
         var progress = (nextSectionIndex - 1) / 4;
         var toFrame = Math.floor(progress * (this.frameCount - 1));
-        var bottleMoves = {
-          1: {
-            duration: 1.3,
-            xPercent: 0,
-            delay: 0,
-          },
-          2: {
-            duration: 1,
-            xPercent: -5,
-            delay: 0.2,
-          },
-          3: {
-            duration: 1,
-            xPercent: 90,
-            delay: 0.2,
-          },
-          4: {
-            duration: 1.3,
-            delay: 0,
-            xPercent: -30,
-          },
-          5: {
-            duration: 1,
-            delay: 0.2,
-            xPercent: 80,
-          },
-        };
 
         this.$gsap.to(this.bottleData, {
-          frame: toFrame,
+          frame: this.beerMoves[nextSectionIndex].frame,
           ease: "power2.inOut",
           snap: "frame",
           duration: 1.3,
@@ -1034,92 +1021,27 @@ export default {
         });
         this.$gsap.to(this.canvasContainer, {
           ease: "power2.inOut",
-          duration: bottleMoves[nextSectionIndex].duration,
-          delay: bottleMoves[nextSectionIndex].delay,
-          xPercent: bottleMoves[nextSectionIndex].xPercent,
+          duration: this.beerMoves[nextSectionIndex].duration,
+          delay: this.beerMoves[nextSectionIndex].delay,
+          xPercent: this.beerMoves[nextSectionIndex].xPercent,
         });
       }
 
       if (this.activeBottleType === "water") {
-        if (nextSectionIndex === 1) {
-          this.$gsap.to(this.bottleData, {
-            frame: 0,
-            ease: "power2.inOut",
-            snap: "frame",
-            duration: 1.3,
-            onUpdate: this.renderBottleSprite, // use animation onUpdate instead of scrollTrigger's onUpdate
-          });
+        this.$gsap.to(this.bottleData, {
+          frame: this.waterMoves[nextSectionIndex].frame,
+          ease: "power2.inOut",
+          snap: "frame",
+          duration: 1.3,
+          onUpdate: this.renderBottleSprite, // use animation onUpdate instead of scrollTrigger's onUpdate
+        });
 
-          this.$gsap.to(this.canvasContainer, {
-            xPercent: 0,
-            duration: 1.3,
-            ease: "power2.inOut",
-          });
-        }
-
-        if (nextSectionIndex === 2) {
-          this.$gsap.to(this.bottleData, {
-            frame: 17,
-            ease: "power2.inOut",
-            snap: "frame",
-            duration: 1.3,
-            onUpdate: this.renderBottleSprite, // use animation onUpdate instead of scrollTrigger's onUpdate
-          });
-
-          this.$gsap.to(this.canvasContainer, {
-            xPercent: -10,
-            ease: "power2.inOut",
-            duration: 1.3,
-          });
-        }
-
-        if (nextSectionIndex === 3) {
-          this.$gsap.to(this.bottleData, {
-            frame: 65,
-            ease: "power2.inOut",
-            snap: "frame",
-            duration: 1.3,
-            onUpdate: this.renderBottleSprite, // use animation onUpdate instead of scrollTrigger's onUpdate
-          });
-          this.$gsap.to(this.canvasContainer, {
-            xPercent: 90,
-            ease: "power2.inOut",
-            duration: 1,
-            delay: 0.2,
-          });
-        }
-
-        if (nextSectionIndex === 4) {
-          this.$gsap.to(this.bottleData, {
-            frame: 107,
-            ease: "power2.inOut",
-            snap: "frame",
-            duration: 1.3,
-            onUpdate: this.renderBottleSprite, // use animation onUpdate instead of scrollTrigger's onUpdate
-          });
-          this.$gsap.to(this.canvasContainer, {
-            xPercent: -20,
-            ease: "power2.inOut",
-            duration: 1,
-            delay: 0.2,
-          });
-        }
-
-        if (nextSectionIndex === 5) {
-          this.$gsap.to(this.bottleData, {
-            frame: 129,
-            ease: "power2.inOut",
-            snap: "frame",
-            duration: 1.3,
-            onUpdate: this.renderBottleSprite, // use animation onUpdate instead of scrollTrigger's onUpdate
-          });
-          this.$gsap.to(this.canvasContainer, {
-            xPercent: 80,
-            ease: "power2.inOut",
-            duration: 1,
-            delay: 0.2,
-          });
-        }
+        this.$gsap.to(this.canvasContainer, {
+          xPercent: this.waterMoves[nextSectionIndex].xPercent,
+          duration: this.waterMoves[nextSectionIndex].duration,
+          delay: this.waterMoves[nextSectionIndex].delay,
+          ease: "power2.inOut",
+        });
       }
     },
   },
@@ -1195,6 +1117,7 @@ export default {
   border-radius: 50%;
   display: none;
   cursor: pointer;
+
   .arr-bl,
   .arr-w {
     position: absolute;
@@ -1203,10 +1126,12 @@ export default {
     left: 15px;
     transition: 0.2s ease-in-out;
   }
+
   .arr-w {
     transform: rotate(-90deg);
     opacity: 0;
   }
+
   &:hover {
     background: $primary;
 
@@ -1214,6 +1139,7 @@ export default {
       opacity: 0;
       transition: 0.2s ease-in-out;
     }
+
     .arr-w {
       opacity: 1;
       top: 10px;
@@ -1221,6 +1147,7 @@ export default {
     }
   }
 }
+
 #fullpage-promo {
   overflow-x: hidden;
 }
@@ -1272,7 +1199,7 @@ export default {
 
 .anim-bottle canvas {
   display: block;
-  width: 150%;
+  width: 110%;
   height: auto;
   position: absolute;
   top: 50%;
@@ -1403,6 +1330,7 @@ export default {
     left: 20%;
     color: #f6f6f6;
   }
+
   &.safari:before {
     top: 65%;
   }

@@ -191,6 +191,7 @@ export default {
     this.hoveredSlide = null;
     this.hoveredSlides = [];
 
+
     if (this.isDesktop && this.pinSection) {
       var promoConceptsSections = this.$parent.$refs.promoConcepts;
 
