@@ -1,13 +1,14 @@
 <template>
   <div>
-    <Header :view="'frontpage'" :disableHeader="disableHeader" ref="header"/>
+    <Header :view="'frontpage'" :disableHeader="disableHeader" ref="header" />
     <div id="fullpage-promo" ref="fullpagePromoElem">
       <Promo>
         <template v-slot:main>
-          <PromoVideo @video-change="onPromoVideoPlayClick"/>
+          <PromoVideo @video-change="onPromoVideoPlayClick" />
         </template>
+
         <template v-slot:bottom v-if="showPromoBottom">
-          <ChooseItem @click="onChooseItemClick"/>
+          <ChooseItem @click="onChooseItemClick" />
         </template>
       </Promo>
 
@@ -61,10 +62,10 @@
             <span>Группа товаров</span> для пивоварен и баров:
           </h2>
         </div>
-        <Slider :items="productsGroup" v-if="width > 790"/>
-        <GridMobile :items="productsGroup" :width="width" v-else/>
+        <Slider :items="productsGroup" v-if="width > 790" />
+        <GridMobile :items="productsGroup" :width="width" v-else />
         <div class="test" v-if="width > 992">
-          <SliderSolutions view="frontpage" ref="sliderSolutions"/>
+          <SliderSolutions view="frontpage" ref="sliderSolutions" />
         </div>
         <template v-else>
           <div class="container">
@@ -72,13 +73,13 @@
               <span>Готовые решения</span> для вашего бизнеса
             </h2>
           </div>
-          <SolutionMobile :items="$store.state.solutions" view="frontpage"/>
+          <SolutionMobile :items="$store.state.solutions" view="frontpage" />
         </template>
       </div>
       <!-- END normal-scroll-section -->
 
       <div class="promo-concepts-before-wave" aria-hidden="true">
-        <img src="~assets/img/wave.svg" alt="wave"/>
+        <img src="~assets/img/wave.svg" alt="wave" />
       </div>
       <PromoConcept
         :slides="promoConceptsSlides"
@@ -88,23 +89,23 @@
         ref="promoConcepts"
       />
       <div class="promo-concepts-after-wave" aria-hidden="true">
-        <img src="~assets/img/wave.svg" alt="wave"/>
+        <img src="~assets/img/wave.svg" alt="wave" />
       </div>
       <div
         class="js-section js-section-normal-scroll"
         data-offset-y="70"
         id="fix-up"
       >
-        <TeamSlider :pin-section="true"/>
-        <PartnersSlider/>
-        <ContactsSection :staff="staff"/>
-        <Feedback/>
-        <Footer/>
+        <TeamSlider :pin-section="true" />
+        <PartnersSlider />
+        <ContactsSection :staff="staff" />
+        <Feedback />
+        <Footer />
       </div>
     </div>
     <div class="arrow-up" @click="updatePage">
-      <svgicon name="ar-bl" class="arr-bl"/>
-      <svgicon name="ar-w" class="arr-w"/>
+      <svgicon name="ar-bl" class="arr-bl" />
+      <svgicon name="ar-w" class="arr-w" />
     </div>
   </div>
 </template>
@@ -367,7 +368,7 @@ export default {
               ? this.$refs.beerSections
               : this.$refs.waterSections;
           this.$gsap.to(window, {
-            scrollTo: {y: sections[0].$el},
+            scrollTo: { y: sections[0].$el },
             duration: 1.3,
           });
         });
@@ -526,7 +527,7 @@ export default {
                 alpha: 0,
                 x: 30,
               },
-              {alpha: 1, x: 0, delay: 1.2}
+              { alpha: 1, x: 0, delay: 1.2 }
             );
 
             tl.fromTo(
@@ -534,7 +535,7 @@ export default {
               {
                 alpha: 0,
               },
-              {alpha: 1, delay: 1.4}
+              { alpha: 1, delay: 1.4 }
             );
           }
 
@@ -545,7 +546,7 @@ export default {
                 alpha: 0,
                 x: 30,
               },
-              {alpha: 1, x: 0, delay: 0.7, stagger: 0.1},
+              { alpha: 1, x: 0, delay: 0.7, stagger: 0.1 },
               "0"
             );
             if (button) {
@@ -555,7 +556,7 @@ export default {
                   alpha: 0,
                   x: 30,
                 },
-                {alpha: 1, x: 0},
+                { alpha: 1, x: 0 },
                 "1"
               );
             }
@@ -567,7 +568,7 @@ export default {
               {
                 alpha: 0,
               },
-              {alpha: 1},
+              { alpha: 1 },
               "1"
             );
           }
@@ -839,10 +840,10 @@ export default {
           ".promo-concepts__link"
         )[index];
 
-        var splitTitle = new self.$SplitText(title, {type: "lines"});
+        var splitTitle = new self.$SplitText(title, { type: "lines" });
 
-        var splitDesc = new self.$SplitText(descParagraphs, {type: "lines"});
-        new self.$SplitText(descParagraphs, {type: "lines"});
+        var splitDesc = new self.$SplitText(descParagraphs, { type: "lines" });
+        new self.$SplitText(descParagraphs, { type: "lines" });
 
         if (index === 0) {
           var container = item.$el.querySelector(".container");
@@ -861,17 +862,17 @@ export default {
             },
           });
 
-          logoTimeline.fromTo(logo, {alpha: 0}, {alpha: 1}, "0");
+          logoTimeline.fromTo(logo, { alpha: 0 }, { alpha: 1 }, "0");
           logoTimeline.fromTo(
             image,
-            {alpha: 0, duration: 1},
-            {alpha: 1},
+            { alpha: 0, duration: 1 },
+            { alpha: 1 },
             "0"
           );
           logoTimeline.fromTo(
             sectionTitle,
-            {alpha: 0},
-            {alpha: 1, y: 0},
+            { alpha: 0 },
+            { alpha: 1, y: 0 },
             "0.3"
           );
         }
@@ -883,7 +884,7 @@ export default {
             end: "51% center",
             scrub: false,
             toggleActions: "restart none restart none",
-            toggleClass: {targets: [content], className: "is-active"},
+            toggleClass: { targets: [content], className: "is-active" },
           },
         });
 
@@ -892,7 +893,7 @@ export default {
           {
             y: "100%",
           },
-          {ease: "power2.out", y: 0, duration: 1}
+          { ease: "power2.out", y: 0, duration: 1 }
         );
 
         tl.fromTo(
@@ -900,7 +901,7 @@ export default {
           {
             y: "150%",
           },
-          {ease: "power2.out", y: 0, duration: 0.7, stagger: 0.05},
+          { ease: "power2.out", y: 0, duration: 0.7, stagger: 0.05 },
           "0.2"
         );
 
@@ -909,7 +910,7 @@ export default {
           {
             alpha: 0,
           },
-          {alpha: 1, duration: 1},
+          { alpha: 1, duration: 1 },
           "-=0.4"
         );
 
@@ -926,7 +927,7 @@ export default {
             ".promo-concepts__image"
           )[index];
 
-          imagesTimeline.fromTo(image, {y: "100%"}, {y: 0}, "0");
+          imagesTimeline.fromTo(image, { y: "100%" }, { y: 0 }, "0");
         }
 
         var isLast = index === promoConceptsSections.length - 1;
@@ -942,7 +943,7 @@ export default {
           });
           imagesParallaxTimeline.to(
             image,
-            {y: "-30%", immediateRender: false},
+            { y: "-30%", immediateRender: false },
             "0"
           );
         }
@@ -1583,25 +1584,21 @@ export default {
     }
   }
 
-  .promo-slide {
-    padding-bottom: 150px;
-  }
-
   .promo-slide--beer-1,
   .promo-slide--water-1 {
     padding-bottom: 100px;
   }
 
-  .promo-slide--beer-3,
-  .promo-slide--water-3 {
-    .promo-slide__content-inner:before {
-      top: 20px;
-    }
-  }
+  // .promo-slide--beer-3,
+  // .promo-slide--water-3 {
+  //   .promo-slide__content-inner:before {
+  //     top: 20px;
+  //   }
+  // }
   .promo-slide--beer-4,
   .promo-slide--water-4 {
     .promo-slide__content-inner:before {
-      top: 40px;
+      top: 0px;
     }
   }
   .promo-slide-last {
@@ -1644,9 +1641,9 @@ export default {
     }
   }
 
-  .promo-slide__content-inner:before {
-    top: -10px;
-  }
+  // .promo-slide__content-inner:before {
+  //   top: -10px;
+  // }
 
   .promo-slide-last .promo-slide__title {
     font-size: 31px;
@@ -1723,7 +1720,7 @@ export default {
 
 @include down("md") {
   .promo-slide {
-    padding-bottom: 85px;
+    // padding-bottom: 85px;
   }
   .promo-slide--beer-1,
   .promo-slide--water-1 {
@@ -1764,25 +1761,25 @@ export default {
     left: 0;
   }
 
-  .promo-slide--beer-2,
-  .promo-slide--water-2 {
-    .promo-slide__content-inner:before {
-      top: 0;
-      margin-left: -4px;
-    }
-  }
-  .promo-slide--beer-3,
-  .promo-slide--water-3 {
-    .promo-slide__content-inner:before {
-      top: 0;
-    }
-  }
-  .promo-slide--beer-4,
-  .promo-slide--water-4 {
-    .promo-slide__content-inner:before {
-      top: 87px;
-    }
-  }
+  // .promo-slide--beer-2,
+  // .promo-slide--water-2 {
+  //   .promo-slide__content-inner:before {
+  //     top: 0;
+  //     margin-left: -4px;
+  //   }
+  // }
+  // .promo-slide--beer-3,
+  // .promo-slide--water-3 {
+  //   .promo-slide__content-inner:before {
+  //     top: 0;
+  //   }
+  // }
+  // .promo-slide--beer-4,
+  // .promo-slide--water-4 {
+  //   .promo-slide__content-inner:before {
+  //     top: 87px;
+  //   }
+  // }
 }
 
 @media screen and (max-width: 350px) {

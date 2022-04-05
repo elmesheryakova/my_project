@@ -12,7 +12,7 @@
 import PromoVideo from "~/components/promo/PromoVideo";
 
 export default {
-  components: {PromoVideo},
+  components: { PromoVideo },
 
   props: {
     showBottom: Boolean,
@@ -20,7 +20,6 @@ export default {
 };
 </script>
 <style lang="scss">
-
 .promo-slides-container {
   position: relative;
 }
@@ -42,6 +41,9 @@ export default {
   align-items: flex-end;
   padding-bottom: 30px;
   padding-left: 30px;
+  @media (max-width: 640px) {
+    height: 500px !important;
+  }
 }
 
 .promo__choose {
@@ -55,7 +57,7 @@ export default {
   background-color: #fff;
 
   &:after {
-    content: '';
+    content: "";
     position: absolute;
     left: 50%;
     top: 0;
@@ -67,7 +69,7 @@ export default {
   }
 
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     bottom: 0;
@@ -77,7 +79,6 @@ export default {
     background-color: $grayPet;
   }
 }
-
 
 .promo__choose-title {
   display: none;
@@ -146,8 +147,7 @@ export default {
   @include tr((color));
 }
 
-
-@include down('lg') {
+@include down("lg") {
   .promo {
     height: auto;
     padding-top: 90px;
@@ -205,16 +205,15 @@ export default {
   .promo__choose-item-icon {
     height: 70px;
   }
-
 }
 
-@include down('md') {
+@include down("md") {
   .promo {
     padding-top: 60px;
   }
 }
 
-@include down('sm') {
+@include down("sm") {
   .promo {
     height: var(--screen-height);
   }
@@ -232,7 +231,7 @@ export default {
   }
 }
 
-@include down('xs') {
+@include down("xs") {
   .promo__choose-item {
     svg {
       width: auto;
@@ -248,7 +247,7 @@ export default {
   }
 }
 
-@media screen and (max-height: 800px) and (min-width: map-get($grid-breakpoints, 'lg')) {
+@media screen and (max-height: 800px) and (min-width: map-get($grid-breakpoints, "lg")) {
   .promo__choose-item {
     height: 100px;
     padding: 0;
