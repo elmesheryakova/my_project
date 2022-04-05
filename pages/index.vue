@@ -1761,25 +1761,25 @@ export default {
     left: 0;
   }
 
-  // .promo-slide--beer-2,
-  // .promo-slide--water-2 {
-  //   .promo-slide__content-inner:before {
-  //     top: 0;
-  //     margin-left: -4px;
-  //   }
-  // }
-  // .promo-slide--beer-3,
-  // .promo-slide--water-3 {
-  //   .promo-slide__content-inner:before {
-  //     top: 0;
-  //   }
-  // }
-  // .promo-slide--beer-4,
-  // .promo-slide--water-4 {
-  //   .promo-slide__content-inner:before {
-  //     top: 87px;
-  //   }
-  // }
+   .promo-slide--beer-2,
+   .promo-slide--water-2 {
+     .promo-slide__content-inner:before {
+       top: 0;
+       margin-left: -4px;
+     }
+   }
+   .promo-slide--beer-3,
+   .promo-slide--water-3 {
+     .promo-slide__content-inner:before {
+       top: 14px;
+     }
+   }
+   .promo-slide--beer-4,
+   .promo-slide--water-4 {
+     .promo-slide__content-inner:before {
+       top: 87px;
+     }
+   }
 }
 
 @media screen and (max-width: 350px) {
