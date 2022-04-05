@@ -31,7 +31,7 @@
         />
       </a>
     </div>
-    <div v-if="width < 640">
+    <div v-else>
       <PromoMobileSlider :images="mobileSliderImages" />
     </div>
   </div>

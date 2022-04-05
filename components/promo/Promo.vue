@@ -215,7 +215,7 @@ export default {
 
 @include down("sm") {
   .promo {
-    height: var(--screen-height);
+    // height: var(--screen-height);
   }
   .promo__main {
     padding-bottom: 0;
