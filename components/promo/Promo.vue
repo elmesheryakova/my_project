@@ -41,9 +41,6 @@ export default {
   align-items: flex-end;
   padding-bottom: 30px;
   padding-left: 30px;
-  @media (max-width: 640px) {
-    height: 500px !important;
-  }
 }
 
 .promo__choose {
@@ -215,7 +212,7 @@ export default {
 
 @include down("sm") {
   .promo {
-    // height: var(--screen-height);
+    height: var(--screen-height);
   }
   .promo__main {
     padding-bottom: 0;
