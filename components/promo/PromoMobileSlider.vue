@@ -1,31 +1,34 @@
 <template>
-  <div class="promo__mobile-slider swiper" v-swiper="{}" ref="swiper">
+  <div class="promo__mobile-slider swiper">
     <div class="swiper-wrapper">
-      <div v-for="(item, index) in images" :key="index" class="promo__mobile-slide swiper-slide">
-        <img
-          :src="item.src"
-          :alt="item.alt">
+      <div
+        v-for="(item, index) in images"
+        :key="index"
+        class="promo__mobile-slide swiper-slide"
+      >
+        <p class="promo__mobile-text">{{ item.text }}</p>
+        <img :src="require(`@/assets/img/${item.src}`)" :alt="item.alt" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import {directive} from "vue-awesome-swiper";
+import { directive } from "vue-awesome-swiper";
 
 export default {
   name: "PromoMobileSlider",
   props: {
-    images: Array
+    images: Array,
   },
   data() {
     return {
       directives: {
-        swiper: directive
-      }
-    }
-  }
-}
+        swiper: directive,
+      },
+    };
+  },
+};
 </script>
 
 <style lang="scss">
@@ -50,11 +53,20 @@ export default {
 .promo__mobile-slide {
   height: 100%;
 }
-
-@include down('sm') {
+.promo__mobile-text {
+  position: absolute;
+  top: 45%;
+  left: 20px;
+  font-weight: 600;
+  width: 200px;
+  font-size: 32px;
+  line-height: 40px;
+  color: $primary;
+  z-index: 99;
+}
+@include down("sm") {
   .promo__mobile-slider {
     display: flex;
   }
 }
-
 </style>
