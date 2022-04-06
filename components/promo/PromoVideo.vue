@@ -57,11 +57,14 @@ export default {
         : require("@/assets/video/video-thumb.webm");
     },
   },
+
   data() {
     return {
+      width: 0,
       mobileSliderImages: [
         {
           src: "m-banner.png",
+
           alt: "img",
           text: "Новая норма упаковки",
         },

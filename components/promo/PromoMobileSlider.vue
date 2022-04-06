@@ -38,7 +38,7 @@ export default {
   top: 0;
   width: 100%;
   height: 100%;
-  display: none;
+  // display: none;
 
   img {
     position: absolute;
@@ -55,6 +55,7 @@ export default {
 }
 .promo__mobile-text {
   position: absolute;
+
   top: 45%;
   left: 20px;
   font-weight: 600;
