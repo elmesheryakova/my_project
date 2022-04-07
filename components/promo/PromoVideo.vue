@@ -2,7 +2,7 @@
   <div>
     <div v-if="isTabletOrDesktop">
       <video
-        :poster="require('~/assets/img/banner.jpg')"
+        :poster="require('~/assets/img/poster2.jpg')"
         autoplay="autoplay"
         :muted="!toggled"
         loop="loop"
