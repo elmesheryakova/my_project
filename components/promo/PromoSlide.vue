@@ -11,7 +11,7 @@
           </div>
         </div>
         <div class="promo-slide__mobile-img"><img :src="mobileImgSrc" alt="ПЭТ"></div>
-        <div class="promo-slide__content-inner" v-bind:data-num="contentDigit(index)" :class="{safari: this.$device.isSafari}">
+        <div class="promo-slide__content-inner" v-bind:data-num="contentDigit(index)" :class="{safari: this.$device.isMacOS}">
           <div class="promo-slide__title"
                :class="{big: titleBig, 'promo-slide__title--small': titleSmall}">{{ title }}
           </div>
