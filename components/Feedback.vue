@@ -222,6 +222,7 @@ export default {
   },
   mounted() {
     if (this.isDesktop && this.enableWaveAnimation) {
+      this.init();
       window.addEventListener('load', this.init);
     }
   },
