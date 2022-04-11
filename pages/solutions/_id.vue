@@ -38,7 +38,7 @@
     <Slider :items="productsGroup" v-if="width > 790" />
     <GridMobile :items="productsGroup" :width="width" v-else />
     <SolutionInfo />
-    <div class="test" v-if="width > 870"><SliderSolutions /></div>
+    <div class="test" v-if="width > 870" ref="sectionBeforeRef"><SliderSolutions /></div>
 
     <template v-else>
       <div class="container">
@@ -46,7 +46,7 @@
       </div>
       <SolutionMobile :items="solutions"
     /></template>
-    <Feedback :offsetTop="offsetTop" :elemHeight="elemHeight" />
+    <Feedback :offsetTop="offsetTop" :elemHeight="elemHeight" :enableWaveAnimation="true" />
   </div>
 </template>
 <script>

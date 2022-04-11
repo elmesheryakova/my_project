@@ -98,7 +98,7 @@ export default {
   padding: 120px 0;
   background-color: #f2f3f6;
   position: relative;
-  height: 100vh;
+  min-height: 100vh;
 
   .swiper-wrapper {
     display: flex;
