@@ -23,10 +23,10 @@
                     <div class="slider-sol__item">
                       <h4 class="slider-sol__title">{{ item.title }}</h4>
                       <div class="slider-sol__img">
-<!--                        <img-->
-<!--                          :src="require(`@/assets/img/${item.img}`)"-->
-<!--                          alt="img"-->
-<!--                        />-->
+                        <img
+                          :src="require(`@/assets/img/${item.img}`)"
+                          alt="img"
+                        />
                       </div>
                     </div>
                     <div
