@@ -49,8 +49,6 @@ export default {
       required: false,
     },
   },
-  watch: {
-  },
   computed: {
     isDesktop() {
       return this.$mq === "xl" || this.$mq === "xl2";
@@ -58,6 +56,7 @@ export default {
   },
   methods: {
     init() {
+      console.log('initialized!');
       setTimeout(() => {
 
         this.feedbackElemState = 'before';
@@ -223,7 +222,7 @@ export default {
   },
   mounted() {
     if (this.isDesktop && this.enableWaveAnimation) {
-      this.init();
+      window.addEventListener('load', this.init);
     }
   },
 };
