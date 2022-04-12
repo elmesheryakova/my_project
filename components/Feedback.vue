@@ -74,6 +74,8 @@ export default {
     },
     initPrevSectionTimeline() {
       var prevSectionTimeline = this.$gsap.timeline();
+      console.log('prevSection');
+      console.log(this.prevSection);
 
       this.$ScrollTrigger.create({
         trigger: this.prevSection,
@@ -82,6 +84,7 @@ export default {
         pin: false,
         pinSpacing: false,
         onEnter: () => {
+          console.log('onEnter');
           this.$ScrollTrigger.refresh();
         },
       });
