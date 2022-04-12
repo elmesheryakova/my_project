@@ -205,7 +205,7 @@ export default {
           duration: 1,
           ease: "power2.inOut",
           scrollTo: {
-            y: self.prevSection.parentNode,
+            y: self.prevSection,
             offsetY: -(self.prevSection.offsetHeight - window.innerHeight)
           },
           onComplete: function () {
