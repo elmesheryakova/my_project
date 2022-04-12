@@ -87,6 +87,7 @@ export default {
         pin: false,
         pinSpacing: false,
         onEnter: () => {
+          this.initVars();
           this.$ScrollTrigger.refresh();
         },
       });
