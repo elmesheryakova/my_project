@@ -56,17 +56,13 @@ export default {
   },
   methods: {
     init() {
-      console.log('initialized!');
       setTimeout(() => {
 
         this.feedbackElemState = 'before';
-
         this.elemHeight = this.$refs.elem.clientHeight;
         this.elemOffsetTop = this.$refs.elem.offsetTop;
         var style = getComputedStyle(document.documentElement);
         this.paddingFeedbackTop = style.getPropertyValue('--feedback-padding-top');
-        this.paddingFeedbackBottom = style.getPropertyValue('--feedback-padding-bottom');
-        this.isInsideSection = false;
         this.prevSection = this.$refs.elem.previousElementSibling;
         this.nextSection = document.querySelector('.footer');
         this.afterWaveHeight = this.$refs.afterWave.offsetHeight;
@@ -78,6 +74,18 @@ export default {
     },
     initPrevSectionTimeline() {
       var prevSectionTimeline = this.$gsap.timeline();
+
+      this.$ScrollTrigger.create({
+        trigger: this.prevSection,
+        start: "top bottom",
+        end: `+=200px`,
+        pin: false,
+        pinSpacing: false,
+        onEnter: () => {
+          this.$ScrollTrigger.refresh();
+        },
+      });
+
       prevSectionTimeline.to(this.prevSection, {
         scrollTrigger: {
           trigger: this.prevSection,
@@ -185,7 +193,7 @@ export default {
       if (timeToAnimateUp) {
         this.feedbackElemState = 'before';
         document.removeEventListener("scroll", this.onInsideScroll);
-        document.querySelector('.header').classList.add('header--hidden');
+        // document.querySelector('.header').classList.add('header--hidden');
 
         self.$gsap.to(window, {
           duration: 1,
@@ -200,9 +208,8 @@ export default {
             }, 100);
           },
         });
+
       } else if (timeToAnimateDown) {
-        console.log('timeToAnimateDown');
-        console.log(self.nextSection);
         this.feedbackElemState = 'after';
         document.removeEventListener("scroll", this.onInsideScroll);
         self.$gsap.to(window, {
@@ -219,11 +226,20 @@ export default {
         });
       }
     },
+    destroy() {
+      document.removeEventListener("scroll", this.onInsideScroll);
+      document.removeEventListener("scroll", this.onOutsideScroll);
+      // this.$ScrollTrigger.kill();
+    },
   },
   mounted() {
     if (this.isDesktop && this.enableWaveAnimation) {
       this.init();
-      window.addEventListener('load', this.init);
+    }
+  },
+  beforeDestroy() {
+    if (this.isDesktop && this.enableWaveAnimation) {
+      this.destroy();
     }
   },
 };
