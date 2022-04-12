@@ -56,8 +56,8 @@ export default {
   },
   methods: {
     initVars() {
-      console.log('initVars');
       this.feedbackElemState = 'before';
+      console.log(this.$refs.elem);
       this.elemHeight = this.$refs.elem.clientHeight;
       this.elemOffsetTop = this.$refs.elem.offsetTop;
       var style = getComputedStyle(document.documentElement);
@@ -72,27 +72,110 @@ export default {
         this.initVars();
         this.initPrevSectionTimeline();
         this.initNextSectionTimeline();
-        document.addEventListener('scroll', this.onOutsideScroll);
+        this.initOutsideScrollTrigger();
+        this.initInsideScrollTrigger();
+        window.scrollTo(0,0);
       }, 300);
     },
-    initPrevSectionTimeline() {
-      var prevSectionTimeline = this.$gsap.timeline();
-      console.log('prevSection');
-      console.log(this.prevSection);
+    initInsideScrollTrigger() {
+      this.insideScrollTrigger = this.$ScrollTrigger.create({
+        trigger: this.$refs.feedbackWrap,
+        start: "top top",
+        end: `bottom bottom`,
+        pin: false,
+        pinSpacing: false,
+        onEnter: (data) => {
+          console.log('onEnter insideScrollTrigger');
+        },
+        onLeave: (data) => {
+          console.log('onLeave insideScrollTrigger');
+          if (data && data.direction === 1) {
+            this.$gsap.to(window, {
+              duration: 1,
+              ease: "power2.inOut",
+              scrollTo: {
+                y: this.nextSection.parentNode,
+              },
+            })
+          }
+        },
+        onLeaveBack: (data) => {
+          console.log('onLeaveBack insideScrollTrigger');
+          if (data && data.direction === -1) {
+            this.$gsap.to(window, {
+              duration: 1,
+              ease: "power2.inOut",
+              scrollTo: {
+                y: this.prevSection,
+                offsetY: -(this.prevSection.offsetHeight - window.innerHeight)
+              },
+            });
+          }
+        },
+        onEnterBack: (data) => {
+          console.log('onEnterBack insideScrollTrigger');
 
-      this.$ScrollTrigger.create({
+        },
+      })
+    },
+    initOutsideScrollTrigger() {
+      var self = this;
+      this.outsideScrollTrigger = this.$ScrollTrigger.create({
+        trigger: this.$refs.elem,
+        start: "top bottom",
+        end: `bottom top`,
+        pin: false,
+        pinSpacing: false,
+        onEnter: (data) => {
+          this.$nextTick(() => {
+            self.initVars();
+            if (data && data.direction === 1) {
+              this.$gsap.to(window, {
+                duration: 1,
+                ease: "power2.inOut",
+                scrollTo: {
+                  y: this.$refs.feedbackWrap,
+                  offsetY: -parseInt(this.paddingFeedbackTop) / 2
+                },
+              });
+            }
+          });
+        },
+        onLeave: () => {
+          console.log('onLeave outsideScrollTrigger');
+        },
+        onEnterBack: (data) => {
+          console.log('onEnterBack outsideScrollTrigger');
+          if (data && data.direction === -1) {
+            this.$gsap.to(window, {
+              duration: 1,
+              ease: "power2.inOut",
+              scrollTo: {
+                y: this.$refs.feedbackWrap,
+                offsetY: -parseInt(this.paddingFeedbackTop) / 2
+              },
+            })
+          }
+        },
+      });
+    },
+
+    initPrevSectionTimeline() {
+      this.prevSectionTimeline = this.$gsap.timeline();
+      this.prevSectionScrollTrigger = this.$ScrollTrigger.create({
         trigger: this.prevSection,
         start: "top bottom",
         end: `+=200px`,
         pin: false,
         pinSpacing: false,
         onEnter: () => {
+          console.log('onEnter prevSectionScrollTrigger');
           this.initVars();
           this.$ScrollTrigger.refresh();
         },
       });
 
-      prevSectionTimeline.to(this.prevSection, {
+      this.prevSectionTimeline.to(this.prevSection, {
         scrollTrigger: {
           trigger: this.prevSection,
           end: "+=200%",
@@ -105,7 +188,7 @@ export default {
     },
     initNextSectionTimeline() {
       var self = this;
-      this.$ScrollTrigger.create({
+      this.nextSectionTimeline = this.$ScrollTrigger.create({
         trigger: this.$refs.feedbackWrap,
         start: "bottom bottom",
         end: `+=${this.afterWaveHeight + this.windowHeight}px`,
@@ -149,94 +232,6 @@ export default {
           });
         },
       })},
-    onOutsideScroll() {
-      var self = this;
-
-      var timeToAnimateDown = this.elemOffsetTop <
-      window.scrollY + window.innerHeight;
-      var timeToAnimateUp = (this.elemOffsetTop + this.elemHeight + 10) >
-        window.scrollY;
-      if (timeToAnimateDown && this.feedbackElemState === 'before') {
-        document.removeEventListener("scroll", this.onOutsideScroll);
-        self.$gsap.to(window, {
-          duration: 1,
-          ease: "power2.inOut",
-          scrollTo: {
-            y: self.$refs.feedbackWrap,
-            offsetY: -parseInt(self.paddingFeedbackTop) / 2
-          },
-          onComplete: function () {
-            setTimeout(() => {
-              document.addEventListener("scroll", self.onInsideScroll);
-            }, 100);
-          },
-        });
-      }
-      if (timeToAnimateUp && this.feedbackElemState === 'after') {
-        document.removeEventListener("scroll", this.onOutsideScroll);
-        self.feedbackElemState = 'before';
-        self.$gsap.to(window, {
-          duration: 1,
-          ease: "power2.inOut",
-          scrollTo: {
-            y: self.$refs.feedbackWrap,
-            offsetY: -parseInt(self.paddingFeedbackTop) / 2
-          },
-          onComplete: function () {
-            setTimeout(() => {
-              document.addEventListener("scroll", self.onInsideScroll);
-            }, 100);
-          },
-        });
-      }
-    },
-    onInsideScroll() {
-      var self = this;
-      var timeToAnimateUp = (this.elemOffsetTop + this.afterWaveHeight) >
-        window.scrollY;
-      var timeToAnimateDown = (this.elemOffsetTop + this.elemHeight - this.afterWaveHeight) <
-        (window.scrollY + window.innerHeight);
-      if (timeToAnimateUp) {
-        this.feedbackElemState = 'before';
-        document.removeEventListener("scroll", this.onInsideScroll);
-        // document.querySelector('.header').classList.add('header--hidden');
-
-        self.$gsap.to(window, {
-          duration: 1,
-          ease: "power2.inOut",
-          scrollTo: {
-            y: self.prevSection,
-            offsetY: -(self.prevSection.offsetHeight - window.innerHeight)
-          },
-          onComplete: function () {
-            setTimeout(() => {
-              document.addEventListener("scroll", self.onOutsideScroll);
-            }, 100);
-          },
-        });
-
-      } else if (timeToAnimateDown) {
-        this.feedbackElemState = 'after';
-        document.removeEventListener("scroll", this.onInsideScroll);
-        self.$gsap.to(window, {
-          duration: 1,
-          ease: "power2.inOut",
-          scrollTo: {
-            y: self.nextSection.parentNode,
-          },
-          onComplete: function () {
-            setTimeout(() => {
-              document.addEventListener("scroll", self.onOutsideScroll);
-            }, 100);
-          },
-        });
-      }
-    },
-    destroy() {
-      document.removeEventListener("scroll", this.onInsideScroll);
-      document.removeEventListener("scroll", this.onOutsideScroll);
-      // this.$ScrollTrigger.kill();
-    },
   },
   mounted() {
     if (this.isDesktop && this.enableWaveAnimation) {
@@ -244,8 +239,12 @@ export default {
     }
   },
   beforeDestroy() {
-    if (this.isDesktop && this.enableWaveAnimation) {
-      this.destroy();
+    if (this.prevSectionTimeline) {
+      this.prevSectionTimeline.kill();
+      this.prevSectionScrollTrigger.kill();
+      this.nextSectionTimeline.kill();
+      this.outsideScrollTrigger.kill();
+      this.insideScrollTrigger.kill();
     }
   },
 };
