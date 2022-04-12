@@ -55,18 +55,21 @@ export default {
     },
   },
   methods: {
+    initVars() {
+      console.log('initVars');
+      this.feedbackElemState = 'before';
+      this.elemHeight = this.$refs.elem.clientHeight;
+      this.elemOffsetTop = this.$refs.elem.offsetTop;
+      var style = getComputedStyle(document.documentElement);
+      this.paddingFeedbackTop = style.getPropertyValue('--feedback-padding-top');
+      this.prevSection = this.$refs.elem.previousElementSibling;
+      this.nextSection = document.querySelector('.footer');
+      this.afterWaveHeight = this.$refs.afterWave.offsetHeight;
+      this.windowHeight = window.innerHeight;
+    },
     init() {
       setTimeout(() => {
-
-        this.feedbackElemState = 'before';
-        this.elemHeight = this.$refs.elem.clientHeight;
-        this.elemOffsetTop = this.$refs.elem.offsetTop;
-        var style = getComputedStyle(document.documentElement);
-        this.paddingFeedbackTop = style.getPropertyValue('--feedback-padding-top');
-        this.prevSection = this.$refs.elem.previousElementSibling;
-        this.nextSection = document.querySelector('.footer');
-        this.afterWaveHeight = this.$refs.afterWave.offsetHeight;
-        this.windowHeight = window.innerHeight;
+        this.initVars();
         this.initPrevSectionTimeline();
         this.initNextSectionTimeline();
         document.addEventListener('scroll', this.onOutsideScroll);
@@ -84,7 +87,6 @@ export default {
         pin: false,
         pinSpacing: false,
         onEnter: () => {
-          console.log('onEnter');
           this.$ScrollTrigger.refresh();
         },
       });
