@@ -68,13 +68,14 @@ export default {
       this.windowHeight = window.innerHeight;
     },
     init() {
+
       setTimeout(() => {
+        this.$ScrollTrigger.clearScrollMemory();
         this.initVars();
         this.initPrevSectionTimeline();
         this.initNextSectionTimeline();
         this.initOutsideScrollTrigger();
         this.initInsideScrollTrigger();
-        window.scrollTo(0,0);
       }, 300);
     },
     initInsideScrollTrigger() {
@@ -123,7 +124,7 @@ export default {
       this.outsideScrollTrigger = this.$ScrollTrigger.create({
         trigger: this.$refs.elem,
         start: "top bottom",
-        end: `bottom top`,
+        end: `bottom-=20px top`,
         pin: false,
         pinSpacing: false,
         onEnter: (data) => {
@@ -240,6 +241,7 @@ export default {
   },
   beforeDestroy() {
     if (this.prevSectionTimeline) {
+      this.$ScrollTrigger.clearScrollMemory();
       this.prevSectionTimeline.kill();
       this.prevSectionScrollTrigger.kill();
       this.nextSectionTimeline.kill();
