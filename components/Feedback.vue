@@ -82,7 +82,6 @@ export default {
         pin: false,
         pinSpacing: false,
         onEnter: () => {
-          console.log('onEnter');
           this.$ScrollTrigger.refresh();
         },
       });
@@ -149,7 +148,7 @@ export default {
 
       var timeToAnimateDown = this.elemOffsetTop <
       window.scrollY + window.innerHeight;
-      var timeToAnimateUp = (this.elemOffsetTop + this.elemHeight) >
+      var timeToAnimateUp = (this.elemOffsetTop + this.elemHeight + 10) >
         window.scrollY;
       if (timeToAnimateDown && this.feedbackElemState === 'before') {
         document.removeEventListener("scroll", this.onOutsideScroll);
@@ -332,6 +331,7 @@ export default {
   &__wrap {
     position: relative;
     width: 100%;
+    min-height: 122vh;
 
     background-color: #1726c9;
     z-index: 21;
@@ -339,6 +339,12 @@ export default {
 
     form {
       width: 100%;
+    }
+    @media (max-width: 860px) {
+      min-height: 0;
+      & + .wave {
+        background-color: #f2f3f6;
+      }
     }
     @media (max-width: 860px) {
       padding: 120px 0;

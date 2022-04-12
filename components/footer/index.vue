@@ -11,8 +11,10 @@
   flex-shrink: 0;
   position: relative;
   height: 100%;
+  min-height: 100vh;
   @media (max-width: 856px) {
     padding: 60px 0 50px;
+    min-height: 0;
   }
   @media (min-width: 1700px) {
     display: flex;
