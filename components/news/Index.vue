@@ -149,7 +149,7 @@ export default {
 </script>
 <style lang="scss">
 .news {
-  margin-bottom: 60px;
+  padding-bottom: 160px;
   &__item-top {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -304,6 +304,7 @@ export default {
     }
   }
   @media (max-width: 650px) {
+    padding-bottom: 60px;
     .advantages__item-link {
       font-size: 18px;
       svg {

@@ -326,7 +326,7 @@ export default {
     }
   }
   .wrap-white {
-    background-color: #fff;
+    //background-color: #fff;
   }
   &__wrap {
     position: relative;

@@ -13,7 +13,7 @@
 
     <Advantages :width="width" :items="concept" v-else />
     <ConceptBanner />
-    <Feedback />
+    <Feedback :enableWaveAnimation="true" />
     <Footer />
   </div>
 </template>

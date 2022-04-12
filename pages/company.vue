@@ -20,7 +20,7 @@
     </template>
     <SliderTeamSlider />
     <News :width="width" :items="news" />
-    <Feedback />
+    <Feedback :enableWaveAnimation="true" />
     <Footer />
   </div>
 </template>
