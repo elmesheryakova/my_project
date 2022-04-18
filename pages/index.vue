@@ -420,19 +420,19 @@ export default {
       this.beerMoves = {
         1: {
           duration: 1.3,
-          xPercent: 0,
+          xPercent: -28,
           delay: 0,
           frame: 0,
         },
         2: {
           duration: 1,
-          xPercent: 0,
+          xPercent: -28,
           delay: 0.2,
           frame: 18,
         },
         3: {
           duration: 1,
-          xPercent: 90,
+          xPercent: 60,
           delay: 0.2,
           frame: 48,
         },
@@ -440,32 +440,32 @@ export default {
           duration: 1.3,
           delay: 0,
           frame: 70,
-          xPercent: -30,
+          xPercent: -45,
         },
         5: {
           duration: 1,
           delay: 0.2,
           frame: 107,
-          xPercent: 80,
+          xPercent: 45,
         },
       };
 
       this.waterMoves = {
         1: {
           duration: 1.3,
-          xPercent: 0,
+          xPercent: -28,
           delay: 0,
           frame: 0,
         },
         2: {
           duration: 1,
-          xPercent: -5,
+          xPercent: -35,
           delay: 0.2,
           frame: 17,
         },
         3: {
           duration: 1,
-          xPercent: 90,
+          xPercent: 60,
           delay: 0.2,
           frame: 65,
         },
@@ -473,13 +473,13 @@ export default {
           duration: 1.3,
           delay: 0,
           frame: 107,
-          xPercent: -30,
+          xPercent: -40,
         },
         5: {
           duration: 1,
           delay: 0.2,
           frame: 129,
-          xPercent: 80,
+          xPercent: 45,
         },
       };
 
@@ -1192,7 +1192,7 @@ export default {
   display: block;
   height: 100%;
   top: 0;
-  width: 50%;
+  width: 80%;
   max-width: 1260px;
   margin: 0 auto;
   pointer-events: none;
@@ -1761,25 +1761,25 @@ export default {
     left: 0;
   }
 
-   .promo-slide--beer-2,
-   .promo-slide--water-2 {
-     .promo-slide__content-inner:before {
-       top: 0;
-       margin-left: -4px;
-     }
-   }
-   .promo-slide--beer-3,
-   .promo-slide--water-3 {
-     .promo-slide__content-inner:before {
-       top: 14px;
-     }
-   }
-   .promo-slide--beer-4,
-   .promo-slide--water-4 {
-     .promo-slide__content-inner:before {
-       top: 87px;
-     }
-   }
+  .promo-slide--beer-2,
+  .promo-slide--water-2 {
+    .promo-slide__content-inner:before {
+      top: 0;
+      margin-left: -4px;
+    }
+  }
+  .promo-slide--beer-3,
+  .promo-slide--water-3 {
+    .promo-slide__content-inner:before {
+      top: 14px;
+    }
+  }
+  .promo-slide--beer-4,
+  .promo-slide--water-4 {
+    .promo-slide__content-inner:before {
+      top: 87px;
+    }
+  }
 }
 
 @media screen and (max-width: 350px) {

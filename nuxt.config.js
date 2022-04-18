@@ -6,7 +6,7 @@ export default {
   head: {
     title: 'pet-expert',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'ru'
     },
     meta: [
       { charset: 'utf-8' },
@@ -77,7 +77,7 @@ export default {
   },
 
   axios: {
-    baseURL: '/',
+    baseURL: 'https://api.petexpert.pro/',
   },
 
   build: {

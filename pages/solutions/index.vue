@@ -35,15 +35,38 @@ export default {
         navigation: false,
         responsiveWidth: 1300,
       },
+      page: [],
+      promo: [],
     };
   },
+  async fetch() {
+    const data = await (
+      await fetch("https://api.petexpert.pro/v1/pages/")
+    ).json();
 
+    this.page = data;
+  },
   methods: {
     updateWidth() {
       this.width = window.innerWidth;
     },
     scrollToSlide() {
       this.$refs.fullpage.api.moveTo(2);
+    },
+    getData() {
+      this.$axios({
+        url: `v1/pages/`,
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then(({ data }) => {
+          this.promo = data;
+        })
+        .catch((err) => {
+          console.error(err);
+        });
     },
   },
 

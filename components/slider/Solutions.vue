@@ -64,6 +64,7 @@ export default {
       solutions: this.$store.state.solutions,
     };
   },
+
   mounted() {
     new Swiper(".swiper-container-sol", {
       loop: true,
