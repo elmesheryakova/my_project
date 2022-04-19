@@ -17,10 +17,10 @@ export default {
   },
   async fetch() {
     this.item = await fetch(
-      `${process.env.API_URL}/v1/production/categories/${this.$route.params.slug}/`
+      `https://api.petexpert.pro/v1/production/categories/${this.$route.params.slug}/`
     ).then((res) => res.json());
     this.product = await fetch(
-      `${process.env.API_URL}/v1/production/items/`
+      `https://api.petexpert.pro/v1/production/items/`
     ).then((res) => res.json());
   },
 };

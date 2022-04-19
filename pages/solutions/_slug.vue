@@ -69,7 +69,7 @@ export default {
 
   async fetch() {
     this.item = await fetch(
-      `${process.env.API_URL}/v1/solutions/${this.$route.params.slug}/`
+      `https://api.petexpert.pro/v1/solutions/${this.$route.params.slug}/`
     ).then((res) => res.json());
   },
   methods: {

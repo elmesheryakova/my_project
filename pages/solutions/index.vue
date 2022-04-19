@@ -41,7 +41,7 @@ export default {
 
   async fetch() {
     const data = await (
-      await fetch(`${process.env.API_URL}/v1/solutions/`)
+      await fetch(`https://api.petexpert.pro/v1/solutions/`)
     ).json();
 
     this.solutions = data;
