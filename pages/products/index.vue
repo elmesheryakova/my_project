@@ -4,7 +4,7 @@
       <h1 class="products__title">Продукция</h1>
       <div class="products__block">
         <nuxt-link
-          v-for="(item, idx) in products"
+          v-for="(item, idx) in products.items"
           :key="idx"
           :class="`img-${item.id}`"
           class="products__block-item"
@@ -14,8 +14,8 @@
               : { name: 'products-slug', params: { slug: item.slug } }
           "
         >
-          <div class="item-title">{{ item.title }}</div>
-          <img :src="require(`@/assets/img/${item.img}`)" alt="img" />
+          <div class="item-title">{{ item.name }}</div>
+          <img :src="item.image" alt="img" />
         </nuxt-link>
       </div>
     </div>
@@ -25,8 +25,15 @@
 export default {
   data() {
     return {
-      products: this.$store.state.products,
+      products: [],
     };
+  },
+  async fetch() {
+    const data = await (
+      await fetch(`${process.env.API_URL}/v1/production/categories/`)
+    ).json();
+
+    this.products = data;
   },
 };
 </script>

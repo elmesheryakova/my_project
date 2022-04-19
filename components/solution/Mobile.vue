@@ -13,11 +13,11 @@
       "
     >
       <div class="solution-mobile__btn">
-        <div class="btn-img">
-          <img :src="require(`@/assets/img/${item.imgbtn}`)" alt="img" />
+        <div class="btn-img" v-if="item.image_mobile">
+          <img :src="item.image_mobile[0]" alt="img" />
         </div>
 
-        <p class="mb-0">{{ item.title }}</p>
+        <p class="mb-0">{{ item.name }}</p>
         <div>
           <svgicon name="arrow-blue" />
         </div>

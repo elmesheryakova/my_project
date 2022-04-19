@@ -1,55 +1,57 @@
 <template>
-  <div>
-    <div class="solution-item">
-      <div class="container">
-        <div class="solution-item__inner">
-          <div class="solution-item__info">
-            <h1 class="solution-item__title">{{ item.name }}</h1>
-            <p class="solution-item__text" v-html="item.description"></p>
+  <client-only>
+    <div>
+      <div class="solution-item">
+        <div class="container">
+          <div class="solution-item__inner">
+            <div class="solution-item__info">
+              <h1 class="solution-item__title">{{ item.name }}</h1>
+              <p class="solution-item__text" v-html="item.description"></p>
+            </div>
+            <div class="solution-item__imgbig" v-if="item.image">
+              <img :src="item.image[0]" alt="img" />
+            </div>
           </div>
-          <div class="solution-item__imgbig">
-            <img :src="require(`@/assets/img/photo-id1.jpg`)" alt="img" />
+        </div>
+        <div class="container">
+          <div class="solution-item__img" v-if="item.image">
+            <img :src="item.image[1]" alt="img" />
           </div>
         </div>
       </div>
       <div class="container">
-        <div class="solution-item__img">
-          <img :src="require(`@/assets/img/photo-id2.jpg`)" alt="img" />
-        </div>
+        <h2 class="block__title">
+          <span>4 причины</span> заменить металлические кеги на ПЭТ
+        </h2>
       </div>
-    </div>
-    <div class="container">
-      <h2 class="block__title">
-        <span>4 причины</span> заменить металлические кеги на ПЭТ
-      </h2>
-    </div>
 
-    <Advantages :width="width" :items="advantages" />
-    <SolutionConsultation />
-    <div class="container">
-      <h2 class="block__title">
-        <span>Группа товаров</span> для пивоварен и баров:
-      </h2>
-    </div>
-    <Slider :items="productsGroup" v-if="width > 790" />
-    <GridMobile :items="productsGroup" :width="width" v-else />
-    <SolutionInfo />
-    <div class="test" v-if="width > 870" ref="sectionBeforeRef">
-      <SliderSolutions />
-    </div>
-
-    <template v-else>
+      <Advantages :width="width" :items="advantages" />
+      <SolutionConsultation />
       <div class="container">
-        <h2 class="block__title"><span>Решения</span> для других напитков</h2>
+        <h2 class="block__title">
+          <span>Группа товаров</span> для пивоварен и баров:
+        </h2>
       </div>
-      <SolutionMobile :items="solutions"
-    /></template>
-    <Feedback
-      :offsetTop="offsetTop"
-      :elemHeight="elemHeight"
-      :enableWaveAnimation="true"
-    />
-  </div>
+      <Slider :items="productsGroup" v-if="width > 790" />
+      <GridMobile :items="productsGroup" :width="width" v-else />
+      <SolutionInfo />
+      <div class="test" v-if="width > 870" ref="sectionBeforeRef">
+        <SliderSolutions />
+      </div>
+
+      <template v-else>
+        <div class="container">
+          <h2 class="block__title"><span>Решения</span> для других напитков</h2>
+        </div>
+        <SolutionMobile :items="solutions"
+      /></template>
+      <Feedback
+        :offsetTop="offsetTop"
+        :elemHeight="elemHeight"
+        :enableWaveAnimation="true"
+      />
+    </div>
+  </client-only>
 </template>
 <script>
 export default {
@@ -67,7 +69,7 @@ export default {
 
   async fetch() {
     this.item = await fetch(
-      `https://api.petexpert.pro/v1/solutions/${this.$route.params.slug}`
+      `${process.env.API_URL}/v1/solutions/${this.$route.params.slug}/`
     ).then((res) => res.json());
   },
   methods: {

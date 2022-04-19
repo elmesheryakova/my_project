@@ -50,7 +50,8 @@ export default {
   components: true,
 
   buildModules: [
-    '@nuxtjs/device'
+    '@nuxtjs/device',
+    '@nuxtjs/dotenv'
   ],
   device: {
     refreshOnResize: true

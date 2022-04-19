@@ -16,7 +16,7 @@
   </client-only>
   <div v-else>
     <Banner />
-    <SolutionMobile :items="solut" />
+    <SolutionMobile :items="solutions.items" />
     <Footer />
   </div>
 </template>
@@ -27,7 +27,6 @@ export default {
 
   data() {
     return {
-      solut: this.$store.state.solutions,
       width: 0,
       options: {
         css3: true,
@@ -42,18 +41,12 @@ export default {
 
   async fetch() {
     const data = await (
-      await fetch("https://api.petexpert.pro/v1/solutions/")
+      await fetch(`${process.env.API_URL}/v1/solutions/`)
     ).json();
 
     this.solutions = data;
   },
-  // async asyncData({ $axios }) {
-  //   const solutions = await $axios.$get(
-  //     "https://api.petexpert.pro/v1/solutions/"
-  //   );
 
-  //   return { solutions };
-  // },
   methods: {
     updateWidth() {
       this.width = window.innerWidth;
@@ -62,21 +55,7 @@ export default {
       this.$refs.fullpage.api.moveTo(2);
     },
   },
-  created() {
-    // this.$axios({
-    //   url: `/v1/solutions/`,
-    //   method: "GET",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // })
-    //   .then(({ data }) => {
-    //     this.solutions = data;
-    //   })
-    //   .catch((err) => {
-    //     console.error(err);
-    //   });
-  },
+  created() {},
   mounted() {
     window.addEventListener("resize", this.updateWidth);
 
