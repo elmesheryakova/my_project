@@ -1068,24 +1068,24 @@ export default {
     window.addEventListener("resize", this.updateWidth);
     this.updateWidth();
     this.init();
+    var heightSection = document.getElementById("fix-up").offsetHeight;
+    var arrowUP = document.querySelector(".arrow-up");
 
     function getBodyScrollTop() {
       var offset =
         self.pageYOffset ||
         (document.documentElement && document.documentElement.scrollTop) ||
         (document.body && document.body.scrollTop);
-      let heightSection = document.getElementById("fix-up").offsetHeight;
 
       if (offset > heightSection) {
-        document.querySelector(".arrow-up").style.display = "block";
+        arrowUP.style.display = "block";
       }
       if (offset < heightSection) {
-        document.querySelector(".arrow-up").style.display = "none";
+        arrowUP.style.display = "none";
       }
     }
-    if (heightSection) {
-      window.addEventListener("scroll", getBodyScrollTop);
-    }
+
+    window.addEventListener("scroll", getBodyScrollTop);
   },
 };
 </script>
