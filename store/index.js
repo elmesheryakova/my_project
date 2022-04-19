@@ -1,4 +1,5 @@
 export const state = () => ({
+
   headerLinks: [
     {
       title: "Решения",
@@ -9,7 +10,7 @@ export const state = () => ({
           title: "Пиво",
           img: 'nav1.png',
           id: 1,
-          link: { name: 'solutions-id', params: { id: 1 } },
+          link: { name: 'solutions-slug', params: { id: 1 } },
         },
       ]
     },

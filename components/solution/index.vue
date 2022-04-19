@@ -10,26 +10,26 @@
       <div class="swiper-wrapper">
         <div
           class="swiper-slide"
-          v-for="(item, index) in solutions"
+          v-for="(item, index) in items"
           :key="`item-${index}`"
         >
           <div class="gallery-top__info">
-            <h2 class="gallery-top__title">{{ item.title }}</h2>
-            <p class="gallery-top__text">{{ item.description }}</p>
+            <h2 class="gallery-top__title">{{ item.name }}</h2>
+            <p class="gallery-top__text" v-html="item.description"></p>
           </div>
 
           <div class="gallery-top__img d-flex">
             <nuxt-link
               class="gallery-top__link"
-              :to="{ name: 'solutions-id', params: { id: item.id } }"
+              :to="{ name: 'solutions-slug', params: { slug: item.slug } }"
             >
               <svgicon name="arrow-fullscreen" />
             </nuxt-link>
             <div class="gallery-top__img-1">
-              <img :src="require(`@/assets/img/${item.img1}`)" alt="img" />
+              <img :src="item.images[0]" alt="img" />
             </div>
             <div class="gallery-top__img-2">
-              <img :src="require(`@/assets/img/${item.img2}`)" alt="img" />
+              <img :src="item.images[1]" alt="img" />
             </div>
           </div>
         </div>
@@ -88,6 +88,12 @@
 <script>
 import { directive } from "vue-awesome-swiper";
 export default {
+  props: {
+    items: {
+      type: Array,
+      default: () => [],
+    },
+  },
   data() {
     return {
       directives: {
@@ -97,25 +103,9 @@ export default {
       activeSlideInd: 0,
 
       swiperOptionTop: {
-        // speed: 1000,
-        // autoplay: {
-        //   delay: 3000,
-        //   disableOnInteraction: true,
-        // },
         spaceBetween: 10,
         slidesPerView: 1,
         slidesPerGroup: 1,
-        // on: {
-        //   init() {
-        //     this.el.addEventListener("mouseenter", () => {
-        //       this.autoplay.stop();
-        //     });
-
-        //     this.el.addEventListener("mouseleave", () => {
-        //       this.autoplay.start();
-        //     });
-        //   },
-        // },
       },
 
       swiperOptionThumbs: {

@@ -4,12 +4,8 @@
       <div class="container">
         <div class="solution-item__inner">
           <div class="solution-item__info">
-            <h1 class="solution-item__title">Пиво</h1>
-            <p class="solution-item__text">
-              Международный бренд по производству ПЭТ-тары, отличающийся
-              высочайшим качеством материалов, продукции и подхода к клиентам.
-              Международный бренд отличающийся высочайшим качеством.
-            </p>
+            <h1 class="solution-item__title">{{ item.name }}</h1>
+            <p class="solution-item__text" v-html="item.description"></p>
           </div>
           <div class="solution-item__imgbig">
             <img :src="require(`@/assets/img/photo-id1.jpg`)" alt="img" />
@@ -38,7 +34,9 @@
     <Slider :items="productsGroup" v-if="width > 790" />
     <GridMobile :items="productsGroup" :width="width" v-else />
     <SolutionInfo />
-    <div class="test" v-if="width > 870" ref="sectionBeforeRef"><SliderSolutions /></div>
+    <div class="test" v-if="width > 870" ref="sectionBeforeRef">
+      <SliderSolutions />
+    </div>
 
     <template v-else>
       <div class="container">
@@ -46,7 +44,11 @@
       </div>
       <SolutionMobile :items="solutions"
     /></template>
-    <Feedback :offsetTop="offsetTop" :elemHeight="elemHeight" :enableWaveAnimation="true" />
+    <Feedback
+      :offsetTop="offsetTop"
+      :elemHeight="elemHeight"
+      :enableWaveAnimation="true"
+    />
   </div>
 </template>
 <script>
@@ -59,7 +61,14 @@ export default {
       solutions: this.$store.state.solutions,
       offsetTop: 0,
       elemHeight: 0,
+      item: {},
     };
+  },
+
+  async fetch() {
+    this.item = await fetch(
+      `https://api.petexpert.pro/v1/solutions/${this.$route.params.slug}`
+    ).then((res) => res.json());
   },
   methods: {
     updateWidth() {
@@ -72,9 +81,22 @@ export default {
         .querySelector(".footer")
         .getBoundingClientRect();
       this.elemHeight = elemHeight.top;
-      // console.log(this.elemHeight);
-      // console.log(this.offsetTop);
     },
+  },
+  created() {
+    // this.$axios({
+    //   url: `/v1/solutions/${this.$route.params.slug}`,
+    //   method: "GET",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // })
+    //   .then(({ data }) => {
+    //     this.solution = data;
+    //   })
+    //   .catch((err) => {
+    //     console.error(err);
+    //   });
   },
   mounted() {
     window.addEventListener("resize", this.updateWidth);

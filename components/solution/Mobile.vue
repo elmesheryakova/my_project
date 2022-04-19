@@ -8,7 +8,7 @@
       :key="`item-${index}`"
       :to="
         $route.name === 'solutions'
-          ? { name: 'solutions-id', params: { id: item.id } }
+          ? { name: 'solutions-slug', params: { slug: item.slug } }
           : { name: 'concept-id', params: { id: item.id } }
       "
     >

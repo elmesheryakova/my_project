@@ -1083,26 +1083,9 @@ export default {
         document.querySelector(".arrow-up").style.display = "none";
       }
     }
-
-    window.addEventListener("scroll", getBodyScrollTop);
-
-    // let scrolled;
-    // let timer;
-    // document.querySelector(".arrow-up").addEventListener("click", (event) => {
-    //   scrolled = window.pageYOffset;
-    //   scrollToTop();
-    // });
-
-    // function scrollToTop() {
-    //   if (scrolled > 0) {
-    //     window.scrollTo(0, scrolled);
-    //     scrolled = scrolled - 90;
-    //     timer = setTimeout(scrollToTop, 1);
-    //   } else {
-    //     clearTimeout(timer);
-    //     window.scrollTo(0, 0);
-    //   }
-    // }
+    if (heightSection) {
+      window.addEventListener("scroll", getBodyScrollTop);
+    }
   },
 };
 </script>

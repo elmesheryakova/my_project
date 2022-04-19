@@ -2,7 +2,7 @@
   <div
     class="advantages__item"
     :class="{
-      'advantages__item--mb': $route.name === 'solutions-id',
+      'advantages__item--mb': $route.name === 'solutions-slug',
       'advantages__item--acc': $route.name === 'accessories',
     }"
   >

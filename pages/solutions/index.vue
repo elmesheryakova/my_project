@@ -9,24 +9,25 @@
       </Fullscroll>
 
       <Fullscroll :width="width">
-        <Solution />
+        <Solution :items="solutions.items" />
       </Fullscroll>
       <Fullscroll :width="width"> <Footer /> </Fullscroll>
     </full-page>
   </client-only>
   <div v-else>
     <Banner />
-    <SolutionMobile :items="solutions" />
+    <SolutionMobile :items="solut" />
     <Footer />
   </div>
 </template>
+
 <script>
 export default {
   layout: "fullscreen",
 
   data() {
     return {
-      solutions: this.$store.state.solutions,
+      solut: this.$store.state.solutions,
       width: 0,
       options: {
         css3: true,
@@ -35,17 +36,24 @@ export default {
         navigation: false,
         responsiveWidth: 1300,
       },
-      page: [],
-      promo: [],
+      solutions: [],
     };
   },
+
   async fetch() {
     const data = await (
-      await fetch("https://api.petexpert.pro/v1/pages/")
+      await fetch("https://api.petexpert.pro/v1/solutions/")
     ).json();
 
-    this.page = data;
+    this.solutions = data;
   },
+  // async asyncData({ $axios }) {
+  //   const solutions = await $axios.$get(
+  //     "https://api.petexpert.pro/v1/solutions/"
+  //   );
+
+  //   return { solutions };
+  // },
   methods: {
     updateWidth() {
       this.width = window.innerWidth;
@@ -53,23 +61,22 @@ export default {
     scrollToSlide() {
       this.$refs.fullpage.api.moveTo(2);
     },
-    getData() {
-      this.$axios({
-        url: `v1/pages/`,
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then(({ data }) => {
-          this.promo = data;
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-    },
   },
-
+  created() {
+    // this.$axios({
+    //   url: `/v1/solutions/`,
+    //   method: "GET",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // })
+    //   .then(({ data }) => {
+    //     this.solutions = data;
+    //   })
+    //   .catch((err) => {
+    //     console.error(err);
+    //   });
+  },
   mounted() {
     window.addEventListener("resize", this.updateWidth);
 

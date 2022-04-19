@@ -1,3 +1,4 @@
+
 export default {
 
   server: {
@@ -75,9 +76,8 @@ export default {
       xl2: Infinity,
     }
   },
-
   axios: {
-    baseURL: 'https://api.petexpert.pro/',
+    // browserBaseURL: 'https://api.petexpert.pro'
   },
 
   build: {

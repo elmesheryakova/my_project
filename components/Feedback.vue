@@ -13,11 +13,17 @@
     <!-- 'footer-feedback--animate': offsetTop < 0, -->
     <div
       :class="{
-        'wave-wrap1': $route.name === 'solutions-id',
+        'wave-wrap1': $route.name === 'solutions-slug',
         'wrap-white': $route.name === 'company',
       }"
     >
-      <img :src="require(`@/assets/img/top.png`)" alt="img" class="wave" width="1920" height="640" />
+      <img
+        :src="require(`@/assets/img/top.png`)"
+        alt="img"
+        class="wave"
+        width="1920"
+        height="640"
+      />
     </div>
 
     <div class="footer-feedback__wrap" ref="feedbackWrap">
@@ -29,21 +35,19 @@
         <FeedbackForm />
       </div>
     </div>
-    <img :src="require(`@/assets/img/bottom.png`)" alt="img" class="wave" ref="afterWave" width="1920" height="640" />
+    <img
+      :src="require(`@/assets/img/bottom.png`)"
+      alt="img"
+      class="wave"
+      ref="afterWave"
+      width="1920"
+      height="640"
+    />
   </div>
 </template>
 <script>
 export default {
   props: {
-    offsetTop: {
-      type: Number,
-    },
-    elemHeight: {
-      type: Number,
-    },
-    pos: {
-      type: Number,
-    },
     enableWaveAnimation: {
       type: Boolean,
       required: false,
@@ -56,19 +60,20 @@ export default {
   },
   methods: {
     initVars() {
-      this.feedbackElemState = 'before';
+      this.feedbackElemState = "before";
       console.log(this.$refs.elem);
       this.elemHeight = this.$refs.elem.clientHeight;
       this.elemOffsetTop = this.$refs.elem.offsetTop;
       var style = getComputedStyle(document.documentElement);
-      this.paddingFeedbackTop = style.getPropertyValue('--feedback-padding-top');
+      this.paddingFeedbackTop = style.getPropertyValue(
+        "--feedback-padding-top"
+      );
       this.prevSection = this.$refs.elem.previousElementSibling;
-      this.nextSection = document.querySelector('.footer');
+      this.nextSection = document.querySelector(".footer");
       this.afterWaveHeight = this.$refs.afterWave.offsetHeight;
       this.windowHeight = window.innerHeight;
     },
     init() {
-
       setTimeout(() => {
         this.$ScrollTrigger.clearScrollMemory();
         this.initVars();
@@ -86,10 +91,10 @@ export default {
         pin: false,
         pinSpacing: false,
         onEnter: (data) => {
-          console.log('onEnter insideScrollTrigger');
+          console.log("onEnter insideScrollTrigger");
         },
         onLeave: (data) => {
-          console.log('onLeave insideScrollTrigger');
+          console.log("onLeave insideScrollTrigger");
           if (data && data.direction === 1) {
             this.$gsap.to(window, {
               duration: 1,
@@ -97,27 +102,26 @@ export default {
               scrollTo: {
                 y: this.nextSection.parentNode,
               },
-            })
+            });
           }
         },
         onLeaveBack: (data) => {
-          console.log('onLeaveBack insideScrollTrigger');
+          console.log("onLeaveBack insideScrollTrigger");
           if (data && data.direction === -1) {
             this.$gsap.to(window, {
               duration: 1,
               ease: "power2.inOut",
               scrollTo: {
                 y: this.prevSection,
-                offsetY: -(this.prevSection.offsetHeight - window.innerHeight)
+                offsetY: -(this.prevSection.offsetHeight - window.innerHeight),
               },
             });
           }
         },
         onEnterBack: (data) => {
-          console.log('onEnterBack insideScrollTrigger');
-
+          console.log("onEnterBack insideScrollTrigger");
         },
-      })
+      });
     },
     initOutsideScrollTrigger() {
       var self = this;
@@ -136,26 +140,26 @@ export default {
                 ease: "power2.inOut",
                 scrollTo: {
                   y: this.$refs.feedbackWrap,
-                  offsetY: -parseInt(this.paddingFeedbackTop) / 2
+                  offsetY: -parseInt(this.paddingFeedbackTop) / 2,
                 },
               });
             }
           });
         },
         onLeave: () => {
-          console.log('onLeave outsideScrollTrigger');
+          console.log("onLeave outsideScrollTrigger");
         },
         onEnterBack: (data) => {
-          console.log('onEnterBack outsideScrollTrigger');
+          console.log("onEnterBack outsideScrollTrigger");
           if (data && data.direction === -1) {
             this.$gsap.to(window, {
               duration: 1,
               ease: "power2.inOut",
               scrollTo: {
                 y: this.$refs.feedbackWrap,
-                offsetY: -parseInt(this.paddingFeedbackTop) / 2
+                offsetY: -parseInt(this.paddingFeedbackTop) / 2,
               },
-            })
+            });
           }
         },
       });
@@ -170,7 +174,7 @@ export default {
         pin: false,
         pinSpacing: false,
         onEnter: () => {
-          console.log('onEnter prevSectionScrollTrigger');
+          console.log("onEnter prevSectionScrollTrigger");
           this.initVars();
           this.$ScrollTrigger.refresh();
         },
@@ -196,7 +200,7 @@ export default {
         pin: this.nextSection,
         pinSpacing: false,
         onEnter: function (data) {
-          console.log('pinned!');
+          console.log("pinned!");
           self.$gsap.set(data.pin, {
             position: "fixed",
             top: 0,
@@ -232,7 +236,8 @@ export default {
             y: 0,
           });
         },
-      })},
+      });
+    },
   },
   mounted() {
     if (this.isDesktop && this.enableWaveAnimation) {
