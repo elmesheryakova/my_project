@@ -18,13 +18,13 @@
         <ul class="advantages__list">
           <li
             class="advantages__list-item"
-            v-for="(item, index) in item.list"
+            v-for="(item, index) in item.elements_list"
             :key="index"
           >
             <div class="advantages__list-svg">
               <svgicon name="romb" />
             </div>
-            {{ item }}
+            {{ item.value }}
           </li>
         </ul>
         <ProductSpecifications
@@ -42,7 +42,7 @@
         <svgicon name="arrow-blue" />
       </nuxt-link>
       <div class="advantages__item-num" v-else>
-        <svgicon :name="item.num" />
+        <svgicon :name="icon" />
       </div>
     </div>
     <nuxt-link
@@ -68,9 +68,7 @@
       />
       <img
         v-else
-        :src="
-          require(`@/assets/img/${width > 860 ? item.img : item.imgMobile}`)
-        "
+        :src="width > 860 ? item.image : item.image_mobile"
         alt="img"
       />
     </div>
@@ -92,6 +90,24 @@ export default {
       if (this.item.id % 2 === 0) {
         return true;
       }
+    },
+
+    icon() {
+      if (this.item) {
+        if (this.item.id === 1) {
+          return "num1";
+        }
+        if (this.item.id === 2) {
+          return "num2";
+        }
+        if (this.item.id === 3) {
+          return "num3";
+        }
+        if (this.item.id === 4) {
+          return "num4";
+        }
+      }
+      return null;
     },
   },
 };

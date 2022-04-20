@@ -1,6 +1,10 @@
 
 export default {
-
+  publicRuntimeConfig: {
+    axios: {
+      baseURL: 'https://api.petexpert.pro'
+    },
+  },
   server: {
     host: '0.0.0.0',
   },
@@ -50,8 +54,7 @@ export default {
   components: true,
 
   buildModules: [
-    '@nuxtjs/device',
-    '@nuxtjs/dotenv'
+    '@nuxtjs/device'
   ],
   device: {
     refreshOnResize: true
@@ -77,9 +80,7 @@ export default {
       xl2: Infinity,
     }
   },
-  axios: {
-    // browserBaseURL: 'https://api.petexpert.pro'
-  },
+
 
   build: {
     babel: {

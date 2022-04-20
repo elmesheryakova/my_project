@@ -1,7 +1,7 @@
 <template>
   <div
     class="slider"
-    :class="{ 'slider--products': $route.name === 'products-slug-id' }"
+    :class="{ 'slider--products': $route.name === 'products-current-slug' }"
   >
     <div class="swiper-wrapper">
       <div
@@ -10,11 +10,11 @@
         :key="`item-${index}`"
       >
         <div class="slider__img">
-          <img :src="require(`@/assets/img/${item.img}`)" alt="img" />
+          <img :src="item.image" alt="img" />
         </div>
         <div class="slider__info">
-          <h2 class="slider__info-title">{{ item.title }}</h2>
-          <p class="slider__info-article">{{ item.article }}</p>
+          <h2 class="slider__info-title">{{ item.name }}</h2>
+          <p class="slider__info-article">{{ item.sku }}</p>
         </div>
       </div>
     </div>

@@ -11,11 +11,11 @@
           :to="
             item.title === 'Комплектующие'
               ? { name: 'accessories' }
-              : { name: 'products-slug', params: { slug: item.slug } }
+              : { name: 'products-current', params: { current: item.slug } }
           "
         >
           <div class="item-title">{{ item.name }}</div>
-          <img :src="item.image" alt="img" />
+          <img :src="item.image[0]" alt="img" v-if="item.image[0]" />
         </nuxt-link>
       </div>
     </div>
@@ -28,12 +28,11 @@ export default {
       products: [],
     };
   },
-  async fetch() {
-    const data = await (
-      await fetch(`https://api.petexpert.pro/v1/production/categories/`)
-    ).json();
-
-    this.products = data;
+  async asyncData({ $axios }) {
+    const products = await $axios.$get(
+      `https://api.petexpert.pro/v1/production/categories/`
+    );
+    return { products };
   },
 };
 </script>

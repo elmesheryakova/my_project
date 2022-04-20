@@ -10,7 +10,7 @@ export const state = () => ({
           title: "Пиво",
           img: 'nav1.png',
           id: 1,
-          link: { name: 'solutions-slug', params: { id: 1 } },
+          link: { name: 'solutions-slug', params: { slug: 'beer' } },
         },
       ]
     },
@@ -24,7 +24,7 @@ export const state = () => ({
           img: 'nav2.png',
           id: 1,
           slug: 'kegs',
-          link: { name: 'products-slug', params: { slug: 'kegs' } },
+          link: '',
         },
         {
           title: "Комплектующие",

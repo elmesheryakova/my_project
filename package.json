@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
-    "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/style-resources": "^1.2.1",
     "@openafg/nuxt-fullpage": "^1.0.5",
     "bootstrap": "^4.6.1",

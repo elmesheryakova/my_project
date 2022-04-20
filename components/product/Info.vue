@@ -3,15 +3,16 @@
     ><div>
       <div class="product-info">
         <div class="product-info__slider">
-          <VueSlickCarousel :settings="settings">
+          <VueSlickCarousel :settings="settings" v-if="item.images.length > 0">
             <div
-              v-for="(item, index) in items"
+              v-for="(item, index) in item.images"
               :key="`item-${index}`"
               :class="`item-${index}`"
             >
-              <img :src="require(`@/assets/img/${item.img}`)" alt="img" />
+              <img :src="item" alt="img" />
             </div>
           </VueSlickCarousel>
+          <img :src="item.image" alt="img" v-else-if="item.image.length > 0" />
         </div>
         <div class="product-info__block">
           <h3 class="advantages__item-title">Преимущества ПЭТ-кеги</h3>
@@ -31,7 +32,10 @@
         </div>
       </div>
       <h3 class="advantages__item-title">Технические данные:</h3>
-      <ProductSpecifications :items="productOnly.specification" />
+      <ProductSpecifications
+        :items="item.properties"
+        v-if="item.properties.length > 0"
+      />
     </div>
   </client-only>
 </template>
@@ -42,9 +46,9 @@ import "vue-slick-carousel/dist/vue-slick-carousel-theme.css";
 export default {
   components: { VueSlickCarousel },
   props: {
-    items: {
-      type: Array,
-      default: () => [],
+    item: {
+      type: Object,
+      default: () => {},
     },
   },
   data() {
@@ -65,56 +69,6 @@ export default {
           "Не требуется сложная перенастройка оборудования",
           "Не требуется инвестиций в оборудование",
           "Сопровождение и поддержка от технических специалистов компании ПЭТ-Эксперт",
-        ],
-        specification: [
-          {
-            title: "Назначение",
-            descr: "хранение и транспортировка пищевых жидкостей",
-          },
-          {
-            title: "Цвет",
-            descr: "коричневый, прозрачный",
-          },
-          {
-            title: "Вес с фитингом и трубкой",
-            descr: "500 гр.+-10",
-          },
-          {
-            title: "Материал преформы",
-            descr: "ПЭТ (Полиэтилентерефталат)",
-          },
-          {
-            title: "Тип фитинга",
-            descr: "A",
-          },
-          {
-            title: "Использование",
-            descr: "одноразовый",
-          },
-          {
-            title: "Назначение",
-            descr: "хранение и транспортировка пищевых жидкостей",
-          },
-          {
-            title: "Цвет",
-            descr: "коричневый, прозрачный",
-          },
-          {
-            title: "Вес с фитингом и трубкой",
-            descr: "500 гр.+-10",
-          },
-          {
-            title: "Материал преформы",
-            descr: "ПЭТ (Полиэтилентерефталат)",
-          },
-          {
-            title: "Тип фитинга",
-            descr: "A",
-          },
-          {
-            title: "Использование",
-            descr: "одноразовый",
-          },
         ],
       },
     };

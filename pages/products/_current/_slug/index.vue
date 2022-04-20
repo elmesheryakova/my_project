@@ -2,18 +2,19 @@
   <div class="product-only">
     <div class="container">
       <ProductPreview />
-      <h1 class="pages__title">ПЭТ-кег 35 л.</h1>
-      <ProductInfo :items="productsId" />
+      <h1 class="pages__title">{{ item.name }}</h1>
+      <ProductInfo :item="item" />
       <p class="more">
         Подробнее о том что вляет на конечную стоимость <br />
         вы можете узнать на странице
         <nuxt-link :to="{ name: 'prices' }">ценообразование</nuxt-link>
       </p>
 
-      <h3 class="advantages__item-title">Комплектующие:</h3>
-
-      <Slider :items="productsGroup" v-if="width > 790" />
-      <GridMobile :items="productsGroup" :width="width" v-else />
+      <h3 class="advantages__item-title" v-if="item.accessories.length > 0">
+        Комплектующие:
+      </h3>
+      <Slider :items="item.accessories" v-if="width > 790" />
+      <GridMobile :items="item.accessories" :width="width" v-else />
     </div>
     <Feedback />
   </div>
@@ -23,18 +24,28 @@ export default {
   data() {
     return {
       width: 0,
-      productsId: this.$store.state.productsId,
-      productsGroup: this.$store.state.productsGroup,
+      item: {},
     };
   },
+  async asyncData({ params, $axios }) {
+    const item = await $axios.$get(
+      `https://api.petexpert.pro/v1/production/items/${params.slug}/`
+    );
+    return { item };
+  },
+
   methods: {
     updateWidth() {
       this.width = window.innerWidth;
     },
   },
+  created() {},
   mounted() {
     window.addEventListener("resize", this.updateWidth);
     this.updateWidth();
+  },
+  watch: {
+    "$route.query": "$fetch",
   },
 };
 </script>

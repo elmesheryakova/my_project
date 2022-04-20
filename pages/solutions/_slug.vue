@@ -25,7 +25,7 @@
         </h2>
       </div>
 
-      <Advantages :width="width" :items="advantages" />
+      <Advantages :width="width" :items="item.reasons" />
       <SolutionConsultation />
       <div class="container">
         <h2 class="block__title">
@@ -43,13 +43,9 @@
         <div class="container">
           <h2 class="block__title"><span>Решения</span> для других напитков</h2>
         </div>
-        <SolutionMobile :items="solutions"
+        <SolutionMobile
       /></template>
-      <Feedback
-        :offsetTop="offsetTop"
-        :elemHeight="elemHeight"
-        :enableWaveAnimation="true"
-      />
+      <Feedback :enableWaveAnimation="true" />
     </div>
   </client-only>
 </template>
@@ -58,53 +54,27 @@ export default {
   data() {
     return {
       width: 0,
-      advantages: this.$store.state.advantages,
       productsGroup: this.$store.state.productsGroup,
-      solutions: this.$store.state.solutions,
-      offsetTop: 0,
-      elemHeight: 0,
+
       item: {},
     };
   },
-
-  async fetch() {
-    this.item = await fetch(
-      `https://api.petexpert.pro/v1/solutions/${this.$route.params.slug}/`
-    ).then((res) => res.json());
+  async asyncData({ params, $axios }) {
+    const item = await $axios.$get(
+      `https://api.petexpert.pro/v1/solutions/${params.slug}/`
+    );
+    return { item };
   },
+
   methods: {
     updateWidth() {
       this.width = window.innerWidth;
     },
-    offsetY() {
-      let block = document.querySelector(".test").getBoundingClientRect();
-      this.offsetTop = block.top;
-      let elemHeight = document
-        .querySelector(".footer")
-        .getBoundingClientRect();
-      this.elemHeight = elemHeight.top;
-    },
   },
-  created() {
-    // this.$axios({
-    //   url: `/v1/solutions/${this.$route.params.slug}`,
-    //   method: "GET",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // })
-    //   .then(({ data }) => {
-    //     this.solution = data;
-    //   })
-    //   .catch((err) => {
-    //     console.error(err);
-    //   });
-  },
+  created() {},
   mounted() {
     window.addEventListener("resize", this.updateWidth);
     this.updateWidth();
-    // window.addEventListener("scroll", this.offsetY);
-    // this.offsetY();
   },
 };
 </script>

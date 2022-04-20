@@ -1,17 +1,17 @@
 <template>
   <div class="products-prew">
     <nuxt-link
-      v-for="(item, idx) in products"
+      v-for="(item, idx) in preview"
       :key="idx"
       class="prew-item"
       :to="
-        item.title === 'Комплектующие'
+        item.name === 'Комплектующие'
           ? { name: 'accessories' }
-          : { name: 'products-slug', params: { slug: item.slug } }
+          : { name: 'products-current', params: { current: item.slug } }
       "
     >
-      <div class="prew-item__title">{{ item.title }}</div>
-      <img :src="require(`@/assets/img/${item.imgPrew}`)" alt="img" />
+      <div class="prew-item__title">{{ item.name }}</div>
+      <img :src="item.image[1]" alt="img" v-if="item.image[1]" />
     </nuxt-link>
   </div>
 </template>
@@ -19,9 +19,17 @@
 export default {
   data() {
     return {
-      products: this.$store.state.products,
+      preview: [],
     };
   },
+  async fetch() {
+    const { data } = await this.$axios.get(
+      `https://api.petexpert.pro/v1/production/categories/`
+    );
+    this.preview = data.items.sort((a, b) => a.id - b.id);
+  },
+
+  computed: {},
 };
 </script>
 <style lang="scss">

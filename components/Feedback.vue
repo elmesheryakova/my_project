@@ -4,7 +4,7 @@
     ref="elem"
     :class="{
       'footer-feedback--white':
-        $route.name === 'products-slug-id' ||
+        $route.name === 'products-current-slug' ||
         $route.name === 'accessories' ||
         $route.name === 'index' ||
         $route.name === 'contacts',
@@ -337,9 +337,7 @@ export default {
       background-color: #fff;
     }
   }
-  .wrap-white {
-    //background-color: #fff;
-  }
+
   &__wrap {
     position: relative;
     width: 100%;

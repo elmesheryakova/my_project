@@ -2,9 +2,9 @@
   <div class="specifications">
     <ul class="info-list">
       <li class="info-list__item" v-for="(item, index) in items" :key="index">
-        <p>{{ item.title }}</p>
+        <p>{{ item.name }}</p>
         <span></span>
-        <p class="list__item-descr">{{ item.descr }}</p>
+        <p class="list__item-descr">{{ item.value }}</p>
       </li>
     </ul>
   </div>

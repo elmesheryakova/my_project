@@ -3,11 +3,11 @@
     <div class="grid">
       <div class="grid__item" v-for="(item, index) in items" :key="index">
         <div class="grid__item-img">
-          <img :src="require(`@/assets/img/${item.img}`)" alt="img" />
+          <img :src="item.image" alt="img" />
         </div>
         <div class="grid__info">
-          <h2 class="grid__info-title">{{ item.title }}</h2>
-          <p class="grid__info-article">{{ item.article }}</p>
+          <h2 class="grid__info-title">{{ item.name }}</h2>
+          <p class="grid__info-article">{{ item.sku }}</p>
         </div>
       </div>
     </div>

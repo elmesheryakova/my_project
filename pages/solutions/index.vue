@@ -39,14 +39,12 @@ export default {
     };
   },
 
-  async fetch() {
-    const data = await (
-      await fetch(`https://api.petexpert.pro/v1/solutions/`)
-    ).json();
-
-    this.solutions = data;
+  async asyncData({ $axios }) {
+    const solutions = await $axios.$get(
+      `https://api.petexpert.pro/v1/solutions/`
+    );
+    return { solutions };
   },
-
   methods: {
     updateWidth() {
       this.width = window.innerWidth;
@@ -55,10 +53,9 @@ export default {
       this.$refs.fullpage.api.moveTo(2);
     },
   },
-  created() {},
+
   mounted() {
     window.addEventListener("resize", this.updateWidth);
-
     this.updateWidth();
   },
 };

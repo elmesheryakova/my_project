@@ -1,47 +1,26 @@
 <template>
   <div class="product-card">
-    <div class="product-card__img">
-      <img :src="require(`@/assets/img/${item.img}`)" alt="img" />
+    <div class="product-card__img" v-if="item.image.length > 0">
+      <img :src="item.image" alt="img" />
     </div>
     <div class="product-card__info">
       <h4 class="info-title">
-        {{ item.title }}
+        {{ item.name }}
       </h4>
       <ul class="info-list">
-        <li class="info-list__item">
-          <p>Назначение</p>
+        <li
+          class="info-list__item"
+          v-for="(item, index) in item.properties"
+          :key="index"
+        >
+          <p>{{ item.name }}</p>
           <span></span>
-          <p>{{ item.description }}</p>
-        </li>
-        <li class="info-list__item">
-          <p>Цвет</p>
-          <span></span>
-          <p>{{ item.color }}</p>
-        </li>
-        <li class="info-list__item">
-          <p>Вес с фитингом и трубкой</p>
-          <span></span>
-          <p>{{ item.weight }}</p>
-        </li>
-        <li class="info-list__item">
-          <p>Материал преформы</p>
-          <span></span>
-          <p>{{ item.material }}</p>
-        </li>
-        <li class="info-list__item">
-          <p>Тип фитинга</p>
-          <span></span>
-          <p>{{ item.type }}</p>
-        </li>
-        <li class="info-list__item">
-          <p>Использование</p>
-          <span></span>
-          <p>{{ item.usage }}</p>
+          <p>{{ item.value }}</p>
         </li>
       </ul>
       <nuxt-link
         class="advantages__item-link"
-        :to="{ name: 'products-slug-id', params: { id: item.id } }"
+        :to="`/products/${slug}/${item.slug}/`"
       >
         <p class="mb-0">Подробнее</p>
         <svgicon name="arrow-blue" />
@@ -56,7 +35,12 @@ export default {
       type: Object,
       default: () => {},
     },
+    slug: {
+      type: String,
+      default: "",
+    },
   },
+  methods: {},
 };
 </script>
 <style lang="scss">
