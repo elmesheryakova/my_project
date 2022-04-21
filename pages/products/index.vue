@@ -9,7 +9,7 @@
           :class="`img-${item.id}`"
           class="products__block-item"
           :to="
-            item.title === 'Комплектующие'
+            item.name === 'Комплектующие'
               ? { name: 'accessories' }
               : { name: 'products-current', params: { current: item.slug } }
           "

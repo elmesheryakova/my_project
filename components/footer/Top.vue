@@ -2,7 +2,7 @@
   <div class="container">
     <div class="footer-top">
       <div class="footer-top__text">
-        Выбор сделанный сегодня определяет наше <span>будущее!</span>
+        Выбор сделанный сегодня определяет <span>будущее!</span>
       </div>
       <ul class="footer-top__list">
         <li
@@ -42,9 +42,9 @@ export default {
       font-size: 144px;
       position: absolute;
       top: 100px;
-      right: -70px;
+      right: 93px;
     }
-    @media (max-width: 1290px) {
+    @media (max-width: 1200px) {
       margin-bottom: 200px;
       span {
         font-size: 134px;
@@ -88,7 +88,7 @@ export default {
       font-size: 32px;
       line-height: 40px;
     }
-    @media (max-width: 435px) {
+    @media (max-width: 337px) {
       span {
         top: 135px;
       }

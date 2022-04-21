@@ -10,7 +10,7 @@
       <ul class="info-list">
         <li
           class="info-list__item"
-          v-for="(item, index) in item.properties"
+          v-for="(item, index) in item.properties.slice(0, 6)"
           :key="index"
         >
           <p>{{ item.name }}</p>
@@ -18,12 +18,11 @@
           <p>{{ item.value }}</p>
         </li>
       </ul>
-      <nuxt-link
-        class="advantages__item-link"
-        :to="`/products/${slug}/${item.slug}/`"
-      >
-        <p class="mb-0">Подробнее</p>
-        <svgicon name="arrow-blue" />
+      <nuxt-link :to="`/products/${slug}/${item.slug}/`">
+        <div class="advantages__item-link">
+          <p class="mb-0">Подробнее</p>
+          <svgicon name="arrow-blue" />
+        </div>
       </nuxt-link>
     </div>
   </div>
@@ -44,6 +43,37 @@ export default {
 };
 </script>
 <style lang="scss">
+.advantages__item-link {
+  display: flex;
+  align-items: center;
+  color: $primary;
+  font-size: 24px;
+  &--concept {
+    padding-left: 30px;
+    @media (max-width: 550px) {
+      padding-left: 10px;
+      margin-top: -100px;
+    }
+  }
+  p {
+    color: $primary;
+  }
+  svg {
+    fill: transparent;
+    width: 47px;
+    height: 47px;
+    transform: rotate(-90deg);
+    margin-left: 15px;
+  }
+  @media (max-width: 550px) {
+    font-size: 20px;
+    line-height: 25px;
+    svg {
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
 .product-card {
   display: grid;
   grid-template-columns: minmax(250px, 440px) 1fr;

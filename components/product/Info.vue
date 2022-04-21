@@ -15,18 +15,18 @@
           <img :src="item.image" alt="img" v-else-if="item.image.length > 0" />
         </div>
         <div class="product-info__block">
-          <h3 class="advantages__item-title">Преимущества ПЭТ-кеги</h3>
+          <h3 class="advantages__item-title">Преимущества</h3>
           <ul class="advantages__list">
             <li
               class="advantages__list-item"
-              v-for="(item, index) in productOnly.advantages"
+              v-for="(item, index) in item.advantages"
               :key="index"
             >
               <div class="advantages__list-svg">
                 <svgicon name="romb" />
               </div>
 
-              {{ item }}
+              {{ item.value }}
             </li>
           </ul>
         </div>
@@ -57,19 +57,8 @@ export default {
         arrow: true,
         infinite: true,
         edgeFriction: 0.35,
-
         slidesToShow: 1,
         slidesToScroll: 1,
-      },
-      productOnly: {
-        advantages: [
-          "Не требуется сложная перенастройка оборудования",
-          "Не требуется инвестиций в оборудование",
-          "Сопровождение и поддержка от технических специалистов компании ПЭТ-Эксперт",
-          "Не требуется сложная перенастройка оборудования",
-          "Не требуется инвестиций в оборудование",
-          "Сопровождение и поддержка от технических специалистов компании ПЭТ-Эксперт",
-        ],
       },
     };
   },

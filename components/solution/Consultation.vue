@@ -9,12 +9,22 @@
           Консультация специалиста
         </button>
       </div>
-      <div class="solution-modal__img">
-        <img :src="require(`@/assets/img/adv-modal.png`)" alt="img" />
+      <div class="solution-modal__img" v-if="item.length">
+        <img :src="item" alt="img" />
       </div>
     </div>
   </div>
 </template>
+<script>
+export default {
+  props: {
+    item: {
+      type: String,
+      default: "",
+    },
+  },
+};
+</script>
 <style lang="scss">
 .solution-modal {
   margin-bottom: 200px;

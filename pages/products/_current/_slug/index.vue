@@ -5,7 +5,7 @@
       <h1 class="pages__title">{{ item.name }}</h1>
       <ProductInfo :item="item" />
       <p class="more">
-        Подробнее о том что вляет на конечную стоимость <br />
+        Подробнее о том, что влияет на конечную стоимость <br />
         вы можете узнать на странице
         <nuxt-link :to="{ name: 'prices' }">ценообразование</nuxt-link>
       </p>

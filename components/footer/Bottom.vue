@@ -12,12 +12,12 @@
           <li class="footer-bottom__social-item">
             <a href="#"> <svgicon name="vk" /></a>
           </li>
-          <li class="footer-bottom__social-item">
+          <!-- <li class="footer-bottom__social-item">
             <a href="#"> <svgicon name="fb" /></a>
           </li>
           <li class="footer-bottom__social-item">
             <a href="#"> <svgicon name="insta" /></a>
-          </li>
+          </li> -->
           <li class="footer-bottom__social-item">
             <a href="#"> <svgicon name="telegram" /></a>
           </li>
@@ -28,7 +28,7 @@
       </div>
       <div class="footer-bottom__links">
         <div>
-          <a href="#">Политика конфеденциальности</a>
+          <a href="#">Политика конфиденциальности</a>
           <a href="#">Файлы cookie</a>
         </div>
 

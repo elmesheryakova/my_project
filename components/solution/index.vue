@@ -19,14 +19,14 @@
           </div>
 
           <div class="gallery-top__img d-flex">
-            <nuxt-link
-              class="gallery-top__link"
-              :to="{ name: 'solutions-slug', params: { slug: item.slug } }"
-            >
-              <svgicon name="arrow-fullscreen" />
-            </nuxt-link>
             <div class="gallery-top__img-1">
               <img :src="item.images[0]" alt="img" />
+              <nuxt-link
+                class="gallery-top__link"
+                :to="{ name: 'solutions-slug', params: { slug: item.slug } }"
+              >
+                <svgicon name="arrow-fullscreen" />
+              </nuxt-link>
             </div>
             <div class="gallery-top__img-2">
               <img :src="item.images[1]" alt="img" />
@@ -50,7 +50,7 @@
               align-items-center
               justify-content-center
             "
-            v-for="(item, index) in solutions"
+            v-for="(item, index) in items"
             :key="`item-${index}`"
             :class="{ 'active-thumb': activeSlideInd == index }"
             @click="onThumbClick(index)"
@@ -62,20 +62,15 @@
           >
             <div class="thumb-inner">
               <img
-                :src="require(`@/assets/svg/${item.svg}.svg`)"
+                :src="item.svg_icon_white"
                 alt="img"
                 v-if="activeSlideInd == index"
                 class="img"
               />
-              <img
-                :src="require(`@/assets/svg/${item.svgHover}.svg`)"
-                alt="img"
-                v-else
-                class="img"
-              />
+              <img :src="item.svg_icon" alt="img" v-else class="img" />
 
               <p class="gallery-trumbs__text">
-                {{ item.title }}
+                {{ item.name }}
               </p>
             </div>
           </div>
@@ -99,7 +94,6 @@ export default {
       directives: {
         swiper: directive,
       },
-      solutions: this.$store.state.solutions,
       activeSlideInd: 0,
 
       swiperOptionTop: {
@@ -173,8 +167,9 @@ export default {
   }
 
   &__info {
-    max-width: 340px;
+    max-width: 600px;
     margin-left: auto;
+    padding-right: 50px;
     align-self: center;
     @media (max-width: 1190px) {
       margin-left: 20px;
@@ -184,15 +179,15 @@ export default {
     color: $primary;
     font-size: 64px;
     font-weight: 900;
-    padding-bottom: 120px;
+    padding-bottom: 60px;
     position: relative;
     &:after {
       position: absolute;
       content: "";
-      height: 62px;
+      height: 37px;
       width: 1px;
       background-color: $black;
-      top: 105px;
+      top: 85px;
       left: 3px;
     }
     @media (max-width: 1500px) {
@@ -225,9 +220,10 @@ export default {
 
   &__img {
     margin-left: auto;
-    position: relative;
+
     &-1 {
       align-self: flex-end;
+      position: relative;
       @media (max-width: 1400px) {
         margin-top: 100px;
       }
@@ -241,7 +237,7 @@ export default {
         height: 100%;
         object-fit: cover;
       }
-      @media (max-width: 1500px) {
+      @media (max-width: 1600px) {
         height: 480px;
         width: 380px;
       }
@@ -265,7 +261,7 @@ export default {
     background-color: $primary;
     border-radius: 50%;
     position: absolute;
-    top: 180px;
+    top: -80px;
     left: -80px;
     display: block;
     svg {
@@ -285,15 +281,12 @@ export default {
     @media (max-width: 1500px) {
       height: 100px;
       width: 100px;
+      top: -50px;
       left: -50px;
-      top: 170px;
       svg {
         width: 40px;
         height: 40px;
       }
-    }
-    @media (max-width: 1400px) {
-      top: 70px;
     }
   }
   @media (min-width: 1920px) {

@@ -5,26 +5,40 @@
       :class="{ 'slider-sol--frontpage': $route.name === 'index' }"
     >
       <div class="container">
-        <h2 class="block__title"><span>Решения</span> для других напитков</h2>
+        <h2 class="block__title">
+          <span>Решения</span>
+          {{
+            $route.name === "index"
+              ? "для вашего бизнеса"
+              : "для других напитков"
+          }}
+        </h2>
       </div>
 
       <div class="container">
-        <div class="slider-sol">
+        <div class="slider-soll">
           <div class="slider-sol__container">
             <div class="swiper-container-sol">
               <!-- Additional required wrapper -->
               <div class="swiper-wrapper">
-                <div
+                <nuxt-link
                   class="swiper-slide"
-                  v-for="(item, index) in solutions"
+                  v-for="(item, index) in items.filter(
+                    (el) => el.slug !== $route.params.slug
+                  )"
                   :key="`item-${index}`"
+                  :to="{
+                    name: 'solutions-slug',
+                    params: { slug: item.slug },
+                  }"
                 >
                   <div class="slider-sol__wrap">
                     <div class="slider-sol__item">
-                      <h4 class="slider-sol__title">{{ item.title }}</h4>
+                      <h4 class="slider-sol__title">{{ item.name }}</h4>
                       <div class="slider-sol__img">
                         <img
-                          :src="require(`@/assets/img/${item.img}`)"
+                          v-if="item.image_mobile[1]"
+                          :src="item.image_mobile[1]"
                           alt="img"
                         />
                       </div>
@@ -35,11 +49,15 @@
                         'slider-sol__icon--coffe': item.title === 'Кофе',
                       }"
                     >
-                      <svgicon :name="item.svgHover" class="svg-color" />
-                      <svgicon :name="item.svg" class="svg-white" />
+                      <img :src="item.svg_icon" alt="" class="svg-color" />
+                      <img
+                        :src="item.svg_icon_white"
+                        alt=""
+                        class="svg-white"
+                      />
                     </div>
                   </div>
-                </div>
+                </nuxt-link>
               </div>
             </div>
           </div>
@@ -59,10 +77,14 @@ import "swiper/swiper-bundle.css";
 Swiper.use([Navigation, Pagination]);
 
 export default {
+  props: {
+    items: {
+      type: Array,
+      default: () => [],
+    },
+  },
   data() {
-    return {
-      solutions: this.$store.state.solutions,
-    };
+    return {};
   },
 
   mounted() {
@@ -89,6 +111,9 @@ export default {
 };
 </script>
 <style lang="scss">
+.slider-soll {
+  padding-bottom: 160px;
+}
 .slider-sol {
   .swiper-button-next {
     width: 80px !important;
@@ -99,7 +124,7 @@ export default {
   padding: 120px 0;
   background-color: #f2f3f6;
   position: relative;
-  min-height: 100vh;
+  // min-height: 100vh;
 
   .swiper-wrapper {
     display: flex;
@@ -155,7 +180,7 @@ export default {
 
       z-index: -1;
       @media (max-width: 1940px) {
-        top: -310px;
+        top: -400px;
       }
       @media (max-width: 1024px) {
         width: 150px;

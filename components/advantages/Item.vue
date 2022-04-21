@@ -11,14 +11,18 @@
         class="advantages__item-info"
         :class="{ 'advantages__item-info--white': $route.name === 'partners' }"
       >
-        <h3 class="advantages__item-title">{{ item.title }}</h3>
+        <h3 class="advantages__item-title">
+          {{ $route.name === "accessories" ? item.name : item.title }}
+        </h3>
         <p v-if="item.description" class="advantages__item-text">
           {{ item.description }}
         </p>
         <ul class="advantages__list">
           <li
             class="advantages__list-item"
-            v-for="(item, index) in item.elements_list"
+            v-for="(item, index) in item.advantages
+              ? item.advantages
+              : item.elements_list"
             :key="index"
           >
             <div class="advantages__list-svg">
@@ -28,8 +32,12 @@
           </li>
         </ul>
         <ProductSpecifications
-          :items="item.specifications"
-          v-if="item.specifications"
+          :items="
+            item.specifications
+              ? item.specifications
+              : item.properties.slice(0, 6)
+          "
+          v-if="item.specifications || item.properties"
         />
       </div>
       <nuxt-link
@@ -42,7 +50,7 @@
         <svgicon name="arrow-blue" />
       </nuxt-link>
       <div class="advantages__item-num" v-else>
-        <svgicon :name="icon" />
+        <svgicon :name="item.icon" />
       </div>
     </div>
     <nuxt-link
@@ -57,7 +65,7 @@
       class="advantages__item-img"
       :class="{
         'advantages__item-img--even':
-          item.id % 2 === 0 &&
+          item.index % 2 === 0 &&
           ($route.name === 'partners' || $route.name === 'accessories'),
       }"
     >
@@ -76,6 +84,9 @@
 </template>
 <script>
 export default {
+  data() {
+    return {};
+  },
   props: {
     item: {
       type: Object,
@@ -91,24 +102,9 @@ export default {
         return true;
       }
     },
+    computed() {},
 
-    icon() {
-      if (this.item) {
-        if (this.item.id === 1) {
-          return "num1";
-        }
-        if (this.item.id === 2) {
-          return "num2";
-        }
-        if (this.item.id === 3) {
-          return "num3";
-        }
-        if (this.item.id === 4) {
-          return "num4";
-        }
-      }
-      return null;
-    },
+    mounted() {},
   },
 };
 </script>
@@ -171,12 +167,12 @@ export default {
     }
     &-title {
       color: $primary;
-      font-size: 36px;
+      font-size: 32px;
       font-weight: 600;
-      margin-bottom: 50px;
+      margin-bottom: 35px;
       @media (max-width: 1130px) {
-        font-size: 28px;
-        margin-bottom: 30px;
+        font-size: 26px;
+        margin-bottom: 28px;
       }
       @media (max-width: 365px) {
         font-size: 23px;
@@ -205,7 +201,7 @@ export default {
     &-num {
       font-size: 64px;
       font-weight: 900;
-
+      color: #f6f6f6;
       width: 160px;
       height: 160px;
       flex: 0 0 160px;
@@ -374,13 +370,13 @@ export default {
       display: flex;
       align-items: flex-start;
       font-weight: 400;
-      font-size: 24px;
-      line-height: 32px;
+      font-size: 21px;
+      line-height: 26px;
       &:not(:last-child) {
         margin-bottom: 30px;
       }
       @media (max-width: 1130px) {
-        font-size: 20px;
+        font-size: 18px;
         &:not(:last-child) {
           margin-bottom: 20px;
         }

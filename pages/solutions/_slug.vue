@@ -19,31 +19,35 @@
           </div>
         </div>
       </div>
-      <div class="container">
+      <div class="container" v-if="item.reasons.length">
         <h2 class="block__title">
           <span>4 причины</span> заменить металлические кеги на ПЭТ
         </h2>
       </div>
 
       <Advantages :width="width" :items="item.reasons" />
-      <SolutionConsultation />
-      <div class="container">
-        <h2 class="block__title">
-          <span>Группа товаров</span> для пивоварен и баров:
-        </h2>
-      </div>
-      <Slider :items="productsGroup" v-if="width > 790" />
-      <GridMobile :items="productsGroup" :width="width" v-else />
+      <SolutionConsultation :item="item.image[2]" />
+
+      <template v-if="item.group_products.items.length">
+        <div class="container">
+          <h2 class="block__title">
+            <span>Группа товаров</span> {{ item.group_products.header }}:
+          </h2>
+        </div>
+        <Slider :items="item.group_products.items" v-if="width > 790" />
+        <GridMobile :items="item.group_products.items" :width="width" v-else />
+      </template>
+
       <SolutionInfo />
       <div class="test" v-if="width > 870" ref="sectionBeforeRef">
-        <SliderSolutions />
+        <SliderSolutions :items="page.items" />
       </div>
 
       <template v-else>
         <div class="container">
           <h2 class="block__title"><span>Решения</span> для других напитков</h2>
         </div>
-        <SolutionMobile
+        <SolutionMobile :items="page.items"
       /></template>
       <Feedback :enableWaveAnimation="true" />
     </div>
@@ -54,16 +58,18 @@ export default {
   data() {
     return {
       width: 0,
-      productsGroup: this.$store.state.productsGroup,
-
       item: {},
+      page: {},
     };
   },
   async asyncData({ params, $axios }) {
     const item = await $axios.$get(
       `https://api.petexpert.pro/v1/solutions/${params.slug}/`
     );
-    return { item };
+    const page = await $axios.$get(
+      `https://api.petexpert.pro/v1/pages/solutions/`
+    );
+    return { item, page };
   },
 
   methods: {
@@ -75,27 +81,31 @@ export default {
   mounted() {
     window.addEventListener("resize", this.updateWidth);
     this.updateWidth();
+    this.item.reasons.forEach((el, i) => {
+      this.$set(el, "icon", `num${i + 1}`);
+    });
   },
 };
 </script>
 <style lang="scss">
 .solution-item {
-  padding: 135px 0 150px;
+  padding: 170px 0 150px;
 
   @media (max-width: 991px) {
-    padding-top: 90px;
+    padding-top: 100px;
   }
   @media (max-width: 860px) {
     padding-bottom: 60px;
   }
   @media (max-width: 791px) {
-    padding-top: 60px;
+    padding-top: 102px;
   }
   overflow-x: hidden;
   &__inner {
     justify-content: space-between;
     display: flex;
     position: relative;
+    align-items: center;
   }
   &__imgbig {
     width: 970px;
@@ -121,20 +131,8 @@ export default {
       width: 600px;
       margin-right: -90px;
     }
-    @media (max-width: 630px) {
-      height: 300px;
-      width: 400px;
-      margin-right: -70px;
-    }
-    @media (max-width: 480px) {
-      height: 200px;
-      width: 170px;
-      margin-right: -20px;
-    }
-    @media (max-width: 340px) {
-      height: 190px;
-      width: 150px;
-      margin-right: -20px;
+    @media (max-width: 740px) {
+      display: none;
     }
   }
 
@@ -159,13 +157,12 @@ export default {
       margin-left: -20px;
       height: 190px;
     }
-    @media (max-width: 500px) {
-      width: 320px;
-      height: 125px;
+    @media (max-width: 740px) {
+      min-width: 100%;
+      margin-left: 0;
     }
-    @media (max-width: 340px) {
-      width: 300px;
-      height: 100px;
+    @media (max-width: 520px) {
+      margin-left: -20px;
     }
   }
 
@@ -175,15 +172,15 @@ export default {
     font-size: 64px;
     line-height: 64px;
     font-weight: 900;
-    padding-bottom: 120px;
+    padding-bottom: 60px;
     position: relative;
     &:after {
       position: absolute;
       content: "";
-      height: 62px;
+      height: 30px;
       width: 1px;
       background-color: $black;
-      top: 105px;
+      top: 80px;
       left: 3px;
     }
     @media (max-width: 990px) {
@@ -193,37 +190,40 @@ export default {
         display: none;
       }
     }
-    @media (max-width: 768px) {
+    @media (max-width: 740px) {
       position: absolute;
-      top: -120px;
+      top: -90px;
       left: 50%;
       transform: translateX(-50%);
       font-size: 36px;
     }
-    @media (max-width: 600px) {
-      top: -90px;
-    }
   }
   &__text {
-    max-width: 475px;
+    max-width: 600px;
+    min-width: 480px;
     padding-right: 30px;
     @media (max-width: 990px) {
       font-size: 14px;
       line-height: 18px;
     }
-    @media (max-width: 630px) {
-      max-width: 200px;
+    @media (max-width: 740px) {
+      padding-right: 0;
+      min-width: 100%;
     }
-    @media (max-width: 340px) {
-      font-size: 13px;
-      padding-right: 10px;
-    }
+
+    // @media (max-width: 340px) {
+    //   font-size: 13px;
+    //   padding-right: 10px;
+    // }
   }
   &__info {
     align-self: center;
+    @media (max-width: 740px) {
+      min-width: 100%;
+    }
   }
-  @media (max-width: 768px) {
-    padding-top: 200px;
+  @media (max-width: 740px) {
+    padding-top: 172px;
   }
   @media (max-width: 600px) {
     padding-top: 150px;

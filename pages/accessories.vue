@@ -4,7 +4,7 @@
       <ProductPreview />
       <h1 class="pages__title">Комплектующие</h1>
     </div>
-    <Advantages :width="width" :items="accessories" />
+    <Advantages :width="width" :items="access" />
     <Feedback />
   </div>
 </template>
@@ -12,10 +12,21 @@
 export default {
   data() {
     return {
-      accessories: this.$store.state.accessories,
       width: 0,
+
+      access: [],
     };
   },
+  async fetch() {
+    const { data } = await this.$axios.get(
+      `https://api.petexpert.pro/v1/production/items/?categories__slug=accessories`
+    );
+    this.access = data.items;
+    this.access.forEach((el, i) => {
+      this.$set(el, "index", i + 1);
+    });
+  },
+
   methods: {
     updateWidth() {
       this.width = window.innerWidth;

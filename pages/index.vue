@@ -59,13 +59,29 @@
       <div class="js-section js-section-normal-scroll after-slides-section">
         <div class="container">
           <h2 class="block__title block__title--frontpage">
-            <span>Группа товаров</span> для пивоварен и баров:
+            <span>Группа товаров</span>
+            {{
+              activeBottleType === "beer"
+                ? solutionBeer.group_products.header
+                : solutionWater.group_products.header
+            }}:
           </h2>
         </div>
-        <Slider :items="productsGroup" v-if="width > 790" />
+        <Slider
+          :items="
+            activeBottleType === 'beer'
+              ? solutionBeer.group_products.items
+              : solutionWater.group_products.items
+          "
+          v-if="width > 790"
+        />
         <GridMobile :items="productsGroup" :width="width" v-else />
         <div class="test" v-if="width > 992">
-          <SliderSolutions view="frontpage" ref="sliderSolutions" />
+          <SliderSolutions
+            view="frontpage"
+            ref="sliderSolutions"
+            :items="solutions.items"
+          />
         </div>
         <template v-else>
           <div class="container">
@@ -73,7 +89,7 @@
               <span>Готовые решения</span> для вашего бизнеса
             </h2>
           </div>
-          <SolutionMobile :items="$store.state.solutions" view="frontpage" />
+          <SolutionMobile :items="solutions.items" view="frontpage" />
         </template>
       </div>
       <!-- END normal-scroll-section -->
@@ -132,6 +148,9 @@ export default {
   layout: "fullscreen",
   data() {
     return {
+      solutionBeer: {},
+      solutionWater: {},
+      solutions: {},
       activeBottleType: "beer",
       showPromoBottom: true,
       width: 0,
@@ -335,6 +354,19 @@ export default {
         },
       ],
     };
+  },
+  async asyncData({ params, $axios }) {
+    const solutionBeer = await $axios.$get(
+      `https://api.petexpert.pro/v1/solutions/beer/`
+    );
+    const solutionWater = await $axios.$get(
+      `https://api.petexpert.pro/v1/solutions/water/`
+    );
+
+    const solutions = await $axios.$get(
+      `https://api.petexpert.pro/v1/solutions/`
+    );
+    return { solutions, solutionBeer, solutionWater };
   },
   methods: {
     updatePage() {

@@ -373,6 +373,7 @@ export default {
       background-color: #fff;
       padding-top: 160px;
       padding-bottom: 160px;
+      min-height: 85vh;
     }
     .footer-feedback__title {
       color: $primary;
