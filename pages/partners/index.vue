@@ -11,7 +11,7 @@
 
         <Fullscroll
           :width="width"
-          v-for="(item, index) in partners"
+          v-for="(item, index) in clients.items"
           :key="index"
         >
           <div class="container"><AdvantagesItem :item="item" /></div>
@@ -22,7 +22,7 @@
   </client-only>
   <div v-else class="partners-page">
     <Banner :width="width" />
-    <Advantages :width="width" :items="partners" />
+    <Advantages :width="width" :items="clients.items" />
     <Footer />
   </div>
 </template>
@@ -32,7 +32,6 @@ export default {
 
   data() {
     return {
-      partners: this.$store.state.partners,
       width: 0,
       options: {
         css3: true,
@@ -41,9 +40,15 @@ export default {
         navigation: false,
         responsiveWidth: 1300,
       },
+      clients: {},
     };
   },
-
+  async asyncData({ $axios }) {
+    const clients = await $axios.$get(
+      `https://api.petexpert.pro/v1/pages/to_clients/`
+    );
+    return { clients };
+  },
   methods: {
     updateWidth() {
       this.width = window.innerWidth;

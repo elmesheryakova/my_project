@@ -12,9 +12,15 @@ export default {
     return {
       prices: this.$store.state.prices,
       width: 0,
+      page: {},
     };
   },
-
+  async asyncData({ $axios }) {
+    const page = await $axios.$get(
+      `https://api.petexpert.pro/v1/to_clients/pages/prices/`
+    );
+    return { page };
+  },
   methods: {
     updateWidth() {
       this.width = window.innerWidth;

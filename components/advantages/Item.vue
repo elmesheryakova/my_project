@@ -12,7 +12,7 @@
         :class="{ 'advantages__item-info--white': $route.name === 'partners' }"
       >
         <h3 class="advantages__item-title">
-          {{ item.name ? item.name : item.title }}
+          {{ item.name ? item.name : item.title ? item.title : item.header }}
         </h3>
         <p v-if="item.description" class="advantages__item-text">
           {{ item.description }}
@@ -41,8 +41,7 @@
         />
       </div>
       <nuxt-link
-        no-prefetch
-        :to="item.link"
+        :to="item.slug"
         class="advantages__item-link"
         v-if="$route.name === 'partners'"
       >
