@@ -704,7 +704,7 @@ export default {
 
       // 1 цифра это бутылка с пивом, вторая вода
       // кадры с бутылкой пива в папке beer, а булылки воды в water-new
-      this.frameCount = bottleType === "beer" ? 108 : 130;
+      this.frameCount = bottleType === "beer" ? 117 : 130;
 
       this.spriteImages = [];
       if (!this.fpPromo) {
