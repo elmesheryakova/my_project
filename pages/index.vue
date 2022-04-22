@@ -1213,6 +1213,10 @@ export default {
   pointer-events: none;
 }
 
+#anim-water-container {
+  width: 60%;
+}
+
 .anim-bottle canvas {
   display: block;
   width: 110%;
