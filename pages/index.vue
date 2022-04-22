@@ -460,24 +460,24 @@ export default {
           duration: 1,
           xPercent: -28,
           delay: 0.2,
-          frame: 18,
+          frame: 25,
         },
         3: {
           duration: 1,
           xPercent: 60,
           delay: 0.2,
-          frame: 48,
+          frame: 61,
         },
         4: {
           duration: 1.3,
           delay: 0,
-          frame: 70,
+          frame: 82,
           xPercent: -45,
         },
         5: {
           duration: 1,
           delay: 0.2,
-          frame: 107,
+          frame: 116,
           xPercent: 45,
         },
       };
