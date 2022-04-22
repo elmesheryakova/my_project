@@ -26,7 +26,7 @@
         <div class="company-concept__link-wrap">
           <nuxt-link
             class="company-concept__link"
-            :to="{ name: 'concept-id', params: { id: item.id } }"
+            :to="{ name: 'concept-slug', params: { slug: item.slug } }"
           >
             <svgicon name="arrow-fullscreen" />
           </nuxt-link>

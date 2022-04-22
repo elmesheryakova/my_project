@@ -12,7 +12,7 @@
         :class="{ 'advantages__item-info--white': $route.name === 'partners' }"
       >
         <h3 class="advantages__item-title">
-          {{ $route.name === "accessories" ? item.name : item.title }}
+          {{ item.name ? item.name : item.title }}
         </h3>
         <p v-if="item.description" class="advantages__item-text">
           {{ item.description }}
@@ -56,7 +56,7 @@
     <nuxt-link
       class="advantages__item-link advantages__item-link--concept"
       v-if="$route.name === 'concept'"
-      :to="{ name: 'concept-id', params: { id: item.id } }"
+      :to="{ name: 'concept-slug', params: { slug: item.slug } }"
     >
       <p class="mb-0">Подробнее</p>
       <svgicon name="arrow-blue" />
@@ -69,11 +69,7 @@
           ($route.name === 'partners' || $route.name === 'accessories'),
       }"
     >
-      <img
-        v-if="$route.name === 'concept'"
-        :src="require(`@/assets/img/${item.img1}`)"
-        alt="img"
-      />
+      <img v-if="$route.name === 'concept'" :src="item.images[0]" alt="img" />
       <img
         v-else
         :src="width > 860 ? item.image : item.image_mobile"

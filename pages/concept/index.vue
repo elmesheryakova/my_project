@@ -3,7 +3,7 @@
     <Banner />
     <template v-if="width > 860">
       <div
-        v-for="(item, index) in concept"
+        v-for="(item, index) in conception.items"
         :key="index"
         :style="'background: #f2f3f7'"
       >
@@ -11,7 +11,7 @@
       </div>
     </template>
 
-    <Advantages :width="width" :items="concept" v-else />
+    <Advantages :width="width" :items="conception.items" v-else />
     <ConceptBanner />
     <Feedback :enableWaveAnimation="true" />
     <Footer />
@@ -22,11 +22,16 @@ export default {
   layout: "fullscreen",
   data() {
     return {
-      concept: this.$store.state.concept,
       width: 0,
+      conception: [],
     };
   },
-
+  async asyncData({ $axios }) {
+    const conception = await $axios.$get(
+      `https://api.petexpert.pro/v1/conception/`
+    );
+    return { conception };
+  },
   methods: {
     updateWidth() {
       this.width = window.innerWidth;

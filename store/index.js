@@ -81,7 +81,7 @@ export const state = () => ({
           title: "Качество",
           img: 'nav9.png',
           id: 1,
-          link: { name: 'concept-id', params: { id: 1 } },
+          link: { name: 'concept-slug', params: { slug: 'kachestvo' } },
         },
       ]
     },

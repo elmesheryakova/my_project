@@ -1,7 +1,7 @@
 <template>
   <div :style="'background: #f2f3f6'" class="concept-banner-inner">
     <div class="concept-banner">
-      <div class="concept-banner__info">
+      <div class="concept-banner__info container">
         <h3>Наша миссия:</h3>
         <p>
           Трансформировать мышление общества через внедрение ПЭТ-упаковки как
@@ -29,23 +29,20 @@
 }
 .concept-banner {
   position: relative;
-  background: url("~/assets/img/banner-concept.jpg") no-repeat;
+  background: url("~/assets/img/banner-concept.jpg") top right no-repeat;
   background-size: cover;
   height: 930px;
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   @media (max-width: 1400px) {
     height: 500px;
-    background-position: bottom left;
+    min-width: 110%;
   }
-  @media (max-width: 810px) {
-    height: 460px;
-    transform: translateX(-100px);
-    min-width: 120%;
-  }
+
   @media (max-width: 490px) {
-    transform: translateX(-140px);
-    min-width: 200%;
     height: 600px;
+    min-width: 130%;
   }
   @media (max-width: 420px) {
     height: 500px;
@@ -54,11 +51,9 @@
   &__info {
     color: #fff;
     font-weight: 900;
-    position: absolute;
-    z-index: 2;
-    top: 40%;
-    left: 35%;
-    transform: translateY(-50%);
+    position: relative;
+    z-index: 9999;
+
     h3 {
       font-weight: 900;
       font-size: 64px;
@@ -72,16 +67,11 @@
       p {
         max-width: 800px;
         font-size: 30px;
+        line-height: 40px;
       }
     }
-    @media (max-width: 1190px) {
-      left: 30%;
-      p {
-        max-width: 700px;
-      }
-    }
+
     @media (max-width: 960px) {
-      left: 35%;
       h3 {
         font-size: 55px;
       }
@@ -91,26 +81,16 @@
         max-width: 500px;
       }
     }
-    @media (max-width: 691px) {
-      left: 45%;
+
+    @media (max-width: 500px) {
       h3 {
         font-size: 32px;
         margin-bottom: 20px;
       }
       p {
         font-size: 18px;
-        max-width: 350px;
-      }
-    }
-    @media (max-width: 490px) {
-      top: 30%;
-      left: 30%;
-    }
-    @media (max-width: 420px) {
-      p {
-        font-size: 16px;
         font-weight: 600;
-        max-width: 300px;
+        max-width: 320px;
       }
     }
   }

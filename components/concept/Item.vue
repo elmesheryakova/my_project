@@ -6,23 +6,24 @@
     }"
   >
     <div class="concept__info">
-      <h2 class="concept__info-title">{{ item.title }}</h2>
-      <p class="concept__info-text">{{ item.description }}</p>
-      <svgicon :name="item.num" />
+      <h2 class="concept__info-title">{{ item.name }}</h2>
+      <p class="concept__info-text" v-html="item.description"></p>
+      <svgicon :name="`num${item.id}`" />
     </div>
 
     <div class="concept__imgs">
       <nuxt-link
         class="concept__link"
-        :to="{ name: 'concept-id', params: { id: item.id } }"
+        :to="{ name: 'concept-slug', params: { slug: item.slug } }"
       >
         <svgicon name="arrow-fullscreen" />
       </nuxt-link>
-      <div class="concept__img-1">
-        <img :src="require(`@/assets/img/${item.img1}`)" alt="img" />
-      </div>
-      <div class="concept__img-2">
-        <img :src="require(`@/assets/img/${item.img2}`)" alt="img" />
+      <div
+        v-for="(item, idx) in item.images"
+        :key="idx"
+        :class="`concept__img-${idx + 1}`"
+      >
+        <img :src="item" alt="img" />
       </div>
     </div>
   </div>

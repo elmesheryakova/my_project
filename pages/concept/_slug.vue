@@ -1,25 +1,25 @@
 <template>
   <div class="concept-item" v-if="width > 860">
     <div class="container">
-      <h1 class="pages__title">Качество</h1>
+      <h1 class="pages__title">{{ conceptionID.name }}</h1>
       <div
         class="concept-item__wrap"
-        v-for="(item, index) in conceptId"
+        v-for="(item, index) in conceptionID.elements"
         :key="index"
       >
         <div class="concept-item__info">
-          <h3>{{ item.title }}</h3>
+          <h3>{{ item.name }}</h3>
           <p>{{ item.description }}</p>
         </div>
         <div class="concept-item__img">
-          <img :src="require(`@/assets/img/${item.img}`)" alt="img" />
+          <img :src="item.image[0]" alt="img" />
         </div>
       </div>
     </div>
   </div>
   <div class="concept-item" v-else>
-    <h1 class="pages__title">Качество</h1>
-    <Advantages :width="width" :items="conceptId" />
+    <h1 class="pages__title">{{ conceptionID.name }}</h1>
+    <Advantages :width="width" :items="conceptionID.elements" />
   </div>
 </template>
 <script>
@@ -28,9 +28,15 @@ export default {
     return {
       conceptId: this.$store.state.conceptId,
       width: 0,
+      conceptionID: {},
     };
   },
-
+  async asyncData({ params, $axios }) {
+    const conceptionID = await $axios.$get(
+      `https://api.petexpert.pro/v1/conception/${params.slug}/`
+    );
+    return { conceptionID };
+  },
   methods: {
     updateWidth() {
       this.width = window.innerWidth;

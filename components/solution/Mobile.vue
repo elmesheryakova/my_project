@@ -9,7 +9,7 @@
       :to="
         $route.name === 'solutions'
           ? { name: 'solutions-slug', params: { slug: item.slug } }
-          : { name: 'concept-id', params: { id: item.id } }
+          : { name: 'concept-slug', params: { slug: item.slug } }
       "
     >
       <div class="solution-mobile__btn">
