@@ -1207,7 +1207,7 @@ export default {
   display: block;
   height: 100%;
   top: 0;
-  width: 80%;
+  width: 100%;
   max-width: 1260px;
   margin: 0 auto;
   pointer-events: none;
