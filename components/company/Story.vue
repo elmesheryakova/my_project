@@ -22,7 +22,7 @@
                 >
                   <p class="story-item__num">{{ item.num }}</p>
                   <p class="story-item__subtitle">{{ item.subtitle }}</p>
-                  <p class="story-item__text">{{ item.description }}</p>
+                  <p class="story-item__text" v-html="item.description"></p>
                 </div>
               </div>
             </b-card-text>

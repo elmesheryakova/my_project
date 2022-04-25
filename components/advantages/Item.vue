@@ -14,9 +14,11 @@
         <h3 class="advantages__item-title">
           {{ item.name ? item.name : item.title ? item.title : item.header }}
         </h3>
-        <p v-if="item.description" class="advantages__item-text">
-          {{ item.description }}
-        </p>
+        <p
+          v-if="item.description"
+          class="advantages__item-text"
+          v-html="item.description"
+        ></p>
         <ul class="advantages__list">
           <li
             class="advantages__list-item"
@@ -67,8 +69,13 @@
           item.index % 2 === 0 &&
           ($route.name === 'partners' || $route.name === 'accessories'),
       }"
+      v-if="item.image || item.images"
     >
-      <img v-if="$route.name === 'concept'" :src="item.images[0]" alt="img" />
+      <img
+        v-if="$route.name === 'concept' || $route.name === 'prices'"
+        :src="item.images[0]"
+        alt="img"
+      />
       <img
         v-else
         :src="width > 860 ? item.image : item.image_mobile"
@@ -162,8 +169,9 @@ export default {
     }
     &-title {
       color: $primary;
-      font-size: 32px;
+      font-size: 27px;
       font-weight: 600;
+      line-height: 30px;
       margin-bottom: 35px;
       @media (max-width: 1130px) {
         font-size: 26px;
@@ -181,6 +189,10 @@ export default {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        @media (max-width: 860px) {
+          max-height: 400px;
+          object-fit: cover;
+        }
       }
       @media (max-width: 860px) {
         min-width: 110%;
@@ -365,8 +377,8 @@ export default {
       display: flex;
       align-items: flex-start;
       font-weight: 400;
-      font-size: 21px;
-      line-height: 26px;
+      font-size: 17px;
+      line-height: 24px;
       &:not(:last-child) {
         margin-bottom: 30px;
       }

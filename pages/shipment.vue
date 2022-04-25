@@ -1,40 +1,46 @@
 <template>
   <div class="shipment">
     <div class="container">
-      <h1 class="pages__title">Поставка продукции</h1>
+      <h1 class="pages__title">{{ page.header }}</h1>
     </div>
 
     <div
       class="shipment__item"
-      v-for="(item, index) in shipment"
+      v-for="(item, index) in page.elements"
       :key="index"
-      :class="{ 'order-1': item.id === 2 }"
+      :class="{ 'order-1': item.id % 2 === 0 }"
     >
       <div
         class="shipment__item-img"
         :class="{
-          'order-1': item.id === 1,
-          'order-2': item.id === 2 && width < 920,
+          'order-1': item.id % 2 === 1,
+          'order-2': item.id % 2 === 0 && width < 920,
         }"
+        v-if="item.images"
       >
-        <img :src="require(`@/assets/img/${item.img}`)" alt="img" />
+        <img :src="item.images[0]" alt="img" />
       </div>
       <div
         class="shipment__item-info"
-        :class="{ 'ml-auto': item.id === 1 && width > 919 }"
+        :class="{ 'ml-auto': item.id % 2 === 1 && width > 919 }"
       >
-        <h2 class="shipment__item-title">{{ item.title }}</h2>
+        <h2 class="shipment__item-title">{{ item.name }}</h2>
+        <p
+          class="shipment__list"
+          v-if="item.description"
+          v-html="item.description"
+        ></p>
         <ul class="shipment__list">
           <li
             class="shipment__list-item d-flex"
-            v-for="(item, index) in item.list"
+            v-for="(item, index) in item.elements_list"
             :key="index"
           >
             <div class="shipment__list-svg">
               <svgicon name="romb" />
             </div>
 
-            {{ item }}
+            {{ item.value }}
           </li>
         </ul>
       </div>
@@ -52,7 +58,14 @@ export default {
     return {
       shipment: this.$store.state.shipment,
       width: 0,
+      page: {},
     };
+  },
+  async asyncData({ $axios }) {
+    const page = await $axios.$get(
+      `https://api.petexpert.pro/v1/to_clients/pages/shipment/`
+    );
+    return { page };
   },
   methods: {
     updateWidth() {
@@ -88,8 +101,8 @@ export default {
     gap: 90px;
     &-title {
       color: $primary;
-      font-size: 48px;
-      padding-bottom: 50px;
+      font-size: 46px;
+      padding-bottom: 30px;
       font-weight: 600;
 
       @media (max-width: 1410px) {
@@ -120,6 +133,14 @@ export default {
         width: 100%;
       }
     }
+    &-img {
+      img {
+        @media (max-width: 920px) {
+          max-height: 400px;
+          object-fit: cover;
+        }
+      }
+    }
     &-bg {
       @media (max-width: 920px) {
         margin-left: -20px;
@@ -135,6 +156,7 @@ export default {
       flex-direction: column;
       justify-content: center;
       text-align: left;
+      padding-left: 10px;
       @media (max-width: 920px) {
         order: 1;
         padding: 0 20px 50px;
@@ -148,10 +170,14 @@ export default {
     }
   }
   &__list {
-    &-item {
-      font-size: 24px;
+    max-width: 550px;
+
+    p,
+    li {
+      list-style: inside;
+      font-size: 21px;
       font-weight: 400;
-      max-width: 490px;
+
       line-height: 31px;
       &:not(:last-child) {
         margin-bottom: 20px;

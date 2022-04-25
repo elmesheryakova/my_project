@@ -452,66 +452,66 @@ export default {
       this.beerMoves = {
         1: {
           duration: 1.3,
-          xPercent: -28,
-          delay: 0,
+          xPercent: -23,
+          delay: 0.5,
           frame: 0,
         },
         2: {
-          duration: 1,
+          duration: 1.2,
           xPercent: -28,
           delay: 0.2,
-          frame: 25,
+          frame: 23,
         },
         3: {
-          duration: 1,
-          xPercent: 60,
-          delay: 0.2,
-          frame: 61,
+          duration: 1.2,
+          xPercent: 30,
+          delay: 0.1,
+          frame: 73,
         },
         4: {
-          duration: 1.3,
-          delay: 0,
-          frame: 82,
-          xPercent: -45,
+          duration: 1.2,
+          delay: 0.1,
+          frame: 99,
+          xPercent: -35,
         },
         5: {
-          duration: 1,
-          delay: 0.2,
-          frame: 116,
-          xPercent: 45,
+          duration: 1.3,
+          delay: 0.1,
+          frame: 114,
+          xPercent: 30,
         },
       };
 
       this.waterMoves = {
         1: {
           duration: 1.3,
-          xPercent: -28,
-          delay: 0,
+          xPercent: -15,
+          delay: 0.5,
           frame: 0,
         },
         2: {
-          duration: 1,
-          xPercent: -35,
+          duration: 1.2,
+          xPercent: -20,
           delay: 0.2,
           frame: 17,
         },
         3: {
-          duration: 1,
-          xPercent: 60,
+          duration: 1.2,
+          xPercent: 62,
           delay: 0.2,
           frame: 65,
         },
         4: {
-          duration: 1.3,
-          delay: 0,
+          duration: 1.2,
+          delay: 0.2,
           frame: 107,
-          xPercent: -40,
+          xPercent: -28,
         },
         5: {
-          duration: 1,
+          duration: 1.3,
           delay: 0.2,
           frame: 129,
-          xPercent: 45,
+          xPercent: 53,
         },
       };
 
@@ -704,7 +704,7 @@ export default {
 
       // 1 цифра это бутылка с пивом, вторая вода
       // кадры с бутылкой пива в папке beer, а булылки воды в water-new
-      this.frameCount = bottleType === "beer" ? 117 : 130;
+      this.frameCount = bottleType === "beer" ? 115 : 130;
 
       this.spriteImages = [];
       if (!this.fpPromo) {
@@ -772,7 +772,7 @@ export default {
         // тут пути прописаны до файлов.
 
         if (bottleType === "beer") {
-          return require(`@/assets/img/${bottleType}/beer (${index + 1}).png`);
+          return require(`@/assets/img/${bottleType}/beer(${index + 1}).png`);
         } else {
           return require(`@/assets/img/${bottleType}-new/wa (${
             index + 1
@@ -1207,7 +1207,7 @@ export default {
   display: block;
   height: 100%;
   top: 0;
-  width: 100%;
+  width: 90%;
   max-width: 1260px;
   margin: 0 auto;
   pointer-events: none;

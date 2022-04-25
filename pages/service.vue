@@ -1,45 +1,55 @@
 <template>
   <div class="service">
     <div class="container">
-      <h1 class="pages__title">Поддержка и сервис</h1>
-      <div class="service__inner">
+      <h1 class="pages__title">{{ page.header }}</h1>
+      <div
+        class="service__inner"
+        v-for="(item, index) in page.elements"
+        :key="index"
+      >
         <div class="service__info">
           <h2 class="service__info-title">
-            Легкий и быстрый переход с металла на ПЭТ-КЕГ
+            {{ item.name }}
           </h2>
-          <p class="service__info-subtitle">
-            ПЭТ-КЕГ подходит под все типы линий розлива в т.ч. с использованием
-            адаптера
-          </p>
+          <div class="service__info-subtitle" v-html="item.description"></div>
           <ul class="service__list">
-            <li class="service__list-item d-flex">
+            <li
+              class="service__list-item d-flex"
+              v-for="(list, idx) in item.elements_list"
+              :key="idx"
+            >
               <div class="shipment__list-svg">
                 <svgicon name="romb" />
               </div>
-              Для перехода не требуется сложная перенастройка оборудования
-            </li>
-            <li class="service__list-item d-flex">
-              <div class="shipment__list-svg">
-                <svgicon name="romb" />
-              </div>
-              Не требуется инвестиций в оборудование
-            </li>
-            <li class="service__list-item d-flex">
-              <div class="shipment__list-svg">
-                <svgicon name="romb" />
-              </div>
-              Настройку, консультации и инструктаж проведет команда технических
-              специалистов компании «ПЭТ-Эксперт»
+              {{ list.value }}
             </li>
           </ul>
         </div>
-        <div class="service__img">
-          <img :src="require(`@/assets/img/service.jpg`)" alt="img" />
+        <div class="service__img" v-if="item.images">
+          <img :src="item.images[0]" alt="img" />
         </div>
       </div>
     </div>
   </div>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      page: {},
+    };
+  },
+  async asyncData({ $axios }) {
+    const page = await $axios.$get(
+      `https://api.petexpert.pro/v1/to_clients/pages/service/`
+    );
+    return { page };
+  },
+  methods: {},
+
+  mounted() {},
+};
+</script>
 <style lang="scss">
 .service {
   padding: 135px 0 160px;
@@ -54,9 +64,13 @@
     padding-top: 60px;
   }
   &__info {
-    font-size: 24px;
+    font-size: 21px;
     font-weight: 400;
     line-height: 28px;
+    justify-content: center;
+
+    display: flex;
+    flex-direction: column;
     &-subtitle {
       padding-bottom: 30px;
       @media (max-width: 1200px) {
@@ -83,8 +97,8 @@
   }
   &__info-title {
     color: $primary;
-    font-size: 48px;
-    line-height: 57px;
+    font-size: 42px;
+    line-height: 52px;
     font-weight: 600;
     padding-bottom: 40px;
     @media (max-width: 1300px) {
@@ -121,10 +135,15 @@
       margin-left: -20px;
       img {
         width: 110%;
+        max-height: 400px;
+        object-fit: cover;
       }
     }
     @media (max-width: 640px) {
       order: -1;
+      img {
+        max-height: 360px;
+      }
     }
   }
   &__list {

@@ -1,8 +1,8 @@
 <template>
   <div class="prices">
     <div class="container">
-      <h1 class="pages__title">Ценообразование</h1>
-      <Advantages :width="width" :items="prices" />
+      <h1 class="pages__title">{{ page.header }}</h1>
+      <Advantages :width="width" :items="page.elements" />
     </div>
   </div>
 </template>
@@ -10,7 +10,6 @@
 export default {
   data() {
     return {
-      prices: this.$store.state.prices,
       width: 0,
       page: {},
     };
@@ -30,6 +29,9 @@ export default {
   mounted() {
     window.addEventListener("resize", this.updateWidth);
     this.updateWidth();
+    this.page.elements.forEach((el, i) => {
+      this.$set(el, "icon", `num${i + 1}`);
+    });
   },
 };
 </script>

@@ -21,7 +21,7 @@
         </div>
         <div class="company-concept__text">
           <h4>{{ item.title }}</h4>
-          <p>{{ item.description }}</p>
+          <p v-html="item.description"></p>
         </div>
         <div class="company-concept__link-wrap">
           <nuxt-link

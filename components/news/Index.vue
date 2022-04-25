@@ -15,7 +15,7 @@
 
         <div class="news__item-info">
           <h4>{{ item.title }}</h4>
-          <p>{{ item.description }}</p>
+          <p v-html="item.description"></p>
           <nuxt-link
             class="advantages__item-link"
             :to="{ name: 'news-id', params: { id: item.id } }"
@@ -39,7 +39,7 @@
 
           <div class="news__item-info">
             <h4>{{ item.title }}</h4>
-            <p>{{ item.description }}</p>
+            <p v-html="item.description"></p>
             <nuxt-link
               class="advantages__item-link"
               :to="{ name: 'news-id', params: { id: item.id } }"
@@ -65,7 +65,7 @@
 
                 <div class="news__item-info">
                   <h4>{{ item.title }}</h4>
-                  <p>{{ item.description }}</p>
+                  <p v-html="item.description"></p>
                   <nuxt-link
                     class="advantages__item-link"
                     :to="{ name: 'news-id', params: { id: item.id } }"

@@ -31,7 +31,7 @@
               :key="index"
             >
               <h4>{{ item.title }}</h4>
-              <p class="mb-0">{{ item.description }}</p>
+              <p class="mb-0" v-html="item.description"></p>
             </div>
             <p v-if="item.vacancy == 0">Вакансии отсутствуют</p>
           </b-collapse>

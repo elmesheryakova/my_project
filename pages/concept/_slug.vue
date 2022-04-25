@@ -9,7 +9,7 @@
       >
         <div class="concept-item__info">
           <h3>{{ item.name }}</h3>
-          <p>{{ item.description }}</p>
+          <div v-html="item.description"></div>
         </div>
         <div class="concept-item__img">
           <img :src="item.image[0]" alt="img" />
@@ -88,12 +88,17 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: center;
-
+    li {
+      list-style: inside;
+      &:not(:last-child) {
+        margin-bottom: 10px;
+      }
+    }
     h3 {
       color: $primary;
       font-size: 48px;
       font-weight: 600;
-      padding-bottom: 155px;
+      padding-bottom: 80px;
       position: relative;
       &:after {
         content: "";
@@ -101,7 +106,7 @@ export default {
         top: 55%;
         left: 0;
         width: 1px;
-        height: 72px;
+        height: 50px;
         background: $black;
       }
     }
