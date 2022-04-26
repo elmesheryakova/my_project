@@ -11,27 +11,25 @@
       </nuxt-link>
     </div>
     <div class="company-concept__info">
-      <div
+      <nuxt-link
+        :to="{ name: 'concept-slug', params: { slug: item.slug } }"
         class="company-concept__item"
         v-for="(item, index) in items"
         :key="index"
       >
-        <div class="company-concept__img">
-          <img :src="require(`@/assets/img/${item.img}`)" alt="img" />
+        <div class="company-concept__img" v-if="item.image_mobile">
+          <img :src="item.image_mobile[0]" alt="img" />
         </div>
         <div class="company-concept__text">
-          <h4>{{ item.title }}</h4>
+          <h4>{{ item.name }}</h4>
           <p v-html="item.description"></p>
         </div>
         <div class="company-concept__link-wrap">
-          <nuxt-link
-            class="company-concept__link"
-            :to="{ name: 'concept-slug', params: { slug: item.slug } }"
-          >
+          <div class="company-concept__link">
             <svgicon name="arrow-fullscreen" />
-          </nuxt-link>
+          </div>
         </div>
-      </div>
+      </nuxt-link>
     </div>
   </div>
 </template>

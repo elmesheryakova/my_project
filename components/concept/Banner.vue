@@ -53,7 +53,7 @@
     color: #fff;
     font-weight: 900;
     position: relative;
-    z-index: 9999;
+    z-index: 1;
 
     h3 {
       font-weight: 900;

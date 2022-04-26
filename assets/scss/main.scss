@@ -47,10 +47,12 @@ body {
     flex: 1;
   }
 }
-.page-enter-active, .page-leave-active {
-  transition: opacity .2s;
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.2s;
 }
-.page-enter, .page-leave-active {
+.page-enter,
+.page-leave-active {
   opacity: 0;
 }
 main {
@@ -84,4 +86,9 @@ main {
     font-size: 30px;
     padding: 50px 0;
   }
+}
+.advantages__item-link svg {
+  fill: transparent;
+  max-width: 47px;
+  max-height: 47px;
 }

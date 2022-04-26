@@ -6,19 +6,19 @@
       </h2>
       <div
         class="news__item-top"
-        v-for="(item, index) in items.slice(0, 1)"
+        v-for="(item, index) in items.filter((el) => el.is_top)"
         :key="index"
       >
         <div class="news__item-img">
-          <img :src="require(`@/assets/img/${item.img}`)" alt="img" />
+          <img :src="item.image" alt="img" />
         </div>
 
         <div class="news__item-info">
-          <h4>{{ item.title }}</h4>
-          <p v-html="item.description"></p>
+          <h4>{{ item.name }}</h4>
+          <div v-html="item.short_description"></div>
           <nuxt-link
             class="advantages__item-link"
-            :to="{ name: 'news-id', params: { id: item.id } }"
+            :to="{ name: 'news-slug', params: { slug: item.slug } }"
           >
             <p class="mb-0">Читать полностью</p>
             <svgicon name="arrow-blue" />
@@ -28,21 +28,21 @@
       <div class="news__block" v-if="width > 760">
         <div
           class="news__item"
-          v-for="(item, index) in $route.name === 'news'
-            ? items.slice(1)
-            : items.slice(1, 4)"
+          v-for="(item, index) in $route.name === 'company'
+            ? items.filter((el) => !el.is_top).slice(0, 4)
+            : items.filter((el) => !el.is_top)"
           :key="index"
         >
           <div class="news__item-img">
-            <img :src="require(`@/assets/img/${item.img}`)" alt="img" />
+            <img :src="item.image" alt="img" />
           </div>
 
           <div class="news__item-info">
-            <h4>{{ item.title }}</h4>
-            <p v-html="item.description"></p>
+            <h4>{{ item.name }}</h4>
+            <div class="news__item-descr" v-html="item.short_description"></div>
             <nuxt-link
               class="advantages__item-link"
-              :to="{ name: 'news-id', params: { id: item.id } }"
+              :to="{ name: 'news-slug', params: { slug: item.slug } }"
             >
               <p class="mb-0">Читать полностью</p>
               <svgicon name="arrow-blue" />
@@ -55,20 +55,23 @@
           <div class="swiper-wrapper">
             <div
               class="swiper-slide d-flex flex-column"
-              v-for="(item, index) in items.slice(1, 4)"
+              v-for="(item, index) in items.filter((el) => !el.is_top)"
               :key="`item-${index}`"
             >
               <div class="news__item">
                 <div class="news__item-img">
-                  <img :src="require(`@/assets/img/${item.img}`)" alt="img" />
+                  <img :src="item.image" alt="img" />
                 </div>
 
                 <div class="news__item-info">
-                  <h4>{{ item.title }}</h4>
-                  <p v-html="item.description"></p>
+                  <h4>{{ item.name }}</h4>
+                  <div
+                    class="news__item-descr"
+                    v-html="item.short_description"
+                  ></div>
                   <nuxt-link
                     class="advantages__item-link"
-                    :to="{ name: 'news-id', params: { id: item.id } }"
+                    :to="{ name: 'news-slug', params: { slug: item.slug } }"
                   >
                     <p class="mb-0">Читать полностью</p>
                     <svgicon name="arrow-blue" />
@@ -243,7 +246,8 @@ export default {
       flex-direction: column;
       justify-content: space-between;
       padding: 30px 25px;
-      height: 100%;
+      height: auto;
+      width: 100%;
       h4 {
         font-size: 24px;
         line-height: 28px;
@@ -277,11 +281,11 @@ export default {
       }
       @media (max-width: 991px) {
         padding: 10px 15px 20px;
-        max-height: 250px;
+        // max-height: 250px;
       }
       @media (max-width: 870px) {
         padding: 10px;
-        max-height: 220px;
+        // max-height: 220px;
         h4 {
           font-size: 18px;
           line-height: 22px;

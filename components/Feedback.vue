@@ -264,7 +264,11 @@ export default {
   //background-color: #f2f3f6;
   transition: 0.8s ease-in-out;
   position: relative;
+  &--news {
+    position: relative;
 
+    z-index: 1;
+  }
   &--animate {
     transform: translateY(-1600px);
     transition: 0.8s ease-in-out;

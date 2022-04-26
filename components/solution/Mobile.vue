@@ -7,7 +7,7 @@
       v-for="(item, index) in items"
       :key="`item-${index}`"
       :to="
-        $route.name === 'solutions'
+        item.svg_icon
           ? { name: 'solutions-slug', params: { slug: item.slug } }
           : { name: 'concept-slug', params: { slug: item.slug } }
       "
@@ -69,7 +69,9 @@ export default {
     .btn-img {
       width: 152px;
       height: 82px;
+      border-radius: 52px;
       img {
+        border-radius: 52px;
         width: 100%;
         height: 100%;
         object-fit: cover;

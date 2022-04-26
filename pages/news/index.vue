@@ -1,7 +1,7 @@
 <template>
   <div class="news-page">
     <h1 class="pages__title">Новости и статьи</h1>
-    <News :items="news" :width="width" />
+    <News :items="news.items" :width="width" />
     <Subscribtion />
   </div>
 </template>
@@ -9,9 +9,15 @@
 export default {
   data() {
     return {
-      news: this.$store.state.news,
       width: 0,
+      news: {},
     };
+  },
+  async asyncData({ $axios }) {
+    const news = await $axios.$get(
+      `https://api.petexpert.pro/v1/company/news/`
+    );
+    return { news };
   },
   methods: {
     updateWidth() {
@@ -38,6 +44,18 @@ export default {
   }
   @media (max-width: 791px) {
     padding-top: 60px;
+  }
+  .news {
+    padding-bottom: 100px;
+  }
+  .pages__title {
+    padding: 50px 0 65px;
+    @media (max-width: 790px) {
+      padding-bottom: 40px;
+    }
+    @media (max-width: 768px) {
+      padding-top: 40px;
+    }
   }
   .footer-feedback__wrap {
     padding: 60px 0;

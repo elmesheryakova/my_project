@@ -3,8 +3,8 @@
     <Banner />
     <CompanyBanner />
     <ConceptBanner />
-    <CompanyStory :width="width" />
-    <CompanyConcept :items="concept" v-if="width > 680" />
+    <CompanyStory :width="width" :items="page.history" />
+    <CompanyConcept :items="page.conceptions" v-if="width > 680" />
     <template v-else>
       <div class="company-concept__title">
         <h2 class="company__concept-title">
@@ -16,10 +16,10 @@
           <svgicon name="arrow-blue" />
         </nuxt-link>
       </div>
-      <SolutionMobile :items="concept" />
+      <SolutionMobile :items="page.conceptions" />
     </template>
     <SliderTeamSlider />
-    <News :width="width" :items="news" />
+    <News :width="width" :items="page.news" />
     <Feedback :enableWaveAnimation="true" />
     <Footer />
   </div>
@@ -29,12 +29,16 @@ export default {
   layout: "fullscreen",
   data() {
     return {
-      concept: this.$store.state.concept,
-      news: this.$store.state.news,
       width: 0,
+      page: {},
     };
   },
-
+  async asyncData({ $axios }) {
+    const page = await $axios.$get(
+      `https://api.petexpert.pro/v1/pages/about_company/`
+    );
+    return { page };
+  },
   methods: {
     updateWidth() {
       this.width = window.innerWidth;

@@ -7,21 +7,21 @@
             История <br />
             <span>развития</span>
           </h2>
-          <b-tab v-for="(item, index) in story" :key="index">
+          <b-tab v-for="(item, index) in items" :key="index">
             <template #title>
               <svgicon name="romb" />
-              {{ item.year }}
+              {{ item.name }}
             </template>
 
             <b-card-text>
               <div class="story__items">
                 <div
                   class="story-item"
-                  v-for="(item, index) in item.info"
+                  v-for="(item, index) in item.elements"
                   :key="index"
                 >
-                  <p class="story-item__num">{{ item.num }}</p>
-                  <p class="story-item__subtitle">{{ item.subtitle }}</p>
+                  <p class="story-item__num">{{ item.value }}</p>
+                  <p class="story-item__subtitle">{{ item.title }}</p>
                   <p class="story-item__text" v-html="item.description"></p>
                 </div>
               </div>
@@ -37,6 +37,10 @@ export default {
   props: {
     width: {
       type: Number,
+    },
+    items: {
+      type: Array,
+      default: () => [],
     },
   },
   data() {
@@ -274,10 +278,12 @@ export default {
   }
   .tabs {
     background: #f2f3f6;
-    height: 100vh;
+    height: auto;
+    padding-top: 100px;
     @media (max-width: 1180px) {
       height: 100%;
       background: #fff;
+      padding-top: 0;
     }
   }
   .card {
@@ -470,6 +476,7 @@ export default {
     display: flex;
     flex-direction: column;
     width: 300px;
+    min-height: 430px;
     padding: 50px 30px 30px;
     background-color: #fff;
     &__num {
@@ -491,6 +498,7 @@ export default {
     }
     @media (max-width: 1370px) {
       width: 250px;
+      min-height: 380px;
       padding: 30px 20px 10px;
       &__num {
         font-size: 55px;
@@ -502,10 +510,12 @@ export default {
     }
     @media (max-width: 1180px) {
       width: 100%;
+      min-height: 340px;
       border: 1px solid #f2f3f6;
     }
     @media (max-width: 680px) {
       padding: 20px 10px 10px;
+      min-height: 100%;
       &__num {
         font-size: 30px;
         line-height: 35px;
