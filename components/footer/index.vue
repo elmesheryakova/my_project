@@ -1,9 +1,29 @@
 <template>
   <footer class="footer">
-    <FooterTop />
-    <FooterBottom />
+    <FooterTop :menu="footer.menu" />
+    <FooterBottom
+      :copiright="footer.copiright"
+      :address="footer.address"
+      :phone="footer.phone"
+      :mail="footer.email"
+    />
   </footer>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      footer: {},
+    };
+  },
+  async fetch() {
+    const { data } = await this.$axios.get(
+      `https://api.petexpert.pro/v1/header-data`
+    );
+    this.footer = data;
+  },
+};
+</script>
 <style lang="scss">
 .footer {
   background: #f2f3f7;

@@ -75,7 +75,15 @@
           "
           v-if="width > 790"
         />
-        <GridMobile :items="productsGroup" :width="width" v-else />
+        <GridMobile
+          :items="
+            activeBottleType === 'beer'
+              ? solutionBeer.group_products.items.slice(0, 6)
+              : solutionWater.group_products.items.slice(0, 6)
+          "
+          :width="width"
+          v-else
+        />
         <div class="test" v-if="width > 992">
           <SliderSolutions
             view="frontpage"

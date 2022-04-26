@@ -34,6 +34,10 @@ export default {
 <style lang="scss">
 .news-only,
 .news-page {
+  li {
+    list-style: initial;
+    margin-left: 18px;
+  }
   padding: 135px 0 100px;
 
   @media (max-width: 991px) {

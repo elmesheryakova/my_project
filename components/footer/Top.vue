@@ -5,12 +5,8 @@
         Выбор сделанный сегодня определяет <span>будущее!</span>
       </div>
       <ul class="footer-top__list">
-        <li
-          class="footer-top__item"
-          v-for="(item, index) in links"
-          :key="index"
-        >
-          <nuxt-link :to="item.link">{{ item.title }}</nuxt-link>
+        <li class="footer-top__item" v-for="(item, index) in menu" :key="index">
+          <nuxt-link :to="`/${item.slug}`">{{ item.header }}</nuxt-link>
         </li>
       </ul>
     </div>
@@ -18,10 +14,14 @@
 </template>
 <script>
 export default {
+  props: {
+    menu: {
+      type: Array,
+      default: () => [],
+    },
+  },
   data() {
-    return {
-      links: this.$store.state.headerLinks,
-    };
+    return {};
   },
   computed: {},
 };

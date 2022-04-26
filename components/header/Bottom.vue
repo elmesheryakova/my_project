@@ -5,20 +5,23 @@
         <ul class="header-bottom__menu-list">
           <li
             class="header-bottom__menu-item item-menu"
-            v-for="(item, index) in headerLinks"
+            v-for="(item, index) in menu"
             :key="index"
           >
-            <nuxt-link :to="item.link" class="item-menu__link">{{
-              item.title
+            <nuxt-link :to="`/${item.slug}`" class="item-menu__link">{{
+              item.header
             }}</nuxt-link>
             <div class="icon-wrap">
               <svgicon
                 class="item-menu__icon"
                 name="arrow-header"
-                v-if="item.icon"
+                v-if="item.header !== 'Контакты'"
               />
-              <div class="submenu-wrapper" v-if="item.submenu">
-                <HeaderSubmenu :submenu="item.submenu" />
+              <div class="submenu-wrapper" v-if="item.header !== 'Контакты'">
+                <HeaderSubmenu
+                  :submenu="item.sub_menu"
+                  :currentSlug="item.slug"
+                />
               </div>
             </div>
           </li>
@@ -29,10 +32,14 @@
 </template>
 <script>
 export default {
+  props: {
+    menu: {
+      type: Array,
+      default: () => [],
+    },
+  },
   data() {
-    return {
-      headerLinks: this.$store.state.headerLinks,
-    };
+    return {};
   },
   computed: {},
 };

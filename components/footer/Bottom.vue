@@ -3,9 +3,11 @@
     <div class="footer-bottom">
       <div class="footer-bottom__contacts">
         <p>© 2021, Пэт-експерт</p>
-        <p>143300, Московская область, г. Наро-Фоминск, площадь Свободы, 10</p>
-        <a href="tel:+74995770006">+7 (499) 577-00-06</a>
-        <a href="mailto:info@petexpert.pro">info@petexpert.pro</a>
+        <p>{{ address }}</p>
+        <a :href="`tel:${phone.replace(/[^+\d]/g, '')}`" v-if="phone">{{
+          phone
+        }}</a>
+        <a :href="`mailto:${mail}`">{{ mail }}</a>
       </div>
       <div class="footer-bottom__social">
         <ul class="footer-bottom__social-list">
@@ -49,6 +51,27 @@
     </div>
   </div>
 </template>
+<script>
+export default {
+  props: {
+    phone: {
+      type: String,
+    },
+    mail: {
+      type: String,
+    },
+    address: {
+      type: String,
+    },
+    copiright: {
+      type: String,
+    },
+  },
+  data() {
+    return {};
+  },
+};
+</script>
 <style lang="scss">
 .footer-bottom {
   margin-top: 70px;

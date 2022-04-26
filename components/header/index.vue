@@ -1,7 +1,10 @@
 <template>
-  <header class="header" :class="{ 'header--hidden': !showHeader, [`header--view-${view}`]: true }">
-    <HeaderTop/>
-    <HeaderBottom/>
+  <header
+    class="header"
+    :class="{ 'header--hidden': !showHeader, [`header--view-${view}`]: true }"
+  >
+    <HeaderTop :phone="header.phone" :mail="header.email" />
+    <HeaderBottom :menu="header.menu" />
   </header>
 </template>
 
@@ -9,22 +12,31 @@
 export default {
   props: {
     view: String,
-    default: () => 'default',
+    default: () => "default",
     disableHeader: {
       type: Boolean,
-      default: () => false
-    }
+      default: () => false,
+    },
   },
   data() {
     return {
       showHeader: true,
       lastScrollPosition: 0,
+      header: {},
     };
   },
+
+  async fetch() {
+    const { data } = await this.$axios.get(
+      `https://api.petexpert.pro/v1/header-data`
+    );
+    this.header = data;
+  },
+
   computed: {
     isDesktop() {
-      return this.$mq === "xl" || this.$mq === "xl2"
-    }
+      return this.$mq === "xl" || this.$mq === "xl2";
+    },
   },
   methods: {
     onScroll() {
@@ -67,7 +79,7 @@ export default {
   @media (max-width: 860px) {
     box-shadow: 0px 1px 6px 0px #00000029;
   }
-  @media (max-width: map-get($grid-breakpoints, 'md')) {
+  @media (max-width: map-get($grid-breakpoints, "md")) {
     padding: 10px 0;
   }
 

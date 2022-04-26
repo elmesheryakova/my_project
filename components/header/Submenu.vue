@@ -4,11 +4,23 @@
       class="submenu__item"
       v-for="(item, idx) in submenu"
       :key="idx"
-      :to="item.link"
-      :style="`background-image: url('${require(`../../assets/img/${item.img}`)}')`"
+      :to="
+        item.slug === 'accessories'
+          ? `/${item.slug}`
+          : currentSlug === 'partners'
+          ? `/${item.slug}`
+          : currentSlug === 'company'
+          ? `/${item.slug}`
+          : `/${currentSlug}/${item.slug}`
+      "
+      :style="
+        item.menu_image
+          ? `background-image: url('${item.menu_image[0]}')`
+          : null
+      "
     >
       <div class="submenu__item-wrap">
-        <h4 class="submenu__item-title">{{ item.title }}</h4>
+        <h4 class="submenu__item-title">{{ item.header }}</h4>
         <div class="submenu__item-btn"><svgicon name="arrow-slider" /></div>
       </div>
     </nuxt-link>
@@ -20,6 +32,9 @@ export default {
     submenu: {
       type: Array,
       default: () => [],
+    },
+    currentSlug: {
+      type: String,
     },
   },
 };

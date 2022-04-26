@@ -16,8 +16,11 @@
       <div class="subnav-menu__inner">
         <div class="subnav-menu__wrapper">
           <a href="/" class="subnav-menu__logo"><svgicon name="logo" /></a>
-          <a class="subnav-menu__tel" href="tel:+74995770006"
-            >+7(499) 577-00-06
+          <a
+            class="subnav-menu__tel"
+            v-if="header.phone"
+            :href="`tel:${header.phone.replace(/[^+\d]/g, '')}`"
+            >{{ header.phone }}
           </a>
         </div>
 
@@ -27,17 +30,17 @@
               header-tag="header"
               role="tab"
               class="subnav__menu-item"
-              v-for="(item, index) in headerLinks"
+              v-for="(item, index) in header.menu"
               :key="index"
               v-b-toggle="`accordion-${index}`"
             >
-              <nuxt-link :to="item.link" class="subnav__menu-item__link">
-                {{ item.title }}</nuxt-link
+              <nuxt-link :to="`/${item.slug}`" class="subnav__menu-item__link">
+                {{ item.header }}</nuxt-link
               >
               <svgicon
                 class="subnav__menu-item__icon"
                 name="arrow-submenu"
-                v-if="item.icon"
+                v-if="item.header !== 'Контакты'"
               />
               <b-collapse
                 :id="`accordion-${index}`"
@@ -49,11 +52,21 @@
                 <ul>
                   <li
                     class="subnav-submenu__item"
-                    v-for="(item, index) in item.submenu"
+                    v-for="(i, index) in item.sub_menu"
                     :key="index"
                   >
-                    <nuxt-link :to="item.link">
-                      {{ item.title }}
+                    <nuxt-link
+                      :to="
+                        i.slug === 'accessories'
+                          ? `/${i.slug}`
+                          : item.slug === 'partners'
+                          ? `/${i.slug}`
+                          : item.slug === 'company'
+                          ? `/${i.slug}`
+                          : `/${item.slug}/${i.slug}`
+                      "
+                    >
+                      {{ i.header }}
                     </nuxt-link>
                   </li>
                 </ul>
@@ -103,7 +116,14 @@ export default {
     return {
       headerLinks: this.$store.state.headerLinks,
       isOpenSubmenu: false,
+      header: {},
     };
+  },
+  async fetch() {
+    const { data } = await this.$axios.get(
+      `https://api.petexpert.pro/v1/header-data`
+    );
+    this.header = data;
   },
   methods: {
     openSubmenu() {},
@@ -185,7 +205,7 @@ export default {
       }
     }
 
-    @media (max-width: map-get($grid-breakpoints, 'md')) {
+    @media (max-width: map-get($grid-breakpoints, "md")) {
       margin-left: 0;
     }
   }

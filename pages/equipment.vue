@@ -1,20 +1,34 @@
 <template>
   <div class="equipment">
     <div class="container">
-      <h1 class="pages__title">Оборудование</h1>
-      <h2 class="equipment__subtitle">Видео производственных процессов:</h2>
-      <div class="equipment__video">
-        <video
-          autoplay
-          muted
-          loop
-          :poster="require('~/assets/img/poster.jpg')"
-        ></video>
-        <svgicon name="play" class="play" />
+      <h1 class="pages__title">{{ page.header }}</h1>
+      <div v-for="(item, index) in page.items" :key="index">
+        <h2 class="equipment__subtitle">{{ item.name }}</h2>
+        <div class="equipment__video">
+          <video loop="loop" :src="item.video" muted controls></video>
+          <!-- <svgicon name="play" class="play" /> -->
+        </div>
       </div>
     </div>
   </div>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      width: 0,
+      item: {},
+      page: {},
+    };
+  },
+  async asyncData({ $axios }) {
+    const page = await $axios.$get(
+      `https://api.petexpert.pro/v1/pages/equipment/`
+    );
+    return { page };
+  },
+};
+</script>
 <style lang="scss">
 .equipment {
   padding: 135px 0 160px;
@@ -34,6 +48,7 @@
   &__video {
     position: relative;
     width: 100%;
+    cursor: pointer;
     video {
       width: 100%;
       height: 100%;

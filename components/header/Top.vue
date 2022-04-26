@@ -11,8 +11,13 @@
         <svgicon class="header-top__search-icon" name="search" />
       </div>
       <div class="header-top__info">
-        <a class="info-tel" href="tel:+74995770006">+7(499) 577-00-06 </a>
-        <a href="mailto:info@petexpert.pro">info@petexpert.pro</a>
+        <a
+          class="info-tel"
+          :href="`tel:${phone.replace(/[^+\d]/g, '')}`"
+          v-if="phone"
+          >{{ phone }}</a
+        >
+        <a :href="`mailto:${mail}`">{{ mail }}</a>
         <button class="header-top__feedback" v-b-modal.modal-header>
           Обратная связь
         </button>
@@ -24,6 +29,14 @@
 </template>
 <script>
 export default {
+  props: {
+    phone: {
+      type: String,
+    },
+    mail: {
+      type: String,
+    },
+  },
   methods: {},
   mounted() {
     // console.log(this.$refs.body);
@@ -40,7 +53,7 @@ export default {
     margin-right: 20px;
     svg {
       height: 33px;
-      @media (max-width: map-get($grid-breakpoints, 'md')) {
+      @media (max-width: map-get($grid-breakpoints, "md")) {
         height: 25px;
       }
     }
@@ -85,7 +98,7 @@ export default {
           display: none;
         }
       }
-      @media (max-width: map-get($grid-breakpoints, 'md')) {
+      @media (max-width: map-get($grid-breakpoints, "md")) {
         font-size: 14px;
       }
       @media (max-width: 400px) {
@@ -105,7 +118,7 @@ export default {
     padding: 11px 26px 12px;
     white-space: nowrap;
     transition: 0.3 ease-out;
-    @media (max-width: map-get($grid-breakpoints, 'md')) {
+    @media (max-width: map-get($grid-breakpoints, "md")) {
       display: none;
     }
     &:hover {
@@ -116,7 +129,7 @@ export default {
   @media (max-width: 991px) {
     margin-bottom: 5px;
   }
-  @media (max-width: map-get($grid-breakpoints, 'md')) {
+  @media (max-width: map-get($grid-breakpoints, "md")) {
     margin-bottom: 0px;
   }
 }
