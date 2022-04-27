@@ -34,184 +34,25 @@
           </svg>
         </button>
         <div class="swiper-wrapper">
-          <!-- START -->
-          <div class="swiper-slide">
+          <div class="swiper-slide" v-for="(i, idx) in items" :key="idx">
             <div class="partners__company">
-              Московская пивоваренная компания
+              {{ i.name }}
             </div>
             <div class="partners__quote">
-              Отлично сработались! Ответственные поставщики, сегодня это ценно!
+              {{ i.text }}
             </div>
           </div>
-          <!-- END -->
-          <!-- START -->
-          <div class="swiper-slide">
-            <div class="partners__company">Что-то другое</div>
-            <div class="partners__quote">Очень рад! Отлично сработались!</div>
-          </div>
-          <!-- END -->
-          <!-- START -->
-          <div class="swiper-slide">
-            <div class="partners__company">
-              Московская пивоваренная компания
-            </div>
-            <div class="partners__quote">
-              Отлично сработались! Ответственные поставщики, сегодня это ценно!
-            </div>
-          </div>
-          <!-- END -->
-          <!-- START -->
-          <div class="swiper-slide">
-            <div class="partners__company">
-              Московская пивоваренная компания
-            </div>
-            <div class="partners__quote">
-              Отлично сработались! Ответственные поставщики, сегодня это ценно!
-            </div>
-          </div>
-          <!-- END -->
-          <!-- START -->
-          <div class="swiper-slide">
-            <div class="partners__company">
-              Московская пивоваренная компания
-            </div>
-            <div class="partners__quote">
-              Отлично сработались! Ответственные поставщики, сегодня это ценно!
-            </div>
-          </div>
-          <!-- END -->
-          <!-- START -->
-          <div class="swiper-slide">
-            <div class="partners__company">
-              Московская пивоваренная компания
-            </div>
-            <div class="partners__quote">
-              Отлично сработались! Ответственные поставщики, сегодня это ценно!
-            </div>
-          </div>
-          <!-- END -->
-          <!-- START -->
-          <div class="swiper-slide">
-            <div class="partners__company">
-              Московская пивоваренная компания
-            </div>
-            <div class="partners__quote">
-              Отлично сработались! Ответственные поставщики, сегодня это ценно!
-            </div>
-          </div>
-          <!-- END -->
-          <!-- START -->
-          <div class="swiper-slide">
-            <div class="partners__company">
-              Московская пивоваренная компания
-            </div>
-            <div class="partners__quote">
-              Отлично сработались! Ответственные поставщики, сегодня это ценно!
-            </div>
-          </div>
-          <!-- END -->
-          <!-- START -->
-          <div class="swiper-slide">
-            <div class="partners__company">
-              Московская пивоваренная компания
-            </div>
-            <div class="partners__quote">
-              Отлично сработались! Ответственные поставщики, сегодня это ценно!
-            </div>
-          </div>
-          <!-- END -->
-          <!-- START -->
-          <div class="swiper-slide">
-            <div class="partners__company">
-              Московская пивоваренная компания
-            </div>
-            <div class="partners__quote">
-              Отлично сработались! Ответственные поставщики, сегодня это ценно!
-            </div>
-          </div>
-          <!-- END -->
-          <!-- START -->
-          <div class="swiper-slide">
-            <div class="partners__company">
-              Московская пивоваренная компания
-            </div>
-            <div class="partners__quote">
-              Отлично сработались! Ответственные поставщики, сегодня это ценно!
-            </div>
-          </div>
-          <!-- END -->
-          <!-- START -->
-          <div class="swiper-slide">
-            <div class="partners__company">
-              Московская пивоваренная компания
-            </div>
-            <div class="partners__quote">
-              Отлично сработались! Ответственные поставщики, сегодня это ценно!
-            </div>
-          </div>
-          <!-- END -->
         </div>
       </div>
       <div class="partners-logos">
-        <button class="partners-logos__item active">
-          <span class="partners-logos__img"
-            ><img src="~/assets/img/partner-logo1.png" alt="partner-logo"
-          /></span>
-        </button>
-        <button class="partners-logos__item">
-          <span class="partners-logos__img"
-            ><img src="~/assets/img/partner-logo2.png" alt="partner-logo"
-          /></span>
-        </button>
-        <button class="partners-logos__item">
-          <span class="partners-logos__img"
-            ><img src="~/assets/img/partner-logo3.png" alt="partner-logo"
-          /></span>
-        </button>
-        <button class="partners-logos__item">
-          <span class="partners-logos__img"
-            ><img src="~/assets/img/partner-logo4.png" alt="partner-logo"
-          /></span>
-        </button>
-        <button class="partners-logos__item">
-          <span class="partners-logos__img"
-            ><img src="~/assets/img/partner-logo5.png" alt="partner-logo"
-          /></span>
-        </button>
-        <button class="partners-logos__item">
-          <span class="partners-logos__img"
-            ><img src="~/assets/img/partner-logo6.png" alt="partner-logo"
-          /></span>
-        </button>
-        <button class="partners-logos__item">
-          <span class="partners-logos__img"
-            ><img src="~/assets/img/partner-logo7.png" alt="partner-logo"
-          /></span>
-        </button>
-        <button class="partners-logos__item">
-          <span class="partners-logos__img"
-            ><img src="~/assets/img/partner-logo8.png" alt="partner-logo"
-          /></span>
-        </button>
-        <button class="partners-logos__item">
-          <span class="partners-logos__img"
-            ><img src="~/assets/img/partner-logo9.png" alt="partner-logo"
-          /></span>
-        </button>
-        <button class="partners-logos__item">
-          <span class="partners-logos__img"
-            ><img src="~/assets/img/partner-logo10.png" alt="partner-logo"
-          /></span>
-        </button>
-        <button class="partners-logos__item">
-          <span class="partners-logos__img"
-            ><img src="~/assets/img/partner-logo11.png" alt="partner-logo"
-          /></span>
-        </button>
-        <button class="partners-logos__item">
-          <span class="partners-logos__img"
-            ><img src="~/assets/img/partner-logo12.png" alt="partner-logo"
-          /></span>
+        <button
+          class="partners-logos__item"
+          v-for="(i, idx) in items"
+          :key="idx"
+        >
+          <span class="partners-logos__img">
+            <img :src="i.partners[0].image" />
+          </span>
         </button>
       </div>
     </div>

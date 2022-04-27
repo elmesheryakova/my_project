@@ -56,7 +56,6 @@
 export default {
   data() {
     return {
-      shipment: this.$store.state.shipment,
       width: 0,
       page: {},
     };

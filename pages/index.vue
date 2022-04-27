@@ -121,7 +121,7 @@
         id="fix-up"
       >
         <TeamSlider :pin-section="true" />
-        <PartnersSlider />
+        <PartnersSlider :items="reviews.items" />
         <ContactsSection :items="contacts.items" />
         <Feedback />
         <Footer />
@@ -161,6 +161,7 @@ export default {
       solutions: {},
       conception: {},
       contacts: {},
+      reviews: {},
       activeBottleType: "beer",
       showPromoBottom: true,
       width: 0,
@@ -292,57 +293,6 @@ export default {
           buttonHref: "#hello",
         },
       ],
-
-      staff: [
-        {
-          id: 1,
-          person: "Владимир Константинов",
-          department: "Продажи",
-          icon: "sales",
-          phone: "Доб.123",
-          photo: "staff.jpg",
-        },
-        {
-          id: 2,
-          person: "Владимир Константинов",
-          department: "Закупки",
-          icon: "buy",
-          phone: "Доб.123",
-          photo: "",
-        },
-        {
-          id: 3,
-          person: "Владимир Константинов",
-          department: "Секретарь",
-          icon: "secretary",
-          phone: "Доб.123",
-          photo: "staff2.jpg",
-        },
-        {
-          id: 4,
-          person: "Владимир Константинов",
-          department: "Дирекция",
-          icon: "chief",
-          phone: "Доб.123",
-          photo: "staff3.jpg",
-        },
-        {
-          id: 1,
-          person: "Владимир Константинов",
-          department: "Доставка",
-          icon: "delivery",
-          phone: "Доб.123",
-          photo: "staff4.jpg",
-        },
-        {
-          id: 1,
-          person: "Владимир Константинов",
-          department: "Качество",
-          icon: "shield",
-          phone: "Доб.123",
-          photo: "staff5.jpg",
-        },
-      ],
     };
   },
   async asyncData({ params, $axios }) {
@@ -362,7 +312,17 @@ export default {
     const contacts = await $axios.$get(
       `https://api.petexpert.pro/v1/pages/contacts/`
     );
-    return { solutions, solutionBeer, solutionWater, conception, contacts };
+    const reviews = await $axios.$get(
+      `https://api.petexpert.pro/v1/company/reviews/`
+    );
+    return {
+      solutions,
+      solutionBeer,
+      solutionWater,
+      conception,
+      contacts,
+      reviews,
+    };
   },
   methods: {
     updatePage() {

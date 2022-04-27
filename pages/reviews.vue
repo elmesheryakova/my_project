@@ -2,7 +2,7 @@
   <div class="reviews">
     <div class="container">
       <h1 class="pages__title">Партнеры и отзывы</h1>
-      <SliderPartnersSlider :items="page" />
+      <SliderPartnersSlider :items="page.items" />
     </div>
   </div>
 </template>
