@@ -106,8 +106,8 @@
         <img src="~assets/img/wave.svg" alt="wave" />
       </div>
       <PromoConcept
-        :slides="promoConceptsSlides"
-        v-for="(_, index) in promoConceptsSlides"
+        :slides="conception.items"
+        v-for="(_, index) in conception.items"
         :key="'concepts' + index"
         :index="index"
         ref="promoConcepts"
@@ -122,7 +122,7 @@
       >
         <TeamSlider :pin-section="true" />
         <PartnersSlider />
-        <ContactsSection :staff="staff" />
+        <ContactsSection :items="contacts.items" />
         <Feedback />
         <Footer />
       </div>
@@ -159,6 +159,8 @@ export default {
       solutionBeer: {},
       solutionWater: {},
       solutions: {},
+      conception: {},
+      contacts: {},
       activeBottleType: "beer",
       showPromoBottom: true,
       width: 0,
@@ -290,27 +292,7 @@ export default {
           buttonHref: "#hello",
         },
       ],
-      promoConceptsSlides: [
-        {
-          img: require("~/assets/img/promo-concept1.jpg"),
-          title: "Качество",
-          desc: "Международный бренд по производству ПЭТ-тары, отличающийся высочайшим качеством материалов, продукции и подхода к клиентам. Международный бренд отличающийся высочайшим качеством материалов, продукции и подхода к клиентам.",
-          href: "#hi",
-        },
-        {
-          img: require("~/assets/img/promo-concept2.jpg"),
-          title: "Безопасность",
-          desc: "Международный бренд по производству ПЭТ-тары, отличающийся высочайшим качеством материалов, продукции и подхода к клиентам. Международный бренд отличающийся высочайшим качеством материалов, продукции и подхода к клиентам.",
-          href: "#hi",
-        },
-        {
-          img: require("~/assets/img/promo-concept3.jpg"),
-          title: "Доверие",
-          desc: "Международный бренд по производству ПЭТ-тары, отличающийся высочайшим качеством материалов, продукции и подхода к клиентам. Международный бренд отличающийся высочайшим качеством материалов, продукции и подхода к клиентам.",
-          href: "#hi",
-        },
-      ],
-      productsGroup: this.$store.state.productsGroup,
+
       staff: [
         {
           id: 1,
@@ -374,7 +356,13 @@ export default {
     const solutions = await $axios.$get(
       `https://api.petexpert.pro/v1/solutions/`
     );
-    return { solutions, solutionBeer, solutionWater };
+    const conception = await $axios.$get(
+      `https://api.petexpert.pro/v1/conception/`
+    );
+    const contacts = await $axios.$get(
+      `https://api.petexpert.pro/v1/pages/contacts/`
+    );
+    return { solutions, solutionBeer, solutionWater, conception, contacts };
   },
   methods: {
     updatePage() {

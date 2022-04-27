@@ -53,8 +53,8 @@ export default {
     },
     videoSrc() {
       return this.toggled
-        ? require("@/assets/video/video1.webm")
-        : require("@/assets/video/video-thumb.webm");
+        ? require("@/assets/video/video1.mp4")
+        : require("@/assets/video/video-thumb.mp4");
     },
   },
 

@@ -2,7 +2,7 @@
   <footer class="footer">
     <FooterTop :menu="footer.menu" />
     <FooterBottom
-      :copiright="footer.copiright"
+      :copyright="footer.copyright"
       :address="footer.address"
       :phone="footer.phone"
       :mail="footer.email"

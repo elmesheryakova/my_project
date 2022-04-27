@@ -8,12 +8,14 @@
             header-tag="header"
             role="tab"
             class="questions__item"
-            v-for="(item, index) in questions"
+            v-for="(item, index) in page.elements.filter(
+              (el) => el.position % 2 !== 1
+            )"
             :key="index"
             v-b-toggle="`accordion-${index}`"
           >
             <div class="item-question">
-              {{ item.question }}
+              {{ item.name }}
               <div class="questions-item__icon">
                 <svgicon name="arrow" />
               </div>
@@ -26,7 +28,7 @@
               role="tabpanel"
               class="questions-submenu__list"
             >
-              <p class="mb-0 item-answer">{{ item.answer }}</p>
+              <div class="mb-0 item-answer" v-html="item.description"></div>
             </b-collapse>
           </div>
         </div>
@@ -35,12 +37,14 @@
             header-tag="header"
             role="tab"
             class="questions__item"
-            v-for="(item, index) in questions2"
+            v-for="(item, index) in page.elements.filter(
+              (el) => el.position % 2 === 1
+            )"
             :key="index"
             v-b-toggle="`accord-${index}`"
           >
             <div class="item-question">
-              {{ item.question }}
+              {{ item.name }}
               <div class="questions-item__icon">
                 <svgicon name="arrow" />
               </div>
@@ -53,7 +57,7 @@
               role="tabpanel"
               class="questions-submenu__list"
             >
-              <p class="mb-0 item-answer">{{ item.answer }}</p>
+              <div class="mb-0 item-answer" v-html="item.description"></div>
             </b-collapse>
           </div>
         </div>
@@ -65,11 +69,20 @@
 export default {
   data() {
     return {
-      questions: this.$store.state.questions,
-      questions2: this.$store.state.questions2,
+      page: {},
     };
   },
-  computed: {},
+  async asyncData({ $axios }) {
+    const page = await $axios.$get(
+      `https://api.petexpert.pro/v1/to_clients/pages/questions/`
+    );
+    return { page };
+  },
+  mounted() {
+    this.page.elements.forEach((el, i) => {
+      this.$set(el, "position", i + 1);
+    });
+  },
 };
 </script>
 <style lang="scss">
@@ -129,6 +142,7 @@ export default {
     font-weight: 400;
     font-size: 20px;
     line-height: 28px;
+    list-style: inside;
     @media (max-width: 1130px) {
       font-size: 18px;
     }

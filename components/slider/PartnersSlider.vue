@@ -227,6 +227,10 @@ export default {
     directives: {
       swiper: directive,
     },
+    items: {
+      type: Array,
+      default: () => [],
+    },
   },
   data() {
     var self = this;

@@ -231,6 +231,7 @@ export default {
     justify-content: space-between;
     &-img {
       height: 230px;
+      width: 100%;
       @media (max-width: 870px) {
         height: 180px;
       }

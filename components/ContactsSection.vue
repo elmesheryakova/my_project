@@ -6,13 +6,17 @@
           <h2 class="contacts__title">Контакты</h2>
           <b-tabs content-class="mt-3" v-model="tabIndex">
             <b-tab
-              v-for="(item, index) in contacts"
+              v-for="(item, index) in items"
               :key="index"
-              :title="item.city"
+              :title="item.region.name"
               @click="animateMap"
             >
               <div class="contacts__tab-contents">
-                <a class="contacts__phone" href="tel:74995770006">
+                <a
+                  class="contacts__phone"
+                  :href="`tel:${item.phone.replace(/[^+\d]/g, '')}`"
+                  v-if="item.phone"
+                >
                   {{ item.phone }}
                 </a>
                 <a class="contacts__email" :href="`mailto:${item.email}`">
@@ -23,7 +27,7 @@
                 </div>
               </div>
               <div class="contacts__social-icons">
-                <a
+                <!-- <a
                   class="contacts__social-icon"
                   target="_blank"
                   v-for="(item, index) in item.social"
@@ -33,7 +37,7 @@
                   <div class="contacts__social-icon-wrap">
                     <svgicon :name="item.name" />
                   </div>
-                </a>
+                </a> -->
               </div>
             </b-tab>
           </b-tabs>
@@ -48,30 +52,28 @@
             <div class="swiper-wrapper">
               <div
                 class="contacts__person-slide swiper-slide"
-                v-for="(item, index) in contacts[tabIndex].staff"
+                v-for="(item, index) in items[tabIndex].employees"
                 :key="index"
               >
                 <div class="contact-card">
                   <div class="contact-card__img">
-                    <img
-                      :src="require(`@/assets/img/${item.photo}`)"
-                      :alt="item.person"
-                      v-if="item.photo"
-                    />
+                    <img :src="item.image" :alt="item.name" v-if="item.image" />
                     <img
                       :src="require(`@/assets/img/placeholder.jpg`)"
-                      :alt="item.person"
+                      :alt="item.name"
                       v-else
                     />
                   </div>
                   <div class="contact-card__full-name">
-                    <div class="contact-card__name">{{ item.person }}</div>
+                    <div class="contact-card__name">{{ item.name }}</div>
                   </div>
                   <div class="contact-card__job">
-                    <svgicon :name="item.icon" />
-                    <div>{{ item.department }}</div>
+                    <!-- <svgicon :name="item.icon" /> -->
+                    <div>{{ item.position }}</div>
                   </div>
-                  <div class="contact-card__phone-add">({{ item.phone }})</div>
+                  <div class="contact-card__phone-add">
+                    (Доб.{{ item.phone_extra }})
+                  </div>
                 </div>
               </div>
             </div>
@@ -81,30 +83,28 @@
             <div class="swiper-wrapper">
               <div
                 class="contacts__person-slide swiper-slide"
-                v-for="(item, index) in contacts[tabIndex].staff"
+                v-for="(item, index) in items[tabIndex].employees"
                 :key="index"
               >
                 <div class="contact-card">
                   <div class="contact-card__img">
-                    <img
-                      :src="require(`@/assets/img/${item.photo}`)"
-                      :alt="item.person"
-                      v-if="item.photo"
-                    />
+                    <img :src="item.image" :alt="item.name" v-if="item.image" />
                     <img
                       :src="require(`@/assets/img/placeholder.jpg`)"
-                      :alt="item.person"
+                      :alt="item.name"
                       v-else
                     />
                   </div>
                   <div class="contact-card__full-name">
-                    <div class="contact-card__name">{{ item.person }}</div>
+                    <div class="contact-card__name">{{ item.name }}</div>
                   </div>
                   <div class="contact-card__job">
-                    <svgicon :name="item.icon" />
-                    <div>{{ item.department }}</div>
+                    <!-- <svgicon :name="item.icon" /> -->
+                    <div>{{ item.position }}</div>
                   </div>
-                  <div class="contact-card__phone-add">({{ item.phone }})</div>
+                  <div class="contact-card__phone-add">
+                    (Доб.{{ item.phone_extra }})
+                  </div>
                 </div>
               </div>
             </div>
@@ -122,238 +122,21 @@ import { directive } from "vue-awesome-swiper";
 
 export default {
   name: "ContactsSection",
+
+  props: {
+    directives: {
+      swiper: directive,
+    },
+    items: {
+      type: Array,
+      default: () => [],
+    },
+  },
   data() {
     var self = this;
     return {
       tabIndex: 0,
-      contacts: [
-        {
-          id: 1,
-          city: "Москва",
-          phone: "+7 (499) 577-00-06",
-          email: "info@petexpert.pro",
-          address:
-            "143300, Московская область, г. Наро-Фоминск, площадь Свободы, 10",
-          social: [
-            {
-              name: "facebook",
-              link: "#",
-            },
-            {
-              name: "instagram",
-              link: "#",
-            },
-            {
-              name: "telegramm",
-              link: "#",
-            },
-            {
-              name: "whatsapp",
-              link: "#",
-            },
-          ],
-          staff: [
-            {
-              id: 1,
-              person: "Владимир Константинов",
-              department: "Продажи",
-              icon: "sales",
-              phone: "Доб.123",
-              photo: "staff.jpg",
-            },
-            {
-              id: 2,
-              person: "Владимир Константинов",
-              department: "Закупки",
-              icon: "buy",
-              phone: "Доб.123",
-              photo: "",
-            },
-            {
-              id: 3,
-              person: "Владимир Константинов",
-              department: "Секретарь",
-              icon: "secretary",
-              phone: "Доб.123",
-              photo: "staff2.jpg",
-            },
-            {
-              id: 4,
-              person: "Владимир Константинов",
-              department: "Дирекция",
-              icon: "chief",
-              phone: "Доб.123",
-              photo: "staff3.jpg",
-            },
-            {
-              id: 5,
-              person: "Владимир Константинов",
-              department: "Доставка",
-              icon: "delivery",
-              phone: "Доб.123",
-              photo: "staff4.jpg",
-            },
-            {
-              id: 6,
-              person: "Владимир Константинов",
-              department: "Качество",
-              icon: "shield",
-              phone: "Доб.123",
-              photo: "staff5.jpg",
-            },
-          ],
-        },
-        {
-          id: 2,
-          city: "Новосибирск",
-          phone: "+7 (499) 577-00-07",
-          email: "info@petexpert.pro",
-          address: "143300,  г. Новосибирск, площадь Свободы, 10",
-          social: [
-            {
-              name: "facebook",
-              link: "#",
-            },
-            {
-              name: "instagram",
-              link: "#",
-            },
-            {
-              name: "telegramm",
-              link: "#",
-            },
-            {
-              name: "whatsapp",
-              link: "#",
-            },
-          ],
-          staff: [
-            {
-              id: 1,
-              person: "Иван Петров Иванович",
-              department: "Продажи",
-              icon: "sales",
-              phone: "Доб.123",
-              photo: "staff5.jpg",
-            },
-            {
-              id: 2,
-              person: "Иван Петров",
-              department: "Закупки",
-              icon: "buy",
-              phone: "Доб.123",
-              photo: "staff2.jpg",
-            },
-            {
-              id: 3,
-              person: "Иван Петров",
-              department: "Секретарь",
-              icon: "secretary",
-              phone: "Доб.123",
-              photo: "staff.jpg",
-            },
-            {
-              id: 4,
-              person: "Иван Петров",
-              department: "Дирекция",
-              icon: "chief",
-              phone: "Доб.123",
-              photo: "staff4.jpg",
-            },
-            {
-              id: 5,
-              person: "Иван Петров",
-              department: "Доставка",
-              icon: "delivery",
-              phone: "Доб.123",
-              photo: "",
-            },
-            {
-              id: 6,
-              person: "Иван Петров",
-              department: "Качество",
-              icon: "shield",
-              phone: "Доб.123",
-              photo: "staff5.jpg",
-            },
-          ],
-        },
-        {
-          id: 3,
-          city: "Краснодар",
-          phone: "+7 (499) 577-00-08",
-          email: "info@petexpert.pro",
-          address: "143300,  г. Краснодар, площадь Свободы, 10",
-          social: [
-            {
-              name: "facebook",
-              link: "#",
-            },
-            {
-              name: "instagram",
-              link: "#",
-            },
-            {
-              name: "telegramm",
-              link: "#",
-            },
-            {
-              name: "whatsapp",
-              link: "#",
-            },
-          ],
-          staff: [
-            {
-              id: 1,
-              person: "Сергей Сергеев",
-              department: "Продажи",
-              icon: "sales",
-              phone: "Доб.123",
-              photo: "staff5.jpg",
-            },
-            {
-              id: 2,
-              person: "Сергей Сергеев",
-              department: "Закупки",
-              icon: "buy",
-              phone: "Доб.123",
-              photo: "staff3.jpg",
-            },
-            {
-              id: 3,
-              person: "Сергей Сергеев Сергеевич",
-              department: "Секретарь",
-              icon: "secretary",
-              phone: "Доб.123",
-              photo: "staff2.jpg",
-            },
-            {
-              id: 4,
-              person: "Сергей Сергеев",
-              department: "Дирекция",
-              icon: "chief",
-              phone: "Доб.123",
-              photo: "",
-            },
-            {
-              id: 5,
-              person: "Сергей Сергеев",
-              department: "Доставка",
-              icon: "delivery",
-              phone: "Доб.123",
-              photo: "staff.jpg",
-            },
-            {
-              id: 6,
-              person: "Сергей Сергеев",
-              department: "Качество",
-              icon: "shield",
-              phone: "Доб.123",
-              photo: "staff5.jpg",
-            },
-          ],
-        },
-      ],
+
       swiperOption: {
         slidesPerView: 3,
         loopedSlides: 4,
@@ -399,11 +182,6 @@ export default {
       setTimeout(() => {
         map.classList.remove("animate");
       }, 500);
-    },
-  },
-  props: {
-    directives: {
-      swiper: directive,
     },
   },
 };
@@ -462,6 +240,10 @@ export default {
   .nav-tabs {
     border-bottom: none;
     margin-right: 30px;
+    flex-wrap: wrap;
+    li {
+      margin-bottom: 10px;
+    }
   }
   .nav-link {
     border: 1px solid $white;
@@ -952,7 +734,7 @@ export default {
   .contacts__person-slide {
     opacity: 0.4;
     transition: opacity 0.4s;
-
+    min-width: 180px;
     .contact-card {
       margin: 0;
     }

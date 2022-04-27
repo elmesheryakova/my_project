@@ -1,7 +1,11 @@
 <template>
   <div class="container">
     <div class="grid">
-      <div class="grid__item" v-for="(item, index) in items" :key="index">
+      <div
+        class="grid__item"
+        v-for="(item, index) in items.slice(0, 6)"
+        :key="index"
+      >
         <div class="grid__item-img">
           <img :src="item.image" alt="img" />
         </div>

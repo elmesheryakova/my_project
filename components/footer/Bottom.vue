@@ -2,7 +2,7 @@
   <div class="container">
     <div class="footer-bottom">
       <div class="footer-bottom__contacts">
-        <p>© 2021, Пэт-експерт</p>
+        <p>© {{ copyright }}</p>
         <p>{{ address }}</p>
         <a :href="`tel:${phone.replace(/[^+\d]/g, '')}`" v-if="phone">{{
           phone
@@ -63,7 +63,7 @@ export default {
     address: {
       type: String,
     },
-    copiright: {
+    copyright: {
       type: String,
     },
   },
