@@ -731,7 +731,7 @@ export default {
           trigger: "#anim-" + bottleType + "-container",
           spacer: false,
           pinSpacing: false,
-          pinType: "fixed",
+          pinType: "transform",
           pinnedContainer: null,
           start: "top",
           endTrigger: endTriggerElem,
