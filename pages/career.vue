@@ -1,23 +1,26 @@
 <template>
-  <div class="career">
-    <div class="container">
-      <h1 class="pages__title">Карьера в PET-Expert</h1>
-      <div class="career__block">
+  <client-only>
+    <div class="career">
+      <div class="container">
+        <h1 class="pages__title">Карьера в PET-Expert</h1>
         <div
-          header-tag="header"
-          role="tab"
-          v-for="(item, index) in career"
+          class="career__block"
+          v-for="(item, index) in vacancy.items"
           :key="index"
-          v-b-toggle="`accordion-${index}`"
-          class="career__items"
         >
-          <div class="career-city">
-            {{ item.city }}
-            <div class="career-city__icon">
-              <svgicon name="arrow" />
+          <div
+            header-tag="header"
+            role="tab"
+            v-b-toggle="`accordion-${index}`"
+            class="career__items"
+          >
+            <div class="career-city">
+              {{ item.region.name }}
+              <div class="career-city__icon">
+                <svgicon name="arrow" />
+              </div>
             </div>
           </div>
-
           <b-collapse
             :id="`accordion-${index}`"
             visible
@@ -25,115 +28,24 @@
             role="tabpanel"
             class="career__item"
           >
-            <div
-              class="career-info"
-              v-for="(item, index) in item.vacancy"
-              :key="index"
-            >
-              <h4>{{ item.title }}</h4>
+            <a :href="item.hh_url" target="_blank" class="career-info">
+              <h4>{{ item.name }}</h4>
               <p class="mb-0" v-html="item.description"></p>
-            </div>
-            <p v-if="item.vacancy == 0">Вакансии отсутствуют</p>
+            </a>
+            <!-- <p v-if="item.vacancy == 0">Вакансии отсутствуют</p> -->
           </b-collapse>
         </div>
+        <Subscribtion />
       </div>
-      <Subscribtion />
     </div>
-  </div>
+  </client-only>
 </template>
 <script>
 export default {
   data() {
     return {
-      career: [
-        {
-          city: "Москва",
-          vacancy: [
-            {
-              id: 1,
-              title: "Вакансия №1",
-              description:
-                "Международный бренд по производству ПЭТ-тары, отличающийся высочайшим качеством материалов, продукции и подхода к клиентам.",
-            },
-            {
-              id: 2,
-              title: "Вакансия №2",
-              description:
-                "Международный бренд по производству ПЭТ-тары, отличающийся высочайшим качеством материалов, продукции и подхода к клиентам.",
-            },
-            {
-              id: 3,
-              title: "Вакансия №3",
-              description:
-                "Международный бренд по производству ПЭТ-тары, отличающийся высочайшим качеством материалов, продукции и подхода к клиентам.",
-            },
-            {
-              id: 4,
-              title: "Вакансия №4",
-              description:
-                "Международный бренд по производству ПЭТ-тары, отличающийся высочайшим качеством материалов, продукции и подхода к клиентам.",
-            },
-            {
-              id: 5,
-              title: "Вакансия №5",
-              description:
-                "Международный бренд по производству ПЭТ-тары, отличающийся высочайшим качеством материалов, продукции и подхода к клиентам.",
-            },
-            {
-              id: 6,
-              title: "Вакансия №6",
-              description:
-                "Международный бренд по производству ПЭТ-тары, отличающийся высочайшим качеством материалов, продукции и подхода к клиентам.",
-            },
-          ],
-        },
+      vacancy: {},
 
-        {
-          city: "Новосибирск",
-          vacancy: [],
-        },
-        {
-          city: "Краснодар",
-          vacancy: [
-            {
-              id: 1,
-              title: "Вакансия №1",
-              description:
-                "Международный бренд по производству ПЭТ-тары, отличающийся высочайшим качеством материалов, продукции и подхода к клиентам.",
-            },
-            {
-              id: 2,
-              title: "Вакансия №2",
-              description:
-                "Международный бренд по производству ПЭТ-тары, отличающийся высочайшим качеством материалов, продукции и подхода к клиентам.",
-            },
-            {
-              id: 3,
-              title: "Вакансия №3",
-              description:
-                "Международный бренд по производству ПЭТ-тары, отличающийся высочайшим качеством материалов, продукции и подхода к клиентам.",
-            },
-            {
-              id: 4,
-              title: "Вакансия №4",
-              description:
-                "Международный бренд по производству ПЭТ-тары, отличающийся высочайшим качеством материалов, продукции и подхода к клиентам.",
-            },
-            {
-              id: 5,
-              title: "Вакансия №5",
-              description:
-                "Международный бренд по производству ПЭТ-тары, отличающийся высочайшим качеством материалов, продукции и подхода к клиентам.",
-            },
-            {
-              id: 6,
-              title: "Вакансия №6",
-              description:
-                "Международный бренд по производству ПЭТ-тары, отличающийся высочайшим качеством материалов, продукции и подхода к клиентам.",
-            },
-          ],
-        },
-      ],
       width: 0,
     };
   },
@@ -142,6 +54,12 @@ export default {
     updateWidth() {
       this.width = window.innerWidth;
     },
+  },
+  async asyncData({ $axios }) {
+    const vacancy = await $axios.$get(
+      `https://api.petexpert.pro/v1/career/vacancies/`
+    );
+    return { vacancy };
   },
 
   mounted() {
@@ -165,6 +83,7 @@ export default {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
+
     @media (max-width: 991px) {
       grid-template-columns: repeat(2, 1fr);
       gap: 20px;
@@ -174,9 +93,7 @@ export default {
     }
   }
   &__items {
-    &:not(:last-child) {
-      margin-bottom: 80px;
-    }
+    // margin-bottom: 30px;
 
     .career-city {
       display: flex;

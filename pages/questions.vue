@@ -142,7 +142,10 @@ export default {
     font-weight: 400;
     font-size: 20px;
     line-height: 28px;
-    list-style: inside;
+    li {
+      list-style: inside;
+    }
+
     @media (max-width: 1130px) {
       font-size: 18px;
     }

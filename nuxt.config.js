@@ -47,7 +47,7 @@ export default {
     { src: '~/plugins/ymapPlugin.js', mode: 'client' },
     { src: '~/plugins/fullpage.js', mode: 'client' },
     { src: '~/plugins/gsap.js', mode: 'client' },
-
+    // { src: '~/plugins/vue-validate.js', mode: 'client' },
     '~/plugins/eventBus.js',
   ],
 

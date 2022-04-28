@@ -235,35 +235,38 @@ export default {
           hasCanvas: true,
           title: "Вода",
           titleBig: true,
-          desc: "Замена металлических кег на ПЭТ",
+          desc: "Замена стеклянной тары, ПВХ или поликарбонат на ПЭТ бутыль",
           position: "right",
           hasBg: true,
-          mobileImgSrc: require("~/assets/img/promo-mobile-first.jpg"),
+          mobileImgSrc: require("~/assets/img/promo-mobile-first-w.jpg"),
         },
         {
           hasCanvas: false,
-          title: "Эстетика упаковки",
+          title: "Безопасность",
           titleBig: false,
           position: "right",
           hasBg: false,
           list: [
-            "Низкая теплопроводность",
-            "Гарантия герметичности фитинга",
-            "Стерильная среда внутри кега",
+            "Не содержит Бисфенол-А",
+            "Полностью пригодна к переработке",
+            "Стерильная среда внутри ПЭТ бутыли",
+            "Не пропускает кислород, не выделяет токсины",
           ],
-          mobileImgSrc: require("~/assets/img/promo-mobile1.jpg"),
+          mobileImgSrc: require("~/assets/img/promo-mobile1-w.jpg"),
         },
         {
           hasCanvas: false,
-          title: "Выгодная логистика",
+          title: "Качество",
           titleBig: false,
           position: "left",
           hasBg: false,
-          mobileImgSrc: require("~/assets/img/promo-mobile2.jpg"),
+          mobileImgSrc: require("~/assets/img/promo-mobile2-w.jpg"),
           list: [
-            "Отсутствует необходимость возврата тары",
-            "ПЭТ-КЕГ в 16 раз легче металлической",
-            "Фура вмещает на 25% больше",
+            "Отличная ударная прочность и усиленное дно",
+            "Легкость и прозрачность",
+            "Высокая стойкость к низким температурам",
+            "Сохраняет питьевую воду до 1 года без потери качества",
+            "Легко устанавливается на  кулер и другое оборудование",
           ],
         },
         {
@@ -272,12 +275,11 @@ export default {
           titleBig: false,
           position: "right",
           hasBg: false,
-          mobileImgSrc: require("~/assets/img/promo-mobile3.jpg"),
+          mobileImgSrc: require("~/assets/img/promo-mobile3-w.jpg"),
           list: [
-            "Разморозка денежных средств заложеных в тару",
-            "Сокращение площади хранения КЕГ",
-            "Отсутствие технического обслуживания и мойки",
-            "Сокращение фонда оплаты труда",
+            "Перевозка на большие расстояния",
+            "Не требует затрат на санитарную обработку",
+            "Отсутствие расходов на хранение и перевозку пустых бутылей",
           ],
         },
         {
@@ -287,7 +289,7 @@ export default {
           titleSmall: true,
           isLast: true,
           position: "left",
-          mobileImgSrc: require("~/assets/img/promo-mobile4.jpg"),
+          mobileImgSrc: require("~/assets/img/promo-mobile4-w.jpg"),
           hasBg: true,
           buttonTitle: "Консультация специалиста",
           buttonHref: "#hello",
@@ -295,7 +297,7 @@ export default {
       ],
     };
   },
-  async asyncData({ params, $axios }) {
+  async asyncData({ $axios }) {
     const solutionBeer = await $axios.$get(
       `https://api.petexpert.pro/v1/solutions/beer/`
     );

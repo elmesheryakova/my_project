@@ -30,8 +30,8 @@
       </div>
       <div class="footer-bottom__links">
         <div>
-          <a href="#">Политика конфиденциальности</a>
-          <a href="#">Файлы cookie</a>
+          <a href="/Policy.pdf" target="_blank">Политика конфиденциальности</a>
+          <a href="/cookie.pdf" target="_blank">Файлы cookie</a>
         </div>
 
         <div class="awa-logo">
