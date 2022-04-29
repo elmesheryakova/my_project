@@ -159,7 +159,7 @@ export default {
             centeredSlides: false,
             slidesPerView: 6,
             autoplay: false,
-            speed: 20000,
+            speed: 10000,
             allowTouchMove: true,
             slideToClickedSlide: false,
             freeModeMomentum: false,
@@ -353,7 +353,7 @@ export default {
     },
     runInfiniteSlides(swiper) {
       var self = this;
-      var speed = this.mySwiper.activeIndex !== 0 ? 12000 : this.sliderSpeed;
+      var speed = this.mySwiper.activeIndex !== 0 ? 2000 : this.sliderSpeed;
       this.mySwiper.slideTo(this.mySwiper.slides.length, speed, true);
       this.mySwiper.once("transitionEnd", self.onInfiniteSlideRepeat);
     },
