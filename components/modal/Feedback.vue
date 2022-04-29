@@ -1,6 +1,6 @@
 <template >
   <div class="feedback-popup">
-    <FeedbackForm />
+    <FeedbackForm :isShow="true" />
   </div>
 </template>
 

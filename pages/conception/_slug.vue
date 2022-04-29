@@ -9,7 +9,10 @@
       >
         <div class="concept-item__info">
           <h3>{{ item.name }}</h3>
-          <div v-html="item.description"></div>
+          <div
+            class="concept-item__description"
+            v-html="item.description"
+          ></div>
         </div>
         <div class="concept-item__img">
           <img :src="item.image[0]" alt="img" />
@@ -99,16 +102,6 @@ export default {
       font-size: 48px;
       font-weight: 600;
       padding-bottom: 80px;
-      position: relative;
-      &:after {
-        content: "";
-        position: absolute;
-        top: 55%;
-        left: 0;
-        width: 1px;
-        height: 50px;
-        background: $black;
-      }
     }
     p {
       max-width: 400px;
@@ -125,6 +118,18 @@ export default {
         font-size: 32px;
         padding-bottom: 100px;
       }
+    }
+  }
+  &__description {
+    position: relative;
+    &:after {
+      content: "";
+      position: absolute;
+      top: -70px;
+      left: 0;
+      width: 1px;
+      height: 50px;
+      background: $black;
     }
   }
 }

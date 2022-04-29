@@ -22,10 +22,10 @@
 
       <b-form-group id="input-group-3" label-for="input-3">
         <b-form-input
-          v-model.trim="form.email"
           id="input-3"
           type="text"
           placeholder="Электронная почта"
+          v-model.trim="form.email"
           :class="$v.form.email.$error ? 'is-invalid' : ''"
         >
         </b-form-input>

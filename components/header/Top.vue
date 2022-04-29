@@ -7,8 +7,21 @@
           class="header-top__search-input"
           type="search"
           placeholder="Поиск"
+          v-model="valueHeader"
         />
-        <svgicon class="header-top__search-icon" name="search" />
+        <svgicon
+          class="header-top__search-icon"
+          name="search"
+          v-if="!valueHeader"
+        />
+        <nuxt-link
+          :to="'/search'"
+          class="header-top__search-btn"
+          v-if="valueHeader"
+          @click="cleanField"
+        >
+          <span>Найти</span> <svgicon name="search" />
+        </nuxt-link>
       </div>
       <div class="header-top__info">
         <a
@@ -29,6 +42,11 @@
 </template>
 <script>
 export default {
+  data() {
+    return {
+      valueHeader: "",
+    };
+  },
   props: {
     phone: {
       type: String,
@@ -37,7 +55,13 @@ export default {
       type: String,
     },
   },
-  methods: {},
+  methods: {
+    cleanField() {
+      setTimeout(() => {
+        this.valueHeader = "";
+      }, 100);
+    },
+  },
   mounted() {
     // console.log(this.$refs.body);
   },
@@ -63,6 +87,7 @@ export default {
     flex: 0 1 320px;
     position: relative;
     margin-right: 20px;
+    display: flex;
     &-input {
       width: 100%;
       background: $lightGrey;
@@ -79,6 +104,30 @@ export default {
       top: 10px;
       right: 12px;
       cursor: pointer;
+    }
+
+    &-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #1b2ac9 !important;
+      border: 1px solid #1b2ac9;
+      width: 105px;
+      padding: 8px 12px;
+      margin-left: 5px;
+      span {
+        padding-bottom: 3px;
+      }
+      svg {
+        width: 15px;
+        height: 15px;
+
+        margin-left: 5px;
+        path {
+          fill: #1b2ac9;
+        }
+      }
     }
     @media (max-width: 991px) {
       display: none;
