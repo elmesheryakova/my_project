@@ -14,7 +14,7 @@
     <div class="concept__imgs">
       <nuxt-link
         class="concept__link"
-        :to="{ name: 'concept-slug', params: { slug: item.slug } }"
+        :to="{ name: 'conception-slug', params: { slug: item.slug } }"
       >
         <svgicon name="arrow-fullscreen" />
       </nuxt-link>

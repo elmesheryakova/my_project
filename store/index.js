@@ -74,14 +74,14 @@ export const state = () => ({
     },
     {
       title: "Концепция",
-      link: { name: 'concept' },
+      link: { name: 'conception' },
       icon: true,
       submenu: [
         {
           title: "Качество",
           img: 'nav9.png',
           id: 1,
-          link: { name: 'concept-slug', params: { slug: 'kachestvo' } },
+          link: { name: 'conception-slug', params: { slug: 'kachestvo' } },
         },
       ]
     },

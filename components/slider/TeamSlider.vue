@@ -1,5 +1,4 @@
 <template>
-  <!-- START team -->
   <section class="team">
     <div class="container" v-if="$route.name === 'index'">
       <h2 class="team__title">Команда</h2>
@@ -10,114 +9,26 @@
 
     <div class="team__slider swiper" v-swiper:mySwiper="swiperOption">
       <div class="swiper-wrapper">
-        <!-- START team__slide -->
-        <div class="swiper-slide team__slide">
-          <div class="team__img">
+        <div
+          class="swiper-slide team__slide"
+          v-for="(item, index) in items"
+          :key="index"
+        >
+          <div class="team__img" v-if="item.image">
             <img
-              src="~assets/img/team1.png"
+              :src="item.image[0]"
               width="412"
               height="618"
-              alt="Павлова Мария Игоревна"
+              :alt="item.name"
             />
           </div>
           <div class="team__slide-content">
             <div class="team__slide-content-wrap">
-              <div class="team__slide-name">Павлова Мария Игоревна</div>
-              <div class="team__slide-job">Менеджер по продажам</div>
+              <div class="team__slide-name">{{ item.name }}</div>
+              <div class="team__slide-job">{{ item.position }}</div>
             </div>
           </div>
         </div>
-        <!-- END team__slide -->
-        <!-- START team__slide -->
-        <div class="swiper-slide team__slide">
-          <div class="team__img">
-            <img
-              src="~assets/img/team2.png"
-              width="412"
-              height="618"
-              alt="Павлова Мария Игоревна"
-            />
-          </div>
-          <div class="team__slide-content">
-            <div class="team__slide-content-wrap">
-              <div class="team__slide-name">Павлова Мария Игоревна</div>
-              <div class="team__slide-job">Менеджер по продажам</div>
-            </div>
-          </div>
-        </div>
-        <!-- END team__slide -->
-        <!-- START team__slide -->
-        <div class="swiper-slide team__slide">
-          <div class="team__img">
-            <img
-              src="~assets/img/team3.png"
-              width="412"
-              height="618"
-              alt="Павлова Мария Игоревна"
-            />
-          </div>
-          <div class="team__slide-content">
-            <div class="team__slide-content-wrap">
-              <div class="team__slide-name">Павлова Мария Игоревна</div>
-              <div class="team__slide-job">Менеджер по продажам</div>
-            </div>
-          </div>
-        </div>
-        <!-- END team__slide -->
-        <!-- START team__slide -->
-        <div class="swiper-slide team__slide">
-          <div class="team__img">
-            <img
-              src="~assets/img/team4.png"
-              width="412"
-              height="618"
-              alt="Павлова Мария Игоревна"
-            />
-          </div>
-          <div class="team__slide-content">
-            <div class="team__slide-content-wrap">
-              <div class="team__slide-name">Павлова Мария Игоревна</div>
-              <div class="team__slide-job">Менеджер по продажам</div>
-            </div>
-          </div>
-        </div>
-        <!-- END team__slide -->
-        <!-- START team__slide -->
-        <div class="swiper-slide team__slide">
-          <div class="team__img">
-            <img
-              src="~assets/img/team5.png"
-              width="412"
-              height="618"
-              alt="Павлова Мария Игоревна"
-            />
-          </div>
-          <div class="team__slide-content">
-            <div class="team__slide-content-wrap">
-              <div class="team__slide-name">Павлова Мария Игоревна</div>
-              <div class="team__slide-job">Менеджер по продажам</div>
-            </div>
-          </div>
-        </div>
-        <!-- END team__slide -->
-        <!-- START team__slide -->
-        <div class="swiper-slide team__slide">
-          <div class="team__img">
-            <img
-              src="~assets/img/team6.png"
-              width="412"
-              height="618"
-              alt="Павлова Мария Игоревна"
-            />
-          </div>
-          <div class="team__slide-content">
-            <div class="team__slide-content-wrap">
-              <div class="team__slide-name">Павлова Мария Игоревна</div>
-              <div class="team__slide-job">Менеджер по продажам</div>
-            </div>
-          </div>
-        </div>
-        <!-- END team__slide -->
       </div>
     </div>
   </section>
@@ -129,6 +40,17 @@ import { directive } from "vue-awesome-swiper";
 
 export default {
   name: "TeamSlider",
+  props: {
+    pinSection: Boolean,
+    directives: {
+      swiper: directive,
+    },
+    items: {
+      type: Array,
+      default: () => [],
+    },
+  },
+
   data() {
     var self = this;
     return {
@@ -159,7 +81,7 @@ export default {
             centeredSlides: false,
             slidesPerView: 6,
             autoplay: false,
-            speed: 20000,
+            speed: 10000,
             allowTouchMove: true,
             slideToClickedSlide: false,
             freeModeMomentum: false,
@@ -178,19 +100,13 @@ export default {
       return this.$mq === "lg" || this.$mq === "md";
     },
   },
-  props: {
-    pinSection: Boolean,
-    directives: {
-      swiper: directive,
-    },
-  },
+
   mounted() {
     var teamSection = this.$el;
     var self = this;
     this.sliderSpeed = 20000;
     this.hoveredSlide = null;
     this.hoveredSlides = [];
-
 
     if (this.isDesktop && this.pinSection) {
       var promoConceptsSections = this.$parent.$refs.promoConcepts;
@@ -353,7 +269,7 @@ export default {
     },
     runInfiniteSlides(swiper) {
       var self = this;
-      var speed = this.mySwiper.activeIndex !== 0 ? 12000 : this.sliderSpeed;
+      var speed = this.mySwiper.activeIndex !== 0 ? 2000 : this.sliderSpeed;
       this.mySwiper.slideTo(this.mySwiper.slides.length, speed, true);
       this.mySwiper.once("transitionEnd", self.onInfiniteSlideRepeat);
     },
@@ -416,9 +332,10 @@ export default {
 
 .team__img img {
   display: block;
-  width: 100%;
+  width: 125%;
   height: auto;
   max-width: none;
+  cursor: pointer;
 }
 
 .team__slide-content {
@@ -427,47 +344,54 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 123px;
+  height: 100px;
   position: absolute;
-  width: 100%;
-  bottom: -123px;
+  width: 125%;
+  bottom: -100px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s, transform 0.7s;
 }
 
+.team__slide.visible .team__slide-content {
+  opacity: 1;
+  transform: none;
+}
 .team__slide-name {
   white-space: nowrap;
   font-weight: 300;
   margin-bottom: 10px;
-  opacity: 0;
-  transition: opacity 0.7s, transform 0.7s;
-  transform: translateY(30px);
+  // opacity: 0;
+  // transition: opacity 0.7s, transform 0.7s;
+  // transform: translateY(30px);
 }
 
 .team__slide-job {
   white-space: nowrap;
   font-size: 12px;
   font-weight: 300;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.7s, transform 0.7s;
+  // opacity: 0;
+  // transform: translateY(10px);
+  // transition: opacity 0.7s, transform 0.7s;
 }
 
 .team__slide.visible {
   position: relative;
 }
 
-.team__slide.visible .team__slide-name,
-.team__slide.visible .team__slide-job {
-  opacity: 1;
-  transform: none;
-}
+// .team__slide.visible .team__slide-name,
+// .team__slide.visible .team__slide-job {
+//   opacity: 1;
+//   transform: none;
+// }
 
-.team__slide.visible .team__slide-name {
-  transition-delay: 0s;
-}
+// .team__slide.visible .team__slide-name {
+//   transition-delay: 0s;
+// }
 
-.team__slide.visible .team__slide-job {
-  transition-delay: 0.2s;
-}
+// .team__slide.visible .team__slide-job {
+//   transition-delay: 0.2s;
+// }
 
 .team__slide.visible .team__img {
   filter: grayscale(0);

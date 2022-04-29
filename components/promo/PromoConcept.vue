@@ -43,7 +43,10 @@
                   v-html="slide.description"
                 ></div>
                 <nuxt-link
-                  :to="{ name: 'concept-slug', params: { slug: slide.slug } }"
+                  :to="{
+                    name: 'conception-slug',
+                    params: { slug: slide.slug },
+                  }"
                   class="promo-concepts__link"
                 >
                   <div class="promo-concents__icon">

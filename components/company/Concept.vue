@@ -5,14 +5,14 @@
         Концепция <br />
         <span>компании</span>
       </h2>
-      <nuxt-link class="advantages__item-link" :to="{ name: 'concept' }">
+      <nuxt-link class="advantages__item-link" :to="{ name: 'conception' }">
         <p class="mb-0">Узнайте более подробно</p>
         <svgicon name="arrow-blue" />
       </nuxt-link>
     </div>
     <div class="company-concept__info">
       <nuxt-link
-        :to="{ name: 'concept-slug', params: { slug: item.slug } }"
+        :to="{ name: 'conception-slug', params: { slug: item.slug } }"
         class="company-concept__item"
         v-for="(item, index) in items"
         :key="index"

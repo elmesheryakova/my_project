@@ -9,7 +9,7 @@
       :to="
         item.svg_icon
           ? { name: 'solutions-slug', params: { slug: item.slug } }
-          : { name: 'concept-slug', params: { slug: item.slug } }
+          : { name: 'conception-slug', params: { slug: item.slug } }
       "
     >
       <div class="solution-mobile__btn">

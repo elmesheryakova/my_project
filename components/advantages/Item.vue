@@ -56,8 +56,8 @@
     </div>
     <nuxt-link
       class="advantages__item-link advantages__item-link--concept"
-      v-if="$route.name === 'concept'"
-      :to="{ name: 'concept-slug', params: { slug: item.slug } }"
+      v-if="$route.name === 'conception'"
+      :to="{ name: 'conception-slug', params: { slug: item.slug } }"
     >
       <p class="mb-0">Подробнее</p>
       <svgicon name="arrow-blue" />
@@ -72,7 +72,7 @@
       v-if="item.image || item.images"
     >
       <img
-        v-if="$route.name === 'concept' || $route.name === 'prices'"
+        v-if="$route.name === 'conception' || $route.name === 'prices'"
         :src="item.images[0]"
         alt="img"
       />

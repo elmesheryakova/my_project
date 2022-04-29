@@ -120,7 +120,7 @@
         data-offset-y="70"
         id="fix-up"
       >
-        <TeamSlider :pin-section="true" />
+        <TeamSlider :pin-section="true" :items="team.employees" />
         <PartnersSlider :items="reviews.items" />
         <ContactsSection :items="contacts.items" />
         <Feedback />
@@ -162,6 +162,7 @@ export default {
       conception: {},
       contacts: {},
       reviews: {},
+      team: {},
       activeBottleType: "beer",
       showPromoBottom: true,
       width: 0,
@@ -317,6 +318,9 @@ export default {
     const reviews = await $axios.$get(
       `https://api.petexpert.pro/v1/company/reviews/`
     );
+    const team = await $axios.$get(
+      `https://api.petexpert.pro/v1/pages/our_team/`
+    );
     return {
       solutions,
       solutionBeer,
@@ -324,6 +328,7 @@ export default {
       conception,
       contacts,
       reviews,
+      team,
     };
   },
   methods: {

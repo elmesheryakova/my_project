@@ -32,7 +32,7 @@
     </div>
     <div
       class="fullscreen-banner fullscreen-banner--partners"
-      v-if="$route.name === 'concept'"
+      v-if="$route.name === 'conception'"
     >
       <div>
         <picture class="fullscreen-banner__img">
