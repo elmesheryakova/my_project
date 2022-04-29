@@ -80,6 +80,7 @@ export default {
           992: {
             centeredSlides: false,
             slidesPerView: 6,
+            loopedSlides: self.items.length,
             autoplay: false,
             speed: 10000,
             allowTouchMove: true,
@@ -99,12 +100,15 @@ export default {
     isTablet() {
       return this.$mq === "lg" || this.$mq === "md";
     },
+    itemsLength() {
+      return this.items.length;
+    },
   },
 
   mounted() {
     var teamSection = this.$el;
     var self = this;
-    this.sliderSpeed = 20000;
+    this.sliderSpeed = 30000;
     this.hoveredSlide = null;
     this.hoveredSlides = [];
 
@@ -166,8 +170,8 @@ export default {
   },
   methods: {
     onSliderInit(swiper) {
-      this.sliderSpeed = 20000;
       var self = this;
+      console.log(this.itemsLength);
       if (self.isDesktop) {
         this.$nextTick(() => {
           swiper.wrapperEl.classList.add("ease-linear");
@@ -240,6 +244,9 @@ export default {
     onTeamSliderLeave() {
       var translate = this.mySwiper.getTranslate();
       var maxTranslate = this.mySwiper.maxTranslate();
+      var slidesGridIndex = this.mySwiper.slides.length - this.itemsLength;
+      var translateVal = this.mySwiper.slidesGrid[slidesGridIndex];
+      var customProgress = Math.abs(translate / translateVal);
 
       this.mySwiper.updateProgress(translate);
       this.mySwiper.params.speed = this.sliderSpeed;
@@ -247,10 +254,10 @@ export default {
 
       var newSpeed = (
         this.mySwiper.params.speed *
-        (1 - this.mySwiper.progress)
+        (1 - customProgress)
       ).toFixed(0);
 
-      this.mySwiper.translateTo(maxTranslate, parseInt(newSpeed));
+      this.mySwiper.translateTo(-translateVal, parseInt(newSpeed));
       this.mySwiper.once("transitionEnd", this.onInfiniteSlideRepeat);
       if (this.hoveredSlides && this.hoveredSlides.length > 0) {
         this.hoveredSlides.forEach(function (i) {
@@ -269,8 +276,9 @@ export default {
     },
     runInfiniteSlides(swiper) {
       var self = this;
-      var speed = this.mySwiper.activeIndex !== 0 ? 2000 : this.sliderSpeed;
-      this.mySwiper.slideTo(this.mySwiper.slides.length, speed, true);
+      var speed = this.mySwiper.activeIndex !== 0 ? 4000 : this.sliderSpeed;
+      var halfItems = Math.round(self.itemsLength / 2);
+      this.mySwiper.slideTo(this.mySwiper.slides.length - self.itemsLength, speed, true);
       this.mySwiper.once("transitionEnd", self.onInfiniteSlideRepeat);
     },
   },
