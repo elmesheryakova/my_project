@@ -507,6 +507,9 @@ export default {
 
           if (section.index === 1 && direction === "up") {
             self.disableHeader = false;
+            if (self.$refs.header.$el) {
+              self.$refs.header.$el.classList.remove("header--hidden");
+            }
           }
 
           // Появление первого слайда
