@@ -25,8 +25,9 @@
               >
                 <h5 class="search-info__title">{{ item.title }}</h5></nuxt-link
               >
-              <p class="search-info__text" v-html="item.description"></p></div
-          ></template>
+              <p class="search-info__text" v-html="item.description"></p>
+            </div>
+          </template>
           <div v-else class="search-info__none">Нет результатов поиска</div>
 
           <div
