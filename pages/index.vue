@@ -722,6 +722,8 @@ export default {
             '+=' + (sections.length - 2) + `00%+=${triggerHeight}px`,
           scrub: 0,
           ease: "none",
+          invalidateOnRefresh: true,
+          refreshPriority: 1,
         },
       });
 
@@ -1217,7 +1219,7 @@ export default {
 .promo-slide-trigger {
   position: absolute;
   right: 0;
-  bottom: 0px;
+  bottom: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1227,7 +1229,7 @@ export default {
   z-index: 9999;
   cursor: pointer;
   width: 290px;
-  top: auto !important;
+  //top: auto !important;
   box-sizing: border-box;
   @include tr((color, border-color));
 
