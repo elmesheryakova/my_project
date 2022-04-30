@@ -11,10 +11,12 @@
       ]"
     >
       <div class="promo-slide__content" :class="{ left: position === 'left' }">
+        <div class="anim-bottle-wrap" :id="[`anim-${bottleType}-wrap`]"
+         v-if="index === 0"
+        >
         <div
           class="anim-bottle"
           :id="[`anim-${bottleType}-container`]"
-          v-if="index === 0"
         >
           <div
             class="anim-bottle__inner"
@@ -27,6 +29,8 @@
               height="900"
             ></canvas>
           </div>
+        </div>
+
         </div>
         <div class="promo-slide__mobile-img">
           <img :src="mobileImgSrc" alt="ПЭТ" />

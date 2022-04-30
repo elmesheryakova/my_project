@@ -686,10 +686,10 @@ export default {
         ease: "none",
         scrollTrigger: {
           pin: true,
-          trigger: "#anim-" + bottleType + "-container",
+          trigger: "#anim-" + bottleType + "-wrap",
           spacer: false,
           pinSpacing: false,
-          pinType: "transform",
+          // pinType: "transform",
           pinnedContainer: null,
           start: "top",
           endTrigger: endTriggerElem,
@@ -708,6 +708,7 @@ export default {
       var triggerHeight = document.getElementById(
         "promo-trigger-" + bottleType
       ).clientHeight;
+      console.log((sections.length - 2) + '00%');
 
       this.triggerTl = this.$gsap.timeline({
         scrollTrigger: {
@@ -718,9 +719,7 @@ export default {
           start: "top",
           endTrigger: endTriggerElem,
           end:
-            "+=" +
-            (sectionHeight * (sections.length - 2) + triggerHeight) +
-            "px",
+            '+=' + (sections.length - 2) + `00%+=${triggerHeight}px`,
           scrub: 0,
           ease: "none",
         },
@@ -1167,7 +1166,7 @@ export default {
   }
 }
 
-.anim-bottle {
+.anim-bottle-wrap {
   position: absolute;
   left: 0;
   display: block;
@@ -1179,7 +1178,7 @@ export default {
   pointer-events: none;
 }
 
-#anim-water-container {
+#anim-water-wrap {
   width: 60%;
 }
 
@@ -1228,6 +1227,7 @@ export default {
   z-index: 9999;
   cursor: pointer;
   width: 290px;
+  top: auto !important;
   box-sizing: border-box;
   @include tr((color, border-color));
 
@@ -1564,7 +1564,7 @@ export default {
       padding-right: 0;
     }
 
-    .anim-bottle {
+    .anim-bottle-wrap {
       display: none;
     }
   }
