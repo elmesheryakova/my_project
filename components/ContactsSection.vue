@@ -14,10 +14,10 @@
               <div class="contacts__tab-contents">
                 <a
                   class="contacts__phone"
-                  :href="`tel:${item.phone.replace(/[^+\d]/g, '')}`"
-                  v-if="item.phone"
+                  :href="`tel:${item.phone}`"
+                  v-if="item.phone_str"
                 >
-                  {{ item.phone }}
+                  {{ item.phone_str }}
                 </a>
                 <a class="contacts__email" :href="`mailto:${item.email}`">
                   {{ item.email }}
@@ -26,19 +26,11 @@
                   {{ item.address }}
                 </div>
               </div>
-              <div class="contacts__social-icons">
-                <!-- <a
-                  class="contacts__social-icon"
-                  target="_blank"
-                  v-for="(item, index) in item.social"
-                  :key="index"
-                  :href="item.link"
-                >
-                  <div class="contacts__social-icon-wrap">
-                    <svgicon :name="item.name" />
-                  </div>
-                </a> -->
-              </div>
+              <!-- <div class="contacts__social-icons">
+                <div class="contacts__social-icon-wrap">
+                  <img :src="item.position_svg" alt="" />
+                </div>
+              </div> -->
             </b-tab>
           </b-tabs>
         </div>
@@ -68,7 +60,8 @@
                     <div class="contact-card__name">{{ item.name }}</div>
                   </div>
                   <div class="contact-card__job">
-                    <!-- <svgicon :name="item.icon" /> -->
+                    <img :src="item.position_svg" alt="" />
+
                     <div>{{ item.position }}</div>
                   </div>
                   <div class="contact-card__phone-add">
@@ -99,7 +92,7 @@
                     <div class="contact-card__name">{{ item.name }}</div>
                   </div>
                   <div class="contact-card__job">
-                    <!-- <svgicon :name="item.icon" /> -->
+                    <img :src="item.position_svg" alt="" />
                     <div>{{ item.position }}</div>
                   </div>
                   <div class="contact-card__phone-add">
@@ -410,7 +403,7 @@ export default {
 }
 
 .contact-card {
-  max-width: 128px;
+  max-width: 130px;
   display: block;
   margin-bottom: 20px;
   transition: 0.3s ease-in-out;
@@ -448,11 +441,13 @@ export default {
   align-items: center;
   color: #8e95a7;
 
-  > svg {
-    margin-right: 10px;
-    fill: white;
-    width: 23px;
+  img {
+    margin-right: 5px;
+    width: 20px;
     margin-top: 1px;
+  }
+  div {
+    font-size: 14px;
   }
 }
 
