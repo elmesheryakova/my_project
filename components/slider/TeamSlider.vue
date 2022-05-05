@@ -108,7 +108,7 @@ export default {
   mounted() {
     var teamSection = this.$el;
     var self = this;
-    this.sliderSpeed = 30000;
+    this.sliderSpeed = 50000;
     this.hoveredSlide = null;
     this.hoveredSlides = [];
 
@@ -278,7 +278,11 @@ export default {
       var self = this;
       var speed = this.mySwiper.activeIndex !== 0 ? 4000 : this.sliderSpeed;
       var halfItems = Math.round(self.itemsLength / 2);
-      this.mySwiper.slideTo(this.mySwiper.slides.length - self.itemsLength, speed, true);
+      this.mySwiper.slideTo(
+        this.mySwiper.slides.length - self.itemsLength,
+        speed,
+        true
+      );
       this.mySwiper.once("transitionEnd", self.onInfiniteSlideRepeat);
     },
   },
@@ -359,6 +363,10 @@ export default {
   opacity: 0;
   transform: translateY(40px);
   transition: opacity 0.7s, transform 0.7s;
+  @media (max-width: 991px) {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .team__slide.visible .team__slide-content {
@@ -369,18 +377,37 @@ export default {
   white-space: nowrap;
   font-weight: 300;
   margin-bottom: 10px;
-  // opacity: 0;
-  // transition: opacity 0.7s, transform 0.7s;
-  // transform: translateY(30px);
+
+  @media (max-width: 991px) {
+    white-space: normal;
+    width: 180px;
+    text-align: center;
+  }
+  @media (max-width: 840px) {
+    width: 130px;
+
+    font-size: 12px !important;
+  }
+  @media (max-width: 450px) {
+    font-size: 11px !important;
+  }
 }
 
 .team__slide-job {
   white-space: nowrap;
   font-size: 12px;
   font-weight: 300;
-  // opacity: 0;
-  // transform: translateY(10px);
-  // transition: opacity 0.7s, transform 0.7s;
+  @media (max-width: 991px) {
+    white-space: normal;
+    width: 180px;
+  }
+  @media (max-width: 840px) {
+    width: 130px;
+    font-size: 10px !important;
+  }
+  @media (max-width: 450px) {
+    font-size: 9px !important;
+  }
 }
 
 .team__slide.visible {

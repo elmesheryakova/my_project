@@ -61,6 +61,9 @@ export default {
       height: 100%;
       object-fit: cover;
     }
+    @media (max-width: 991px) {
+      top: 0;
+    }
   }
 
   .team__slide-content {

@@ -274,11 +274,11 @@ export default {
   width: calc(50% - 20px);
   position: relative;
   z-index: 1;
-  // padding: 50px;
+  padding-top: 40px;
   padding-right: 0;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .contacts-map {
@@ -412,7 +412,7 @@ export default {
 .contact-card {
   max-width: 128px;
   display: block;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   transition: 0.3s ease-in-out;
   @media (max-width: 991px) {
     max-width: 200px;
@@ -426,6 +426,9 @@ export default {
 
 .contact-card__img {
   margin-bottom: 14px;
+  height: 128px;
+  width: 128px;
+  overflow: hidden;
 }
 
 .contact-card__full-name {
@@ -774,7 +777,7 @@ export default {
   .contacts__right {
     padding-left: 24px;
     padding-bottom: 30px;
-    padding-top: 40px;
+    padding-top: 0;
     margin: 0;
   }
   .contacts__phone {
