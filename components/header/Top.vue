@@ -15,7 +15,7 @@
           v-if="!valueHeader"
         />
         <nuxt-link
-          :to="'/search'"
+          :to="{ path: '/search', query: { value: valueHeader } }"
           class="header-top__search-btn"
           v-if="valueHeader"
           @click="cleanField"

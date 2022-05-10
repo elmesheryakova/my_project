@@ -79,17 +79,21 @@
             class="subnav__menu-search-input"
             type="search"
             placeholder="Поиск"
+            v-model="valueHeader"
           />
-          <div class="search-icon__wrap">
+          <nuxt-link
+            :to="{ path: '/search', query: { value: valueHeader } }"
+            class="search-icon__wrap"
+          >
             <svgicon class="subnav__menu-search-icon" name="search-blue" />
-          </div>
+          </nuxt-link>
         </div>
         <div class="subnav__menu-btn">
           <button class="subnav__menu-feedback" v-b-modal.modal-sidebar>
             Обратная связь
           </button>
         </div>
-        <div class="subnav__menu-social">
+        <!-- <div class="subnav__menu-social">
           <ul class="subnav__menu-social__list">
             <li class="subnav__menu-social__item">
               <a href="#"> <svgicon name="fb-nav" /></a>
@@ -104,7 +108,7 @@
               <a href="#"> <svgicon name="whatsapp-nav" /></a>
             </li>
           </ul>
-        </div>
+        </div> -->
       </div>
     </b-sidebar>
     <ModalSidebar />
@@ -114,7 +118,8 @@
 export default {
   data() {
     return {
-      headerLinks: this.$store.state.headerLinks,
+      valueHeader: "",
+
       isOpenSubmenu: false,
       header: {},
     };
@@ -319,7 +324,7 @@ export default {
       }
       .subnav-submenu__item {
         font-size: 18px;
-        line-height: 28px;
+        line-height: 46px;
         padding-left: 35px;
       }
     }

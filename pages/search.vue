@@ -83,7 +83,7 @@ export default {
     return {
       showMoreInfo: false,
       showMoreProducts: false,
-      value: "",
+      value: this.$route.query.value,
       page: {},
       info: [],
       production: [],
@@ -110,6 +110,13 @@ export default {
           console.error(err);
         });
     },
+  },
+  created() {},
+  mounted() {
+    this.$route.query.value = "";
+    const html = document.getElementsByTagName("html")[0];
+    html.style.overflow = "auto";
+    this.getData();
   },
 };
 </script>
