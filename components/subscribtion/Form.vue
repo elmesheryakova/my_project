@@ -218,8 +218,8 @@ input[type="file"] {
       height: 60px !important;
     }
   }
-}
-.error {
-  background-color: red;
+  .error {
+    background-color: red;
+  }
 }
 </style>

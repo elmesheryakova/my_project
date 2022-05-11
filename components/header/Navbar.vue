@@ -23,7 +23,20 @@
             >{{ header.phone }}
           </a>
         </div>
-
+        <div class="subnav__menu-search">
+          <input
+            class="subnav__menu-search-input"
+            type="search"
+            placeholder="Поиск"
+            v-model="valueHeader"
+          />
+          <nuxt-link
+            :to="{ path: '/search', query: { value: valueHeader } }"
+            class="search-icon__wrap"
+          >
+            <svgicon class="subnav__menu-search-icon" name="search-blue" />
+          </nuxt-link>
+        </div>
         <nav class="subnav__menu" role="tablist">
           <ul class="subnav__menu-list">
             <li
@@ -74,20 +87,7 @@
             </li>
           </ul>
         </nav>
-        <div class="subnav__menu-search">
-          <input
-            class="subnav__menu-search-input"
-            type="search"
-            placeholder="Поиск"
-            v-model="valueHeader"
-          />
-          <nuxt-link
-            :to="{ path: '/search', query: { value: valueHeader } }"
-            class="search-icon__wrap"
-          >
-            <svgicon class="subnav__menu-search-icon" name="search-blue" />
-          </nuxt-link>
-        </div>
+
         <div class="subnav__menu-btn">
           <button class="subnav__menu-feedback" v-b-modal.modal-sidebar>
             Обратная связь
@@ -110,8 +110,8 @@
           </ul>
         </div> -->
       </div>
+      <ModalSidebar />
     </b-sidebar>
-    <ModalSidebar />
   </div>
 </template>
 <script>
@@ -289,7 +289,7 @@ export default {
     }
   }
   .subnav__menu {
-    padding: 80px 0px 20px 10px;
+    padding: 20px 0px 20px 10px;
     &-item {
       display: flex;
       justify-content: space-between;
@@ -330,7 +330,7 @@ export default {
     }
     @media (max-width: 780px) {
       padding-right: 7px;
-      padding-top: 60px;
+      padding-top: 20px;
     }
     @media (max-width: 400px) {
       padding-right: 3px;
@@ -338,7 +338,7 @@ export default {
     &-search {
       border-radius: 1px;
       position: relative;
-      margin: 0 10px 35px;
+      margin: 80px 10px 0;
       flex: 0 1 320px;
       &-input {
         width: 100%;
@@ -365,6 +365,9 @@ export default {
         width: 16px;
         height: 16px;
         cursor: pointer;
+      }
+      @media (max-width: 768px) {
+        margin-top: 60px;
       }
     }
     &-btn {

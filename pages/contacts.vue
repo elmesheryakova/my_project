@@ -20,4 +20,12 @@ export default {
 };
 </script>
 <style lang="scss">
+.contacts-page {
+  @media (max-width: 991px) {
+    padding-top: 90px;
+  }
+  @media (max-width: 768px) {
+    padding-top: 60px;
+  }
+}
 </style>

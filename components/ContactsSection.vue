@@ -131,15 +131,15 @@ export default {
       tabIndex: 0,
 
       swiperOption: {
-        slidesPerView: 3,
+        slidesPerView: 4,
         loopedSlides: 4,
         loop: true,
         watchSlidesVisibility: true,
         spaceBetween: 10,
         breakpoints: {
           600: {
-            slidesPerView: 4,
-            spaceBetween: 38,
+            slidesPerView: 5,
+            // spaceBetween: 38,
           },
         },
       },
@@ -154,7 +154,7 @@ export default {
     animateMap() {
       const map = document.querySelector(".wrapper-map");
       const contacts = document.querySelectorAll(".contacts__tab-contents");
-      const imgs = document.querySelectorAll(".contact-card");
+      const imgs = document.querySelectorAll(".contacts__person-slider");
 
       contacts.forEach((el) => {
         el.classList.add("animate");
@@ -242,7 +242,11 @@ export default {
     border: 1px solid $white;
     border-radius: 44px;
     height: 40px;
-    padding: 9px 25px 10px;
+    padding: 0 25px;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    line-height: 35px;
     font-weight: 400;
     &.active {
       color: $primary;
@@ -585,10 +589,15 @@ export default {
 
 .contacts__person-slider {
   overflow: visible;
+  &.animate {
+    opacity: 0;
+    transform: translateX(80px);
+    transition: 0.3s ease-in-out;
+  }
 }
-.contact-card__name {
-  min-height: 40px;
-}
+// .contact-card__name {
+//   min-height: 40px;
+// }
 @media screen and (min-width: map-get($grid-breakpoints, "lg")) {
   .contacts__person-slider .swiper-wrapper {
     display: grid;
@@ -596,7 +605,11 @@ export default {
     column-gap: 60px;
   }
 }
-
+@media (max-width: 1190px) {
+  .contacts__person-slider .swiper-wrapper {
+    column-gap: 30px;
+  }
+}
 @include down("xl") {
   .contacts__title {
     font-size: 84px;
