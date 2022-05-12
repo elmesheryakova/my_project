@@ -5,7 +5,8 @@ export default {
       baseURL: 'https://api.petexpert.pro'
     },
   },
-  // loading: '~/components/LoadingBar.vue',
+
+  loading: '~/components/LoadingBar.vue',
   server: {
     host: '0.0.0.0',
   },

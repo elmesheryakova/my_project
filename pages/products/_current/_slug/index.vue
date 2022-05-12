@@ -57,6 +57,10 @@ export default {
     }
   }
   .pages__title {
+    font-family: "Gerbera";
+    color: $primary;
+    font-size: 64px;
+    font-weight: 600;
     @media (max-width: 670px) {
       padding-top: 80px;
       padding-bottom: 80px;

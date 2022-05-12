@@ -75,6 +75,10 @@ export default {
   mounted() {
     window.addEventListener("resize", this.updateWidth);
     this.updateWidth();
+    // this.$nextTick(() => {
+    //   this.$nuxt.$loading.start();
+    //   setTimeout(() => this.$nuxt.$loading.finish(), 2000);
+    // });
   },
 };
 </script>

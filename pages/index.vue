@@ -67,14 +67,14 @@
             }}:
           </h2>
         </div>
-        <Slider
-          :items="
-            activeBottleType === 'beer'
-              ? solutionBeer.group_products.items
-              : solutionWater.group_products.items
-          "
-          v-if="width > 790"
-        />
+        <template v-if="width > 790">
+          <Slider
+            :items="solutionBeer.group_products.items"
+            v-if="activeBottleType === 'beer'"
+          />
+          <SliderWater :items="solutionWater.group_products.items" v-else />
+        </template>
+
         <GridMobile
           :items="
             activeBottleType === 'beer'
@@ -708,7 +708,7 @@ export default {
       var triggerHeight = document.getElementById(
         "promo-trigger-" + bottleType
       ).clientHeight;
-      console.log((sections.length - 2) + '00%');
+      console.log(sections.length - 2 + "00%");
 
       this.triggerTl = this.$gsap.timeline({
         scrollTrigger: {
@@ -718,8 +718,7 @@ export default {
           pin: "#promo-trigger-" + bottleType,
           start: "top",
           endTrigger: endTriggerElem,
-          end:
-            '+=' + (sections.length - 2) + `00%+=${triggerHeight}px`,
+          end: "+=" + (sections.length - 2) + `00%+=${triggerHeight}px`,
           scrub: 0,
           ease: "none",
           invalidateOnRefresh: true,
@@ -1085,6 +1084,10 @@ export default {
     }
 
     window.addEventListener("scroll", getBodyScrollTop);
+    this.$nextTick(() => {
+      this.$nuxt.$loading.start();
+      setTimeout(() => this.$nuxt.$loading.finish(), 3000);
+    });
   },
 };
 </script>

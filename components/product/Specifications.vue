@@ -25,6 +25,7 @@ export default {
 <style lang="scss">
 .specifications {
   padding-bottom: 90px;
+
   .info-list__item {
     display: flex;
     justify-content: space-between;

@@ -1,31 +1,40 @@
 <template>
-  <div class="product-card">
-    <div class="product-card__img" v-if="item.image.length > 0">
-      <img :src="item.image" alt="img" />
+  <client-only>
+    <div class="product-card">
+      <div class="product-card__img" v-if="item.image.length > 0">
+        <LoadingImg v-show="!isImageFullyLoaded" />
+        <img
+          :src="item.image"
+          alt="img"
+          v-show="isImageFullyLoaded"
+          @load="onImgLoad"
+        />
+      </div>
+
+      <div class="product-card__info">
+        <h4 class="info-title">
+          {{ item.name }}
+        </h4>
+        <ul class="info-list">
+          <li
+            class="info-list__item"
+            v-for="(item, index) in item.properties.slice(0, 6)"
+            :key="index"
+          >
+            <p>{{ item.name }}</p>
+            <span></span>
+            <p>{{ item.value }}</p>
+          </li>
+        </ul>
+        <nuxt-link :to="`/products/${slug}/${item.slug}/`">
+          <div class="advantages__item-link">
+            <p class="mb-0">Подробнее</p>
+            <svgicon name="arrow-blue" />
+          </div>
+        </nuxt-link>
+      </div>
     </div>
-    <div class="product-card__info">
-      <h4 class="info-title">
-        {{ item.name }}
-      </h4>
-      <ul class="info-list">
-        <li
-          class="info-list__item"
-          v-for="(item, index) in item.properties.slice(0, 6)"
-          :key="index"
-        >
-          <p>{{ item.name }}</p>
-          <span></span>
-          <p>{{ item.value }}</p>
-        </li>
-      </ul>
-      <nuxt-link :to="`/products/${slug}/${item.slug}/`">
-        <div class="advantages__item-link">
-          <p class="mb-0">Подробнее</p>
-          <svgicon name="arrow-blue" />
-        </div>
-      </nuxt-link>
-    </div>
-  </div>
+  </client-only>
 </template>
 <script>
 export default {
@@ -39,7 +48,14 @@ export default {
       default: "",
     },
   },
-  methods: {},
+  data: () => ({
+    isImageFullyLoaded: false,
+  }),
+  methods: {
+    onImgLoad(el) {
+      if (el.target.complete) this.isImageFullyLoaded = true;
+    },
+  },
 };
 </script>
 <style lang="scss">
@@ -81,10 +97,30 @@ export default {
   margin-bottom: 125px;
   &__img {
     max-width: 440px;
+    max-height: 660px;
+
+    position: relative;
+    background-color: #f2f3f6;
     img {
       width: 100%;
       object-fit: cover;
     }
+    // .loader-svg {
+    //   position: absolute;
+    //   top: 50%;
+    //   left: 50%;
+    //   transform: translate(-50%, -50%);
+    //   width: 100%;
+    //   max-width: 100px;
+    //   max-height: 80px;
+    //   animation: loader-spin 1.7s infinite linear;
+    // }
+
+    // @keyframes loader-spin {
+    //   to {
+    //     transform: translate(-50%, -50%) rotate(360deg);
+    //   }
+    // }
   }
   &__info {
     display: flex;

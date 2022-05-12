@@ -3,13 +3,19 @@
     ><div>
       <div class="product-info">
         <div class="product-info__slider">
+          <LoadingImg v-show="!isImageFullyLoaded" />
           <VueSlickCarousel :settings="settings" v-if="item.images.length > 0">
             <div
               v-for="(item, index) in item.images"
               :key="`item-${index}`"
               :class="`item-${index}`"
             >
-              <img :src="item" alt="img" />
+              <img
+                :src="item"
+                alt="img"
+                v-show="isImageFullyLoaded"
+                @load="onImgLoad"
+              />
             </div>
           </VueSlickCarousel>
           <img :src="item.image" alt="img" v-else-if="item.image.length > 0" />
@@ -53,6 +59,7 @@ export default {
   },
   data() {
     return {
+      isImageFullyLoaded: false,
       settings: {
         arrow: true,
         infinite: true,
@@ -65,7 +72,11 @@ export default {
 
   computed: {},
 
-  methods: {},
+  methods: {
+    onImgLoad(el) {
+      if (el.target.complete) this.isImageFullyLoaded = true;
+    },
+  },
   created() {},
   mounted() {},
 };
@@ -84,6 +95,10 @@ export default {
   }
   &__slider {
     max-width: 640px;
+
+    position: relative;
+    background-color: #f2f3f6;
+
     img {
       height: 100%;
       width: 100%;
@@ -122,6 +137,10 @@ export default {
           font-size: 16px;
           margin-bottom: 10px;
         }
+        svg {
+          width: 12px;
+          height: 12px;
+        }
       }
     }
     @media (max-width: 500px) {
@@ -133,10 +152,17 @@ export default {
           line-height: 20px;
           margin-bottom: 20px;
         }
+        svg {
+          width: 12px;
+          height: 12px;
+        }
       }
     }
   }
-
+  .slick-slider {
+    height: 100%;
+    position: relative;
+  }
   .slick-next {
     position: absolute;
     z-index: 10;

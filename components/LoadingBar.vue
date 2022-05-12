@@ -1,5 +1,5 @@
 <template>
-  <div v-if="loading">
+  <div v-if="loading && $route.name === 'index'">
     <div class="loader">
       <svg
         version="1.1"
@@ -24,7 +24,7 @@
           >
             <stop :offset="`${percent}%`" style="stop-color: #1b2ac9" />
 
-            <stop offset="`${percent}%`" stop-color="#fff" />
+            <stop :offset="`${percent}%`" stop-color="#fff" />
           </linearGradient>
         </defs>
         <g style="fill: url(#three_opacity_stops)">
@@ -115,10 +115,10 @@ export default {
       this.loading = false;
     },
   },
-  created() {
+  mounted() {
     const interval = setInterval(() => {
       if (this.percent < 100) {
-        this.percent += 0.1;
+        this.percent += 0.6;
       } else {
         clearInterval(interval);
       }
@@ -126,12 +126,13 @@ export default {
   },
 };
 </script>
-<style scoped>
-.loading-page {
+<style lang="scss" scoped>
+.loader {
   position: fixed;
-  top: 0;
-  right: 0;
-  z-index: 1000;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
   padding: 1rem;
   text-align: center;
   font-size: 3rem;
@@ -140,19 +141,21 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-.loading {
-  display: inline-block;
-  width: 1.5rem;
-  height: 1.5rem;
-  border: 4px solid rgba(9, 133, 81, 0.705);
-  border-radius: 50%;
-  border-top-color: #158876;
-  animation: spin 1s ease-in-out infinite;
-}
-@keyframes spin {
-  to {
-    -webkit-transform: rotate(360deg);
+
+  &::after {
+    content: "";
+    background: rgba(#f2f3f6, 1);
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 100vh;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    z-index: -1;
+  }
+  &__percent {
+    color: #1b2ac9;
+    margin-top: 20px;
   }
 }
 </style>

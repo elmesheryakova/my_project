@@ -34,6 +34,12 @@ export default {
     );
     return { products };
   },
+  mounted() {
+    // this.$nextTick(() => {
+    //   this.$nuxt.$loading.start();
+    //   setTimeout(() => this.$nuxt.$loading.finish(), 2000);
+    // });
+  },
 };
 </script>
 <style lang="scss">
