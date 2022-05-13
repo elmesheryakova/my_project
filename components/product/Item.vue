@@ -100,27 +100,11 @@ export default {
     max-height: 660px;
 
     position: relative;
-    background-color: #f2f3f6;
+    // background-color: #f2f3f6;
     img {
       width: 100%;
       object-fit: cover;
     }
-    // .loader-svg {
-    //   position: absolute;
-    //   top: 50%;
-    //   left: 50%;
-    //   transform: translate(-50%, -50%);
-    //   width: 100%;
-    //   max-width: 100px;
-    //   max-height: 80px;
-    //   animation: loader-spin 1.7s infinite linear;
-    // }
-
-    // @keyframes loader-spin {
-    //   to {
-    //     transform: translate(-50%, -50%) rotate(360deg);
-    //   }
-    // }
   }
   &__info {
     display: flex;

@@ -2,26 +2,19 @@
   <client-only
     ><div>
       <div class="product-info">
-        <div class="product-info__slider">
+        <div
+          class="product-info__slider"
+          :class="{ 'product-info__slider--img': item.images.length <= 1 }"
+        >
           <LoadingImg v-show="!isImageFullyLoaded" />
-          <VueSlickCarousel :settings="settings" v-if="item.images.length > 0">
-            <div
-              v-for="(item, index) in item.images"
-              :key="`item-${index}`"
-              :class="`item-${index}`"
-            >
-              <img
-                :src="item"
-                alt="img"
-                v-show="isImageFullyLoaded"
-                @load="onImgLoad"
-              />
-            </div>
-          </VueSlickCarousel>
+          <SliderProduct :items="item.images" v-if="item.images.length > 1" />
           <img
             :src="item.image"
             alt="img"
-            v-else-if="item.image.length > 0 && width < 840"
+            v-show="isImageFullyLoaded"
+            @load="onImgLoad"
+            v-else
+            class="product-info__slider-img"
           />
         </div>
         <div class="product-info__block">
@@ -105,19 +98,20 @@ export default {
     grid-template-columns: 1fr;
   }
   &__slider {
-    max-width: 640px;
+    img {
+      max-width: 640px;
+      width: 100%;
+    }
 
     position: relative;
     background-color: #f2f3f6;
-
-    img {
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
+    &--img {
+      background-color: #fff;
     }
     @media (max-width: 840px) {
       margin: 0 auto;
       margin-bottom: 60px;
+      max-width: 550px;
     }
     @media (max-width: 700px) {
       max-width: 550px;
@@ -147,10 +141,14 @@ export default {
         &-item {
           font-size: 16px;
           margin-bottom: 10px;
+          display: flex;
+          gap: 5px;
         }
-        svg {
-          width: 12px;
-          height: 12px;
+        &-svg {
+          svg {
+            width: 12px;
+            height: 12px;
+          }
         }
       }
     }
@@ -163,47 +161,13 @@ export default {
           line-height: 20px;
           margin-bottom: 20px;
         }
-        svg {
-          width: 12px;
-          height: 12px;
+        &-svg {
+          svg {
+            width: 12px;
+            height: 12px;
+          }
         }
       }
-    }
-  }
-  .slick-slider {
-    height: 100%;
-    position: relative;
-  }
-  .slick-next {
-    position: absolute;
-    z-index: 10;
-
-    &::before {
-      position: absolute;
-      content: "";
-      width: 40px;
-      height: 40px;
-      background: url("~assets/svg/arrow-slider.svg") no-repeat;
-      top: 0;
-      right: 5px;
-      opacity: 1;
-    }
-  }
-
-  .slick-prev {
-    position: absolute;
-    z-index: 10;
-
-    &::before {
-      position: absolute;
-      content: "";
-      width: 40px;
-      height: 40px;
-      background: url("~assets/svg/arrow-slider.svg") no-repeat;
-      top: 5px;
-      left: 5px;
-      transform: rotate(180deg);
-      opacity: 1;
     }
   }
 }
