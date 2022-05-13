@@ -36,9 +36,9 @@ export default {
     @media (max-width: 790px) {
       padding-bottom: 40px;
     }
-    @media (max-width: 768px) {
-      padding-top: 40px;
-    }
+    // @media (max-width: 768px) {
+    //   padding-top: 40px;
+    // }
   }
   &__item {
     margin-bottom: 50px;

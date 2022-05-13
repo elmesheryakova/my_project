@@ -76,6 +76,7 @@
         :src="item.images[0]"
         alt="img"
       />
+      <img v-if="$route.name === 'accessories'" :src="item.image" alt="img" />
       <img
         v-else
         :src="width > 860 ? item.image : item.image_mobile"

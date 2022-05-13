@@ -5,7 +5,7 @@
       {{ productCurrent.name }}
     </h1>
     <ProductItem
-      v-for="(item, idx) in product"
+      v-for="(item, idx) in product.items"
       :key="idx"
       :item="item"
       :slug="productCurrent.slug"
@@ -21,16 +21,24 @@ export default {
       product: [],
     };
   },
-
-  async fetch() {
-    this.productCurrent = await fetch(
-      `https://api.petexpert.pro/v1/production/categories/${this.$route.params.current}/`
-    ).then((res) => res.json());
-    const { data } = await this.$axios.get(
-      `https://api.petexpert.pro/v1/production/items/?categories__slug=${this.productCurrent.slug}`
+  async asyncData({ $axios, params }) {
+    const productCurrent = await $axios.$get(
+      `https://api.petexpert.pro/v1/production/categories/${params.current}/`
     );
-    this.product = data.items;
+    const product = await $axios.$get(
+      `https://api.petexpert.pro/v1/production/items/?categories__slug=${productCurrent.slug}`
+    );
+    return { productCurrent, product };
   },
+  // async fetch() {
+  //   this.productCurrent = await fetch(
+  //     `https://api.petexpert.pro/v1/production/categories/${this.$route.params.current}/`
+  //   ).then((res) => res.json());
+  //   const { data } = await this.$axios.get(
+  //     `https://api.petexpert.pro/v1/production/items/?categories__slug=${this.productCurrent.slug}`
+  //   );
+  //   this.product = data.items;
+  // },
 };
 </script>
 <style lang="scss">

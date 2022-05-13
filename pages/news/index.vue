@@ -57,9 +57,9 @@ export default {
     @media (max-width: 790px) {
       padding-bottom: 40px;
     }
-    @media (max-width: 768px) {
-      padding-top: 40px;
-    }
+    // @media (max-width: 768px) {
+    //   padding-top: 40px;
+    // }
   }
   .footer-feedback__wrap {
     padding: 60px 0;

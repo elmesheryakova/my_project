@@ -18,7 +18,11 @@
               />
             </div>
           </VueSlickCarousel>
-          <img :src="item.image" alt="img" v-else-if="item.image.length > 0" />
+          <img
+            :src="item.image"
+            alt="img"
+            v-else-if="item.image.length > 0 && width < 840"
+          />
         </div>
         <div class="product-info__block">
           <h3 class="advantages__item-title">Преимущества</h3>
@@ -59,6 +63,7 @@ export default {
   },
   data() {
     return {
+      width: 0,
       isImageFullyLoaded: false,
       settings: {
         arrow: true,
@@ -76,9 +81,15 @@ export default {
     onImgLoad(el) {
       if (el.target.complete) this.isImageFullyLoaded = true;
     },
+    updateWidth() {
+      this.width = window.innerWidth;
+    },
   },
   created() {},
-  mounted() {},
+  mounted() {
+    window.addEventListener("resize", this.updateWidth);
+    this.updateWidth();
+  },
 };
 </script>
 <style lang="scss" >

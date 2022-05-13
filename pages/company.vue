@@ -18,7 +18,7 @@
       </div>
       <SolutionMobile :items="page.conceptions" />
     </template>
-    <SliderTeamSlider />
+    <SliderTeamSlider :items="page.employees" />
     <News :width="width" :items="page.news" />
     <Feedback :enableWaveAnimation="true" />
     <Footer />
