@@ -10,7 +10,7 @@
         <p class="news-only__item-date">{{ item.created_at }}</p>
       </div>
     </div>
-    <Subscribtion />
+    <Subscription />
   </div>
 </template>
 <script>

@@ -236,7 +236,7 @@ export default {
           hasCanvas: true,
           title: "Вода",
           titleBig: true,
-          desc: "Замена стеклянной тары, ПВХ или поликарбонат на ПЭТ бутыль",
+          desc: "Замена стеклянной тары, ПВХ или поликарбонат на ПЭТ-бутыль",
           position: "right",
           hasBg: true,
           mobileImgSrc: require("~/assets/img/promo-mobile-first-w.jpg"),
@@ -250,7 +250,7 @@ export default {
           list: [
             "Не содержит Бисфенол-А",
             "Полностью пригодна к переработке",
-            "Стерильная среда внутри ПЭТ бутыли",
+            "Стерильная среда внутри ПЭТ-бутыли",
             "Не пропускает кислород, не выделяет токсины",
           ],
           mobileImgSrc: require("~/assets/img/promo-mobile1-w.jpg"),

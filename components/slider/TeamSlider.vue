@@ -4,7 +4,7 @@
       <h2 class="team__title">Команда</h2>
     </div>
     <div class="container" v-else>
-      <h2 class="news__title">Команда <span> PET-Expert</span></h2>
+      <h2 class="news__title">Команда <span> PET-EXPERT</span></h2>
     </div>
 
     <div class="team__slider swiper" v-swiper:mySwiper="swiperOption">

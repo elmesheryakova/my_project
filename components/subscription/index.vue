@@ -13,7 +13,7 @@
           Присоединяйтесь <br />
           <span> к нашей команде</span>
         </h3>
-        <SubscribtionForm />
+        <SubscriptionForm />
       </div>
     </div>
   </div>

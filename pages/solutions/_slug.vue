@@ -21,7 +21,7 @@
       </div>
       <div class="container" v-if="item.reasons.length">
         <h2 class="block__title" v-if="item.name === 'Вода'">
-          <span>4 причины</span> использовать ПЭТ бутыль для воды
+          <span>4 причины</span> использовать ПЭТ-бутыль для воды
         </h2>
         <h2 class="block__title" v-else>
           <span>4 причины</span> заменить металлические кеги на ПЭТ

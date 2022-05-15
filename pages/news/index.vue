@@ -2,7 +2,7 @@
   <div class="news-page">
     <h1 class="pages__title">Новости и статьи</h1>
     <News :items="news.items" :width="width" />
-    <Subscribtion />
+    <Subscription />
   </div>
 </template>
 <script>

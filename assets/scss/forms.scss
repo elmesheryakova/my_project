@@ -223,6 +223,16 @@
       padding-left: 0;
       padding-right: 0;
     }
+    &--disabled {
+      color: #c4c4c4 !important;
+      border-color: #c4c4c4 !important;
+
+      &:hover {
+        border-color: #c4c4c4 !important;
+        color: $black;
+        cursor: auto;
+      }
+    }
   }
   .feedback-popup__footer {
     @media (max-width: 640px) {

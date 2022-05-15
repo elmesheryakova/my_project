@@ -2,8 +2,11 @@
   <client-only>
     <div class="career">
       <div class="container">
-        <h1 class="pages__title">Карьера в PET-Expert</h1>
-        <div
+        <h1 class="pages__title">Карьера в PET-EXPERT</h1>
+        <h2 class="career__title">
+          Смотрите все наши вакансии на <span><a href="#">Head Hunter</a></span>
+        </h2>
+        <!-- <div
           class="career__block"
           v-for="(item, index) in vacancy.items"
           :key="index"
@@ -32,11 +35,12 @@
               <h4>{{ item.name }}</h4>
               <p class="mb-0" v-html="item.description"></p>
             </a>
-            <!-- <p v-if="item.vacancy == 0">Вакансии отсутствуют</p> -->
           </b-collapse>
-        </div>
-        <Subscribtion />
+        </div> -->
+        <Subscription />
       </div>
+
+      <ModalSuccess />
     </div>
   </client-only>
 </template>
@@ -71,7 +75,26 @@ export default {
 <style lang="scss">
 .career {
   padding: 135px 0 0;
-
+  &__title {
+    font-size: 48px;
+    line-height: 58px;
+    font-weight: bold;
+    text-align: center;
+    span {
+      white-space: nowrap;
+      color: $primary;
+      text-decoration: underline;
+    }
+    @media (max-width: 991px) {
+      font-size: 35px;
+      line-height: 40px;
+    }
+    @media (max-width: 600px) {
+      font-size: 25px;
+      line-height: 30px;
+      text-align: center;
+    }
+  }
   @media (max-width: 991px) {
     padding-top: 90px;
   }

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-form @submit.prevent>
+    <b-form @submit.prevent="checkForm">
       <b-form-group id="input-group-1" label-for="input-1">
         <b-form-input
           id="input-1"
@@ -9,7 +9,6 @@
           v-model.trim="form.name"
           :class="$v.form.name.$error ? 'is-invalid' : ''"
         ></b-form-input>
-        <!-- class="is-invalid" -->
         <label for="input-1">Ваше имя</label>
         <svgicon name="require" />
         <div
@@ -70,41 +69,39 @@
       </div>
 
       <div class="d-flex feedback-popup__footer">
-        <button
-          class="feedback-popup__submit"
-          type="submit"
-          @click="createdMessage"
-        >
-          Отправить
-        </button>
-        <b-form-checkbox
-          id="checkbox-1"
-          v-model="form.status"
-          name="checkbox-1"
-          value="accepted"
-          unchecked-value="not_accepted"
-        >
-          Соглашаюсь на обработку персональных данных, согласно
-          <a href="/Policy.pdf" target="_blank">политики конфиденциальности</a>
-        </b-form-checkbox>
+        <button class="feedback-popup__submit" type="submit">Отправить</button>
+        <div class="d-flex flex-column">
+          <b-form-checkbox
+            id="checkbox-1"
+            v-model="form.status"
+            name="checkbox-1"
+            :class="$v.form.status.$error ? 'is-invalid' : ''"
+          >
+            Соглашаюсь на обработку персональных данных, согласно
+            <a href="/Policy.pdf" target="_blank"
+              >политики конфиденциальности</a
+            >
+          </b-form-checkbox>
+          <div v-if="!$v.form.status.sameAs" class="invalid-feedback">
+            Прочтите соглашение
+          </div>
+        </div>
       </div>
     </b-form>
-    <ModalSuccess v-if="isSuccess" />
   </div>
 </template>
 <script>
 import { validationMixin } from "vuelidate";
-import { required, email } from "vuelidate/lib/validators";
+import { required, email, sameAs } from "vuelidate/lib/validators";
 export default {
   mixins: [validationMixin],
   data() {
     return {
-      isSuccess: false,
       form: {
         name: "",
         email: "",
         files: [],
-        status: "accepted",
+        status: true,
       },
     };
   },
@@ -122,16 +119,20 @@ export default {
       },
       status: {
         required,
+        sameAs: sameAs(() => true),
       },
     },
   },
 
   methods: {
     checkForm() {
-      this.$v.form.$touch();
+      if (this.$v.$invalid) {
+        this.$v.form.$touch();
+        return;
+      }
       if (!this.$v.form.$error) {
-        console.log("success");
-        // this.isSuccess = true;
+        this.createdMessage();
+        this.$bvModal.show("modal-success");
       }
     },
     createdMessage() {
@@ -139,9 +140,7 @@ export default {
       for (var i = 0; i < this.form.files.length; i++) {
         let file = this.form.files[i];
         bodyFormData.append(`file`, file);
-        // console.log(file);
       }
-      this.checkForm();
       bodyFormData.append("name", this.form.name),
         bodyFormData.append("email", this.form.email),
         this.$axios({

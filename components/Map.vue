@@ -22,9 +22,9 @@
           <img src="~/assets/img/route-icon.svg" alt="Маршрут" />
           <span>Маршрут</span>
         </div>
-        <div class="contacts-map__route-links">
+        <div class="contacts-map__route-links" :key="idx">
           <a
-            href="https://www.google.com/maps/dir//55.386574,36.728607"
+            :href="`https://www.google.com/maps/dir//${mapLink}`"
             target="_blank"
             class="
               contacts-map__route-link contacts-map__route-link--google
@@ -37,7 +37,7 @@
             <span class="contacts-map__route-link-title">Google maps</span>
           </a>
           <a
-            href="https://yandex.ru/maps/?mode=routes&rtext=~55.386574,36.728607&rtt=auto"
+            :href="`https://yandex.ru/maps/?mode=routes&rtext=~${mapLink}&rtt=auto`"
             target="_blank"
             class="
               contacts-map__route-link contacts-map__route-link--google
@@ -53,7 +53,7 @@
             <span class="contacts-map__route-link-title">Яндекс карты</span>
           </a>
           <a
-            href="https%3A%2F%2F2gis.ru%2Fdirections%2Fpoints%2F%7C36.728607%2C55.386574%3Fm%3D36.728607%2C55.386574"
+            :href="`https://2gis.ru/spb/search/${mapLink}`"
             target="_blank"
             class="
               contacts-map__route-link contacts-map__route-link--2gis
@@ -103,6 +103,17 @@ export default {
         return [48.375874, 135.104166];
       } else if (this.tabIndex === 3) {
         return [45.01281, 38.942893];
+      }
+    },
+    mapLink() {
+      if (this.tabIndex === 0) {
+        return "55.386021,36.728357";
+      } else if (this.tabIndex === 1) {
+        return "54.914933,82.948771";
+      } else if (this.tabIndex === 2) {
+        return "48.375874,135.104166";
+      } else if (this.tabIndex === 3) {
+        return "45.01281,38.942893";
       }
     },
   },

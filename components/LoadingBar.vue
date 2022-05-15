@@ -87,7 +87,7 @@
               gradientUnits="userSpaceOnUse"
             >
               <stop stop-color="#1B2AC9" />
-              <stop offset="1" stop-color="#0073F0" />
+              <stop offset="1" stop-color="#1B2AC9"/>
             </linearGradient>
           </defs>
         </g>

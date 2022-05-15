@@ -61,12 +61,17 @@ export default {
     color: $primary;
     font-size: 64px;
     font-weight: 600;
+    @media (max-width: 860px) {
+      font-size: 40px;
+    }
     @media (max-width: 670px) {
       padding-top: 80px;
       padding-bottom: 80px;
     }
     @media (max-width: 500px) {
-      padding-bottom: 50px;
+      font-size: 30px;
+      padding: 50px 0;
+      padding-top: 70px;
     }
   }
 }

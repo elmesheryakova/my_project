@@ -11,7 +11,7 @@
       </picture>
 
       <h3 class="company-banner__title">
-        PET-Expert <br /><span>это новая норма</span>
+        PET-EXPERT <br /><span>это новая норма</span>
       </h3>
     </div>
     <div class="company-banner__text">
