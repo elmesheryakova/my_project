@@ -11,7 +11,7 @@ export default {
     host: '0.0.0.0',
   },
   head: {
-    title: 'pet-expert',
+    title: 'PET-EXPERT',
     htmlAttrs: {
       lang: 'ru'
     },

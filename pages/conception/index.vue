@@ -3,7 +3,7 @@
     <Banner />
     <template v-if="width > 860">
       <div
-        v-for="(item, index) in conception.items"
+        v-for="(item, index) in page.items"
         :key="index"
         :style="'background: #f2f3f7'"
       >
@@ -11,7 +11,7 @@
       </div>
     </template>
 
-    <Advantages :width="width" :items="conception.items" v-else />
+    <Advantages :width="width" :items="page.items" v-else />
     <ConceptBanner />
     <Feedback :enableWaveAnimation="true" />
     <Footer />
@@ -20,17 +20,24 @@
 <script>
 export default {
   layout: "fullscreen",
+  head() {
+    return {
+      title: this.page.seo.seo_title,
+      description: this.page.seo.seo_description,
+    };
+  },
   data() {
     return {
       width: 0,
-      conception: [],
+      page: [],
     };
   },
   async asyncData({ $axios }) {
-    const conception = await $axios.$get(
-      `https://api.petexpert.pro/v1/conception/`
+    const page = await $axios.$get(
+      `https://api.petexpert.pro/v1/pages/conception/`
     );
-    return { conception };
+
+    return { page };
   },
   methods: {
     updateWidth() {
@@ -42,10 +49,6 @@ export default {
     window.addEventListener("resize", this.updateWidth);
 
     this.updateWidth();
-    // this.$nextTick(() => {
-    //   this.$nuxt.$loading.start();
-    //   setTimeout(() => this.$nuxt.$loading.finish(), 2000);
-    // });
   },
 };
 </script>

@@ -11,6 +11,12 @@
 </template>
 <script>
 export default {
+  head() {
+    return {
+      title: this.page.seo.seo_title,
+      description: this.page.seo.seo_description,
+    };
+  },
   data() {
     return {
       page: {},
@@ -22,12 +28,7 @@ export default {
     );
     return { page };
   },
-  mounted() {
-    // this.$nextTick(() => {
-    //   this.$nuxt.$loading.start();
-    //   setTimeout(() => this.$nuxt.$loading.finish(), 500);
-    // });
-  },
+  mounted() {},
 };
 </script>
 

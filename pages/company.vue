@@ -27,6 +27,12 @@
 <script>
 export default {
   layout: "fullscreen",
+  head() {
+    return {
+      title: this.page.seo.seo_title,
+      description: this.page.seo.seo_description,
+    };
+  },
   data() {
     return {
       width: 0,
@@ -49,10 +55,6 @@ export default {
     window.addEventListener("resize", this.updateWidth);
 
     this.updateWidth();
-    // this.$nextTick(() => {
-    //   this.$nuxt.$loading.start();
-    //   setTimeout(() => this.$nuxt.$loading.finish(), 2000);
-    // });
   },
 };
 </script>

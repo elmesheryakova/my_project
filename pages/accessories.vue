@@ -2,29 +2,35 @@
   <div class="accessories">
     <div class="container">
       <ProductPreview />
-      <h1 class="pages__title">Комплектующие</h1>
+      <h1 class="pages__title">{{ page.name }}</h1>
     </div>
-    <Advantages :width="width" :items="access" />
+    <Advantages :width="width" :items="access.items" />
     <Feedback />
   </div>
 </template>
 <script>
 export default {
+  head() {
+    return {
+      title: this.page.seo.seo_title,
+      description: this.page.seo.seo_description,
+    };
+  },
   data() {
     return {
       width: 0,
-
+      page: [],
       access: [],
     };
   },
-  async fetch() {
-    const { data } = await this.$axios.get(
+  async asyncData({ $axios, params }) {
+    const page = await $axios.$get(
+      `https://api.petexpert.pro/v1/production/categories/accessories/`
+    );
+    const access = await $axios.$get(
       `https://api.petexpert.pro/v1/production/items/?categories__slug=accessories`
     );
-    this.access = data.items;
-    this.access.forEach((el, i) => {
-      this.$set(el, "index", i + 1);
-    });
+    return { access, page };
   },
 
   methods: {
@@ -37,6 +43,9 @@ export default {
     window.addEventListener("resize", this.updateWidth);
 
     this.updateWidth();
+    this.access.items.forEach((el, i) => {
+      this.$set(el, "index", i + 1);
+    });
   },
 };
 </script>

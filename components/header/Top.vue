@@ -77,6 +77,7 @@ export default {
     margin-right: 20px;
     svg {
       height: 33px;
+
       @media (max-width: map-get($grid-breakpoints, "md")) {
         height: 25px;
       }

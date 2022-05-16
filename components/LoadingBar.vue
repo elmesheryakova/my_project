@@ -1,6 +1,6 @@
 <template>
   <div v-if="loading && $route.name === 'index'">
-    <div class="loader">
+    <div class="loader" v-show="$route.name === 'index'">
       <svg
         version="1.1"
         width="339"
@@ -24,7 +24,7 @@
           >
             <stop :offset="`${percent}%`" style="stop-color: #1b2ac9" />
 
-            <stop :offset="`${percent}%`" stop-color="#fff" />
+            <stop :offset="`${percent}%`" stop-color="transparent" />
           </linearGradient>
         </defs>
         <g style="fill: url(#three_opacity_stops)">
@@ -87,12 +87,12 @@
               gradientUnits="userSpaceOnUse"
             >
               <stop stop-color="#1B2AC9" />
-              <stop offset="1" stop-color="#1B2AC9"/>
+              <stop offset="1" stop-color="#1B2AC9" />
             </linearGradient>
           </defs>
         </g>
       </svg>
-      <div class="loader__percent">{{ showPercent }} %</div>
+      <!-- <div class="loader__percent">{{ showPercent }} %</div> -->
     </div>
   </div>
 </template>
@@ -118,11 +118,11 @@ export default {
   mounted() {
     const interval = setInterval(() => {
       if (this.percent < 100) {
-        this.percent += 0.6;
+        this.percent += 1.9;
       } else {
         clearInterval(interval);
       }
-    }, 10);
+    }, 4);
   },
 };
 </script>
@@ -136,7 +136,7 @@ export default {
   padding: 1rem;
   text-align: center;
   font-size: 3rem;
-  font-family: sans-serif;
+  font-family: Gerbera;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -144,7 +144,7 @@ export default {
 
   &::after {
     content: "";
-    background: rgba(#f2f3f6, 1);
+    background: #dee3e5;
     top: 50%;
     left: 50%;
     width: 100vw;
@@ -156,6 +156,7 @@ export default {
   &__percent {
     color: #1b2ac9;
     margin-top: 20px;
+    font-family: Gerbera;
   }
 }
 </style>

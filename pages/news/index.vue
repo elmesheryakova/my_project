@@ -1,23 +1,29 @@
 <template>
   <div class="news-page">
-    <h1 class="pages__title">Новости и статьи</h1>
-    <News :items="news.items" :width="width" />
+    <h1 class="pages__title">{{ page.header }}</h1>
+    <News :items="page.items" :width="width" />
     <Subscription />
   </div>
 </template>
 <script>
 export default {
+  head() {
+    return {
+      title: this.page.seo.seo_title,
+      description: this.page.seo.seo_description,
+    };
+  },
   data() {
     return {
       width: 0,
-      news: {},
+
+      page: [],
     };
   },
   async asyncData({ $axios }) {
-    const news = await $axios.$get(
-      `https://api.petexpert.pro/v1/company/news/`
-    );
-    return { news };
+    const page = await $axios.$get(`https://api.petexpert.pro/v1/pages/news/`);
+
+    return { page };
   },
   methods: {
     updateWidth() {

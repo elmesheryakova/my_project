@@ -14,6 +14,12 @@
 </template>
 <script>
 export default {
+  head() {
+    return {
+      title: this.page.seo.seo_title,
+      description: this.page.seo.seo_description,
+    };
+  },
   data() {
     return {
       width: 0,

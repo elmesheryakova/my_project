@@ -86,6 +86,7 @@ export default {
       value: this.$route.query.value,
       page: {},
       info: [],
+
       production: [],
     };
   },

@@ -1062,7 +1062,12 @@ export default {
     }
     return true;
   },
+  created() {},
   mounted() {
+    this.$nextTick(() => {
+      this.$nuxt.$loading.start();
+      setTimeout(() => this.$nuxt.$loading.finish(), 2500);
+    });
     window.addEventListener("resize", this.updateWidth);
     this.updateWidth();
     this.init();
@@ -1084,10 +1089,6 @@ export default {
     }
 
     window.addEventListener("scroll", getBodyScrollTop);
-    this.$nextTick(() => {
-      this.$nuxt.$loading.start();
-      setTimeout(() => this.$nuxt.$loading.finish(), 3000);
-    });
   },
 };
 </script>

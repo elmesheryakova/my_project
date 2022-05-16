@@ -9,14 +9,14 @@
       </Fullscroll>
 
       <Fullscroll :width="width">
-        <Solution :items="solutions.items" />
+        <Solution :items="page.items" />
       </Fullscroll>
       <Fullscroll :width="width"> <Footer /> </Fullscroll>
     </full-page>
   </client-only>
   <div v-else>
     <Banner />
-    <SolutionMobile :items="solutions.items" />
+    <SolutionMobile :items="page.items" />
     <Footer />
   </div>
 </template>
@@ -24,7 +24,12 @@
 <script>
 export default {
   layout: "fullscreen",
-
+  head() {
+    return {
+      title: this.page.seo.seo_title,
+      description: this.page.seo.seo_description,
+    };
+  },
   data() {
     return {
       width: 0,
@@ -35,15 +40,16 @@ export default {
         navigation: false,
         responsiveWidth: 1300,
       },
-      solutions: [],
+      page: [],
     };
   },
 
   async asyncData({ $axios }) {
-    const solutions = await $axios.$get(
-      `https://api.petexpert.pro/v1/solutions/`
+    const page = await $axios.$get(
+      `https://api.petexpert.pro/v1/pages/solutions/`
     );
-    return { solutions };
+
+    return { page };
   },
   methods: {
     updateWidth() {
@@ -57,10 +63,6 @@ export default {
   mounted() {
     window.addEventListener("resize", this.updateWidth);
     this.updateWidth();
-    // this.$nextTick(() => {
-    //   this.$nuxt.$loading.start();
-    //   setTimeout(() => this.$nuxt.$loading.finish(), 2000);
-    // });
   },
 };
 </script>

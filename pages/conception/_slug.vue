@@ -27,9 +27,14 @@
 </template>
 <script>
 export default {
+  head() {
+    return {
+      title: this.conceptionID.seo.seo_title,
+      description: this.conceptionID.seo.seo_description,
+    };
+  },
   data() {
     return {
-      conceptId: this.$store.state.conceptId,
       width: 0,
       conceptionID: {},
     };

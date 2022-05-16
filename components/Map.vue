@@ -22,7 +22,7 @@
           <img src="~/assets/img/route-icon.svg" alt="Маршрут" />
           <span>Маршрут</span>
         </div>
-        <div class="contacts-map__route-links" :key="idx">
+        <div class="contacts-map__route-links">
           <a
             :href="`https://www.google.com/maps/dir//${mapLink}`"
             target="_blank"

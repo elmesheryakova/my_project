@@ -46,10 +46,15 @@
 </template>
 <script>
 export default {
+  head() {
+    return {
+      title: this.page.seo.seo_title,
+      description: this.page.seo.seo_description,
+    };
+  },
   data() {
     return {
-      vacancy: {},
-
+      page: [],
       width: 0,
     };
   },
@@ -60,10 +65,11 @@ export default {
     },
   },
   async asyncData({ $axios }) {
-    const vacancy = await $axios.$get(
-      `https://api.petexpert.pro/v1/career/vacancies/`
+    const page = await $axios.$get(
+      `https://api.petexpert.pro/v1/pages/career/`
     );
-    return { vacancy };
+
+    return { page };
   },
 
   mounted() {

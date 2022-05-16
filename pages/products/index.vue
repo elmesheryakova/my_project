@@ -1,10 +1,10 @@
 <template>
   <div class="products">
     <div class="container">
-      <h1 class="products__title">Продукция</h1>
+      <h1 class="products__title">{{ page.header }}</h1>
       <div class="products__block">
         <nuxt-link
-          v-for="(item, idx) in products.items"
+          v-for="(item, idx) in page.categories"
           :key="idx"
           :class="`img-${item.id}`"
           class="products__block-item"
@@ -23,23 +23,24 @@
 </template>
 <script>
 export default {
+  head() {
+    return {
+      title: this.page.seo.seo_title,
+      description: this.page.seo.seo_description,
+    };
+  },
   data() {
     return {
-      products: [],
+      page: [],
     };
   },
   async asyncData({ $axios }) {
-    const products = await $axios.$get(
-      `https://api.petexpert.pro/v1/production/categories/`
+    const page = await $axios.$get(
+      `https://api.petexpert.pro/v1/pages/productions/`
     );
-    return { products };
+    return { page };
   },
-  mounted() {
-    // this.$nextTick(() => {
-    //   this.$nuxt.$loading.start();
-    //   setTimeout(() => this.$nuxt.$loading.finish(), 2000);
-    // });
-  },
+  mounted() {},
 };
 </script>
 <style lang="scss">

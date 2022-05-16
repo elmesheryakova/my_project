@@ -1,7 +1,7 @@
 <template>
   <div class="docs">
     <div class="container">
-      <h1 class="pages__title">Сертификаты</h1>
+      <h1 class="pages__title">{{ page.header }}</h1>
       <div class="docs__inner">
         <div class="docs__item" v-for="item in page.items" :key="item.id">
           <img :src="item.image" :alt="item.name" />
@@ -22,15 +22,22 @@
 <script>
 import axios from "axios";
 export default {
+  head() {
+    return {
+      title: this.page.seo.seo_title,
+      description: this.page.seo.seo_description,
+    };
+  },
   data() {
     return {
-      page: {},
+      page: [],
     };
   },
   async asyncData({ $axios }) {
     const page = await $axios.$get(
-      `https://api.petexpert.pro/v1/company/certificates/`
+      `https://api.petexpert.pro/v1/pages/certificates/`
     );
+
     return { page };
   },
   computed: {},

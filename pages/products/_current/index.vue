@@ -15,6 +15,12 @@
 </template>
 <script>
 export default {
+  head() {
+    return {
+      title: this.productCurrent.seo.seo_title,
+      description: this.productCurrent.seo.seo_description,
+    };
+  },
   data() {
     return {
       productCurrent: {},
@@ -30,15 +36,6 @@ export default {
     );
     return { productCurrent, product };
   },
-  // async fetch() {
-  //   this.productCurrent = await fetch(
-  //     `https://api.petexpert.pro/v1/production/categories/${this.$route.params.current}/`
-  //   ).then((res) => res.json());
-  //   const { data } = await this.$axios.get(
-  //     `https://api.petexpert.pro/v1/production/items/?categories__slug=${this.productCurrent.slug}`
-  //   );
-  //   this.product = data.items;
-  // },
 };
 </script>
 <style lang="scss">
