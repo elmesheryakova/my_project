@@ -1,15 +1,21 @@
 <template>
   <div class="footer-feedback--white footer-feedback--news">
     <div class="footer-feedback__wrap">
-      <div class="container d-flex justify-content-between">
-        <h3
-          class="footer-feedback__title"
-          v-if="$route.name === 'news' || $route.name === 'news-slug'"
-        >
+      <div
+        class="container d-flex justify-content-between"
+        v-if="$route.name === 'news' || $route.name === 'news-slug'"
+      >
+        <h3 class="footer-feedback__title">
           Подпишитесь <br />
           <span> на рассылку новостей</span>
         </h3>
-        <h3 class="footer-feedback__title" v-if="$route.name === 'career'">
+        <SubscriptionNews />
+      </div>
+      <div
+        class="container d-flex justify-content-between"
+        v-if="$route.name === 'career'"
+      >
+        <h3 class="footer-feedback__title">
           Присоединяйтесь <br />
           <span> к нашей команде</span>
         </h3>

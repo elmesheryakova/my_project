@@ -1,105 +1,98 @@
 <template>
-  <b-form @submit.prevent>
+  <b-form @submit.prevent="checkForm">
     <b-form-group id="input-group-1" label-for="input-1">
-      <b-form-input
-        id="input-1"
-        type="text"
-        placeholder="Ваше имя"
-        v-model.trim="form.name"
-        :class="$v.form.name.$error ? 'is-invalid' : ''"
-      ></b-form-input>
-      <label for="input-1">Ваше имя</label>
-      <svgicon name="require" />
-      <div
-        v-if="$v.form.name.$dirty && !$v.form.name.required"
-        class="invalid-feedback"
-      >
-        Обязательное поле
-      </div>
+      <fieldset>
+        <legend :class="{ active: focusedName }">Ваше имя</legend>
+        <b-form-input
+          id="input-1"
+          type="text"
+          placeholder="Ваше имя"
+          v-model.trim="form.name"
+          @focus="focusedName = true"
+          @blur="focusedName = false"
+        ></b-form-input>
+
+        <svgicon name="require" />
+      </fieldset>
     </b-form-group>
     <b-form-group id="input-group-3" label-for="input-3">
-      <b-form-input
-        v-model.trim="form.email"
-        :class="$v.form.email.$error ? 'is-invalid' : ''"
-        id="input-3"
-        type="text"
-        placeholder="Электронная почта"
-      >
-      </b-form-input>
-      <label for="input-3">Электронная почта</label>
-      <svgicon name="require" />
-      <div
-        v-if="$v.form.email.$dirty && !$v.form.email.email"
-        class="invalid-feedback"
-      >
-        E-mail некорректный
-      </div>
-      <div
-        v-if="$v.form.email.$dirty && !$v.form.email.required"
-        class="invalid-feedback"
-      >
-        Обязательное поле
-      </div>
+      <fieldset>
+        <legend :class="{ active: focusedMail }">Электронная почта</legend>
+        <b-form-input
+          id="input-3"
+          type="text"
+          placeholder="Электронная почта"
+          v-model.trim="form.email"
+          @focus="focusedMail = true"
+          @blur="focusedMail = false"
+        >
+        </b-form-input>
+
+        <label for="input-3">Электронная почта</label>
+        <svgicon name="require" />
+      </fieldset>
     </b-form-group>
     <b-form-group id="input-group-2" label-for="input-2">
-      <b-form-input
-        v-model="form.phone"
-        :class="$v.form.phone.$error ? 'is-invalid' : ''"
-        id="input-2"
-        type="text"
-        placeholder="Телефон"
-        required
-      >
-      </b-form-input>
-      <label for="input-2">Телефон</label>
-      <svgicon name="require" />
-      <div
-        v-if="$v.form.phone.$dirty && !$v.form.phone.numeric"
-        class="invalid-feedback"
-      >
-        Телефон некорректный
-      </div>
-      <div
-        v-if="$v.form.phone.$dirty && !$v.form.phone.required"
-        class="invalid-feedback"
-      >
-        Обязательное поле
-      </div>
+      <fieldset>
+        <legend :class="{ active: focusedPhone }">Телефон</legend>
+        <b-form-input
+          v-model="form.phone"
+          id="input-2"
+          type="text"
+          placeholder="Телефон"
+          @focus="focusedPhone = true"
+          @blur="focusedPhone = false"
+          v-mask="'+7(999)999-99-99'"
+        >
+        </b-form-input>
+
+        <svgicon name="require" />
+      </fieldset>
     </b-form-group>
     <b-form-group label-for="textarea">
-      <b-form-textarea
-        id="textarea"
-        placeholder="Сообщение"
-        v-model="form.text"
-        no-resize
-      ></b-form-textarea>
-      <label for="textarea">Сообщение</label>
+      <fieldset>
+        <legend :class="{ active: focusedText }">Сообщение</legend>
+        <b-form-textarea
+          id="textarea"
+          placeholder="Сообщение"
+          v-model="form.text"
+          no-resize
+          @focus="focusedText = true"
+          @blur="focusedText = false"
+        ></b-form-textarea>
+        <svgicon name="require" class="svg-textarea" />
+      </fieldset>
     </b-form-group>
+    <span class="text-require"
+      ><svgicon name="require" /> - Поля, обязательные для заполнения</span
+    >
+
     <div class="d-flex feedback-popup__footer">
       <button
         class="feedback-popup__submit"
+        :disabled="$v.$invalid"
+        :class="{ 'feedback-popup__submit--disabled': $v.$invalid }"
         type="submit"
-        @click="createdMessage"
       >
         Отправить
       </button>
-      <b-form-checkbox
-        id="checkbox-1"
-        v-model="form.status"
-        name="checkbox-1"
-        value="accepted"
-        unchecked-value="not_accepted"
-        required
-      >
-        Соглашаюсь на обработку персональных данных, согласно
-        <a href="#">политики конфиденциальности</a>
-      </b-form-checkbox>
+      <div class="d-flex flex-column">
+        <b-form-checkbox
+          id="checkbox-1"
+          v-model="form.status"
+          name="checkbox-1"
+        >
+          Соглашаюсь на обработку персональных данных, согласно
+          <a href="/Policy.pdf" target="_blank">политики конфиденциальности</a>
+        </b-form-checkbox>
+      </div>
     </div>
   </b-form>
 </template>
 <script>
 import { validationMixin } from "vuelidate";
-import { required, email, numeric } from "vuelidate/lib/validators";
+import { required, email, sameAs } from "vuelidate/lib/validators";
+
 export default {
   mixins: [validationMixin],
   props: {
@@ -109,12 +102,16 @@ export default {
   },
   data() {
     return {
+      focusedName: false,
+      focusedPhone: false,
+      focusedMail: false,
+      focusedText: false,
       form: {
         name: "",
         email: "",
         phone: "",
         text: "",
-        status: "accepted",
+        status: true,
       },
     };
   },
@@ -123,29 +120,34 @@ export default {
       name: {
         required,
       },
+      text: {
+        required,
+      },
       email: {
         required,
         email,
       },
       phone: {
         required,
-        numeric,
       },
       status: {
         required,
+        sameAs: sameAs(() => true),
       },
     },
   },
   methods: {
     checkForm() {
-      this.$v.form.$touch();
+      if (this.$v.$invalid) {
+        this.$v.form.$touch();
+        return;
+      }
       if (!this.$v.form.$error) {
-        console.log("success");
-        // this.isSuccess = true;
+        this.createdMessage();
+        this.$bvModal.show("modal-success");
       }
     },
     createdMessage() {
-      this.checkForm();
       let bodyFormData = new FormData();
       bodyFormData.append("name", this.form.name),
         bodyFormData.append("email", this.form.email),
@@ -164,7 +166,6 @@ export default {
             this.form.name = "";
             this.form.phone = "";
             this.form.email = "";
-            this.$router.push({ name: "index" });
           })
           .catch((err) => {
             console.error(err);

@@ -4,54 +4,35 @@
       <b-form-group id="input-group-1" label-for="input-1">
         <fieldset>
           <legend :class="{ active: focusedPhone }">Ваше имя</legend>
+
           <b-form-input
             id="input-1"
             type="text"
             placeholder="Ваше имя"
             v-model.trim="form.name"
-            :class="{ 'is-invalid': $v.form.name.$error }"
             @focus="focusedPhone = true"
             @blur="focusedPhone = false"
           ></b-form-input>
 
           <svgicon name="require" />
-          <div
-            v-if="$v.form.name.$dirty && !$v.form.name.required"
-            class="invalid-feedback"
-          >
-            Обязательное поле
-          </div>
         </fieldset>
       </b-form-group>
 
       <b-form-group id="input-group-3" label-for="input-3">
         <fieldset>
           <legend :class="{ active: focusedMail }">Электронная почта</legend>
+
           <b-form-input
             id="input-3"
             type="text"
             placeholder="Электронная почта"
             v-model.trim="form.email"
-            :class="{ 'is-invalid': $v.form.name.$error }"
             @focus="focusedMail = true"
             @blur="focusedMail = false"
           >
           </b-form-input>
 
-          <label for="input-3">Электронная почта</label>
           <svgicon name="require" />
-          <div
-            v-if="$v.form.email.$dirty && !$v.form.email.email"
-            class="invalid-feedback"
-          >
-            E-mail некорректный
-          </div>
-          <div
-            v-if="$v.form.email.$dirty && !$v.form.email.required"
-            class="invalid-feedback"
-          >
-            Обязательное поле
-          </div>
         </fieldset>
       </b-form-group>
 
@@ -89,8 +70,8 @@
       <div class="d-flex feedback-popup__footer">
         <button
           class="feedback-popup__submit"
-          :disabled="$v.$invalid"
-          :class="{ 'feedback-popup__submit--disabled': $v.$invalid }"
+          :disabled="$v.form.$invalid"
+          :class="{ 'feedback-popup__submit--disabled': $v.form.$invalid }"
           type="submit"
         >
           Отправить
@@ -107,9 +88,6 @@
               >политики конфиденциальности</a
             >
           </b-form-checkbox>
-          <div v-if="!$v.form.status.sameAs" class="invalid-feedback">
-            Прочтите соглашение
-          </div>
         </div>
       </div>
     </b-form>
@@ -126,6 +104,7 @@ export default {
     return {
       focusedPhone: false,
       focusedMail: false,
+
       form: {
         name: "",
         email: "",
@@ -143,16 +122,14 @@ export default {
         required,
         email,
       },
-      files: {
-        required,
-      },
+
       status: {
         required,
         sameAs: sameAs(() => true),
       },
     },
   },
-
+  computed: {},
   methods: {
     checkForm() {
       if (this.$v.$invalid) {
@@ -161,19 +138,18 @@ export default {
       }
       if (!this.$v.form.$error) {
         this.createdMessage();
+
         this.$bvModal.show("modal-success");
       }
     },
+
     createdMessage() {
       let bodyFormData = new FormData();
-      for (var i = 0; i < this.form.files.length; i++) {
-        let file = this.form.files[i];
-        bodyFormData.append(`file`, file);
-      }
+
       bodyFormData.append("name", this.form.name),
         bodyFormData.append("email", this.form.email),
         this.$axios({
-          url: `https://api.petexpert.pro/v1/career/resume`,
+          url: `https://api.petexpert.pro/v1/feedback/newsletter-subscribe`,
           method: "POST",
           headers: {
             "Content-Type": "multipart/form-data",
@@ -181,7 +157,6 @@ export default {
           data: bodyFormData,
         })
           .then(({ data }) => {
-            this.form.files = [];
             this.form.name = "";
             this.form.email = "";
           })
@@ -190,17 +165,8 @@ export default {
           });
       this.bodyFormData = "";
     },
-    handleFileUploads() {
-      let uploadedFiles = this.$refs.files.files;
-
-      for (var i = 0; i < uploadedFiles.length; i++) {
-        this.form.files.push(uploadedFiles[i]);
-      }
-    },
-    addFiles() {
-      this.$refs.files.click();
-    },
   },
+  mounted() {},
 };
 </script>
 <style lang="scss">

@@ -2,6 +2,7 @@
   <div class="contacts-page">
     <ContactsSection :items="page.items" />
     <Feedback />
+    <ModalSuccess />
   </div>
 </template>
 <script>
