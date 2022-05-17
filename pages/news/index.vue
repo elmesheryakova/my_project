@@ -25,18 +25,14 @@ export default {
 
     return { page };
   },
-  computed: {
-    sliceURL() {
-      return this.$route.path.slice(this.$route.path.lastIndexOf("=") - 1);
-    },
-  },
+  computed: {},
   methods: {
     updateWidth() {
       this.width = window.innerWidth;
     },
     getCode() {
       this.$axios({
-        url: `https://api.petexpert.pro/v1/feedback/newsletter-subscribe?activation_code=42cc7d7e-bb24-4693-8719-ff308e7583f6`,
+        url: `https://api.petexpert.pro/v1/feedback/newsletter-subscribe?activation_code=${this.$route.query.subscribe}`,
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -54,8 +50,9 @@ export default {
   mounted() {
     window.addEventListener("resize", this.updateWidth);
     this.updateWidth();
-
-    this.getCode();
+    if (this.$route.query.subscribe) {
+      this.getCode();
+    }
   },
 };
 </script>
