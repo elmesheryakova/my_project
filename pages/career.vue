@@ -39,8 +39,6 @@
         </div> -->
         <Subscription />
       </div>
-
-      <ModalSuccess />
     </div>
   </client-only>
 </template>

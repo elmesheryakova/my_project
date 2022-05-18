@@ -11,26 +11,24 @@
       ]"
     >
       <div class="promo-slide__content" :class="{ left: position === 'left' }">
-        <div class="anim-bottle-wrap" :id="[`anim-${bottleType}-wrap`]"
-         v-if="index === 0"
-        >
         <div
-          class="anim-bottle"
-          :id="[`anim-${bottleType}-container`]"
+          class="anim-bottle-wrap"
+          :id="[`anim-${bottleType}-wrap`]"
+          v-if="index === 0"
         >
-          <div
-            class="anim-bottle__inner"
-            :id="[`anim-${bottleType}-inner-container`]"
-          >
-            <canvas
-              :id="[`anim-${bottleType}`]"
-              class="anim-bottle-canvas"
-              :width="canvasWidth()"
-              height="900"
-            ></canvas>
+          <div class="anim-bottle" :id="[`anim-${bottleType}-container`]">
+            <div
+              class="anim-bottle__inner"
+              :id="[`anim-${bottleType}-inner-container`]"
+            >
+              <canvas
+                :id="[`anim-${bottleType}`]"
+                class="anim-bottle-canvas"
+                :width="canvasWidth()"
+                height="900"
+              ></canvas>
+            </div>
           </div>
-        </div>
-
         </div>
         <div class="promo-slide__mobile-img">
           <img :src="mobileImgSrc" alt="ПЭТ" />

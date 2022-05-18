@@ -37,13 +37,16 @@
         <div class="awa-logo">
           <a href="http://awa.agency" target="_blank" class="logo-awa">
             <div class="logo-start">
-              <img :src="require('@/assets/svg/start.svg')" alt="awa" />
+              <svgicon name="start" />
+              <!-- <img :src="require('@/assets/svg/start.svg')" alt="awa" /> -->
             </div>
             <div class="logo-start1">
-              <img :src="require('@/assets/svg/pre-finish.svg')" alt="awa" />
+              <svgicon name="pre-finish" />
+              <!-- <img :src="require('@/assets/svg/pre-finish.svg')" alt="awa" /> -->
             </div>
             <div class="logo-finish">
-              <img :src="require('@/assets/svg/finish.svg')" alt="awa" />
+              <svgicon name="finish" />
+              <!-- <img :src="require('@/assets/svg/finish.svg')" alt="awa" /> -->
             </div>
           </a>
         </div>
@@ -125,17 +128,18 @@ export default {
     }
   }
 }
+
 .logo-awa {
   position: relative;
   width: 76px;
-  height: 26px;
+  height: 38px;
   cursor: pointer;
   display: block;
 }
 
 .logo-awa:hover .logo-finish {
   opacity: 1;
-  transform: translateX(0);
+  transform: translateX(25px);
   transition: all 0.3s ease-out;
 }
 
@@ -143,12 +147,13 @@ export default {
   opacity: 1;
   transition: all 0.3s ease-out;
 }
-.logo-finish,
+
 .logo-start1,
 .logo-start {
   position: absolute;
-  top: 0;
+  top: -4px;
   right: 0;
+  width: 20px;
 }
 
 .logo-start1 {
@@ -158,7 +163,8 @@ export default {
 
 .logo-finish {
   opacity: 0;
-  transform: translateX(4px);
+  transform: translateX(30px);
   transition: all 0.3s ease-out;
+  width: 50px;
 }
 </style>

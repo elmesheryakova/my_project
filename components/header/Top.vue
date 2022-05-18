@@ -165,7 +165,13 @@ export default {
     border-radius: 44px;
     font-weight: 300;
     color: #fff;
-    padding: 11px 26px 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    line-height: 0.9;
+    padding: 0 25px;
+
     white-space: nowrap;
     transition: 0.3 ease-out;
     @media (max-width: map-get($grid-breakpoints, "md")) {

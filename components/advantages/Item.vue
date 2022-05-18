@@ -66,17 +66,26 @@
       class="advantages__item-img"
       :class="{
         'advantages__item-img--even':
-          item.index % 2 === 0 &&
-          ($route.name === 'partners' || $route.name === 'accessories'),
+          item.index % 2 === 0 && $route.name === 'accessories',
       }"
-      v-if="item.image || item.images"
+      v-if="$route.name === 'accessories'"
+    >
+      <img :src="item.image" alt="img" />
+    </div>
+    <div
+      class="advantages__item-img"
+      :class="{
+        'advantages__item-img--even':
+          item.index % 2 === 0 && $route.name === 'partners',
+      }"
+      v-else
     >
       <img
         v-if="$route.name === 'conception' || $route.name === 'prices'"
         :src="item.images[0]"
         alt="img"
       />
-      <img v-if="$route.name === 'accessories'" :src="item.image" alt="img" />
+
       <img
         v-else
         :src="width > 860 ? item.image : item.image_mobile"

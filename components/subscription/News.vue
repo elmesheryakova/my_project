@@ -138,8 +138,7 @@ export default {
       }
       if (!this.$v.form.$error) {
         this.createdMessage();
-
-        this.$bvModal.show("modal-success");
+        this.$bvModal.show("modal-sub-success");
       }
     },
 
@@ -175,23 +174,6 @@ input[type="file"] {
   left: -1000px;
 }
 
-legend {
-  color: #bdbbbb;
-  font-size: 16px;
-  width: auto;
-  padding: 0 3px;
-  background-color: #fff;
-  position: relative;
-  z-index: 1;
-  opacity: 0;
-  transform: translate(5px, 14px);
-  transition: all 0.3s ease-in;
-  &.active {
-    opacity: 1;
-
-    transition: all 0.3s ease-in;
-  }
-}
 .file {
   margin-bottom: 30px;
   cursor: pointer;

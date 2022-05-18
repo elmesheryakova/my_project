@@ -2,7 +2,6 @@
   <div class="contacts-page">
     <ContactsSection :items="page.items" />
     <Feedback />
-    <ModalSuccess />
   </div>
 </template>
 <script>
@@ -34,6 +33,23 @@ export default {
   }
   @media (max-width: 768px) {
     padding-top: 60px;
+  }
+  legend {
+    color: #bdbbbb;
+    font-size: 16px;
+    width: auto;
+    padding: 0 3px;
+    background-color: #fff !important;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    transform: translate(5px, 14px);
+    transition: all 0.3s ease-in;
+    &.active {
+      opacity: 1;
+
+      transition: all 0.3s ease-in;
+    }
   }
 }
 </style>

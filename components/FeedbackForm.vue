@@ -42,7 +42,7 @@
           placeholder="Телефон"
           @focus="focusedPhone = true"
           @blur="focusedPhone = false"
-          v-mask="'+7(999)999-99-99'"
+          v-mask="'+7(###)###-##-##'"
         >
         </b-form-input>
 
@@ -70,18 +70,14 @@
     <div class="d-flex feedback-popup__footer">
       <button
         class="feedback-popup__submit"
-        :disabled="$v.$invalid"
+        :disabled="$v.$invalid && form.phone.length >= 16"
         :class="{ 'feedback-popup__submit--disabled': $v.$invalid }"
         type="submit"
       >
         Отправить
       </button>
       <div class="d-flex flex-column">
-        <b-form-checkbox
-          id="checkbox-1"
-          v-model="form.status"
-          name="checkbox-1"
-        >
+        <b-form-checkbox v-model="form.status">
           Соглашаюсь на обработку персональных данных, согласно
           <a href="/Policy.pdf" target="_blank">политики конфиденциальности</a>
         </b-form-checkbox>
@@ -91,7 +87,7 @@
 </template>
 <script>
 import { validationMixin } from "vuelidate";
-import { required, email, sameAs } from "vuelidate/lib/validators";
+import { required, email, sameAs, minLength } from "vuelidate/lib/validators";
 
 export default {
   mixins: [validationMixin],
@@ -129,6 +125,7 @@ export default {
       },
       phone: {
         required,
+        minLength: minLength(16),
       },
       status: {
         required,
@@ -142,8 +139,11 @@ export default {
         this.$v.form.$touch();
         return;
       }
+
       if (!this.$v.form.$error) {
         this.createdMessage();
+        this.$bvModal.hide("modal-header");
+        this.$bvModal.hide("modal-sidebar");
         this.$bvModal.show("modal-success");
       }
     },

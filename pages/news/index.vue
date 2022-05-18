@@ -3,6 +3,8 @@
     <h1 class="pages__title">{{ page.header }}</h1>
     <News :items="page.items" :width="width" />
     <Subscription />
+    <ModalSubSuccess />
+    <ModalNewsSuccess />
   </div>
 </template>
 <script>
@@ -52,6 +54,10 @@ export default {
     this.updateWidth();
     if (this.$route.query.subscribe) {
       this.getCode();
+      this.$bvModal.show("modal-news-success");
+      setTimeout(() => {
+        this.$router.replace({ query });
+      }, 100);
     }
   },
 };

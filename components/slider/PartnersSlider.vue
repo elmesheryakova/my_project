@@ -39,7 +39,10 @@
               {{ i.name }}
             </div>
             <div class="partners__quote">
-              {{ i.text }}
+              <div class="q-left"><svgicon name="q-left" /></div>
+
+              <p class="mb-0">{{ i.text }}</p>
+              <div class="q-right"><svgicon name="q-right" /></div>
             </div>
           </div>
         </div>
@@ -77,6 +80,7 @@ export default {
     var self = this;
     return {
       swiperOption: {
+        autoHeight: true,
         loop: true,
         speed: 1000,
         effect: "fade",
@@ -165,34 +169,41 @@ export default {
 }
 
 .partners__quote {
-  padding-left: 100px;
-  padding-right: 110px;
   position: relative;
-  font-size: 36px;
   font-weight: 700;
-  margin-bottom: 20px;
-  min-height: 110px;
-  display: flex;
+  margin: 60px 0;
+  display: grid;
+  grid-template-columns: 60px 1fr 60px;
+  max-width: 100%;
   align-items: center;
-
-  &:before,
-  &:after {
-    content: "«";
-    line-height: 1;
-    font-size: 144px;
-    position: absolute;
-    left: 0;
-    top: 50%;
-    margin-top: -0.13em;
-    transform: translateY(-50%);
-    color: $blue-2;
-    opacity: 0.2;
+  .q-left,
+  .q-right {
+    height: 50px;
+    min-width: 50px;
   }
+  p {
+    margin-right: auto;
+    padding: 0 50px;
+    font-size: 24px;
+    width: 100%;
+  }
+  @media (max-width: 801px) {
+    p {
+      padding: 0 30px;
+      font-size: 20px;
+    }
+  }
+  @media (max-width: 700px) {
+    grid-template-columns: 20px 1fr 20px;
 
-  &:after {
-    content: "»";
-    left: auto;
-    right: 0;
+    .q-left,
+    .q-right {
+      width: 20px;
+      height: 21px;
+      svg {
+        width: 20px;
+      }
+    }
   }
 }
 
@@ -233,6 +244,7 @@ export default {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  row-gap: 20px;
 }
 
 .partners-logos__item {
@@ -263,7 +275,15 @@ export default {
     transform: scale(1.2);
   }
 }
-
+.partners-logos__img {
+  max-width: 150px;
+  img {
+    width: 100%;
+  }
+  @media (max-width: 801px) {
+    max-width: 100px;
+  }
+}
 @include down("xl") {
   .partners__title {
     font-size: 80px;
@@ -282,12 +302,12 @@ export default {
   }
   .partners__company {
     font-size: 16px;
-    margin-bottom: 54px;
+    margin-bottom: 20px;
   }
   .partners__quote {
     font-size: 16px;
-    font-weight: 400;
-    line-height: 2;
+    // font-weight: 400;
+    // line-height: 2;
   }
   .partners-logos {
     justify-content: space-between;
@@ -308,11 +328,11 @@ export default {
     padding-right: 10px;
   }
 
-  .partners__quote {
-    padding-left: 60px;
-    padding-right: 50px;
-    line-height: 1.5;
-  }
+  // .partners__quote {
+  //   padding-left: 60px;
+  //   padding-right: 50px;
+  //   line-height: 1.5;
+  // }
 
   .partners__company {
     padding-left: 80px;

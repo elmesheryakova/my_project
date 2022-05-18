@@ -1,6 +1,7 @@
 <template>
   <div
     class="footer-feedback"
+    id="form"
     ref="elem"
     :class="{
       'footer-feedback--white':
@@ -8,6 +9,10 @@
         $route.name === 'accessories' ||
         $route.name === 'index' ||
         $route.name === 'contacts',
+      'wrapper-blue':
+        $route.name === 'solutions-slug' ||
+        $route.name === 'conception' ||
+        $route.name === 'company',
     }"
   >
     <!-- 'footer-feedback--animate': offsetTop < 0, -->

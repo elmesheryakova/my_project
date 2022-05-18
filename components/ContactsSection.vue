@@ -243,11 +243,10 @@ export default {
     border-radius: 44px;
     height: 40px;
     padding: 0 25px;
-    // display: flex;
-    // justify-content: center;
-    // align-items: center;
-    line-height: 35px;
-    font-weight: 400;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 0.9;
     &.active {
       color: $primary;
     }

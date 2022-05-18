@@ -5,6 +5,7 @@
       <Nuxt />
     </main>
     <Footer />
+    <ModalSuccess />
   </div>
 </template>
 

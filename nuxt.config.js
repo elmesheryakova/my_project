@@ -6,7 +6,7 @@ export default {
     },
   },
 
-  loading: '~/components/LoadingBar.vue',
+  // loading: '~/components/LoadingBar.vue',
   server: {
     host: '0.0.0.0',
   },
@@ -49,7 +49,8 @@ export default {
     { src: '~/plugins/ymapPlugin.js', mode: 'client' },
     { src: '~/plugins/fullpage.js', mode: 'client' },
     { src: '~/plugins/gsap.js', mode: 'client' },
-    { src: '~/plugins/vue-inputmask.js', mode: 'client' },
+    // { src: '~/plugins/vue-inputmask.js', mode: 'client' },
+    { src: '~/plugins/vue-mask.js', mode: 'client' },
     '~/plugins/eventBus.js',
   ],
 

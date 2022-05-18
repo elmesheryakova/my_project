@@ -125,6 +125,7 @@
         <ContactsSection :items="contacts.items" />
         <Feedback />
         <Footer />
+        <ModalSuccess />
       </div>
     </div>
     <div class="arrow-up" @click="updatePage">
@@ -1137,6 +1138,27 @@ export default {
 
 #fullpage-promo {
   overflow-x: hidden;
+  legend {
+    color: #bdbbbb;
+    font-size: 16px;
+    width: auto;
+    padding: 0 3px;
+    background-color: #fff;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    transform: translate(5px, 14px);
+    transition: all 0.3s ease-in;
+    &.active {
+      opacity: 1;
+      transition: all 0.3s ease-in;
+    }
+  }
+  .text-require {
+    svg path {
+      fill: $primary;
+    }
+  }
 }
 
 /* start promo-slides */

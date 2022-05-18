@@ -1,9 +1,7 @@
 <template>
   <div class="reviews">
-    <div class="container">
-      <h1 class="pages__title">{{ pages.header }}</h1>
-      <SliderPartnersSlider :items="page.items" />
-    </div>
+    <h1 class="pages__title">{{ pages.header }}</h1>
+    <SliderPartnersSlider :items="page.items" />
   </div>
 </template>
 <script>
