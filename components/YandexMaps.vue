@@ -1,6 +1,6 @@
 <template>
   <yandex-map
-    :coords="coords"
+    :coords="[lat, lng]"
     :controls="['zoomControl']"
     :zoom="15"
     :scrollZoom="false"
@@ -18,11 +18,8 @@
     }"
   >
     <ymap-marker
-      v-for="(location, index) in placemarks"
-      :key="index"
-      :marker-id="index"
       marker-type="placemark"
-      :coords="location"
+      :coords="[lat, lng]"
       :callbacks="{ click: getDataOfCoords }"
       cluster-name="1"
       :icon="{
@@ -39,18 +36,19 @@
 export default {
   components: {},
   props: {
-    placemarks: {
-      type: Array,
-      required: true,
-    },
-    coords: {
-      type: Array,
-      required: true,
-    },
     zoom: {
       type: Number,
       default: 15,
       required: true,
+    },
+    lat: {
+      type: Number,
+    },
+    lng: {
+      type: Number,
+    },
+    route_url: {
+      type: String,
     },
   },
   data() {

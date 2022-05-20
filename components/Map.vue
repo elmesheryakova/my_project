@@ -4,10 +4,11 @@
       <!-- <div class="contacts-map__map" id="contact-map"></div> -->
       <div class="wrapper-map">
         <yandex-maps
-          :coords="this.mapCoords"
-          :placemarks="items"
           :zoom="zoom"
           @set-coords="coords = $event"
+          :lat="lat"
+          :lng="lng"
+          :route_url="route_url"
         >
         </yandex-maps>
         <div class="animate-wrap">
@@ -24,7 +25,7 @@
         </div>
         <div class="contacts-map__route-links">
           <a
-            :href="`https://www.google.com/maps/dir//${mapLink}`"
+            :href="`https://www.google.com/maps/dir//${lat},${lng}`"
             target="_blank"
             class="
               contacts-map__route-link contacts-map__route-link--google
@@ -37,7 +38,7 @@
             <span class="contacts-map__route-link-title">Google maps</span>
           </a>
           <a
-            :href="`https://yandex.ru/maps/?mode=routes&rtext=~${mapLink}&rtt=auto`"
+            :href="`https://yandex.ru/maps/?mode=routes&rtext=~${lat},${lng}&rtt=auto`"
             target="_blank"
             class="
               contacts-map__route-link contacts-map__route-link--google
@@ -53,7 +54,7 @@
             <span class="contacts-map__route-link-title">Яндекс карты</span>
           </a>
           <a
-            :href="`https://2gis.ru/spb/search/${mapLink}`"
+            :href="`${route_url}`"
             target="_blank"
             class="
               contacts-map__route-link contacts-map__route-link--2gis
@@ -80,43 +81,22 @@ export default {
     tabIndex: {
       type: Number,
     },
+    lat: {
+      type: Number,
+    },
+    lng: {
+      type: Number,
+    },
+    route_url: {
+      type: String,
+    },
   },
   data() {
     return {
       zoom: 15,
-      items: [
-        [55.386021, 36.728357],
-        [54.914933, 82.948771],
-        [48.375874, 135.104166],
-        [45.01281, 38.942893],
-      ],
-      coords: [55.386021, 36.728357],
     };
   },
-  computed: {
-    mapCoords() {
-      if (this.tabIndex === 0) {
-        return [55.386021, 36.728357];
-      } else if (this.tabIndex === 1) {
-        return [54.914933, 82.948771];
-      } else if (this.tabIndex === 2) {
-        return [48.375874, 135.104166];
-      } else if (this.tabIndex === 3) {
-        return [45.01281, 38.942893];
-      }
-    },
-    mapLink() {
-      if (this.tabIndex === 0) {
-        return "55.386021,36.728357";
-      } else if (this.tabIndex === 1) {
-        return "54.914933,82.948771";
-      } else if (this.tabIndex === 2) {
-        return "48.375874,135.104166";
-      } else if (this.tabIndex === 3) {
-        return "45.01281,38.942893";
-      }
-    },
-  },
+  computed: {},
   created() {
     this.$bus.$on("get-data-point", (coords) => {});
   },
@@ -197,7 +177,10 @@ export default {
 }
 .contacts-map__bottom {
   position: absolute;
-  bottom: 0;
+  bottom: 50px;
   left: 0;
+  @media (max-width: 990px) {
+    bottom: 0;
+  }
 }
 </style>

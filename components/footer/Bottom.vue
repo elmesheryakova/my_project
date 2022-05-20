@@ -128,22 +128,24 @@ export default {
     }
   }
 }
-
+.awa-logo {
+  padding: 5px;
+}
 .logo-awa {
   position: relative;
   width: 76px;
-  height: 38px;
+  height: 20px;
   cursor: pointer;
   display: block;
 }
 
-.logo-awa:hover .logo-finish {
+.awa-logo:hover .logo-finish {
   opacity: 1;
   transform: translateX(25px);
   transition: all 0.3s ease-out;
 }
 
-.logo-awa:hover .logo-start1 {
+.awa-logo:hover .logo-start1 {
   opacity: 1;
   transition: all 0.3s ease-out;
 }
@@ -166,5 +168,11 @@ export default {
   transform: translateX(30px);
   transition: all 0.3s ease-out;
   width: 50px;
+  height: 20px;
+  position: relative;
+  top: -1px;
+  svg {
+    height: auto;
+  }
 }
 </style>

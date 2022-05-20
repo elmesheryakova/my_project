@@ -15,6 +15,7 @@
     <ConceptBanner />
     <Feedback :enableWaveAnimation="true" />
     <Footer />
+    <ModalSuccess />
   </div>
 </template>
 <script>

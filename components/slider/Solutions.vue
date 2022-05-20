@@ -46,7 +46,7 @@
                     <div
                       class="slider-sol__icon"
                       :class="{
-                        'slider-sol__icon--coffe': item.title === 'Кофе',
+                        'slider-sol__icon--coffe': item.name === 'Кофе',
                       }"
                     >
                       <img :src="item.svg_icon" alt="" class="svg-color" />

@@ -384,6 +384,11 @@ export default {
       padding-bottom: 160px;
       min-height: 85vh;
       z-index: 0;
+      .text-require svg {
+        path {
+          fill: #1726c9 !important;
+        }
+      }
     }
     .footer-feedback__title {
       color: $primary;

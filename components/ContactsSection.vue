@@ -36,14 +36,48 @@
         </div>
 
         <div class="contacts__right">
-          <div
-            class="contacts__person-slider swiper"
-            v-swiper:mySwiper="swiperOption"
-            v-if="!isDesktop"
-          >
-            <div class="swiper-wrapper">
+          <template v-if="!isDesktop">
+            <div
+              class="contacts__person-slider swiper"
+              v-swiper:mySwiper="swiperOption"
+              v-if="items[tabIndex].employees.length > 3"
+            >
+              <div class="swiper-wrapper">
+                <div
+                  class="contacts__person-slide swiper-slide"
+                  v-for="(item, index) in items[tabIndex].employees"
+                  :key="index"
+                >
+                  <div class="contact-card">
+                    <div class="contact-card__img">
+                      <img
+                        :src="item.image"
+                        :alt="item.name"
+                        v-if="item.image"
+                      />
+                      <img
+                        :src="require(`@/assets/img/placeholder.jpg`)"
+                        :alt="item.name"
+                        v-else
+                      />
+                    </div>
+                    <div class="contact-card__full-name">
+                      <div class="contact-card__name">{{ item.name }}</div>
+                    </div>
+                    <div class="contact-card__job">
+                      <img :src="item.position_svg" alt="" />
+
+                      <div>{{ item.position }}</div>
+                    </div>
+                    <div class="contact-card__phone-add">
+                      (Доб.{{ item.phone_extra }})
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div v-else>
               <div
-                class="contacts__person-slide swiper-slide"
                 v-for="(item, index) in items[tabIndex].employees"
                 :key="index"
               >
@@ -70,7 +104,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </template>
 
           <div class="contacts__person-slider swiper" v-else>
             <div class="swiper-wrapper">
@@ -104,7 +138,12 @@
           </div>
         </div>
 
-        <Map :tabIndex="tabIndex" />
+        <Map
+          :tabIndex="tabIndex"
+          :lat="items[tabIndex].lat"
+          :lng="items[tabIndex].lng"
+          :route_url="items[tabIndex].route_url"
+        />
       </div>
     </div>
   </section>
@@ -220,20 +259,21 @@ export default {
   padding-right: 50px;
   .nav {
     justify-content: space-between;
-
+    flex-wrap: nowrap;
     @media (max-width: 993px) {
       justify-content: start;
       gap: 30px;
     }
     @media (max-width: 600px) {
+      gap: 10px;
       display: block;
       width: fit-content;
     }
   }
   .nav-tabs {
     border-bottom: none;
-    margin-right: 30px;
-    flex-wrap: wrap;
+    // margin-right: 30px;
+    // flex-wrap: wrap;
     li {
       margin-bottom: 10px;
     }
@@ -254,6 +294,9 @@ export default {
       color: $primary;
       background-color: #fff;
     }
+    @media (max-width: 1220px) {
+      padding: 0 15px;
+    }
     @media (max-width: 600px) {
       justify-content: flex-start;
       height: 35px;
@@ -262,6 +305,7 @@ export default {
       justify-content: center;
       margin-bottom: 30px;
       width: fit-content;
+      padding: 0 20px;
     }
   }
 }
@@ -336,8 +380,8 @@ export default {
   margin: 60px 0 30px;
   transition: 0.3s ease-in-out;
   &.animate {
-    opacity: 0;
-    transform: translateX(80px);
+    opacity: 0.3;
+    // transform: translateX(80px);
     transition: 0.3s ease-in-out;
   }
 }
@@ -414,8 +458,8 @@ export default {
     max-width: 200px;
   }
   &.animate {
-    opacity: 0;
-    transform: translateX(80px);
+    opacity: 0.3;
+    // transform: translateX(80px);
     transition: 0.3s ease-in-out;
   }
 }
@@ -479,7 +523,7 @@ export default {
     height: 100%;
     background: linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0) 76.58%,
+      rgba(255, 255, 255, 0) 34.58%,
       #ffffff 100%
     );
     pointer-events: none;
@@ -589,8 +633,8 @@ export default {
 .contacts__person-slider {
   overflow: visible;
   &.animate {
-    opacity: 0;
-    transform: translateX(80px);
+    opacity: 0.3;
+    // transform: translateX(80px);
     transition: 0.3s ease-in-out;
   }
 }
@@ -616,9 +660,9 @@ export default {
   .contacts__left {
     padding-right: 30px;
   }
-  .contacts__right {
-    padding-left: 30px;
-  }
+  // .contacts__right {
+  //   padding-left: 30px;
+  // }
   .contacts__tab-buttons {
     padding-right: 0;
   }
@@ -648,8 +692,8 @@ export default {
   .contacts__left {
     background-color: $primary;
     width: 100%;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 15px;
+    padding-right: 15px;
     padding-bottom: 65px;
   }
   .contacts__tab-contents {
@@ -667,9 +711,10 @@ export default {
   }
   .contacts__right {
     width: 100%;
-    padding-left: 30px;
+    // padding-left: 30px;
     // padding-top: 60px;
-    margin: 60px 0;
+    margin: 40px 0;
+    margin-top: 20px;
   }
   .contacts-map {
     // margin-top: 0;
@@ -782,9 +827,9 @@ export default {
 
 @include down("sm") {
   .contacts__right {
-    padding-left: 24px;
+    // padding-left: 24px;
     padding-bottom: 30px;
-    padding-top: 0;
+
     margin: 0;
   }
   .contacts__phone {

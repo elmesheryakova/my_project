@@ -232,7 +232,8 @@ export default {
 
 .promo-concepts__item {
   position: absolute;
-  width: 100%;
+  min-width: auto;
+  max-width: 530px;
   left: 0;
   top: 0;
   padding-right: 40px;
