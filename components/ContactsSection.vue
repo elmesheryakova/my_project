@@ -170,15 +170,17 @@ export default {
       tabIndex: 0,
 
       swiperOption: {
-        slidesPerView: 4,
-        loopedSlides: 4,
+        slidesPerView: 2,
+        // loopedSlides: 4,
         loop: true,
-        watchSlidesVisibility: true,
+        // watchSlidesVisibility: true,
         spaceBetween: 10,
         breakpoints: {
-          600: {
-            slidesPerView: 5,
-            // spaceBetween: 38,
+          370: {
+            slidesPerView: 3,
+          },
+          700: {
+            slidesPerView: 4,
           },
         },
       },
@@ -653,6 +655,11 @@ export default {
     column-gap: 30px;
   }
 }
+@media (max-width: 990px) {
+  .contacts__person-slider .swiper-wrapper {
+    column-gap: 0;
+  }
+}
 @include down("xl") {
   .contacts__title {
     font-size: 84px;
@@ -796,6 +803,10 @@ export default {
 
     &.swiper-slide-visible {
       opacity: 1;
+    }
+    @media (max-width: 990px) {
+      opacity: 1;
+      min-width: auto;
     }
   }
 }
