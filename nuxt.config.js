@@ -29,10 +29,10 @@ export default {
 
     ],
     script: [
-      {
-				type: 'text/javascript',
-				src: '/js/yandexMetrika.js',
-			},
+      // {
+			// 	type: 'text/javascript',
+			// 	src: '/js/yandexMetrika.js',
+			// },
     ]
   },
   styleResources: {
