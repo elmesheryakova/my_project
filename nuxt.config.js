@@ -78,10 +78,10 @@ export default {
     ["nuxt-mq"]
   ],
   gtm: {
-    id: 'GTM-5TNK9MX',
+    id: 'GTM-PX32XQD',
 		layer: 'dataLayer',
     noscript: true,
-		noscriptURL: 'https://www.googletagmanager.com/ns.html?id=GTM-5TNK9MX'
+		noscriptURL: 'https://www.googletagmanager.com/ns.html?id=GTM-PX32XQD'
   },
   mq: {
     defaultBreakpoint: "xl2",
