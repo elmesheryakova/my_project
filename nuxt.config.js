@@ -27,6 +27,12 @@ export default {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
 
+    ],
+    script: [
+      {
+				type: 'text/javascript',
+				src: '/js/yandexMetrika.js',
+			},
     ]
   },
   styleResources: {
@@ -67,11 +73,16 @@ export default {
     'bootstrap-vue/nuxt',
     '@nuxtjs/axios',
     '@nuxtjs/style-resources',
-
+    '@nuxtjs/gtm',
     '@nuxtjs/device',
     ["nuxt-mq"]
   ],
-
+  gtm: {
+    id: 'GTM-5TNK9MX',
+		layer: 'dataLayer',
+    noscript: true,
+		noscriptURL: 'https://www.googletagmanager.com/ns.html?id=GTM-5TNK9MX'
+  },
   mq: {
     defaultBreakpoint: "xl2",
     breakpoints: {
