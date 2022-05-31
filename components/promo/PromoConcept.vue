@@ -246,8 +246,8 @@ export default {
 .promo-concepts__images {
  position: absolute;
  top: 0;
- left: calc(50% - 230px);
- width: calc(50% + 230px);
+ left: calc(50% - 30px);
+ width: calc(50% + 30px);
  height: 100%;
  overflow: hidden;
 }
@@ -286,7 +286,7 @@ export default {
 }
 
 .promo-concepts__title {
- font-size: 124px;
+ font-size: 80px;
  margin-left: -0.05em;
  width: 250%;
  font-weight: 700;
@@ -298,9 +298,9 @@ export default {
 
 .promo-concepts__desc {
  font-weight: 300;
- max-width: 390px;
+ //  max-width: 400px;
+ //  width: 100%;
  width: 100%;
-
  line-height: 1.5;
 
  > p > div {
@@ -341,7 +341,7 @@ export default {
 
 @include down("xl") {
  .promo-concepts__title {
-  font-size: 80px;
+  font-size: 60px;
  }
  .promo-concepts__section-title {
   font-size: 18px;
