@@ -11,7 +11,7 @@ export default {
     host: '0.0.0.0',
   },
   head: {
-    title: 'PET-EXPERT',
+    // title: 'PET-EXPERT',
     htmlAttrs: {
       lang: 'ru'
     },
@@ -21,7 +21,7 @@ export default {
         name: 'viewport',
         content: 'width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no, shrink-to-fit=no'
       },
-      { hid: 'description', name: 'description', content: '' },
+      // { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
     ],
     link: [
