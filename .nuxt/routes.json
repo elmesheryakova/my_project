@@ -1,0 +1,184 @@
+[
+  {
+    "name": "accessories",
+    "path": "/accessories",
+    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\accessories.vue",
+    "chunkName": "pages/accessories",
+    "_name": "_c58b995c"
+  },
+  {
+    "name": "career",
+    "path": "/career",
+    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\career.vue",
+    "chunkName": "pages/career",
+    "_name": "_98bdf168"
+  },
+  {
+    "name": "certificates",
+    "path": "/certificates",
+    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\certificates.vue",
+    "chunkName": "pages/certificates",
+    "_name": "_3686220a"
+  },
+  {
+    "name": "company",
+    "path": "/company",
+    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\company.vue",
+    "chunkName": "pages/company",
+    "_name": "_512299c2"
+  },
+  {
+    "name": "conception",
+    "path": "/conception",
+    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\conception\\\\index.vue",
+    "chunkName": "pages/conception/index",
+    "_name": "_c3963758"
+  },
+  {
+    "name": "contacts",
+    "path": "/contacts",
+    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\contacts.vue",
+    "chunkName": "pages/contacts",
+    "_name": "_1101b821"
+  },
+  {
+    "name": "docs",
+    "path": "/docs",
+    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\docs.vue",
+    "chunkName": "pages/docs",
+    "_name": "_5167ddee"
+  },
+  {
+    "name": "equipment",
+    "path": "/equipment",
+    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\equipment.vue",
+    "chunkName": "pages/equipment",
+    "_name": "_2f39f130"
+  },
+  {
+    "name": "loading",
+    "path": "/loading",
+    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\loading.vue",
+    "chunkName": "pages/loading",
+    "_name": "_302c3f44"
+  },
+  {
+    "name": "news",
+    "path": "/news",
+    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\news\\\\index.vue",
+    "chunkName": "pages/news/index",
+    "_name": "_eadf007e"
+  },
+  {
+    "name": "partners",
+    "path": "/partners",
+    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\partners\\\\index.vue",
+    "chunkName": "pages/partners/index",
+    "_name": "_b4b33c2e"
+  },
+  {
+    "name": "prices",
+    "path": "/prices",
+    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\prices.vue",
+    "chunkName": "pages/prices",
+    "_name": "_39839bd0"
+  },
+  {
+    "name": "products",
+    "path": "/products",
+    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\products\\\\index.vue",
+    "chunkName": "pages/products/index",
+    "_name": "_36854f90"
+  },
+  {
+    "name": "questions",
+    "path": "/questions",
+    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\questions.vue",
+    "chunkName": "pages/questions",
+    "_name": "_7b35556f"
+  },
+  {
+    "name": "reviews",
+    "path": "/reviews",
+    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\reviews.vue",
+    "chunkName": "pages/reviews",
+    "_name": "_47d66bbd"
+  },
+  {
+    "name": "search",
+    "path": "/search",
+    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\search.vue",
+    "chunkName": "pages/search",
+    "_name": "_0f104076"
+  },
+  {
+    "name": "service",
+    "path": "/service",
+    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\service.vue",
+    "chunkName": "pages/service",
+    "_name": "_fa693d52"
+  },
+  {
+    "name": "shipment",
+    "path": "/shipment",
+    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\shipment.vue",
+    "chunkName": "pages/shipment",
+    "_name": "_bcf46430"
+  },
+  {
+    "name": "solutions",
+    "path": "/solutions",
+    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\solutions\\\\index.vue",
+    "chunkName": "pages/solutions/index",
+    "_name": "_3e9c2146"
+  },
+  {
+    "name": "team",
+    "path": "/team",
+    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\team.vue",
+    "chunkName": "pages/team",
+    "_name": "_40a2502b"
+  },
+  {
+    "name": "conception-slug",
+    "path": "/conception/:slug",
+    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\conception\\\\_slug.vue",
+    "chunkName": "pages/conception/_slug",
+    "_name": "_c70379e8"
+  },
+  {
+    "name": "news-slug",
+    "path": "/news/:slug",
+    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\news\\\\_slug.vue",
+    "chunkName": "pages/news/_slug",
+    "_name": "_ee4c430e"
+  },
+  {
+    "name": "products-current",
+    "path": "/products/:current",
+    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\products\\\\_current\\\\index.vue",
+    "chunkName": "pages/products/_current/index",
+    "_name": "_ea93dfd4"
+  },
+  {
+    "name": "solutions-slug",
+    "path": "/solutions/:slug",
+    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\solutions\\\\_slug.vue",
+    "chunkName": "pages/solutions/_slug",
+    "_name": "_3ce57ffe"
+  },
+  {
+    "name": "products-current-slug",
+    "path": "/products/:current/:slug",
+    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\products\\\\_current\\\\_slug\\\\index.vue",
+    "chunkName": "pages/products/_current/_slug/index",
+    "_name": "_f6257c18"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\index.vue",
+    "chunkName": "pages/index",
+    "_name": "_9ec0f118"
+  }
+]

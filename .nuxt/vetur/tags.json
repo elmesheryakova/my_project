@@ -1,0 +1,182 @@
+{
+  "Banner": {
+    "description": "Auto imported from components/Banner.vue"
+  },
+  "ContactsSection": {
+    "description": "Auto imported from components/ContactsSection.vue"
+  },
+  "Feedback": {
+    "description": "Auto imported from components/Feedback.vue"
+  },
+  "FeedbackForm": {
+    "description": "Auto imported from components/FeedbackForm.vue"
+  },
+  "Fullpage": {
+    "description": "Auto imported from components/Fullpage.vue"
+  },
+  "Fullscroll": {
+    "description": "Auto imported from components/Fullscroll.vue"
+  },
+  "GridMobile": {
+    "description": "Auto imported from components/GridMobile.vue"
+  },
+  "LoadingBar": {
+    "description": "Auto imported from components/LoadingBar.vue"
+  },
+  "LoadingImg": {
+    "description": "Auto imported from components/LoadingImg.vue"
+  },
+  "Map": {
+    "description": "Auto imported from components/Map.vue"
+  },
+  "Preloader": {
+    "description": "Auto imported from components/Preloader.vue"
+  },
+  "YandexMaps": {
+    "description": "Auto imported from components/YandexMaps.vue"
+  },
+  "Advantages": {
+    "description": "Auto imported from components/advantages/index.vue"
+  },
+  "AdvantagesItem": {
+    "description": "Auto imported from components/advantages/Item.vue"
+  },
+  "CompanyBanner": {
+    "description": "Auto imported from components/company/Banner.vue"
+  },
+  "CompanyConcept": {
+    "description": "Auto imported from components/company/Concept.vue"
+  },
+  "CompanyStory": {
+    "description": "Auto imported from components/company/Story.vue"
+  },
+  "ConceptBanner": {
+    "description": "Auto imported from components/concept/Banner.vue"
+  },
+  "ConceptItem": {
+    "description": "Auto imported from components/concept/Item.vue"
+  },
+  "FooterBottom": {
+    "description": "Auto imported from components/footer/Bottom.vue"
+  },
+  "Footer": {
+    "description": "Auto imported from components/footer/index.vue"
+  },
+  "FooterTop": {
+    "description": "Auto imported from components/footer/Top.vue"
+  },
+  "HeaderBottom": {
+    "description": "Auto imported from components/header/Bottom.vue"
+  },
+  "Header": {
+    "description": "Auto imported from components/header/index.vue"
+  },
+  "HeaderNavbar": {
+    "description": "Auto imported from components/header/Navbar.vue"
+  },
+  "HeaderSubmenu": {
+    "description": "Auto imported from components/header/Submenu.vue"
+  },
+  "HeaderTop": {
+    "description": "Auto imported from components/header/Top.vue"
+  },
+  "ModalFeedback": {
+    "description": "Auto imported from components/modal/Feedback.vue"
+  },
+  "ModalHeader": {
+    "description": "Auto imported from components/modal/Header.vue"
+  },
+  "ModalNewsSuccess": {
+    "description": "Auto imported from components/modal/NewsSuccess.vue"
+  },
+  "ModalSidebar": {
+    "description": "Auto imported from components/modal/Sidebar.vue"
+  },
+  "ModalSubSuccess": {
+    "description": "Auto imported from components/modal/SubSuccess.vue"
+  },
+  "ModalSuccess": {
+    "description": "Auto imported from components/modal/Success.vue"
+  },
+  "News": {
+    "description": "Auto imported from components/news/Index.vue"
+  },
+  "ProductInfo": {
+    "description": "Auto imported from components/product/Info.vue"
+  },
+  "ProductIsDev": {
+    "description": "Auto imported from components/product/IsDev.vue"
+  },
+  "ProductItem": {
+    "description": "Auto imported from components/product/Item.vue"
+  },
+  "ProductPreview": {
+    "description": "Auto imported from components/product/Preview.vue"
+  },
+  "ProductSpecifications": {
+    "description": "Auto imported from components/product/Specifications.vue"
+  },
+  "PromoChooseItem": {
+    "description": "Auto imported from components/promo/ChooseItem.vue"
+  },
+  "Promo": {
+    "description": "Auto imported from components/promo/Promo.vue"
+  },
+  "PromoConcept": {
+    "description": "Auto imported from components/promo/PromoConcept.vue"
+  },
+  "PromoMobileSlider": {
+    "description": "Auto imported from components/promo/PromoMobileSlider.vue"
+  },
+  "PromoSlide": {
+    "description": "Auto imported from components/promo/PromoSlide.vue"
+  },
+  "PromoSlides": {
+    "description": "Auto imported from components/promo/PromoSlides.vue"
+  },
+  "PromoVideo": {
+    "description": "Auto imported from components/promo/PromoVideo.vue"
+  },
+  "SliderFullscreen": {
+    "description": "Auto imported from components/slider/Fullscreen.vue"
+  },
+  "Slider": {
+    "description": "Auto imported from components/slider/index.vue"
+  },
+  "SliderPartnersSlider": {
+    "description": "Auto imported from components/slider/PartnersSlider.vue"
+  },
+  "SliderProduct": {
+    "description": "Auto imported from components/slider/Product.vue"
+  },
+  "SliderSolutions": {
+    "description": "Auto imported from components/slider/Solutions.vue"
+  },
+  "SliderTeamSlider": {
+    "description": "Auto imported from components/slider/TeamSlider.vue"
+  },
+  "SliderWater": {
+    "description": "Auto imported from components/slider/Water.vue"
+  },
+  "SolutionConsultation": {
+    "description": "Auto imported from components/solution/Consultation.vue"
+  },
+  "Solution": {
+    "description": "Auto imported from components/solution/index.vue"
+  },
+  "SolutionInfo": {
+    "description": "Auto imported from components/solution/Info.vue"
+  },
+  "SolutionMobile": {
+    "description": "Auto imported from components/solution/Mobile.vue"
+  },
+  "SubscriptionForm": {
+    "description": "Auto imported from components/subscription/Form.vue"
+  },
+  "Subscription": {
+    "description": "Auto imported from components/subscription/index.vue"
+  },
+  "SubscriptionNews": {
+    "description": "Auto imported from components/subscription/News.vue"
+  }
+}
