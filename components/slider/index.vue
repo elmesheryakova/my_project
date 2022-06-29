@@ -4,10 +4,12 @@
     :class="{ 'slider--products': $route.name === 'products-current-slug' }"
   >
     <div class="swiper-wrapper">
-      <div
+      <nuxt-link
         class="swiper-slide d-flex flex-column"
         v-for="(item, index) in items"
         :key="`item-${index}`"
+        :to="{ name: 'accessories', path: '/', hash: `/#${item.slug}` }"
+        v-scroll-to="{ el: `#${item.slug}` }"
       >
         <div class="slider__img">
           <img :src="item.image" alt="img" />
@@ -16,7 +18,7 @@
           <h2 class="slider__info-title">{{ item.name }}</h2>
           <p class="slider__info-article">{{ item.sku }}</p>
         </div>
-      </div>
+      </nuxt-link>
     </div>
     <div class="swiper-button-next">
       <svgicon name="arrow-slider" />

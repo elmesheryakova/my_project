@@ -5,6 +5,7 @@
       'advantages__item--mb': $route.name === 'solutions-slug',
       'advantages__item--acc': $route.name === 'accessories',
     }"
+    :id="`${item.slug}`"
   >
     <div class="advantages__item-inner">
       <div

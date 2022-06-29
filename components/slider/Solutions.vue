@@ -59,12 +59,15 @@
                   </div>
                 </nuxt-link>
               </div>
+              <div class="swiper-button-next">
+                <svgicon name="arrow-slider" />
+              </div>
+              <div class="swiper-button-prev">
+                <svgicon name="arrow-slider" />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="swiper-button-next">
-        <svgicon name="arrow-slider" />
       </div>
     </div>
   </div>
@@ -296,4 +299,3 @@ export default {
   }
 }
 </style>
-

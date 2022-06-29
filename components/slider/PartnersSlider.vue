@@ -42,11 +42,24 @@
               <div class="q-left"><svgicon name="q-left" /></div>
 
               <p class="mb-0">{{ i.text }}</p>
+
               <div class="q-right"><svgicon name="q-right" /></div>
+            </div>
+
+            <div
+              v-if="i.images[0]"
+              class="advantages__item-link partners__quote-link"
+              v-b-modal.modal-review
+            >
+              <p class="mb-0">Посмотреть</p>
+              <svgicon name="arrow-blue" />
             </div>
           </div>
         </div>
       </div>
+      <b-modal id="modal-review" centered size="xl" class="modal-lg">
+        <img :src="items[0].images" />
+      </b-modal>
       <div class="partners-logos">
         <button
           class="partners-logos__item"
@@ -139,12 +152,25 @@ export default {
 </script>
 
 <style lang="scss">
+#modal-review___BV_modal_body_ {
+  padding: 0;
+  img {
+    width: 100%;
+  }
+}
+
+#modal-review .modal-dialog {
+  max-width: 1200px !important;
+}
+
 .partners {
   padding-top: 80px;
   padding-bottom: 100px;
   background-color: white;
 }
-
+.partners__quote-link {
+  padding-left: 100px;
+}
 .partners__title {
   color: $primary;
   font-size: 124px;
@@ -155,6 +181,7 @@ export default {
 .partners__slider {
   position: relative;
   overflow: hidden;
+  padding-bottom: 120px;
 }
 
 .partners__company {

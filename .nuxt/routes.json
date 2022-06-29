@@ -2,183 +2,183 @@
   {
     "name": "accessories",
     "path": "/accessories",
-    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\accessories.vue",
+    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\CURRENT\\\\petexpert.html\\\\pages\\\\accessories.vue",
     "chunkName": "pages/accessories",
-    "_name": "_c58b995c"
+    "_name": "_462ddba5"
   },
   {
     "name": "career",
     "path": "/career",
-    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\career.vue",
+    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\CURRENT\\\\petexpert.html\\\\pages\\\\career.vue",
     "chunkName": "pages/career",
-    "_name": "_98bdf168"
+    "_name": "_93b791ce"
   },
   {
     "name": "certificates",
     "path": "/certificates",
-    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\certificates.vue",
+    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\CURRENT\\\\petexpert.html\\\\pages\\\\certificates.vue",
     "chunkName": "pages/certificates",
-    "_name": "_3686220a"
+    "_name": "_a7f0f7d2"
   },
   {
     "name": "company",
     "path": "/company",
-    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\company.vue",
+    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\CURRENT\\\\petexpert.html\\\\pages\\\\company.vue",
     "chunkName": "pages/company",
-    "_name": "_512299c2"
+    "_name": "_25517cf2"
   },
   {
     "name": "conception",
     "path": "/conception",
-    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\conception\\\\index.vue",
+    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\CURRENT\\\\petexpert.html\\\\pages\\\\conception\\\\index.vue",
     "chunkName": "pages/conception/index",
-    "_name": "_c3963758"
+    "_name": "_7b207b32"
   },
   {
     "name": "contacts",
     "path": "/contacts",
-    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\contacts.vue",
+    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\CURRENT\\\\petexpert.html\\\\pages\\\\contacts.vue",
     "chunkName": "pages/contacts",
-    "_name": "_1101b821"
+    "_name": "_7f7828ae"
   },
   {
     "name": "docs",
     "path": "/docs",
-    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\docs.vue",
+    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\CURRENT\\\\petexpert.html\\\\pages\\\\docs.vue",
     "chunkName": "pages/docs",
-    "_name": "_5167ddee"
+    "_name": "_4c82d016"
   },
   {
     "name": "equipment",
     "path": "/equipment",
-    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\equipment.vue",
+    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\CURRENT\\\\petexpert.html\\\\pages\\\\equipment.vue",
     "chunkName": "pages/equipment",
-    "_name": "_2f39f130"
+    "_name": "_e0dcdb7a"
   },
   {
     "name": "loading",
     "path": "/loading",
-    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\loading.vue",
+    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\CURRENT\\\\petexpert.html\\\\pages\\\\loading.vue",
     "chunkName": "pages/loading",
-    "_name": "_302c3f44"
+    "_name": "_35ccaa31"
   },
   {
     "name": "news",
     "path": "/news",
-    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\news\\\\index.vue",
+    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\CURRENT\\\\petexpert.html\\\\pages\\\\news\\\\index.vue",
     "chunkName": "pages/news/index",
-    "_name": "_eadf007e"
+    "_name": "_33842814"
   },
   {
     "name": "partners",
     "path": "/partners",
-    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\partners\\\\index.vue",
+    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\CURRENT\\\\petexpert.html\\\\pages\\\\partners\\\\index.vue",
     "chunkName": "pages/partners/index",
-    "_name": "_b4b33c2e"
+    "_name": "_3dd0ae88"
   },
   {
     "name": "prices",
     "path": "/prices",
-    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\prices.vue",
+    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\CURRENT\\\\petexpert.html\\\\pages\\\\prices.vue",
     "chunkName": "pages/prices",
-    "_name": "_39839bd0"
+    "_name": "_347d3c36"
   },
   {
     "name": "products",
     "path": "/products",
-    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\products\\\\index.vue",
+    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\CURRENT\\\\petexpert.html\\\\pages\\\\products\\\\index.vue",
     "chunkName": "pages/products/index",
-    "_name": "_36854f90"
+    "_name": "_71f69663"
   },
   {
     "name": "questions",
     "path": "/questions",
-    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\questions.vue",
+    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\CURRENT\\\\petexpert.html\\\\pages\\\\questions.vue",
     "chunkName": "pages/questions",
-    "_name": "_7b35556f"
+    "_name": "_48e612fc"
   },
   {
     "name": "reviews",
     "path": "/reviews",
-    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\reviews.vue",
+    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\CURRENT\\\\petexpert.html\\\\pages\\\\reviews.vue",
     "chunkName": "pages/reviews",
-    "_name": "_47d66bbd"
+    "_name": "_d48d94e0"
   },
   {
     "name": "search",
     "path": "/search",
-    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\search.vue",
+    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\CURRENT\\\\petexpert.html\\\\pages\\\\search.vue",
     "chunkName": "pages/search",
-    "_name": "_0f104076"
+    "_name": "_11937043"
   },
   {
     "name": "service",
     "path": "/service",
-    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\service.vue",
+    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\CURRENT\\\\petexpert.html\\\\pages\\\\service.vue",
     "chunkName": "pages/service",
-    "_name": "_fa693d52"
+    "_name": "_5ea3a9ac"
   },
   {
     "name": "shipment",
     "path": "/shipment",
-    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\shipment.vue",
+    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\CURRENT\\\\petexpert.html\\\\pages\\\\shipment.vue",
     "chunkName": "pages/shipment",
-    "_name": "_bcf46430"
+    "_name": "_0ffc3e75"
   },
   {
     "name": "solutions",
     "path": "/solutions",
-    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\solutions\\\\index.vue",
+    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\CURRENT\\\\petexpert.html\\\\pages\\\\solutions\\\\index.vue",
     "chunkName": "pages/solutions/index",
-    "_name": "_3e9c2146"
+    "_name": "_7153b4d3"
   },
   {
     "name": "team",
     "path": "/team",
-    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\team.vue",
+    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\CURRENT\\\\petexpert.html\\\\pages\\\\team.vue",
     "chunkName": "pages/team",
-    "_name": "_40a2502b"
+    "_name": "_944de190"
   },
   {
     "name": "conception-slug",
     "path": "/conception/:slug",
-    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\conception\\\\_slug.vue",
+    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\CURRENT\\\\petexpert.html\\\\pages\\\\conception\\\\_slug.vue",
     "chunkName": "pages/conception/_slug",
-    "_name": "_c70379e8"
+    "_name": "_7e8dbdc2"
   },
   {
     "name": "news-slug",
     "path": "/news/:slug",
-    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\news\\\\_slug.vue",
+    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\CURRENT\\\\petexpert.html\\\\pages\\\\news\\\\_slug.vue",
     "chunkName": "pages/news/_slug",
-    "_name": "_ee4c430e"
+    "_name": "_31cd86cc"
   },
   {
     "name": "products-current",
     "path": "/products/:current",
-    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\products\\\\_current\\\\index.vue",
+    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\CURRENT\\\\petexpert.html\\\\pages\\\\products\\\\_current\\\\index.vue",
     "chunkName": "pages/products/_current/index",
-    "_name": "_ea93dfd4"
+    "_name": "_2e472b29"
   },
   {
     "name": "solutions-slug",
     "path": "/solutions/:slug",
-    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\solutions\\\\_slug.vue",
+    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\CURRENT\\\\petexpert.html\\\\pages\\\\solutions\\\\_slug.vue",
     "chunkName": "pages/solutions/_slug",
-    "_name": "_3ce57ffe"
+    "_name": "_6f9d138b"
   },
   {
     "name": "products-current-slug",
     "path": "/products/:current/:slug",
-    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\products\\\\_current\\\\_slug\\\\index.vue",
+    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\CURRENT\\\\petexpert.html\\\\pages\\\\products\\\\_current\\\\_slug\\\\index.vue",
     "chunkName": "pages/products/_current/_slug/index",
-    "_name": "_f6257c18"
+    "_name": "_61ae1b81"
   },
   {
     "name": "index",
     "path": "/",
-    "component": "C:\\\\Users\\\\User\\\\Desktop\\\\smartIT\\\\petexpert.html\\\\pages\\\\index.vue",
+    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\CURRENT\\\\petexpert.html\\\\pages\\\\index.vue",
     "chunkName": "pages/index",
-    "_name": "_9ec0f118"
+    "_name": "_3b7eabf2"
   }
 ]
