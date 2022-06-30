@@ -41,6 +41,12 @@
   "AdvantagesItem": {
     "description": "Auto imported from components/advantages/Item.vue"
   },
+  "ConceptBanner": {
+    "description": "Auto imported from components/concept/Banner.vue"
+  },
+  "ConceptItem": {
+    "description": "Auto imported from components/concept/Item.vue"
+  },
   "CompanyBanner": {
     "description": "Auto imported from components/company/Banner.vue"
   },
@@ -50,11 +56,14 @@
   "CompanyStory": {
     "description": "Auto imported from components/company/Story.vue"
   },
-  "ConceptBanner": {
-    "description": "Auto imported from components/concept/Banner.vue"
+  "FooterBottom": {
+    "description": "Auto imported from components/footer/Bottom.vue"
   },
-  "ConceptItem": {
-    "description": "Auto imported from components/concept/Item.vue"
+  "Footer": {
+    "description": "Auto imported from components/footer/index.vue"
+  },
+  "FooterTop": {
+    "description": "Auto imported from components/footer/Top.vue"
   },
   "HeaderBottom": {
     "description": "Auto imported from components/header/Bottom.vue"
@@ -70,18 +79,6 @@
   },
   "HeaderTop": {
     "description": "Auto imported from components/header/Top.vue"
-  },
-  "FooterBottom": {
-    "description": "Auto imported from components/footer/Bottom.vue"
-  },
-  "Footer": {
-    "description": "Auto imported from components/footer/index.vue"
-  },
-  "FooterTop": {
-    "description": "Auto imported from components/footer/Top.vue"
-  },
-  "News": {
-    "description": "Auto imported from components/news/Index.vue"
   },
   "ModalFeedback": {
     "description": "Auto imported from components/modal/Feedback.vue"
@@ -100,6 +97,9 @@
   },
   "ModalSuccess": {
     "description": "Auto imported from components/modal/Success.vue"
+  },
+  "News": {
+    "description": "Auto imported from components/news/Index.vue"
   },
   "ProductInfo": {
     "description": "Auto imported from components/product/Info.vue"
