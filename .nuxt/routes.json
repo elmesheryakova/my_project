@@ -2,183 +2,183 @@
   {
     "name": "accessories",
     "path": "/accessories",
-    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\Новая папка\\\\petexpert.html\\\\pages\\\\accessories.vue",
+    "component": "C:\\\\Users\\\\a.kotiakova\\\\Desktop\\\\CURRENT-DEV\\\\petexpert.html\\\\pages\\\\accessories.vue",
     "chunkName": "pages/accessories",
-    "_name": "_d69e0040"
+    "_name": "_46f26e08"
   },
   {
     "name": "career",
     "path": "/career",
-    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\Новая папка\\\\petexpert.html\\\\pages\\\\career.vue",
+    "component": "C:\\\\Users\\\\a.kotiakova\\\\Desktop\\\\CURRENT-DEV\\\\petexpert.html\\\\pages\\\\career.vue",
     "chunkName": "pages/career",
-    "_name": "_edf7cc04"
+    "_name": "_7d5f1a54"
   },
   {
     "name": "certificates",
     "path": "/certificates",
-    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\Новая папка\\\\petexpert.html\\\\pages\\\\certificates.vue",
+    "component": "C:\\\\Users\\\\a.kotiakova\\\\Desktop\\\\CURRENT-DEV\\\\petexpert.html\\\\pages\\\\certificates.vue",
     "chunkName": "pages/certificates",
-    "_name": "_2de8e73c"
+    "_name": "_785583d8"
   },
   {
     "name": "company",
     "path": "/company",
-    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\Новая папка\\\\petexpert.html\\\\pages\\\\company.vue",
+    "component": "C:\\\\Users\\\\a.kotiakova\\\\Desktop\\\\CURRENT-DEV\\\\petexpert.html\\\\pages\\\\company.vue",
     "chunkName": "pages/company",
-    "_name": "_a32412a6"
+    "_name": "_7facb8d5"
   },
   {
     "name": "conception",
     "path": "/conception",
-    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\Новая папка\\\\petexpert.html\\\\pages\\\\conception\\\\index.vue",
+    "component": "C:\\\\Users\\\\a.kotiakova\\\\Desktop\\\\CURRENT-DEV\\\\petexpert.html\\\\pages\\\\conception\\\\index.vue",
     "chunkName": "pages/conception/index",
-    "_name": "_74178e62"
+    "_name": "_39f082ec"
   },
   {
     "name": "contacts",
     "path": "/contacts",
-    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\Новая папка\\\\petexpert.html\\\\pages\\\\contacts.vue",
+    "component": "C:\\\\Users\\\\a.kotiakova\\\\Desktop\\\\CURRENT-DEV\\\\petexpert.html\\\\pages\\\\contacts.vue",
     "chunkName": "pages/contacts",
-    "_name": "_19eae653"
+    "_name": "_7084692b"
   },
   {
     "name": "docs",
     "path": "/docs",
-    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\Новая папка\\\\petexpert.html\\\\pages\\\\docs.vue",
+    "component": "C:\\\\Users\\\\a.kotiakova\\\\Desktop\\\\CURRENT-DEV\\\\petexpert.html\\\\pages\\\\docs.vue",
     "chunkName": "pages/docs",
-    "_name": "_7f58283b"
+    "_name": "_17d651da"
   },
   {
     "name": "equipment",
     "path": "/equipment",
-    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\Новая папка\\\\petexpert.html\\\\pages\\\\equipment.vue",
+    "component": "C:\\\\Users\\\\a.kotiakova\\\\Desktop\\\\CURRENT-DEV\\\\petexpert.html\\\\pages\\\\equipment.vue",
     "chunkName": "pages/equipment",
-    "_name": "_4376893e"
+    "_name": "_7fe53d34"
   },
   {
     "name": "loading",
     "path": "/loading",
-    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\Новая папка\\\\petexpert.html\\\\pages\\\\loading.vue",
+    "component": "C:\\\\Users\\\\a.kotiakova\\\\Desktop\\\\CURRENT-DEV\\\\petexpert.html\\\\pages\\\\loading.vue",
     "chunkName": "pages/loading",
-    "_name": "_822db828"
+    "_name": "_dfb033d8"
   },
   {
     "name": "news",
     "path": "/news",
-    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\Новая папка\\\\petexpert.html\\\\pages\\\\news\\\\index.vue",
+    "component": "C:\\\\Users\\\\a.kotiakova\\\\Desktop\\\\CURRENT-DEV\\\\petexpert.html\\\\pages\\\\news\\\\index.vue",
     "chunkName": "pages/news/index",
-    "_name": "_fbf16762"
+    "_name": "_3448ba77"
   },
   {
     "name": "partners",
     "path": "/partners",
-    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\Новая папка\\\\petexpert.html\\\\pages\\\\partners\\\\index.vue",
+    "component": "C:\\\\Users\\\\a.kotiakova\\\\Desktop\\\\CURRENT-DEV\\\\petexpert.html\\\\pages\\\\partners\\\\index.vue",
     "chunkName": "pages/partners/index",
-    "_name": "_34a83777"
+    "_name": "_22935cc2"
   },
   {
     "name": "prices",
     "path": "/prices",
-    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\Новая папка\\\\petexpert.html\\\\pages\\\\prices.vue",
+    "component": "C:\\\\Users\\\\a.kotiakova\\\\Desktop\\\\CURRENT-DEV\\\\petexpert.html\\\\pages\\\\prices.vue",
     "chunkName": "pages/prices",
-    "_name": "_8ebd766c"
+    "_name": "_1e24c4bc"
   },
   {
     "name": "products",
     "path": "/products",
-    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\Новая папка\\\\petexpert.html\\\\pages\\\\products\\\\index.vue",
+    "component": "C:\\\\Users\\\\a.kotiakova\\\\Desktop\\\\CURRENT-DEV\\\\petexpert.html\\\\pages\\\\products\\\\index.vue",
     "chunkName": "pages/products/index",
-    "_name": "_74f1b5c4"
+    "_name": "_7f953f46"
   },
   {
     "name": "questions",
     "path": "/questions",
-    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\Новая папка\\\\petexpert.html\\\\pages\\\\questions.vue",
+    "component": "C:\\\\Users\\\\a.kotiakova\\\\Desktop\\\\CURRENT-DEV\\\\petexpert.html\\\\pages\\\\questions.vue",
     "chunkName": "pages/questions",
-    "_name": "_e11c2506"
+    "_name": "_0c08c5a5"
   },
   {
     "name": "reviews",
     "path": "/reviews",
-    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\Новая папка\\\\petexpert.html\\\\pages\\\\reviews.vue",
+    "component": "C:\\\\Users\\\\a.kotiakova\\\\Desktop\\\\CURRENT-DEV\\\\petexpert.html\\\\pages\\\\reviews.vue",
     "chunkName": "pages/reviews",
-    "_name": "_1ed5af4b"
+    "_name": "_1fd71d1a"
   },
   {
     "name": "search",
     "path": "/search",
-    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\Новая папка\\\\petexpert.html\\\\pages\\\\search.vue",
+    "component": "C:\\\\Users\\\\a.kotiakova\\\\Desktop\\\\CURRENT-DEV\\\\petexpert.html\\\\pages\\\\search.vue",
     "chunkName": "pages/search",
-    "_name": "_371959b0"
+    "_name": "_1cbfac00"
   },
   {
     "name": "service",
     "path": "/service",
-    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\Новая папка\\\\petexpert.html\\\\pages\\\\service.vue",
+    "component": "C:\\\\Users\\\\a.kotiakova\\\\Desktop\\\\CURRENT-DEV\\\\petexpert.html\\\\pages\\\\service.vue",
     "chunkName": "pages/service",
-    "_name": "_59caa4e5"
+    "_name": "_2b09670d"
   },
   {
     "name": "shipment",
     "path": "/shipment",
-    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\Новая папка\\\\petexpert.html\\\\pages\\\\shipment.vue",
+    "component": "C:\\\\Users\\\\a.kotiakova\\\\Desktop\\\\CURRENT-DEV\\\\petexpert.html\\\\pages\\\\shipment.vue",
     "chunkName": "pages/shipment",
-    "_name": "_ab2207cc"
+    "_name": "_01087ef2"
   },
   {
     "name": "solutions",
     "path": "/solutions",
-    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\Новая папка\\\\petexpert.html\\\\pages\\\\solutions\\\\index.vue",
+    "component": "C:\\\\Users\\\\a.kotiakova\\\\Desktop\\\\CURRENT-DEV\\\\petexpert.html\\\\pages\\\\solutions\\\\index.vue",
     "chunkName": "pages/solutions/index",
-    "_name": "_e0560510"
+    "_name": "_178a2850"
   },
   {
     "name": "team",
     "path": "/team",
-    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\Новая папка\\\\petexpert.html\\\\pages\\\\team.vue",
+    "component": "C:\\\\Users\\\\a.kotiakova\\\\Desktop\\\\CURRENT-DEV\\\\petexpert.html\\\\pages\\\\team.vue",
     "chunkName": "pages/team",
-    "_name": "_2ea33146"
+    "_name": "_5d6b1635"
   },
   {
     "name": "conception-slug",
     "path": "/conception/:slug",
-    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\Новая папка\\\\petexpert.html\\\\pages\\\\conception\\\\_slug.vue",
+    "component": "C:\\\\Users\\\\a.kotiakova\\\\Desktop\\\\CURRENT-DEV\\\\petexpert.html\\\\pages\\\\conception\\\\_slug.vue",
     "chunkName": "pages/conception/_slug",
-    "_name": "_7260ed1a"
+    "_name": "_3d5dc57c"
   },
   {
     "name": "news-slug",
     "path": "/news/:slug",
-    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\Новая папка\\\\petexpert.html\\\\pages\\\\news\\\\_slug.vue",
+    "component": "C:\\\\Users\\\\a.kotiakova\\\\Desktop\\\\CURRENT-DEV\\\\petexpert.html\\\\pages\\\\news\\\\_slug.vue",
     "chunkName": "pages/news/_slug",
-    "_name": "_ff5ea9f2"
+    "_name": "_3292192f"
   },
   {
     "name": "products-current",
     "path": "/products/:current",
-    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\Новая папка\\\\petexpert.html\\\\pages\\\\products\\\\_current\\\\index.vue",
+    "component": "C:\\\\Users\\\\a.kotiakova\\\\Desktop\\\\CURRENT-DEV\\\\petexpert.html\\\\pages\\\\products\\\\_current\\\\index.vue",
     "chunkName": "pages/products/_current/index",
-    "_name": "_27e667b8"
+    "_name": "_6a7e544c"
   },
   {
     "name": "solutions-slug",
     "path": "/solutions/:slug",
-    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\Новая папка\\\\petexpert.html\\\\pages\\\\solutions\\\\_slug.vue",
+    "component": "C:\\\\Users\\\\a.kotiakova\\\\Desktop\\\\CURRENT-DEV\\\\petexpert.html\\\\pages\\\\solutions\\\\_slug.vue",
     "chunkName": "pages/solutions/_slug",
-    "_name": "_e3c347a0"
+    "_name": "_15d38708"
   },
   {
     "name": "products-current-slug",
     "path": "/products/:current/:slug",
-    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\Новая папка\\\\petexpert.html\\\\pages\\\\products\\\\_current\\\\_slug\\\\index.vue",
+    "component": "C:\\\\Users\\\\a.kotiakova\\\\Desktop\\\\CURRENT-DEV\\\\petexpert.html\\\\pages\\\\products\\\\_current\\\\_slug\\\\index.vue",
     "chunkName": "pages/products/_current/_slug/index",
-    "_name": "_221b7a26"
+    "_name": "_e4e01604"
   },
   {
     "name": "index",
     "path": "/",
-    "component": "C:\\\\Users\\\\Admin\\\\Desktop\\\\Новая папка\\\\petexpert.html\\\\pages\\\\index.vue",
+    "component": "C:\\\\Users\\\\a.kotiakova\\\\Desktop\\\\CURRENT-DEV\\\\petexpert.html\\\\pages\\\\index.vue",
     "chunkName": "pages/index",
-    "_name": "_0a165682"
+    "_name": "_2cef82aa"
   }
 ]

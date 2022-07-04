@@ -41,12 +41,6 @@
   "AdvantagesItem": {
     "description": "Auto imported from components/advantages/Item.vue"
   },
-  "ConceptBanner": {
-    "description": "Auto imported from components/concept/Banner.vue"
-  },
-  "ConceptItem": {
-    "description": "Auto imported from components/concept/Item.vue"
-  },
   "CompanyBanner": {
     "description": "Auto imported from components/company/Banner.vue"
   },
@@ -55,6 +49,12 @@
   },
   "CompanyStory": {
     "description": "Auto imported from components/company/Story.vue"
+  },
+  "ConceptBanner": {
+    "description": "Auto imported from components/concept/Banner.vue"
+  },
+  "ConceptItem": {
+    "description": "Auto imported from components/concept/Item.vue"
   },
   "FooterBottom": {
     "description": "Auto imported from components/footer/Bottom.vue"

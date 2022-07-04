@@ -8,7 +8,7 @@
         class="swiper-slide d-flex flex-column"
         v-for="(item, index) in items"
         :key="`item-${index}`"
-        :to="{ name: 'accessories', path: '/', hash: `/#${item.slug}` }"
+        :to="`/products/${item.parent_slug[0].slug}/${item.slug}`"
         v-scroll-to="{ el: `#${item.slug}` }"
       >
         <div class="slider__img">
