@@ -346,9 +346,15 @@ export default {
 }
 
 @include down("md") {
+  .partners__slider {
+    padding-bottom: 80px;
+  }
 }
 
 @include down("sm") {
+  .partners__slider {
+    padding-bottom: 60px;
+  }
   .partners-logos__item {
     height: 100px;
     padding-left: 10px;

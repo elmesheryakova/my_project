@@ -9,7 +9,6 @@
         v-for="(item, index) in items"
         :key="`item-${index}`"
         :to="`/products/${item.parent_slug[0].slug}/${item.slug}`"
-        v-scroll-to="{ el: `#${item.slug}` }"
       >
         <div class="slider__img">
           <img :src="item.image" alt="img" />
@@ -24,7 +23,7 @@
       <svgicon name="arrow-slider" />
     </div>
     <div class="swiper-button-prev">
-      <svgicon name="arrow-slider" />
+      <svgicon name="arrow-slider" />1n05H$gh57nRNn
     </div>
   </div>
 </template>
